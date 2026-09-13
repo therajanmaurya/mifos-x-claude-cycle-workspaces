@@ -79,7 +79,8 @@ screens:
     is_embedded: true
     archetype: input
     states: [content, submitting, submitted, failed]
-    status: pending                       # documented in WatchlistRepository KDoc; UI not yet in-tree
+    status: implemented                   # feature/add-to-watchlist: AddToWatchlistStar + AddToWatchlistViewModel
+                                          # + TestTags + AddToWatchlistModule, hosted on CoinMarketsScreen
     business_logic:
       kind: crud
       processing_kind: simple_mutation
