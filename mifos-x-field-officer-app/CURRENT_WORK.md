@@ -115,11 +115,15 @@ Verified green: all `core/*` metadata compiles · `core:database` compiles on **
 
 ---
 
-## Resume Command
+## Session Resumption
 
 ```bash
 /context-start mifos-x-mifos-x-field-officer-app
 ```
 
-Then read the epic for full detail:
+**First thing to read**: "Next Steps" above — item 1 is redoing `feature/auth` as a PORT of the
+original screen, not the fresh rewrite currently committed. Then the per-feature recipe, which
+applies unchanged to the remaining 19 features.
+
+Full epic detail (subordinate to this file, not a substitute):
 `plan-layer/project-plans/mifos-x/mifos-x-field-officer-app/active/template-port-fresh/CURRENT_WORK.md`
