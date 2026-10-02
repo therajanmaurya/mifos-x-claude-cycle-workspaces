@@ -1,0 +1,153 @@
+# signin — UI contract. IMPORTED from source 2026-10-02, not authored.
+# Components and on_click targets are READ from LoginScreen.kt + AuthNavigation.kt at 6b66e8a43.
+# The graph supplies the targets: the screen declares three lambda params and the graph binds them,
+# so neither file alone states the navigation.
+
+schema_version: "3.1"
+screen_id: signin
+name: Sign in
+status: imported
+
+# ──────────────── FEATURE PROFILE (born-complete per IDEA_SCAFFOLD_CONTRACT) ────────────────
+# DERIVED from the imported source, not scaffold defaults:
+#  - combo_id form_submit: the screen's whole purpose is one credential submission
+#  - archetype screen-content: codegen vocabulary; this is not a paging list or dashboard
+#  - store_archetype MEMORY_ONLY: sign-in is OnlineRequired and caches nothing; the session it
+#    establishes is written to preferences, not to a Store
+feature_profile:
+  combo_id: form_submit
+  facets: [form, auth, submit]
+  archetype: screen-content
+  store_archetype: MEMORY_ONLY
+  recipe_ref: FEATURE_LAYER_BUILD_GUIDE
+  heal: auto
+  profile_hash: imported-from-source
+
+# ──────────────── STATES ────────────────
+# Measured from LoginUiState.kt. Six in the original; two were navigation intents rather than
+# renderable states, which is why the port replaced them with a single event.
+states: [empty, submitting, validation_error, transport_error, offline, success]
+initial_state: empty      # ES3: a form screen with no api-backed primary read starts at content, not loading
+
+state_detail:
+  - id: empty
+    source: "LoginUiState.Empty"
+    description: "initial — fields editable, no error shown"
+    components: [server_config_cta, logo, title, username_field, password_field, login_button]
+
+  - id: submitting
+    source: "LoginUiState.ShowProgress"
+    description: "credential check in flight; fields stay populated"
+    components: [server_config_cta, logo, title, username_field, password_field, login_button]
+
+  - id: validation_error
+    source: "LoginUiState.ShowValidationError(usernameError, passwordError)"
+    description: "client-side rule failed — error renders ON the offending field"
+    components: [username_field, password_field]
+    notes: >
+      The original passed BOTH message resources whenever either rule failed, so a valid username
+      could still show a username error. The port attributes per field.
+
+  - id: transport_error
+    source: "LoginUiState.ShowError(message)"
+    description: "server rejected, or the call failed — Snackbar, fields preserved"
+    components: [snackbar]
+
+  - id: offline
+    source: "NOT IN ORIGINAL — added by the port (MutationResult.Blocked(OFFLINE))"
+    description: "no connectivity; distinct from a rejected credential"
+    components: [snackbar]
+
+  - id: success
+    source: "LoginUiState.HomeActivityIntent | PassCodeActivityIntent"
+    description: "authenticated — session persisted, root state machine routes onward"
+    components: []
+    notes: >
+      Fineract answers HTTP 200 with `authenticated: false` for a bad credential, so a successful
+      CALL is not a successful LOGIN. The flag is checked explicitly; dropping that check admits a
+      failed login.
+
+# ──────────────── COMPONENTS ────────────────
+components:
+  - id: server_config_cta
+    type: filled_tonal_button
+    label: "Update Server Configuration"
+    label_source: hardcoded          # LoginScreen.kt:154 — NOT a resource (docs.yaml#source_findings)
+    on_click:
+      action: navigate
+      target: serverConfig
+      params: {}
+    binding: "authNavGraph(updateServerConfig = ...)"
+    notes: >
+      Load-bearing on first run: a user whose Fineract instance differs from the shipped default
+      cannot sign in until this is reachable BEFORE authentication.
+
+  - id: logo
+    type: image
+    asset: feature_auth_mifos_logo
+
+  - id: title
+    type: text
+    label_ref: feature_auth_enter_credentials
+
+  - id: username_field
+    type: outlined_text_field
+    label_ref: feature_auth_username
+    leading_icon: person
+    validation:
+      rule: "CredentialRules.username"
+      min_length: 4
+      error_ref: feature_auth_error_username_length
+    notes: >
+      min_length 4 is the ORIGINAL's rule (UsernameValidationUseCase). An authored replacement used
+      5, rejecting four-character usernames that signed in on the original — the reason the rules
+      are now shared rather than restated.
+
+  - id: password_field
+    type: outlined_text_field
+    label_ref: feature_auth_password
+    leading_icon: lock
+    visual_transformation: password
+    trailing_action:
+      id: toggle_visibility
+      type: icon_button
+      on_click:
+        action: local_state
+        target: passwordVisibility
+    validation:
+      rule: "CredentialRules.password"
+      min_length: 6
+      error_ref: feature_auth_error_password_length
+
+  - id: login_button
+    type: button
+    label: "Login"
+    label_source: hardcoded          # LoginScreen.kt:245 — NOT a resource
+    on_click:
+      action: submit
+      target: authenticate
+      params: { username: "username_field.value", password: "password_field.value" }
+    notes: "validates locally first — a round trip to be told a field is too short is one a field officer often cannot afford"
+
+  - id: snackbar
+    type: snackbar_host
+    renders_states: [transport_error, offline]
+    notes: >
+      The original hosted this in a Scaffold. An authored replacement dropped the Scaffold entirely,
+      leaving nowhere for a server error to surface — restored in the port.
+
+# ──────────────── NAV TARGETS SUPPLIED BY THE GRAPH ────────────────
+# authNavGraph(navigateHome, navigatePasscode, updateServerConfig) — three bindings.
+# navigateHome/navigatePasscode are NOT component clicks: they fire on the success state, and the
+# port collapses them into one signal (docs.yaml#port_deviations.passcode-routing).
+graph_bindings:
+  - param: updateServerConfig
+    bound_to_component: server_config_cta
+    target: serverConfig
+  - param: navigateHome
+    bound_to_state: success
+    target: home
+  - param: navigatePasscode
+    bound_to_state: success
+    target: passcode
+    status: collapsed_in_port

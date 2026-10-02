@@ -1,0 +1,73 @@
+# signin — data flow. IMPORTED from source 2026-10-02.
+# Reads and writes are READ from LoginViewModel.kt's constructor + call sites.
+
+schema_version: "3.1"
+feature: signin
+
+# ──────────────── READS ────────────────
+# Sign-in reads almost nothing: it is the call that CREATES the session the rest of the app reads.
+entries:
+  - id: passcode
+    source: UserPreferencesRepository.settingsInfo
+    shape: "String?"
+    consumed_by: "original LoginViewModel only"
+    status: dropped_in_port
+    note: >
+      The original observed the stored passcode to decide HomeActivityIntent vs
+      PassCodeActivityIntent. The port moved that decision to RootNavViewModel, so this read leaves
+      the screen entirely — an example of a DataState → ScreenState change deleting a code path
+      rather than renaming a type.
+
+  - id: server_config
+    source: ProjectPreferencesRepository.serverConfig
+    shape: ServerConfig
+    consumed_by: "the HTTP client, not this screen"
+    status: indirect
+    note: >
+      KNOWN GAP: the saved ServerConfig does NOT currently reach the HTTP client — the access point
+      is a build-time constant, so editing the server screen has no effect on where sign-in posts.
+      Tracked in feature/settings/MIGRATION.md; the shipped default is the only server that works.
+
+# ──────────────── WRITES ────────────────
+writes:
+  - id: authenticate
+    target: "POST authentication"
+    policy: OnlineRequired
+    payload: { username: string, password: string }
+    see: api.yaml#endpoints.authenticate
+
+  - id: persist_session
+    target: "ProjectPreferencesRepository.updateFineractUser"
+    local: true
+    writes:
+      - "User(username, userId, base64EncodedAuthenticationKey, officeId, officeName, permissions)"
+      - "authToken := RAW base64EncodedAuthenticationKey (NOT pre-formatted)"
+      - "isAuthenticated := true"
+      - "isUnlocked := true"
+    note: >
+      The raw-token detail is load-bearing: AuthScheme.BASIC.format adds the "Basic " prefix on the
+      way to the wire, so storing a pre-formatted value yields `Basic Basic <token>` and 401s every
+      authenticated call while sign-in itself still works.
+
+  - id: persist_raw_password
+    target: "User.password"
+    local: true
+    status: OPEN
+    note: >
+      Carried from the original and never justified. The encoded key is what Fineract needs for
+      subsequent Basic auth, which suggests this is redundant. See docs.yaml#port_deviations.
+
+# ──────────────── DOWNSTREAM ────────────────
+# What the rest of the app depends on this screen having written. Recorded because none of it is
+# visible from this screen, and all of it breaks silently.
+downstream_contract:
+  - consumer: AuthHeaderBridge
+    needs: "authToken as a COLD flow emission"
+    note: >
+      The bridge is handed UserPreferencesRepository.observeAuthToken. Passing the repository's
+      StateFlow directly left Authorization unset and 401'd every authenticated call; re-emitting
+      the identical values through a cold flow fixed it, reproducibly. Root cause sits in the
+      bridge (core-base/network) and is raised for upstream.
+  - consumer: RootNavViewModel
+    needs: "isAuthenticated AND isUnlocked AND a non-empty passcode"
+    note: "all three are gates; missing any one routes the user back to this screen"

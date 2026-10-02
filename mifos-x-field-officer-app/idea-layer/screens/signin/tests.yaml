@@ -1,0 +1,66 @@
+# signin — test contract. IMPORTED from source 2026-10-02.
+# Existing coverage is READ from the shipped feature/auth commonTest; gaps are listed as gaps, not
+# silently omitted.
+
+schema_version: "3.1"
+feature: signin
+
+# ──────────────── EXISTING COVERAGE (shipped port) ────────────────
+existing:
+  file: feature/auth/src/commonTest/kotlin/kpt/feature/auth/LoginViewModelTest.kt
+  count: 8
+  status: passing
+  note: >
+    One of these assertions previously ENCODED a defect rather than catching it — it asserted
+    `authToken == "Basic a2V5"`, the pre-formatted value that produced `Basic Basic <token>` on the
+    wire. Corrected 2026-10-02 to assert the raw token, with the reason recorded in the test.
+
+# ──────────────── STATE COVERAGE ────────────────
+# Every state in ui.yaml#states needs a test. `covered: false` rows are the honest gap list.
+state_coverage:
+  - state: empty
+    covered: true
+  - state: validation_error
+    covered: true
+    scenarios:
+      - "username shorter than 4 → username error, no network call"
+      - "password shorter than 6 → password error, no network call"
+  - state: submitting
+    covered: true
+  - state: transport_error
+    covered: true
+    scenarios:
+      - "200 with authenticated == false → rejected, NOT treated as success"
+  - state: offline
+    covered: false
+    gap: "MutationResult.Blocked(OFFLINE) → offline message, distinct from a rejected credential"
+  - state: success
+    covered: true
+    scenarios:
+      - "persists the user record and emits LoggedIn"
+      - "stores the RAW credential, not a pre-formatted header"
+      - "signing in after a sign-out reaches authenticated AND unlocked"
+
+# ──────────────── SCENARIOS WORTH ADDING ────────────────
+# Each traces to a defect actually observed on device, so none of these is hypothetical.
+proposed:
+  - id: offline-blocked
+    priority: P1
+    why: "the one state with no coverage; the port added it and nothing asserts it"
+  - id: non-2xx-is-not-empty-success
+    priority: P1
+    why: >
+      The client does not set expectSuccess, so a non-2xx body deserializes onto DTO defaults. On
+      THIS screen the explicit authenticated-flag check masks it; a test would pin that the mask is
+      deliberate rather than accidental.
+  - id: fields-survive-a-failed-attempt
+    priority: P2
+    why: "retyping a password after a 502 is exactly the behaviour the port's Snackbar design avoids"
+
+# ──────────────── DEVICE VERIFICATION ────────────────
+device:
+  status: maestro-not-authored
+  last_manual_verification: "2026-10-02 — clean install, live apis.mifos.community, sign-in reached the authenticated shell"
+  gap: >
+    Verified by hand-driven uiautomator, not an executed Maestro flow. Per the migration spec AC14
+    that counts as evidence for S1 only; from S3c on, device evidence must be `maestro-executed`.

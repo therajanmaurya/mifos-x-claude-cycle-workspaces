@@ -1,0 +1,86 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# idea-plan.yaml — mifos-x-field-officer-app
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# BOOTSTRAPPED by /idea-feature-import STEP 0.3 on 2026-10-02.
+#
+# Why it was missing: this project has working source (20 feature modules, 1652 .kt at the original
+# ref), a registered PROJECT_CONFIG.yaml and a session binding — but no plan. Every per-feature
+# idea-layer command requires this file, so the project was unreachable by the pipeline it is meant
+# to use. /idea-import does not write it; /idea-plan writes it only via a 15-phase wizard or an
+# import mode that registers a NEW project.
+#
+# DELIBERATELY MINIMAL. A feature-import knows one feature at a time, so vision, personas,
+# requirements and release phases are NOT invented here — writing them from a few screens would be
+# fabrication wearing a plan's clothes. `/idea-plan` fills them when the operator is ready.
+#
+# features[] grows one row per `/idea-feature-import` run. `status: imported` means extracted from
+# real source with provenance — distinct from `draft` (authored, unreviewed) and `scaffold`
+# (structure only, no content).
+
+schema_version: "1.0"
+_creation_mode: "feature-import"
+_metadata:
+  bootstrapped_by: "/idea-feature-import"
+  bootstrapped_at: "2026-10-02"
+  note: >
+    Minimal bootstrap. Sections absent here (vision, personas, requirements, api_surface,
+    release_phases) are NOT empty-by-decision — they are unwritten, and must not be read as
+    "this app has no requirements".
+
+identity:
+  name: mifos-x-field-officer-app
+  workspace: mifos-x
+  type: kmp
+  subtype: kmp-app
+  platforms: [android, ios, desktop, web]
+
+repository:
+  source_path: "source/mifos-x-field-officer-app"
+  migration_reference_ref: "6b66e8a43"   # the ORIGINAL app — the specification being migrated FROM
+
+# ──────────────── FEATURE → MODULE PINS (RULE-KMP-FEATURE-MODULE-PATH-001) ────────────────
+# An idea-layer feature id does not have to match its Kotlin module name. Where they differ the pin
+# is MANDATORY: without it codegen resolves `signin` → `feature/signin`, scaffolds a second module
+# beside the real one, and manufactures the G-IMPL-DUP defect while faithfully following the name.
+# This is the sanctioned operator disambiguation, not a workaround.
+feature_module_paths:
+  signin: feature/auth
+  serverConfig: feature/settings
+
+# ──────────────── FEATURES ────────────────
+# One row per imported feature. The 20 features of the original app are enumerated in
+# idea-layer/FEATURES.md; they appear HERE only once actually imported, so this list is a record of
+# what has been materialized rather than a claim about what exists.
+#
+# MIGRATION ORDER is navigation order, top to bottom: signin → serverConfig → home/search →
+# profile → client → loan → savings → groups → settings → sync → about.
+features:
+  - id: signin
+    name: Sign in
+    status: imported
+    priority: P0
+    module: feature/auth
+    imported_from: "6b66e8a43"
+    imported_at: "2026-10-02"
+    screens: [signin]
+    note: >
+      Authenticates against the configured Fineract instance and establishes the session every other
+      screen depends on. Hand-ported in S1 and device-verified 2026-10-02 against the live demo;
+      this docset is extracted to MATCH the shipped port per FEATURE_LAYER_MIGRATION_SPEC §7.4,
+      not to regenerate it.
+
+  - id: serverConfig
+    name: Server configuration
+    status: imported
+    priority: P0
+    module: feature/settings
+    imported_from: "6b66e8a43"
+    imported_at: "2026-10-02"
+    screens: [serverConfig]
+    depends_on: [signin]
+    note: >
+      Reachable BEFORE authentication — it sits on the ROOT graph, not the authenticated one,
+      because a first-run user whose instance differs from the shipped default cannot otherwise
+      sign in. Carries a HIGH-severity known gap: the saved config does not currently reach the
+      HTTP client (see screens/serverConfig/api.yaml#configures).

@@ -1,0 +1,98 @@
+# signin — flow contract. IMPORTED from source 2026-10-02.
+# Transitions are READ from LoginUiState transitions in LoginViewModel.kt and the bindings in
+# AuthNavigation.kt / RootNavScreen.kt.
+
+schema_version: "3.1"
+feature: signin
+
+# ──────────────── INBOUND ────────────────
+# Three distinct root states all land here. That is not redundancy: the app has no unlock screen,
+# so UserLocked resolves to sign-in too (see the note on passcode below).
+inbound_routes:
+  - from: rootNav
+    when: "RootNavState.Auth"
+    meaning: "not authenticated"
+  - from: rootNav
+    when: "RootNavState.ShowOnboarding"
+    meaning: "first run — no onboarding screen exists in this fork, so it falls through to sign-in"
+  - from: rootNav
+    when: "RootNavState.UserLocked"
+    meaning: >
+      authenticated but locked. The original's passcode UI is an Android-only library with no
+      multiplatform form, so the port routes this to sign-in rather than shipping a stub.
+
+entry_points:
+  - route: LoginRoute
+    params: {}
+
+# ──────────────── TRANSITIONS ────────────────
+transitions:
+  - id: open_server_config
+    from: empty
+    trigger: "server_config_cta.on_click"
+    to_screen: serverConfig
+    reversible: true
+    note: "available BEFORE authentication by design — a wrong server URL cannot otherwise be fixed"
+
+  - id: submit_invalid
+    from: empty
+    trigger: "login_button.on_click with a failing CredentialRules check"
+    to: validation_error
+    network: false
+    note: "no round trip — the rules run locally first"
+
+  - id: submit
+    from: empty
+    trigger: "login_button.on_click with both rules passing"
+    to: submitting
+    network: true
+
+  - id: rejected
+    from: submitting
+    trigger: "200 with authenticated == false, OR a non-2xx, OR a transport failure"
+    to: transport_error
+    note: >
+      All three collapse to one user-visible outcome in the original. The port distinguishes
+      Blocked(OFFLINE) from the rest; the remainder still collapse, which is why a 502 reads as a
+      credential problem (known gap, api.yaml#known_gaps.no-expect-success).
+
+  - id: blocked_offline
+    from: submitting
+    trigger: "MutationResult.Blocked(OFFLINE)"
+    to: offline
+    note: "NOT IN ORIGINAL — the port added it"
+
+  - id: authenticated
+    from: submitting
+    trigger: "200 AND authenticated == true"
+    to: success
+    side_effects:
+      - "persist session (User + credential)"
+      - "set isAuthenticated = true"
+      - "set isUnlocked = true"
+    note: >
+      isUnlocked matters: sign-out sets it false, and RootNavViewModel sends an
+      authenticated-but-locked user back to sign-in. Without setting it the first sign-in AFTER a
+      sign-out bounced straight back — observed on device as AuthenticatedGraphRoute → LoginRoute
+      52 ms apart, with a successful 200 in the log.
+
+  - id: route_onward
+    from: success
+    trigger: "LoggedIn event"
+    to_screen: home
+    note: >
+      The ORIGINAL branched here between home and passcode. The port emits ONE signal and lets
+      RootNavViewModel decide, so this transition has a single target.
+
+# ──────────────── EXIT ────────────────
+exits:
+  - to: home
+    when: "authenticated and unlocked"
+  - to: serverConfig
+    when: "server_config_cta tapped"
+
+# ──────────────── RETRY ────────────────
+retry:
+  transport_error: "user re-taps Login; fields are preserved"
+  offline: "user re-taps Login; the port keeps the entered credentials"
+  note: "fields MUST survive a failed attempt — retyping a password after a 502 is the behaviour this guards against"

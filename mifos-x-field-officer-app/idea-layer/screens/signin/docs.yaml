@@ -1,0 +1,136 @@
+# ═══════════════════════════════════════════════════
+# signin — Screen Specification v3
+# IMPORTED from source by /idea-feature-import, 2026-10-02. Not authored.
+# ═══════════════════════════════════════════════════
+
+schema_version: "3.1"
+id: signin
+name: Sign in
+description: >
+  Authenticates a field officer against the configured Fineract instance and establishes the
+  session every other screen depends on. Also the only route to the server-configuration screen,
+  because a first-run user has no server URL and therefore cannot sign in until one is set.
+feature: signin
+flow: entry
+version: "1.0"
+tags: [mvp, core, P0, entry]
+
+# ──────────────── MODULE PIN (RULE-KMP-FEATURE-MODULE-PATH-001) ────────────────
+# The idea-layer feature is `signin`; the Kotlin module it owns is `feature/auth`. Without this pin
+# codegen resolves `signin` → `feature/signin`, scaffolds a second module beside the real one and
+# manufactures the G-IMPL-DUP defect while faithfully following the naming. The operator pin is the
+# sanctioned disambiguation — mirrored in idea-plan.yaml#feature_module_paths.
+module_path: feature/auth
+
+# ──────────────── PROVENANCE (what makes this an IMPORT) ────────────────
+# Every claim below is traceable to a file at this ref. Verify any of it with
+#   git show 6b66e8a43:<path>
+provenance:
+  imported_from: "6b66e8a43"
+  imported_at: "2026-10-02"
+  imported_by: "/idea-feature-import"
+  extraction: complete
+  source_files:
+    - feature/auth/src/commonMain/kotlin/com/mifos/feature/auth/login/LoginScreen.kt
+    - feature/auth/src/commonMain/kotlin/com/mifos/feature/auth/login/LoginUiState.kt
+    - feature/auth/src/commonMain/kotlin/com/mifos/feature/auth/login/LoginViewModel.kt
+    - feature/auth/src/commonMain/kotlin/com/mifos/feature/auth/navigation/AuthNavigation.kt   # registering graph — supplies on_click targets
+    - feature/auth/src/commonMain/kotlin/com/mifos/feature/auth/di/AuthModule.kt
+    - feature/auth/src/commonMain/composeResources/values/strings.xml
+  also_reflects_port:
+    ref: "working-tree"
+    reason: >
+      The feature was hand-ported in S1 and device-verified 2026-10-02. Per the migration spec §7.4
+      an audited port is NOT regenerated, so this docset is reconciled against the SHIPPED source as
+      well as the original. Where the two differ, the difference is recorded under
+      `port_deviations` rather than silently resolved.
+    files:
+      - feature/auth/src/commonMain/kotlin/kpt/feature/auth/LoginScreen.kt
+      - feature/auth/src/commonMain/kotlin/kpt/feature/auth/LoginViewModel.kt
+      - feature/auth/src/commonMain/kotlin/kpt/feature/auth/LoginRoute.kt
+
+# ──────────────── LIFECYCLE ────────────────
+status: imported
+quality_score: null
+status_history:
+  - from: null
+    to: imported
+    at: "2026-10-02"
+    by: /idea-feature-import
+
+# ──────────────── NAVIGATION ────────────────
+entry_point: true          # the app's first interactive screen when signed out
+bottom_nav: false
+navigates_to: [serverConfig, home]
+
+route:
+  name: LoginRoute
+  params: {}               # @Serializable object — no arguments, measured from AuthNavigation.kt
+
+entry_points:
+  - source: rootNav
+    action: RootNavState.Auth | ShowOnboarding | UserLocked
+    params: {}
+    note: >
+      Three distinct root states all resolve here. In the ORIGINAL the login screen decided between
+      home and passcode itself (LoginUiState.HomeActivityIntent vs PassCodeActivityIntent); under
+      the template the root state machine owns that decision and the screen emits one success
+      signal. Recorded in port_deviations.
+
+screens:
+  - id: login
+    name: LoginScreen
+    viewmodel: LoginViewModel
+
+# ──────────────── PORT DEVIATIONS (original → shipped) ────────────────
+# Facts, not judgements. Each was decided during S1 and is recorded here so the idea-layer does not
+# quietly assert the original's behaviour for a screen that no longer behaves that way.
+port_deviations:
+  - id: passcode-routing
+    original: "LoginUiState exposes HomeActivityIntent and PassCodeActivityIntent; the screen routes"
+    shipped: "one LoggedIn event; RootNavViewModel decides home vs locked"
+    why: "a second source of that decision would diverge from the root state machine"
+  - id: validation-rules
+    original: "UsernameValidationUseCase / PasswordValidationUseCase — suspend, Compose-coupled"
+    shipped: "CredentialRules.username/password — pure, non-suspend, typed failures"
+    why: "spec §2; thresholds preserved exactly (username >= 4, password >= 6)"
+  - id: offline-state
+    original: "no offline branch — a failed call is indistinguishable from no signal"
+    shipped: "MutationResult.Blocked(OFFLINE) renders a distinct offline message"
+    why: "a field officer acts differently on 'wrong password' and 'no signal'"
+  - id: plaintext-password
+    original: "User(password = password) — raw password persisted to preferences"
+    shipped: "UNCHANGED — still persisted"
+    status: OPEN
+    why: >
+      Flagged in S1's ledger as requiring a written justification or removal, and never closed.
+      base64EncodedAuthenticationKey is persisted alongside it and is what Fineract needs for
+      subsequent Basic auth, which suggests the raw password is redundant. Carried here as an OPEN
+      item so the import does not launder it into "intended behaviour".
+
+# ──────────────── EXTRACTION FINDINGS ────────────────
+# Recorded rather than fixed: two user-visible strings are literals in the ORIGINAL LoginScreen.kt
+# while nine siblings are resourced. RULE-IMPL-NO-HARDCODED-STRING-001 would reject these on a
+# fresh implement.
+source_findings:
+  hardcoded_strings:
+    - value: "Update Server Configuration"
+      at: "LoginScreen.kt:154"
+    - value: "Login"
+      at: "LoginScreen.kt:245"
+
+owned_strings:
+  - feature_auth_login
+  - feature_auth_enter_credentials
+  - feature_auth_username
+  - feature_auth_password
+  - feature_auth_error_enter_credentials
+  - feature_auth_error_username_length
+  - feature_auth_error_password_length
+  - feature_auth_error_not_connected_internet
+  - feature_auth_error_login_failed
+
+platform_capabilities:
+  - path: feature/auth/src/androidMain/AndroidManifest.xml
+    classification: manifest-only
+    note: "no platform Kotlin — the feature is pure commonMain (spec §3a compliant as-is)"
