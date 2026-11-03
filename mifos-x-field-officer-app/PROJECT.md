@@ -12,6 +12,7 @@
 |-------|-------|
 | Type | kmp |
 | Subtype | kmp-app |
+| Template | template → git@github.com:openMF/kmp-project-template.git (upstream=own repo) |
 
 ---
 
