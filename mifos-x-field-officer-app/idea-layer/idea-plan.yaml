@@ -394,3 +394,5 @@ features:
       device is online. Live dashboard from durable job state; Manual or Automatic refresh (interval,
       Wi-Fi only, while charging). Redesign of 6b66e8a43:feature/offline (dashboard + 5 sync
       screens). Closes the stranded-repayment defect: nothing drains loanRepaymentQueue today.
+kmp_arch_pattern: stream-first
+kmp_arch_version: latest
