@@ -1,0 +1,23 @@
+# Store-asset variant selection — written by /idea-store-config-text-generate (T4).
+# One variant owns its complete text + media + icons. v1 = Android text + app-content only (2026-11-04);
+# media and icons are not generated yet.
+promoted_to_app_profile:
+  variant: v1
+  at: "2026-11-03T19:56:35.812Z"
+
+variants:
+  - id: v1
+    created: "2026-11-04"
+    optimized: false
+    from_variant: null
+    completeness:
+      text: partial         # android only (title · short · full · changelog · video · category)
+      media: missing        # no screenshots / feature graphic yet — /idea-store-assets-generate
+      icons: missing        # the app ships its original launcher icon (app-profile/icons/android)
+      app-content: partial  # android: app-content.yaml (+ questionnaire) · content-rating · data-safety.csv · privacy-policy.md
+
+selected:
+  text:
+    android: v1
+  app-content:
+    android: v1

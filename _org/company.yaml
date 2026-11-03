@@ -24,6 +24,18 @@ org_identity:
   vault: "mifos-x"                                                   # → SECRETS_VAULTS_REGISTRY.yaml (NAME only, not a secret)
   # NO secret values here — resolve keys/tokens/certs via `/secrets get <alias>` from the mifos-x vault.
 
+# ── REPOSITORY COMMUNITY FILES ────────────────────────────────────────────────────────────────────
+# CODE_OF_CONDUCT.md · CONTRIBUTING.md · LICENSE · SECURITY.md · .github/workflows/cla-check.yml in every mifos-x repo. The Mifos devops
+# and security teams set them up per repository, so agents never edit them here (enforced by
+# .claude-runtime/scripts/hooks/template-owned-edit-guard.sh). A template sync never writes them either.
+# Per file: { access: read | write, writers: [github-login, …] } — overrides each repo's app.yaml entry.
+repo_files:
+  CODE_OF_CONDUCT.md: { access: read }
+  CONTRIBUTING.md:    { access: read }
+  LICENSE:            { access: read }
+  SECURITY.md:        { access: read }
+  .github/workflows/cla-check.yml: { access: read }   # the org CLA bot pushes it
+
 name: "The Mifos Initiative"
 short: "Mifos"
 contact_email: "team@mifos.org"
