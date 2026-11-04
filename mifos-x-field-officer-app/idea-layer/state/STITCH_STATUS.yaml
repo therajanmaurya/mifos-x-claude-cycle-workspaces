@@ -1,244 +1,210 @@
-last_updated: '2026-10-27T13:12:01.297Z'
+last_updated: '2026-11-04T10:44:50.779Z'
 last_updated_by: stitch-generate.ts
 features:
   signin:
     status: designed
     project_id: '10780096558615730514'
     design_system_id: '9551377288795375599'
-    last_run: '2026-10-03T08:15:46.949Z'
+    last_run: '2026-11-04T10:44:50.473Z'
     screens_count: 8
     states:
       empty:
-        screen_id: null
+        screen_id: 24441b57af364de4b373cf85506e638f
         attempted_screen_id: null
         provenance_demoted_reason: null
         status: generated
-        result: fallback_preview
-        pending_stitch_upgrade: true
+        result: generated
+        pending_stitch_upgrade: false
         html: true
         png: true
         folder: 01-signin-empty
         figma_export_url: null
-        stitch_screen_url: null
-        prompt_sha: f1ed7a5bec306b866ee49bea6538144f534ead73b3322406ca0848c6a8f2e41e
+        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/24441b57af364de4b373cf85506e638f'
+        prompt_sha: bb7b02808095fa70118a2535146881207975e07c361994cfa422e15eb92b3d13
         ds_asset_sha: 065d7fa8
-        fallback_reason: >-
-          reconcile-only: prompt_sha drift — prompt_sha re-stamped over content this run did not fetch from Stitch
-          (locally-authored or superseded vendor render)
-        artifact_path: workspaces/mifos-x/mifos-x-field-officer-app/idea-layer/mockups/signin/stitch/01-signin-empty/code.html
-        source_render_hash: ff5f7dd2ffb2a6758fa3318f57a14adf3a3fab540a11449ba7e426682bc0f9bf
-        html_size_bytes: 6972
-        png_size_bytes: 13959
+        fallback_reason: null
+        artifact_path: null
+        source_render_hash: null
+        html_size_bytes: 553640
+        png_size_bytes: 212793
         readme_present: true
         verified: true
-        verified_at: '2026-10-27T13:12:28.921Z'
+        verified_at: '2026-11-04T10:45:26.676Z'
         verify_failures: []
-        verify_attempts: 17
-        superseded_screen_id: 77175a620ac4497a82f3f78129b18dea
-        superseded_stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/77175a620ac4497a82f3f78129b18dea'
+        verify_attempts: 2
       biometric_ready:
-        screen_id: null
+        screen_id: cd50d5f3869d43bcbd006852f663db64
         attempted_screen_id: null
         provenance_demoted_reason: null
         status: generated
-        result: fallback_preview
-        pending_stitch_upgrade: true
+        result: generated
+        pending_stitch_upgrade: false
         html: true
         png: true
         folder: 02-signin-biometric_ready
         figma_export_url: null
-        stitch_screen_url: null
-        prompt_sha: 9d092522a361bcd3602356a3c0b45d3481744634c589da05605ca6c7e99cd376
+        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/cd50d5f3869d43bcbd006852f663db64'
+        prompt_sha: 37c8e8d37b87e69b1ec3e25e750bf6cd24bc4c36e3d2f6ce55e8315342ce7279
         ds_asset_sha: 065d7fa8
-        fallback_reason: >-
-          reconcile-only: prompt_sha drift — prompt_sha re-stamped over content this run did not fetch from Stitch
-          (locally-authored or superseded vendor render)
-        artifact_path: >-
-          workspaces/mifos-x/mifos-x-field-officer-app/idea-layer/mockups/signin/stitch/02-signin-biometric_ready/code.html
-        source_render_hash: 1d2905ec992c47f7f48908616e51f2d2047ca321ea37b512e5546f7b00a92d42
-        html_size_bytes: 7962
-        png_size_bytes: 21855
+        fallback_reason: null
+        artifact_path: null
+        source_render_hash: null
+        html_size_bytes: 553126
+        png_size_bytes: 230602
         readme_present: true
         verified: true
-        verified_at: '2026-10-27T13:12:28.921Z'
+        verified_at: '2026-11-04T10:45:26.676Z'
         verify_failures: []
-        verify_attempts: 17
-        superseded_screen_id: 510a85f0b3c248d6bce83d73d94c985e
-        superseded_stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/510a85f0b3c248d6bce83d73d94c985e'
+        verify_attempts: 2
       submitting:
-        screen_id: null
+        screen_id: 37236d56b0c542969f408e0a0fec4568
         attempted_screen_id: null
         provenance_demoted_reason: null
         status: generated
-        result: fallback_preview
-        pending_stitch_upgrade: true
+        result: generated
+        pending_stitch_upgrade: false
         html: true
-        png: false
+        png: true
         folder: 03-signin-submitting
         figma_export_url: null
-        stitch_screen_url: null
-        prompt_sha: 64c07905ed24206b628ca9b97f7820a038de92b248178452720200227f64baa4
-        ds_asset_sha: null
-        fallback_reason: 'non-recoverable:unknown — generate-connection-drop (stitch-sdk#114 no-refire → marker-poll)'
-        artifact_path: >-
-          /Users/therajanmaurya/project-development/claude-product-cycle/workspaces/mifos-x/mifos-x-field-officer-app/idea-layer/mockups/signin/stitch-fallback/submitting/code.html
+        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/37236d56b0c542969f408e0a0fec4568'
+        prompt_sha: d7bfa8d321b58803b12d1f146735ff41383f884a82ffb4b889deaf3b28040908
+        ds_asset_sha: 065d7fa8
+        fallback_reason: null
+        artifact_path: null
         source_render_hash: null
+        html_size_bytes: 554635
+        png_size_bytes: 239128
         readme_present: true
-        verified: false
-        verified_at: '2026-10-27T13:12:28.920Z'
-        verify_failures:
-          - >-
-            SV3: screen.png missing or invalid image signature at
-            workspaces/mifos-x/mifos-x-field-officer-app/idea-layer/mockups/signin/stitch/03-signin-submitting/screen.png
-        verify_attempts: 17
-        html_size_bytes: 6053
+        verified: true
+        verified_at: '2026-11-04T10:45:26.676Z'
+        verify_failures: []
+        verify_attempts: 2
       validation_error:
-        screen_id: null
+        screen_id: 76e8f687f7ba47f9a97d3c06dfb60a71
         attempted_screen_id: null
         provenance_demoted_reason: null
         status: generated
-        result: fallback_preview
-        pending_stitch_upgrade: true
+        result: generated
+        pending_stitch_upgrade: false
         html: true
-        png: false
+        png: true
         folder: 04-signin-validation_error
         figma_export_url: null
-        stitch_screen_url: null
-        prompt_sha: 00b1b437614ffef401604bbf4d1f0fd845d389a199612fe80af2224fc4e8ca7b
-        ds_asset_sha: null
-        fallback_reason: >-
-          non-recoverable:unknown — unrecognized-non-typed-error: Error: MCP generate_screen_from_text: accepted but
-          never delivered — polled 300s (sessionId=2844196606991331825), zero n
-        artifact_path: >-
-          /Users/therajanmaurya/project-development/claude-product-cycle/workspaces/mifos-x/mifos-x-field-officer-app/idea-layer/mockups/signin/stitch-fallback/validation_error/code.html
+        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/76e8f687f7ba47f9a97d3c06dfb60a71'
+        prompt_sha: 6a899aaeacbad32b56a34c226bc02f4397e6b21ea7fbb356de2778fa67b1e982
+        ds_asset_sha: 065d7fa8
+        fallback_reason: null
+        artifact_path: null
         source_render_hash: null
+        html_size_bytes: 552126
+        png_size_bytes: 233747
         readme_present: true
-        verified: false
-        verified_at: '2026-10-27T13:12:28.919Z'
-        verify_failures:
-          - >-
-            SV3: screen.png missing or invalid image signature at
-            workspaces/mifos-x/mifos-x-field-officer-app/idea-layer/mockups/signin/stitch/04-signin-validation_error/screen.png
-        verify_attempts: 17
-        html_size_bytes: 6620
+        verified: true
+        verified_at: '2026-11-04T10:45:26.675Z'
+        verify_failures: []
+        verify_attempts: 2
       transport_error:
-        screen_id: null
+        screen_id: ca6abe9d5cf241e383178601744df9eb
         attempted_screen_id: null
         provenance_demoted_reason: null
         status: generated
-        result: fallback_preview
-        pending_stitch_upgrade: true
+        result: generated
+        pending_stitch_upgrade: false
         html: true
         png: true
         folder: 05-signin-transport_error
         figma_export_url: null
-        stitch_screen_url: null
-        prompt_sha: 3f0913bf02a0a431f7d31062e78dc95bea3aca684c707b7f12ce749123e033af
+        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/ca6abe9d5cf241e383178601744df9eb'
+        prompt_sha: 2399a78936651bd53e6338d6fb72ea0a93d2c582c07713ab63354a9fc1d19727
         ds_asset_sha: 065d7fa8
-        fallback_reason: >-
-          reconcile-only: prompt_sha drift — prompt_sha re-stamped over content this run did not fetch from Stitch
-          (locally-authored or superseded vendor render)
-        artifact_path: >-
-          workspaces/mifos-x/mifos-x-field-officer-app/idea-layer/mockups/signin/stitch/05-signin-transport_error/code.html
-        source_render_hash: 14a8dc7ea33c834c6d50ead68cb24e1b5d9583f4b6b22de8bee3aa423fb4772c
-        html_size_bytes: 7668
-        png_size_bytes: 34500
+        fallback_reason: null
+        artifact_path: null
+        source_render_hash: null
+        html_size_bytes: 554096
+        png_size_bytes: 288957
         readme_present: true
         verified: true
-        verified_at: '2026-10-27T13:12:28.921Z'
+        verified_at: '2026-11-04T10:45:26.676Z'
         verify_failures: []
-        verify_attempts: 17
-        superseded_screen_id: 9c61d975cd6b46c8bfa9c8293af5b9c4
-        superseded_stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/9c61d975cd6b46c8bfa9c8293af5b9c4'
+        verify_attempts: 2
       offline:
-        screen_id: null
+        screen_id: 4b130f5116884d30b249646c81f59878
         attempted_screen_id: null
         provenance_demoted_reason: null
         status: generated
-        result: fallback_preview
-        pending_stitch_upgrade: true
+        result: generated
+        pending_stitch_upgrade: false
         html: true
         png: true
         folder: 06-signin-offline
         figma_export_url: null
-        stitch_screen_url: null
-        prompt_sha: cf71b5deca2b31f4c0fbe0c88458db8f65635881f374e03c6d257fe029ee913b
+        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/4b130f5116884d30b249646c81f59878'
+        prompt_sha: d85308c4d721663f859564fb3db99981ae53cbe172645825dd64f780e643d62a
         ds_asset_sha: 065d7fa8
-        fallback_reason: >-
-          reconcile-only: prompt_sha drift — prompt_sha re-stamped over content this run did not fetch from Stitch
-          (locally-authored or superseded vendor render)
-        artifact_path: workspaces/mifos-x/mifos-x-field-officer-app/idea-layer/mockups/signin/stitch/06-signin-offline/code.html
-        source_render_hash: c838b134837be57ebcbe337ce3f8a2421eec828252f14868f1968ba2e06ff108
-        html_size_bytes: 7180
-        png_size_bytes: 34983
+        fallback_reason: null
+        artifact_path: null
+        source_render_hash: null
+        html_size_bytes: 553950
+        png_size_bytes: 292653
         readme_present: true
         verified: true
-        verified_at: '2026-10-27T13:12:28.921Z'
+        verified_at: '2026-11-04T10:45:26.676Z'
         verify_failures: []
-        verify_attempts: 17
-        superseded_screen_id: d608277e5d344bab8b1e70c850c79aef
-        superseded_stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/d608277e5d344bab8b1e70c850c79aef'
+        verify_attempts: 2
       locked_out:
-        screen_id: null
+        screen_id: 16c0c7aae52841b1b2cb7fd70b7939d9
         attempted_screen_id: null
         provenance_demoted_reason: null
         status: generated
-        result: fallback_preview
-        pending_stitch_upgrade: true
+        result: generated
+        pending_stitch_upgrade: false
         html: true
         png: true
         folder: 07-signin-locked_out
         figma_export_url: null
-        stitch_screen_url: null
-        prompt_sha: 5dac511b807219a300adb14f6b80f6ba109d0e02ed00d516d9995169951856d1
+        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/16c0c7aae52841b1b2cb7fd70b7939d9'
+        prompt_sha: 214820274b52fc50e0b0555b7f08015d6d24f4819bfc70ac3b2a8ba55d5e77c7
         ds_asset_sha: 065d7fa8
-        fallback_reason: >-
-          reconcile-only: prompt_sha drift — prompt_sha re-stamped over content this run did not fetch from Stitch
-          (locally-authored or superseded vendor render)
-        artifact_path: workspaces/mifos-x/mifos-x-field-officer-app/idea-layer/mockups/signin/stitch/07-signin-locked_out/code.html
-        source_render_hash: 5c22af82a4e94fe15d1f7120432e185297cf2656cab638f5b2f057885932888c
-        html_size_bytes: 7076
-        png_size_bytes: 35687
+        fallback_reason: null
+        artifact_path: null
+        source_render_hash: null
+        html_size_bytes: 554735
+        png_size_bytes: 334836
         readme_present: true
         verified: true
-        verified_at: '2026-10-27T13:12:28.921Z'
+        verified_at: '2026-11-04T10:45:26.676Z'
         verify_failures: []
-        verify_attempts: 17
-        superseded_screen_id: fab27a81036b4391971c583ec1225a13
-        superseded_stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/fab27a81036b4391971c583ec1225a13'
+        verify_attempts: 2
       success:
-        screen_id: null
+        screen_id: 449c9dd966664628be31cf990b217fd0
         attempted_screen_id: null
         provenance_demoted_reason: null
         status: generated
-        result: fallback_preview
-        pending_stitch_upgrade: true
+        result: generated
+        pending_stitch_upgrade: false
         html: true
         png: true
         folder: 08-signin-success
         figma_export_url: null
-        stitch_screen_url: null
-        prompt_sha: 178353ea9475be551c3f5edbd544a210f25203781896beb0b7d3e34719fff2db
+        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/449c9dd966664628be31cf990b217fd0'
+        prompt_sha: 2d0cf35434b4ec57096b78fabac2821a3acdc5e3c85e654bbcb487795defc03a
         ds_asset_sha: 065d7fa8
-        fallback_reason: >-
-          reconcile-only: prompt_sha drift — prompt_sha re-stamped over content this run did not fetch from Stitch
-          (locally-authored or superseded vendor render)
-        artifact_path: workspaces/mifos-x/mifos-x-field-officer-app/idea-layer/mockups/signin/stitch/08-signin-success/code.html
-        source_render_hash: c1a7686cec0d90c9ecf8694674f41898d1ba3e7c1d1931244424aa4bc502a34f
-        html_size_bytes: 6809
-        png_size_bytes: 30387
+        fallback_reason: null
+        artifact_path: null
+        source_render_hash: null
+        html_size_bytes: 553421
+        png_size_bytes: 317323
         readme_present: true
         verified: true
-        verified_at: '2026-10-27T13:12:28.921Z'
+        verified_at: '2026-11-04T10:45:26.676Z'
         verify_failures: []
-        verify_attempts: 17
-        superseded_screen_id: 2a7f35d0fde34ef0a20ae95029e78722
-        superseded_stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/2a7f35d0fde34ef0a20ae95029e78722'
-    last_cascade_at: '2026-10-03T08:15:31.334Z'
+        verify_attempts: 2
+    last_cascade_at: '2026-11-04T10:44:30.399Z'
   home:
     states:
       loading:
-        screen_id: a42b722b572443db8a28088d6a10ba20
+        screen_id: 2c351c5c121d45f09a94e3eccd9c8f44
         attempted_screen_id: null
         provenance_demoted_reason: null
         status: generated
@@ -248,21 +214,21 @@ features:
         png: true
         folder: 01-home-loading
         figma_export_url: null
-        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/a42b722b572443db8a28088d6a10ba20'
-        prompt_sha: b5ee1dbf4b22349e348e48008338bb89b7dfead795fac6d6205bb2de839305c9
+        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/2c351c5c121d45f09a94e3eccd9c8f44'
+        prompt_sha: e68fbd84c936774e1b4f705dad4ec6bc993e5e673f84aa756bb3d62c258751f7
         ds_asset_sha: 065d7fa8
         fallback_reason: null
         artifact_path: null
         source_render_hash: null
-        html_size_bytes: 574613
-        png_size_bytes: 334491
+        html_size_bytes: 581611
+        png_size_bytes: 569599
         readme_present: true
         verified: true
-        verified_at: '2026-10-27T13:12:28.921Z'
+        verified_at: '2026-11-04T10:45:26.676Z'
         verify_failures: []
-        verify_attempts: 9
+        verify_attempts: 5
       content:
-        screen_id: 282d6b4f77e640d096a8194be6a0f9cb
+        screen_id: a263d49423ae4c08b1e64071aae2088c
         attempted_screen_id: null
         provenance_demoted_reason: null
         status: generated
@@ -272,21 +238,21 @@ features:
         png: true
         folder: 02-home-content
         figma_export_url: null
-        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/282d6b4f77e640d096a8194be6a0f9cb'
-        prompt_sha: 77c9b703804e4628cba87ec06e1a7c16673922f803d540fdb4116394a340f76f
+        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/a263d49423ae4c08b1e64071aae2088c'
+        prompt_sha: c44d7789ff5255bc5691bc1e8e7fc84a3362e51557b2e0c9e590b8e37f49843d
         ds_asset_sha: 065d7fa8
         fallback_reason: null
         artifact_path: null
         source_render_hash: null
-        html_size_bytes: 588653
-        png_size_bytes: 746320
+        html_size_bytes: 597093
+        png_size_bytes: 973132
         readme_present: true
         verified: true
-        verified_at: '2026-10-27T13:12:28.921Z'
+        verified_at: '2026-11-04T10:45:26.676Z'
         verify_failures: []
-        verify_attempts: 9
+        verify_attempts: 5
       partial_failure:
-        screen_id: 804e388d622f424c81b2fe55d7c1c78c
+        screen_id: b73899cecd9b45e39ec924da2f0044bd
         attempted_screen_id: null
         provenance_demoted_reason: null
         status: generated
@@ -296,21 +262,21 @@ features:
         png: true
         folder: 03-home-partial_failure
         figma_export_url: null
-        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/804e388d622f424c81b2fe55d7c1c78c'
-        prompt_sha: 5fff201167f5e7d0a3692018b62669050b3784387347764df92b78f0261813f7
+        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/b73899cecd9b45e39ec924da2f0044bd'
+        prompt_sha: 507062111e93a7ce58c74d534eb69d151eafbaee3f16cd035658a5ace08f9ecd
         ds_asset_sha: 065d7fa8
         fallback_reason: null
         artifact_path: null
         source_render_hash: null
-        html_size_bytes: 588699
-        png_size_bytes: 761488
+        html_size_bytes: 590051
+        png_size_bytes: 572624
         readme_present: true
         verified: true
-        verified_at: '2026-10-27T13:12:28.921Z'
+        verified_at: '2026-11-04T10:45:26.676Z'
         verify_failures: []
-        verify_attempts: 9
+        verify_attempts: 5
       error:
-        screen_id: 456b7e261d7341dd8fee0e9bbf94650f
+        screen_id: ebfd6052646d40eeb8bbbe3f18c5986a
         attempted_screen_id: null
         provenance_demoted_reason: null
         status: generated
@@ -320,21 +286,21 @@ features:
         png: true
         folder: 04-home-error
         figma_export_url: null
-        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/456b7e261d7341dd8fee0e9bbf94650f'
-        prompt_sha: 503d20a88a5701e98fefdc2c5c81dae43eb99813547c1b77eeada3c9ecec72c0
+        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/ebfd6052646d40eeb8bbbe3f18c5986a'
+        prompt_sha: 1e0f16912ebb72acd2d4feccaf83b86ba2ee1929d0e86e8890e955b97e6fdb54
         ds_asset_sha: 065d7fa8
         fallback_reason: null
         artifact_path: null
         source_render_hash: null
-        html_size_bytes: 575442
-        png_size_bytes: 189624
+        html_size_bytes: 578497
+        png_size_bytes: 303435
         readme_present: true
         verified: true
-        verified_at: '2026-10-27T13:12:28.921Z'
+        verified_at: '2026-11-04T10:45:26.676Z'
         verify_failures: []
-        verify_attempts: 9
+        verify_attempts: 5
       offline:
-        screen_id: ffca39fb24294386bc080f274a55306b
+        screen_id: 7abac1dfd7184f209ad3826ed689c472
         attempted_screen_id: null
         provenance_demoted_reason: null
         status: generated
@@ -344,29 +310,29 @@ features:
         png: true
         folder: 05-home-offline
         figma_export_url: null
-        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/ffca39fb24294386bc080f274a55306b'
-        prompt_sha: 14af5297ac6eb976d2c30554bb2e8f066e02cac8ed1bd08588065451bbb1748d
+        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/7abac1dfd7184f209ad3826ed689c472'
+        prompt_sha: 511d6b5e8f41d46db886cd611c7480b9f7df38d03405b5df6c0eb3578c915114
         ds_asset_sha: 065d7fa8
         fallback_reason: null
         artifact_path: null
         source_render_hash: null
-        html_size_bytes: 558589
-        png_size_bytes: 304889
+        html_size_bytes: 581561
+        png_size_bytes: 909336
         readme_present: true
         verified: true
-        verified_at: '2026-10-27T13:12:28.921Z'
+        verified_at: '2026-11-04T10:45:26.676Z'
         verify_failures: []
-        verify_attempts: 9
-    last_cascade_at: '2026-10-26T17:52:43.763Z'
+        verify_attempts: 5
+    last_cascade_at: '2026-11-04T10:36:21.111Z'
     status: designed
     project_id: '10780096558615730514'
     design_system_id: '9551377288795375599'
-    last_run: '2026-10-26T17:53:09.092Z'
+    last_run: '2026-11-04T10:36:52.760Z'
     screens_count: 5
   offlineSync:
     states:
       loading:
-        screen_id: a50eeace91804ad7868cd5555915aa71
+        screen_id: 73edb4992ae344d49117d7d63cbe787f
         attempted_screen_id: null
         provenance_demoted_reason: null
         status: generated
@@ -376,21 +342,21 @@ features:
         png: true
         folder: 01-offlineSync-loading
         figma_export_url: null
-        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/a50eeace91804ad7868cd5555915aa71'
-        prompt_sha: b57424faa9302ecd605d8ead60600d1318191a94d5c51d318e1cca0b4db9ae79
+        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/73edb4992ae344d49117d7d63cbe787f'
+        prompt_sha: 79d220deadd610c21641b51bdb7e6a963df8befc3c7111b3e6e36c1cf0a665a5
         ds_asset_sha: 065d7fa8
         fallback_reason: null
         artifact_path: null
         source_render_hash: null
-        html_size_bytes: 549595
-        png_size_bytes: 10266
+        html_size_bytes: 565273
+        png_size_bytes: 504657
         readme_present: true
         verified: true
-        verified_at: '2026-10-27T13:12:28.921Z'
+        verified_at: '2026-11-04T10:45:26.676Z'
         verify_failures: []
-        verify_attempts: 7
+        verify_attempts: 6
       content:
-        screen_id: 6f0ac0e64d5a45ad91a4daeafbd23e16
+        screen_id: 47d285f3095b482b8f430ca05993803c
         attempted_screen_id: null
         provenance_demoted_reason: null
         status: generated
@@ -400,21 +366,21 @@ features:
         png: true
         folder: 02-offlineSync-content
         figma_export_url: null
-        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/6f0ac0e64d5a45ad91a4daeafbd23e16'
-        prompt_sha: d3e2dca0d7f68cc941fd9512ad3865ba49b852ef25d0fc0c7adc1eee1b744f30
+        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/47d285f3095b482b8f430ca05993803c'
+        prompt_sha: 87bbce87c3059fbc1a50bc54775185914807db51eeb935bf1389e358bbe88d51
         ds_asset_sha: 065d7fa8
         fallback_reason: null
         artifact_path: null
         source_render_hash: null
-        html_size_bytes: 560056
-        png_size_bytes: 31229
+        html_size_bytes: 561583
+        png_size_bytes: 261990
         readme_present: true
         verified: true
-        verified_at: '2026-10-27T13:12:28.921Z'
+        verified_at: '2026-11-04T10:45:26.676Z'
         verify_failures: []
         verify_attempts: 6
       syncing:
-        screen_id: 575d866ceba849cc9436ee3e2760dfdb
+        screen_id: d65b7747606b49659adb692be3953d11
         attempted_screen_id: null
         provenance_demoted_reason: null
         status: generated
@@ -424,21 +390,21 @@ features:
         png: true
         folder: 03-offlineSync-syncing
         figma_export_url: null
-        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/575d866ceba849cc9436ee3e2760dfdb'
-        prompt_sha: 657165ccb9cb0ce7f9f67445ba666d79a484d997d30f8d1c8e405cf58ca956c1
+        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/d65b7747606b49659adb692be3953d11'
+        prompt_sha: 04927d5da7a382c8dea483cf99ba4d816f3bf2762be729c15c6889b518270e13
         ds_asset_sha: 065d7fa8
         fallback_reason: null
         artifact_path: null
         source_render_hash: null
-        html_size_bytes: 560037
-        png_size_bytes: 33280
+        html_size_bytes: 563661
+        png_size_bytes: 368124
         readme_present: true
         verified: true
-        verified_at: '2026-10-27T13:12:28.921Z'
+        verified_at: '2026-11-04T10:45:26.676Z'
         verify_failures: []
-        verify_attempts: 7
+        verify_attempts: 6
       partial_failure:
-        screen_id: b810a4704bee431a979246b26cc73194
+        screen_id: d63b6f65a67d44728c6d652636cb93e3
         attempted_screen_id: null
         provenance_demoted_reason: null
         status: generated
@@ -448,21 +414,21 @@ features:
         png: true
         folder: 04-offlineSync-partial_failure
         figma_export_url: null
-        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/b810a4704bee431a979246b26cc73194'
-        prompt_sha: dc8b0a2d2b3f334b6bc9984a477969f0adffd6db460d730573bd88bf7cf00295
+        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/d63b6f65a67d44728c6d652636cb93e3'
+        prompt_sha: 92f49213094736158197f8813137113e3a52087b2177fec22c6fe06827fd49e9
         ds_asset_sha: 065d7fa8
         fallback_reason: null
         artifact_path: null
         source_render_hash: null
-        html_size_bytes: 558152
-        png_size_bytes: 32447
+        html_size_bytes: 561887
+        png_size_bytes: 343233
         readme_present: true
         verified: true
-        verified_at: '2026-10-27T13:12:28.925Z'
+        verified_at: '2026-11-04T10:45:26.681Z'
         verify_failures: []
         verify_attempts: 6
       empty:
-        screen_id: c00e5480fc034dd280bc25420a204b4a
+        screen_id: 11242ba793b3491380fe9fc5c836fc33
         attempted_screen_id: null
         provenance_demoted_reason: null
         status: generated
@@ -472,21 +438,21 @@ features:
         png: true
         folder: 05-offlineSync-empty
         figma_export_url: null
-        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/c00e5480fc034dd280bc25420a204b4a'
-        prompt_sha: c458cf95a5ec99f241f097ae70637ecd16924d81bc479a7911227228b76536ec
+        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/11242ba793b3491380fe9fc5c836fc33'
+        prompt_sha: e5ca39171b5a59257c6db471cce1cd1dd509186a90c05561c79ba3caa0e954aa
         ds_asset_sha: 065d7fa8
         fallback_reason: null
         artifact_path: null
         source_render_hash: null
-        html_size_bytes: 552242
-        png_size_bytes: 20897
+        html_size_bytes: 570886
+        png_size_bytes: 183862
         readme_present: true
         verified: true
-        verified_at: '2026-10-27T13:12:28.925Z'
+        verified_at: '2026-11-04T10:45:26.681Z'
         verify_failures: []
-        verify_attempts: 7
+        verify_attempts: 6
       offline:
-        screen_id: 3bcb0e1e0cdc4ff79999f0dd000c5e4e
+        screen_id: c73186d3dc2240cea488324f1daaec69
         attempted_screen_id: null
         provenance_demoted_reason: null
         status: generated
@@ -496,29 +462,29 @@ features:
         png: true
         folder: 06-offlineSync-offline
         figma_export_url: null
-        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/3bcb0e1e0cdc4ff79999f0dd000c5e4e'
-        prompt_sha: fe4cd57a7d14f5eb0c23b7b1668a7c10fc254188029f72de076d552583405445
+        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/c73186d3dc2240cea488324f1daaec69'
+        prompt_sha: 517d43ee11c49349dde5dd32adeb9bb9da68d28cac085bc01a6d8169b2e3d209
         ds_asset_sha: 065d7fa8
         fallback_reason: null
         artifact_path: null
         source_render_hash: null
-        html_size_bytes: 554029
-        png_size_bytes: 29518
+        html_size_bytes: 561531
+        png_size_bytes: 305082
         readme_present: true
         verified: true
-        verified_at: '2026-10-27T13:12:28.926Z'
+        verified_at: '2026-11-04T10:45:26.681Z'
         verify_failures: []
-        verify_attempts: 7
-    last_cascade_at: '2026-10-27T08:26:25.921Z'
+        verify_attempts: 6
+    last_cascade_at: '2026-11-04T10:36:33.178Z'
     status: designed
     project_id: '10780096558615730514'
     design_system_id: '9551377288795375599'
-    last_run: '2026-10-27T08:26:37.973Z'
+    last_run: '2026-11-04T10:36:48.736Z'
     screens_count: 6
   profile:
     states:
       loading:
-        screen_id: e385d085b0f54234aa850d3a57c89f1a
+        screen_id: a2896a2db3714362b1ed55ec1496c6a3
         attempted_screen_id: null
         provenance_demoted_reason: null
         status: generated
@@ -528,21 +494,21 @@ features:
         png: true
         folder: 01-profile-loading
         figma_export_url: null
-        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/e385d085b0f54234aa850d3a57c89f1a'
-        prompt_sha: 7e8dd5a06fb2ac38f18736b2e3f29a48e170d47acd141727303f3bd994398443
+        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/a2896a2db3714362b1ed55ec1496c6a3'
+        prompt_sha: 28765d6f0b56b90fdb1c2229816bff66895ec1ebd647e4377f086a43274de401
         ds_asset_sha: 065d7fa8
         fallback_reason: null
         artifact_path: null
         source_render_hash: null
-        html_size_bytes: 550556
-        png_size_bytes: 13166
+        html_size_bytes: 551515
+        png_size_bytes: 201400
         readme_present: true
         verified: true
-        verified_at: '2026-10-27T13:12:28.926Z'
+        verified_at: '2026-11-04T10:45:26.681Z'
         verify_failures: []
-        verify_attempts: 2
+        verify_attempts: 8
       content:
-        screen_id: f550c7cb48e240bba933eb2641f23d44
+        screen_id: 817a72b171f74c60a9c2072246d8e394
         attempted_screen_id: null
         provenance_demoted_reason: null
         status: generated
@@ -552,21 +518,21 @@ features:
         png: true
         folder: 02-profile-content
         figma_export_url: null
-        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/f550c7cb48e240bba933eb2641f23d44'
-        prompt_sha: 8625a11f2ab673e29e4bc8cdd03f31368b12363c55ea7b3a6249912b5b30a4b5
+        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/817a72b171f74c60a9c2072246d8e394'
+        prompt_sha: 975c82b71af1dd50001c0d28016ccdf4317766066d93c69c00a0bb5dfcd4aea8
         ds_asset_sha: 065d7fa8
         fallback_reason: null
         artifact_path: null
         source_render_hash: null
-        html_size_bytes: 553557
-        png_size_bytes: 21833
+        html_size_bytes: 554418
+        png_size_bytes: 202649
         readme_present: true
         verified: true
-        verified_at: '2026-10-27T13:12:28.926Z'
+        verified_at: '2026-11-04T10:45:26.681Z'
         verify_failures: []
-        verify_attempts: 3
+        verify_attempts: 8
       error:
-        screen_id: 36077ac5014644989092a9e0b11eb1bf
+        screen_id: e9a281d4ab21450c8af562b2794ddcfe
         attempted_screen_id: null
         provenance_demoted_reason: null
         status: generated
@@ -576,21 +542,21 @@ features:
         png: true
         folder: 03-profile-error
         figma_export_url: null
-        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/36077ac5014644989092a9e0b11eb1bf'
-        prompt_sha: 8762fba3f4b1a123058cd4256ca64cde2ef0855c034ce53707dff398df5a76b2
+        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/e9a281d4ab21450c8af562b2794ddcfe'
+        prompt_sha: dfb0b284e52f73c5a6fb66967164b58faf4e3c5a225637e27871f0e2557f2824
         ds_asset_sha: 065d7fa8
         fallback_reason: null
         artifact_path: null
         source_render_hash: null
-        html_size_bytes: 552568
-        png_size_bytes: 21818
+        html_size_bytes: 556111
+        png_size_bytes: 213749
         readme_present: true
         verified: true
-        verified_at: '2026-10-27T13:12:28.926Z'
+        verified_at: '2026-11-04T10:45:26.681Z'
         verify_failures: []
-        verify_attempts: 3
+        verify_attempts: 8
       offline:
-        screen_id: 9fb7f0b8d057427d979dce671d5f4995
+        screen_id: d7502b1c2d0f4f5f9c64d3f13c33038b
         attempted_screen_id: null
         provenance_demoted_reason: null
         status: generated
@@ -600,21 +566,21 @@ features:
         png: true
         folder: 04-profile-offline
         figma_export_url: null
-        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/9fb7f0b8d057427d979dce671d5f4995'
-        prompt_sha: 66ae4d862b1f6edce702fe1223180fca6766cd8d432954d920bd419c6a7bdb19
+        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/d7502b1c2d0f4f5f9c64d3f13c33038b'
+        prompt_sha: 917c53e2343ace25bafd84075f21beb6ef903a3c0a40e054e523ee9124581577
         ds_asset_sha: 065d7fa8
         fallback_reason: null
         artifact_path: null
         source_render_hash: null
-        html_size_bytes: 552926
-        png_size_bytes: 24283
+        html_size_bytes: 554570
+        png_size_bytes: 222313
         readme_present: true
         verified: true
-        verified_at: '2026-10-27T13:12:28.926Z'
+        verified_at: '2026-11-04T10:45:26.681Z'
         verify_failures: []
-        verify_attempts: 3
+        verify_attempts: 8
       change_password:
-        screen_id: 91d38bc4c19049efbe7e6fcf40810389
+        screen_id: a1a088f2f16d41819d2c214130e77f2c
         attempted_screen_id: null
         provenance_demoted_reason: null
         status: generated
@@ -624,24 +590,24 @@ features:
         png: true
         folder: 05-profile-change_password
         figma_export_url: null
-        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/91d38bc4c19049efbe7e6fcf40810389'
-        prompt_sha: cecc5abe528d17daa125bf4bf443fe67c4dfe75036d46adc3e7d5722624f4b42
+        stitch_screen_url: 'https://stitch.google.com/projects/10780096558615730514/screens/a1a088f2f16d41819d2c214130e77f2c'
+        prompt_sha: 9d55c43c093374a4d8a6a1027b646aaa8950ebae6a7a0d0331ee1ef237b45f98
         ds_asset_sha: 065d7fa8
         fallback_reason: null
         artifact_path: null
         source_render_hash: null
-        html_size_bytes: 550602
-        png_size_bytes: 16873
+        html_size_bytes: 552046
+        png_size_bytes: 189614
         readme_present: true
         verified: true
-        verified_at: '2026-10-27T13:12:28.926Z'
+        verified_at: '2026-11-04T10:45:26.681Z'
         verify_failures: []
-        verify_attempts: 2
-    last_cascade_at: '2026-10-27T13:11:46.979Z'
+        verify_attempts: 8
+    last_cascade_at: '2026-11-04T10:33:40.025Z'
     status: designed
     project_id: '10780096558615730514'
     design_system_id: '9551377288795375599'
-    last_run: '2026-10-27T13:12:01.171Z'
+    last_run: '2026-11-04T10:33:53.338Z'
     screens_count: 5
 design_system_id: '9551377288795375599'
 summary:

@@ -1,0 +1,1 @@
+Serve clients where they are: register clients, disburse and collect loans, and record savings deposits in the field, even with no network. Syncs to your Fineract server.

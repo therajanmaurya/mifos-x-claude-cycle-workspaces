@@ -51,7 +51,7 @@ text_assets:
       path: "deployment/android/metadata/{locale}/changelogs/default.txt"
       max_chars: 500
       generated_by: G7
-      status: missing
+      status: generated   # syncForkConfig ← app-profile android.changelog (2026-11-04)
     # Per-version changelogs are auto-generated at deploy time
     # Path: fastlane/metadata/android/{locale}/changelogs/{VERSION_CODE}.txt
 
@@ -152,34 +152,37 @@ text_assets:
   # iOS REVIEW INFORMATION (7 files)
   # ═══════════════════════════════════════════════════════════════════
   ios_review:
+    # All 7 derived by syncForkConfig ← app-profile org.* + store.review.* (2026-11-04).
     first_name:
       path: "deployment/ios/appstore/metadata/review_information/first_name.txt"
       generated_by: G7
-      status: missing
+      status: generated
     last_name:
       path: "deployment/ios/appstore/metadata/review_information/last_name.txt"
       generated_by: G7
-      status: missing
+      status: generated
     phone_number:
       path: "deployment/ios/appstore/metadata/review_information/phone_number.txt"
       generated_by: G7
-      status: missing
+      status: generated
     email_address:
       path: "deployment/ios/appstore/metadata/review_information/email_address.txt"
       generated_by: G7
-      status: missing
+      status: generated
+    # Demo account: deliberately empty in the repo — the reviewer picks a community demo server in
+    # the sign-in picker (see notes.txt); real reviewer credentials are entered in App Store Connect.
     demo_user:
       path: "deployment/ios/appstore/metadata/review_information/demo_user.txt"
       generated_by: G7
-      status: missing
+      status: manual
     demo_password:
       path: "deployment/ios/appstore/metadata/review_information/demo_password.txt"
       generated_by: G7
-      status: missing
+      status: manual
     notes:
       path: "deployment/ios/appstore/metadata/review_information/notes.txt"
       generated_by: G7
-      status: missing
+      status: generated
 
   # ═══════════════════════════════════════════════════════════════════
   # iOS TRADE REPRESENTATIVE CONTACT INFORMATION (12 files)
@@ -270,7 +273,7 @@ media_assets:
     format: "PNG 32-bit with alpha"
     max_size_kb: 1024
     generated_by: studio
-    status: missing
+    status: generated   # icon-gen → variant v2 media → app-profile → syncForkConfig (2026-11-04)
   android_feature_graphic:
     path: "deployment/android/metadata/{locale}/images/featureGraphic.png"
     dimensions: "1024x500"
@@ -411,10 +414,11 @@ config_files:
 
   # ── Platform Defaults ──
   age_rating:
-    path: "deployment/ios/appstore/metadata/age_rating.json"
+    # The lanes read app_store_rating_config.json (config.rb app_rating_config_path); age_rating.json was a stale path.
+    path: "deployment/ios/appstore/metadata/app_store_rating_config.json"
     note: "23+ keys — frequency (13), boolean (7), age overrides (3+)"
     generated_by: G7
-    status: missing
+    status: generated   # syncForkConfig ← store.age_rating 4+
   app_privacy:
     path: "deployment/ios/appstore/metadata/app_privacy_details.json"
     note: "Apple App Privacy questionnaire responses"
@@ -426,7 +430,8 @@ config_files:
     path: "testers.csv"
     note: "bulk beta tester list — columns: first_name, last_name, email"
     generated_by: G9
-    status: missing
+    status: not_applicable
+    reason: "no lane reads testers.csv in this deployment tree — testers come from app-profile apple.testers + Firebase tester groups"
 
   # ── Project Config (Ruby) ──
   project_config:

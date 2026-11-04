@@ -1,62 +1,62 @@
 feature: signin
 project_id: '10780096558615730514'
 design_system_id: '9551377288795375599'
-generated_at: '2026-10-03T08:15:46.949Z'
+generated_at: '2026-11-04T10:44:50.473Z'
 version: 1
 states:
   empty:
-    screen_id: 77175a620ac4497a82f3f78129b18dea
+    screen_id: 24441b57af364de4b373cf85506e638f
     result: success
     folder: 01-signin-empty
-    generated_at: '2026-10-03T07:47:08.738Z'
+    generated_at: '2026-11-04T10:31:05.223Z'
     html_downloaded: true
     png_downloaded: true
   biometric_ready:
-    screen_id: 510a85f0b3c248d6bce83d73d94c985e
+    screen_id: cd50d5f3869d43bcbd006852f663db64
     result: success
     folder: 02-signin-biometric_ready
-    generated_at: '2026-10-03T07:48:35.498Z'
+    generated_at: '2026-11-04T10:33:08.552Z'
     html_downloaded: true
     png_downloaded: true
   submitting:
-    screen_id: null
-    result: fallback
+    screen_id: 37236d56b0c542969f408e0a0fec4568
+    result: success
     folder: 03-signin-submitting
-    generated_at: '2026-10-03T07:55:42.099Z'
+    generated_at: '2026-11-04T10:34:50.639Z'
     html_downloaded: true
-    png_downloaded: false
+    png_downloaded: true
   validation_error:
-    screen_id: null
-    result: fallback
+    screen_id: 76e8f687f7ba47f9a97d3c06dfb60a71
+    result: success
     folder: 04-signin-validation_error
-    generated_at: '2026-10-03T08:05:07.424Z'
+    generated_at: '2026-11-04T10:36:35.121Z'
     html_downloaded: true
-    png_downloaded: false
+    png_downloaded: true
   transport_error:
-    screen_id: 9c61d975cd6b46c8bfa9c8293af5b9c4
+    screen_id: ca6abe9d5cf241e383178601744df9eb
     result: success
     folder: 05-signin-transport_error
-    generated_at: '2026-10-03T08:06:21.386Z'
+    generated_at: '2026-11-04T10:38:04.630Z'
     html_downloaded: true
     png_downloaded: true
   offline:
-    screen_id: d608277e5d344bab8b1e70c850c79aef
+    screen_id: 4b130f5116884d30b249646c81f59878
     result: success
     folder: 06-signin-offline
-    generated_at: '2026-10-03T08:08:53.004Z'
+    generated_at: '2026-11-04T10:41:31.856Z'
     html_downloaded: true
     png_downloaded: true
   locked_out:
-    screen_id: fab27a81036b4391971c583ec1225a13
+    screen_id: 16c0c7aae52841b1b2cb7fd70b7939d9
     result: success
     folder: 07-signin-locked_out
-    generated_at: '2026-10-03T08:14:09.048Z'
+    generated_at: '2026-11-04T10:42:59.323Z'
     html_downloaded: true
     png_downloaded: true
   success:
-    screen_id: 2a7f35d0fde34ef0a20ae95029e78722
+    screen_id: 449c9dd966664628be31cf990b217fd0
     result: success
     folder: 08-signin-success
-    generated_at: '2026-10-03T08:15:31.334Z'
+    generated_at: '2026-11-04T10:44:30.399Z'
     html_downloaded: true
     png_downloaded: true

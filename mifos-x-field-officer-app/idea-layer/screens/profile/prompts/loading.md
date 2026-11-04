@@ -8,7 +8,7 @@ content_hash: a0d5fce2b89e0f34ed527112fa7e9d8c82ccf130fd1ce756647f9de87983293c
 design_read_aesthetic: taste-default
 design_read_dials: {variance: 7, motion: 6, density: 4}
 aesthetic_variant_override: null
-archetype: skeleton_screen
+archetype: detail_screen
 
 feature: profile
 state: loading
@@ -19,8 +19,8 @@ design_system_id: '9551377288795375599'
 
 generated_by: stitch-prompt-build.ts v2.1.0
 prompt_template_version: stitch-per-state-v3.1.0
-craft_rules_version: v1.2.0
-polished_by: claude-in-session (Step 2 POLISH, source = screens/profile/preview/loading.html; v2 after the first render added an invented footer)
+craft_rules_version: v1.5.0
+polished_by: claude-in-session (Step 2 POLISH, responsive mandate per RULE-MOCKUP-RESPONSIVE-001, source = screens/profile/ui.yaml)
 ---
 
 # profile — loading state
@@ -30,7 +30,7 @@ polished_by: claude-in-session (Step 2 POLISH, source = screens/profile/preview/
 
 ↓↓↓ MOCKUP PROMPT
 
-Design the loading state of the Profile screen for **Mifos X Field Officer**, a microfinance field-officer app. The account saved at sign-in shows at once; only the officer's full name and email are still arriving from the server. Material 3 light theme, 412×915dp phone, the design system's own type scale (do not change the font).
+Design the loading state of the Profile screen for **Mifos X Field Officer**, a microfinance field-officer app. The account saved at sign-in shows at once; only the officer's full name and email are still arriving from the server. Material 3 light theme, **responsive layout** that works on phones, tablets and desktop windows, the design system's own type scale (do not change the font). Responsive layout (required): fluid full-width layout, no fixed-width root and no phone-width max-width cap. Compact (<600dp): one column in the order below with 16dp side margins. Medium (600-840dp): two columns with a 24dp gutter; the left column holds the Identity Header and Roles, the right column stacks the Office and Signed in to cards; the top app bar spans the full width. Expanded (>=840dp): the same two columns inside a centred content column capped at about 1040dp (left column about 360dp wide), 32dp side margins. The shimmer bars keep their proportions inside each column. Use Tailwind md: and lg: breakpoints.
 
 Palette: background #FAFAFB, surface #FFFFFF, onSurface #0F172A, onSurfaceVariant #475569, primary #4338CA, primaryContainer #E0E7FF, surfaceVariant #E2E8F0, outlineVariant #CBD5E1.
 

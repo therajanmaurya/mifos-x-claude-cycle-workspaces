@@ -1,9 +1,9 @@
 ---
-ui_yaml_sha: 96c765264083eb0d43850599756cc9befa717590136d3fbe8134eb87730aeae7
+ui_yaml_sha: fac06dd862aab96c9db367de11d23efbd1579d966eec71e003e537333444b29b
 design_md_hash: c1e7dbe50f7725a08e0369f4cb0659b8c1e56ac645d128a4c90c66b8618666ef
-app_shell_hash: db8da7f442f6b5759a907f50239088382e54225e9674781c0a8064f3ffd22bb0
+app_shell_hash: 89077f8f960080911cf9c2b934ba619c11591fcb24da55987a5a1bb79f349739
 design_read_hash: 
-content_hash: ef4b66c5018d805801515c45ecc52df8b7ccf0b187eb93bd132c7dafdbb5e054
+content_hash: 6050164aa87c144dffd71af39cce3391ec73c6a956f2d4c84446cd18c975b9a1
 
 design_read_aesthetic: taste-default
 design_read_dials: {variance: 7, motion: 6, density: 4}
@@ -17,22 +17,24 @@ state_visibility: empty
 project_id: '10780096558615730514'
 design_system_id: '9551377288795375599'
 
-generated_by: stitch-prompt-build.ts v2.0.0
-prompt_template_version: stitch-per-state-v3.0.0
-craft_rules_version: v1.2.0
+generated_by: stitch-prompt-build.ts v2.1.0
+prompt_template_version: stitch-per-state-v3.1.0
+craft_rules_version: v1.5.0
 ---
 
 # signin — empty state
 
-> Auto-generated from screens/signin/ui.yaml @ SHA 00b758ff802d9452
+> Auto-generated from screens/signin/ui.yaml @ SHA 275687098353bdfb
 > Stitch DesignSystem: 9551377288795375599
 > DO NOT redeclare colors / fonts / spacing — they live in DESIGN.md.
 
 ↓↓↓ MOCKUP PROMPT
 
+> This app has NO navigation chrome: no bottom navigation bar, no top app bar, no tabs, no drawer, no FAB. DO NOT invent any. Render ONLY the composition below on a single full-bleed surface.
 > Only elements that navigate or perform an action may look tappable (cursor, ripple, pressed state). DO NOT add tap affordances to decorative content — page titles, section headings, avatars, standalone icons, badges, and static labels are NOT interactive.
 > The concrete figures below are REALISTIC SAMPLE (demo) data, not fixed values — render believable content of the same KIND and MAGNITUDE (currency amounts, counts, percentages, names, timestamps). Exact reproduction is NOT required; realism and consistency ARE. Never use lorem, generic numbered placeholders, or empty content.
 > **EXCEPTION — RENDER VERBATIM, NEVER SUBSTITUTE.** The licence above does NOT apply to any of the following, which must appear EXACTLY as declared, character for character, or be omitted entirely: emergency / crisis / helpline numbers and shortcodes (e.g. 988, 741741) and the ORGANISATION NAMES attached to them · legal, consent, privacy and medical-disclaimer text · medication names and dosages · security codes, auth codes and account identifiers. For these, a plausible substitute is a FABRICATION, not realism: inventing or renaming a crisis line sends a person in danger to something that does not answer. If such a value is absent from the declared data, render the element EMPTY and leave it visibly unresolved — never fill the gap with an invented one.
+> **NO INVENTED CLAIMS OR CONTENT.** Render only what the Composition, Layout, Shell and demo data below declare. Do NOT add: rankings or superlatives ("#1", "best", "most trusted"), guarantees or percentages ("100% fit", "zero fee", "on-time guarantee"), certifications, approvals or permits, awards, testimonials or ratings, copyright lines, years or legal entity names, navigation items, footer links, sections, badges or features not listed, and product, vehicle or brand model names not given. If space remains, leave it as calm whitespace; never fill it with invented copy.
 
 ## Archetype: form
 
@@ -48,15 +50,15 @@ craft_rules_version: v1.2.0
 - type: scrollable_column
 - padding: default
 - alignment: start
-- responsive: any multi-column region MUST be mobile-first and collapse to a single column at narrow/phone widths — never a fixed multi-column grid with no single-column fallback.
+- responsive: fluid full-width, no phone-width root cap; Tailwind md:/lg:. Compact (<600 wide): full-width form. Medium (600-840 wide): centred card max ~480 wide on a brand-tinted ground. Expanded (>=840 wide): two panes, brand panel left (Mifos X mark + product line), sign-in card right, max ~1200 wide.
 
 ## Composition (top → bottom)
 1. **assist_chip** (#instance_chip) — label: "apis.mifos.community · mifos-bank-1", on_click: { action: navigate, target: serverconfig }
-2. **image** (#logo)
+2. **image** (#logo) — Mifos X mark (four triangles around a white X), never a bank icon
 3. **text_block** (#title)
 4. **outlined_text_field** (#username_field)
 5. **outlined_text_field** (#password_field)
-6. **button** (#login_button) — on_click: { action: submit, target: authenticate }
+6. **button** (#login_button) — disabled_when: ["submitting", "locked_out"] (render EXACTLY these 2, in this order — do not rename, reword, add or drop any), on_click: { action: submit, target: authenticate }
 7. **legal_text** (#consent_text)
 
 ## State-specific behavior
@@ -66,11 +68,16 @@ craft_rules_version: v1.2.0
 - (no demo collections bound for this state)
 
 ## Components (vocabulary used in this prompt)
-- (no named components extracted — see composition)
+- assist_chip
+- button
+- image
+- legal_text
+- outlined_text_field
+- text_block
 
 ## Shell (app-shell resolved for this state)
-- App-shell rules are defined per project; per-screen overrides are merged in.
-- Render MUST keep nav/bar elements consistent with the resolved shell — present or absent, never partial.
+- This app declares NO bottom navigation, NO top app bar, NO tabs and NO drawer.
+- The screen is a single full-bleed surface. Render NO app chrome whatsoever.
 
 ## Tokens (design-tokens roles consumed)
 - Colors: primary / secondary / surface / on-surface / on-surface-variant / error (M3 standard roles).
@@ -91,7 +98,7 @@ Before returning the rendered mockup, verify ALL of these are true. If any fails
 - [ ] **Every affordance leads somewhere:** each button, link, tab and card that LOOKS interactive resolves to a real destination — a route in this project or a section on this page. Nothing is decorative-but-clickable, and nothing points at a page that does not exist.
 - [ ] **No em-dashes:** the rendered output contains NO em-dash character. Use a colon, a comma, or a full stop instead — including inside <title>, headings, and any separator between a page name and the brand name.
 - [ ] **One shape system:** corner radii come from at most THREE distinct values across the whole render. Do not mix many radii.
-- [ ] **Responsive, phone-first:** the PRIMARY layout is the phone. Multi-column regions are only used where they genuinely read at phone width (a dense 2-column KPI grid is fine); anything wider must stack. Never assume a desktop viewport.
+- [ ] **Responsive:** compact single column, medium centred card, expanded two-pane, via md:/lg: breakpoints; no phone-width root cap.
 
 If any of these fail and the fix isn't clear → halt rendering and surface "Self-validation failed at: {checkpoint}."
 

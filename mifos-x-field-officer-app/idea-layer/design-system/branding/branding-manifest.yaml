@@ -1,9 +1,9 @@
 schema_version: "1.0.0"
 materialized_from: "app-profile/icons"
 icons:
-  - { file: "ios.png", sha256: "9835c29e18d6097bdd3ef2a825da28890e2ea56d82386e895d3ae003a0ccf2b1" }
-  - { file: "web-favicon.ico", sha256: "dd1ae695b4a917ebf6de9a4a7b93357f852999d576c7ab8ec817b32c299c8bdb" }
-  - { file: "desktop-macos.icns", sha256: "1bebf843dcf232dd9859efd7587076a5fa8ac0c874b5a270576eedb5c06c5c19" }
-  - { file: "desktop-windows.ico", sha256: "ec1ab357468f191146c97e88234dba0a2475886c7123999e5152bf56d6c0909c" }
-  - { file: "desktop-linux.png", sha256: "9ad22ad72d90b9b2d6ba252b502afd8a52fc1e6d58dead771c45ae26edb40e27" }
+  - { file: "ios.png", sha256: "a5527fa24f963ae3b2898bd78e705e0f0410234a3735488e05ce9c5790b3646e" }
+  - { file: "web-favicon.ico", sha256: "b47560ab7c6a54af626e2eeb292bac73aec521809427f755f120d0e4712fd21e" }
+  - { file: "desktop-macos.icns", sha256: "c0b3d818f1d896b6425ec1ce39c180892018eefcc816b56c5fc5c871c05370ee" }
+  - { file: "desktop-windows.ico", sha256: "ae7ae36477969a6eb647375f273ff6524488fe9ab6676dc843b70b7aadff5ed7" }
+  - { file: "desktop-linux.png", sha256: "8ef454897f5008f698c83706550cae40a6d6c0ddb32e0b886bf7726d634f0cb9" }
   - { dir: "android/", present: true }

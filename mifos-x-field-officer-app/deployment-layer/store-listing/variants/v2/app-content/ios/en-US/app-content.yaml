@@ -1,0 +1,100 @@
+# App Store Connect — App content declarations for Mifos X Field Officer (com.mifos.mifosxdroid)
+#
+# DERIVED FROM THE SOURCE (STEP T2.6), the same facts as the Play declarations (android/en-US/app-content.yaml):
+#   • Login required — credentials the user's institution issues; nothing works without an account.
+#   • Data goes ONLY to the institution's own Fineract server, over HTTPS; the Mifos Initiative gets none of it.
+#   • Handled: client personal details + identifiers, photos and signatures, documents, loan/savings records,
+#     the officer's username.
+#   • Firebase Analytics + Crashlytics are in the build but OFF until the user consents (PrivacyConsentApplier).
+#   • No location, no ads, no advertising identifier, no tracking across apps, no purchases.
+#
+# ⚠ REVIEW BEFORE SUBMITTING:
+#   1. "Linked to you" for client records — Apple ties linkage to the app's user (the officer). Records are
+#      linked to an identity; confirm the institution is comfortable with this disclosure.
+#   2. Reviewer demo account (App Review Information) — entered in App Store Connect, never committed.
+#   3. The privacy policy URL must be LIVE before submission.
+schema_version: 1
+platform: ios
+bundle_id: com.mifos.mifosxdroid
+locale: en-US
+privacy_policy_url: "https://mifos-products.pages.dev/mobile/field-officer/privacy/"
+
+age_rating:
+  expected_rating: "4+"
+  made_for_kids: false
+  unrestricted_web_access: false
+  rationale: >-
+    A business tool for staff of financial institutions. Every age-rating question is answered "None":
+    no violence, mature themes, gambling, contests or unrestricted web access.
+
+app_privacy:
+  collects_data: true
+  tracking: false                      # no data used to track users across apps or websites
+  linked_to_user:
+    - { category: "Name",               purpose: "App Functionality" }
+    - { category: "Email Address",      purpose: "App Functionality" }
+    - { category: "Phone Number",       purpose: "App Functionality" }
+    - { category: "Physical Address",   purpose: "App Functionality" }
+    - { category: "User ID",            purpose: "App Functionality" }
+    - { category: "Other Financial Info", purpose: "App Functionality" }
+    - { category: "Photos or Videos",   purpose: "App Functionality" }
+    - { category: "Other User Content", purpose: "App Functionality" }   # attached documents
+  not_linked_to_user:
+    - { category: "Crash Data",          purpose: "App Functionality, Analytics", note: "Firebase Crashlytics — only after consent" }
+    - { category: "Product Interaction", purpose: "Analytics",                    note: "Firebase Analytics — only after consent" }
+  not_collected: ["Location", "Contacts", "Browsing History", "Search History", "Identifiers (Device ID)", "Purchases", "Health & Fitness", "Sensitive Info", "Audio Data", "Messages"]
+  fastlane_json: "app_privacy_details.json"   # upload_app_privacy_details(json_path:) format
+
+questionnaire:
+  age-rating:
+    form: "Age Rating"
+    where: "App Store Connect → App → App Information → Age Rating → Edit"
+    steps:
+      - q: "Cartoon or fantasy violence / Realistic violence / Prolonged graphic or sadistic violence"
+        a: "None"
+      - q: "Profanity or crude humor / Mature or suggestive themes / Horror or fear themes"
+        a: "None"
+      - q: "Medical or treatment information / Alcohol, tobacco or drug use"
+        a: "None"
+      - q: "Simulated gambling / Sexual content or nudity / Graphic sexual content"
+        a: "None"
+      - q: "Contests"
+        a: "None"
+      - q: "Unrestricted web access"
+        a: "No"
+      - q: "Gambling"
+        a: "No"
+      - q: "Made for Kids"
+        a: "No"
+    outcome: "4+"
+
+  app-privacy:
+    form: "App Privacy"
+    where: "App Store Connect → App → App Privacy → Get Started / Edit"
+    steps:
+      - q: "Do you or your third-party partners collect data from this app?"
+        a: "Yes"
+      - q: "Contact Info → Name, Email Address, Phone Number, Physical Address"
+        a: "Collected · App Functionality · Linked to the user · Not used for tracking"
+      - q: "Identifiers → User ID"
+        a: "Collected · App Functionality · Linked to the user · Not used for tracking"
+      - q: "Financial Info → Other Financial Info"
+        a: "Collected · App Functionality · Linked to the user · Not used for tracking"
+      - q: "User Content → Photos or Videos, Other User Content"
+        a: "Collected · App Functionality · Linked to the user · Not used for tracking"
+      - q: "Diagnostics → Crash Data"
+        a: "Collected · App Functionality, Analytics · Not linked to the user · Not used for tracking"
+      - q: "Usage Data → Product Interaction"
+        a: "Collected · Analytics · Not linked to the user · Not used for tracking"
+      - q: "Location / Contacts / Browsing / Search / Device ID / Purchases / Health / Sensitive Info"
+        a: "Not collected"
+    outcome: "Data Linked to You (app functionality) + Data Not Linked to You (diagnostics, opt-in); no tracking"
+    api: "fastlane upload_app_privacy_details(json_path: app_privacy_details.json)"
+
+  privacy-policy:
+    form: "Privacy Policy"
+    where: "App Store Connect → App → App Privacy → Privacy Policy URL"
+    steps:
+      - q: "Privacy Policy URL"
+        a: "https://mifos-products.pages.dev/mobile/field-officer/privacy/ (REVIEW 3 — must return 200 first)"
+    outcome: "Policy URL set and reachable"

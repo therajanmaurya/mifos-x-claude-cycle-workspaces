@@ -65,14 +65,16 @@ platforms:
 
   android_playstore_internal:
     display_name: "PlayStore Internal"
-    deployed_version: null
-    status: not_deployed
-    timestamp: null
-    deploy_mode: null
+    deployed_version: "2026.11.1-beta.0.4"
+    status: deployed
+    timestamp: "2026-11-04T18:30:28+05:30"
+    deploy_mode: local
     requires: []                       # no prerequisites for internal track
     metadata:
       track: "internal"
-      console_url: ""
+      version_code: 41                 # SoT for supply --version_code (fastlane google_play_track_version_codes → max+1)
+      console_url: "https://play.google.com/console/developers/app/com.mifos.mifosxdroid/tracks/internal-testing"
+      signing: "legacy upload key (cert SHA1 F9:97:65:28:…:AE:93) from git history b5a57c9 — PENDING upload-key reset to the vault key (F7:1C:29:8D:…:D3:57); credentials public in openMF history"
 
   android_playstore_beta:
     display_name: "PlayStore Promote to Beta"

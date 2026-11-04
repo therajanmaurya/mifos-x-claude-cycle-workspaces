@@ -1,0 +1,28 @@
+# Discrete content-rating declaration — folds 1:1 into app-profile/platforms/android/app-content/.
+# Split out from app-content.yaml because store-assets-sync.ts reads the per-question files by key.
+schema_version: 1
+platform: android
+locale: en-US
+
+category: "Utility, Productivity, Communication, or Other"
+email: "team@mifos.org"
+
+answers:
+  violence: none
+  sexuality_nudity: none
+  profanity_crude_humour: none
+  controlled_substances: none
+  gambling_simulated: none
+  horror_fear: none
+  user_generated_content: false
+  users_interact: false
+  shares_user_location: false
+  digital_purchases: false
+  contains_ads: false
+
+outcome:
+  iarc_rating: "Everyone"
+  rationale: >-
+    A business tool for staff of financial institutions: it shows an authorised officer their
+    institution's own client and account records. No content library, no social features, no ads,
+    no purchases — every answer is "no".

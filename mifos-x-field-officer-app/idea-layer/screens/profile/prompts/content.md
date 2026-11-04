@@ -3,7 +3,7 @@ ui_yaml_sha: d507f376f860c014e7068f2bf3fd3fb66cac58d618ddf536c9e4dc0c77b505f4
 design_md_hash: c1e7dbe50f7725a08e0369f4cb0659b8c1e56ac645d128a4c90c66b8618666ef
 app_shell_hash: 89077f8f960080911cf9c2b934ba619c11591fcb24da55987a5a1bb79f349739
 design_read_hash: 
-content_hash: bf66fa83eac05d3dda59a041f7392a08fc8e88af66b4722e7839573b5423d41c
+content_hash: 25553c22f551b02601dcc9301140470b3644827f8e3d099151c469a89a9a9701
 
 design_read_aesthetic: taste-default
 design_read_dials: {variance: 7, motion: 6, density: 4}
@@ -19,8 +19,8 @@ design_system_id: '9551377288795375599'
 
 generated_by: stitch-prompt-build.ts v2.1.0
 prompt_template_version: stitch-per-state-v3.1.0
-craft_rules_version: v1.2.0
-polished_by: claude-in-session (Step 2 POLISH, source = screens/profile/preview/content.html)
+craft_rules_version: v1.5.0
+polished_by: claude-in-session (Step 2 POLISH, responsive mandate per RULE-MOCKUP-RESPONSIVE-001, source = screens/profile/ui.yaml)
 ---
 
 # profile — content state
@@ -30,7 +30,7 @@ polished_by: claude-in-session (Step 2 POLISH, source = screens/profile/preview/
 
 ↓↓↓ MOCKUP PROMPT
 
-Design the content state of the Profile screen for **Mifos X Field Officer**, a microfinance field-officer app. It shows the signed-in officer who they are, which office their Home figures cover, and which server they are signed in to. Material 3 light theme, 412×915dp phone, the design system's own type scale (do not change the font).
+Design the content state of the Profile screen for **Mifos X Field Officer**, a microfinance field-officer app. It shows the signed-in officer who they are, which office their Home figures cover, and which server they are signed in to. Material 3 light theme, **responsive layout** that works on phones, tablets and desktop windows, the design system's own type scale (do not change the font). Responsive layout (required): fluid full-width layout, no fixed-width root and no phone-width max-width cap. Compact (<600dp): one column in the order below with 16dp side margins. Medium (600-840dp): two columns with a 24dp gutter; the left column holds the Identity Header and Roles, the right column stacks the Office, Signed in to and Account cards; the top app bar spans the full width. Expanded (>=840dp): the same two columns inside a centred content column capped at about 1040dp (left column about 360dp wide), 32dp side margins. Use Tailwind md: and lg: breakpoints.
 
 Palette: background #FAFAFB, surface #FFFFFF, onSurface #0F172A, onSurfaceVariant #475569, primary #4338CA, primaryContainer #E0E7FF, secondary #059669, secondaryContainer #D1FAE5, error #DC2626, outline #94A3B8, outlineVariant #CBD5E1.
 

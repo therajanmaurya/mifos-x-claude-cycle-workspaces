@@ -3,7 +3,7 @@ ui_yaml_sha: d507f376f860c014e7068f2bf3fd3fb66cac58d618ddf536c9e4dc0c77b505f4
 design_md_hash: c1e7dbe50f7725a08e0369f4cb0659b8c1e56ac645d128a4c90c66b8618666ef
 app_shell_hash: 89077f8f960080911cf9c2b934ba619c11591fcb24da55987a5a1bb79f349739
 design_read_hash: 
-content_hash: b859653baa8796690a7b88263699f9020452ca64bba20a36a3cc814fa764f0d1
+content_hash: 335de11b0e9e18b24be95efeff4aade857a17fe38cb51c462039bc348db5e00d
 
 design_read_aesthetic: taste-default
 design_read_dials: {variance: 7, motion: 6, density: 4}
@@ -19,8 +19,8 @@ design_system_id: '9551377288795375599'
 
 generated_by: stitch-prompt-build.ts v2.1.0
 prompt_template_version: stitch-per-state-v3.1.0
-craft_rules_version: v1.2.0
-polished_by: claude-in-session (Step 2 POLISH, source = screens/profile/preview/offline.html)
+craft_rules_version: v1.5.0
+polished_by: claude-in-session (Step 2 POLISH, responsive mandate per RULE-MOCKUP-RESPONSIVE-001, source = screens/profile/ui.yaml)
 ---
 
 # profile — offline state
@@ -30,7 +30,7 @@ polished_by: claude-in-session (Step 2 POLISH, source = screens/profile/preview/
 
 ↓↓↓ MOCKUP PROMPT
 
-Design the offline state of the Profile screen for **Mifos X Field Officer**, a microfinance field-officer app used where there is often no signal. The whole account still shows from what was saved at sign-in; only Change password needs a connection. Material 3 light theme, 412×915dp phone, the design system's own type scale (do not change the font).
+Design the offline state of the Profile screen for **Mifos X Field Officer**, a microfinance field-officer app used where there is often no signal. The whole account still shows from what was saved at sign-in; only Change password needs a connection. Material 3 light theme, **responsive layout** that works on phones, tablets and desktop windows, the design system's own type scale (do not change the font). Responsive layout (required): fluid full-width layout, no fixed-width root and no phone-width max-width cap. Compact (<600dp): one column in the order below with 16dp side margins. Medium (600-840dp): the Offline Banner spans the full content width under the top app bar, then two columns with a 24dp gutter; the left column holds the Identity Header and Roles, the right column stacks the Office, Signed in to and Account cards. Expanded (>=840dp): the banner and the same two columns inside a centred content column capped at about 1040dp (left column about 360dp wide), 32dp side margins. Use Tailwind md: and lg: breakpoints.
 
 Palette: background #FAFAFB, surface #FFFFFF, onSurface #0F172A, onSurfaceVariant #475569, primary #4338CA, primaryContainer #E0E7FF, tertiaryContainer #FEF3C7, onTertiaryContainer #78350F, error #DC2626, outline #94A3B8, outlineVariant #CBD5E1.
 
@@ -38,7 +38,7 @@ Shell: a detail screen opened from the Home avatar. Top app bar with a back arro
 
 **Component 1 - Top App Bar** (64dp tall, background #FAFAFB): back arrow, title "Profile" semibold title-large #0F172A.
 
-**Component 2 - Offline Banner** (full width minus 16dp insets, 12dp radius, tertiaryContainer #FEF3C7, onTertiaryContainer #78350F, 12dp by 16dp padding): cloud-off icon and "You're offline. This is the account saved when you signed in."
+**Component 2 - Offline Banner** (full content width minus 16dp insets, 12dp radius, tertiaryContainer #FEF3C7, onTertiaryContainer #78350F, 12dp by 16dp padding): cloud-off icon and "You're offline. This is the account saved when you signed in."
 
 **Component 3 - Identity Header** (no card, left aligned, 16dp gap): a 72dp circle avatar on primaryContainer #E0E7FF with "IZ" bold #4338CA; the name "Irving Zepeda" semibold headline-small, then the username "fieldofficer" and the email "oficial.campo@gmail.com" in body-medium #475569.
 

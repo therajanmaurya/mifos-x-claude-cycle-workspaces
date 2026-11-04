@@ -1,0 +1,55 @@
+_schema_version: '1.0'
+asset_id: store_ref_field_visit
+feature: null
+kind: illustration
+intent_summary: >-
+  A TALL 9:16 portrait full-bleed illustration for a microfinance app store screenshot background: a loan officer walking a winding path toward a small rural village market in soft morning light, a tablet under one arm. Deep Mifos-blue sky gradient, calm open negative space across the upper third for a headline. Flat-vector editorial style, geometric, crisp, layered hills.
+
+engine: google-stitch
+engine_status: conditional
+backend: stitch-mcp
+license: google-stitch-tos
+license_status: confirmed
+commercial_ok: true
+license_confirmed_by: operator
+license_confirmed_at: "2026-10-12"
+license_confirmed_for_account: a7
+license_note: >-
+  Hosted-service output governed by Google's Stitch Terms of Service. The operator who owns
+  this account has confirmed the ToS permits commercial use — see
+  STITCH_ACCOUNTS_REGISTRY.yaml#license_confirmation.
+
+produced_by: /idea-feature-stitch-art
+stitch_screen_id: a968c87f634648ab90315ff2e4525abd
+stitch_project_id: 10780096558615730514
+authoring: stitch-prompt-generated
+
+declared_size: 1080x1920
+bytes: 1107666
+source_sha256: 4c7e3020ac438d0d1d147d3db363d2b0d49f0608ccb0341fd94a3390b94427c3
+wired_to: workspaces/mifos-x/mifos-x-field-officer-app/idea-layer/stitch/store_ref_field_visit.png
+generated_at: '2026-11-04T11:28:29Z'
+generated_by: /idea-feature-stitch-art
+
+device_fidelity: pending-device-verify
+human_signed_off: false
+
+prompt: >-
+  Produce a single store-listing-backdrop asset.
+  .
+  SUBJECT AND INTENT
+  A TALL 9:16 portrait full-bleed illustration for a microfinance app store screenshot background: a loan officer walking a winding path toward a small rural village market in soft morning light, a tablet under one arm. Deep Mifos-blue sky gradient, calm open negative space across the upper third for a headline. Flat-vector editorial style, geometric, crisp, layered hills.
+  .
+  PALETTE (HARD CONSTRAINT)
+  Use ONLY: #0070C0, #00A9EC, #00406E, #92D050, #FFFFFF.
+  .
+  TONE (HARD CONSTRAINT)
+  The asset must read as: trustworthy, calm, hopeful, professional.
+  .
+  HOUSE RULES
+  Composition must be self-contained and reusable -- no app chrome, no status bar, no nav bar.
+  No lettering of any kind: no words, labels, captions, watermarks or signature marks.
+  No stock-photo look, no photobashing, no visible brand marks of other products.
+  If the asset is SVG or HTML, NEVER place <defs>, <symbol> or any referenced geometry inside a hidden container (class="hidden", display:none, visibility:hidden, or width=0/height=0). Gradient and <use> references do not resolve out of a display:none subtree and the artwork renders blank. Put shared defs in the SAME visible <svg> that draws them, or position the defs host off-screen with `position:absolute;width:0;height:0;overflow:hidden` -- never display:none.
+vector_original: workspaces/mifos-x/mifos-x-field-officer-app/idea-layer/stitch/store_ref_field_visit.svg
+vector_size: 1080x1920

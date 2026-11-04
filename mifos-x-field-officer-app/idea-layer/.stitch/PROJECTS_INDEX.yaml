@@ -1,113 +1,148 @@
 version: '2.0'
 workspace: mifos-x/mifos-x-field-officer-app
-updated: '2026-10-27T13:12:01.300Z'
+updated: '2026-11-04T10:44:50.782Z'
 features:
   signin:
     project_id: '10780096558615730514'
     design_system_id: '9551377288795375599'
-    last_run: '2026-10-03T08:15:46.949Z'
+    last_run: '2026-11-04T10:44:50.473Z'
     total_screens: 8
     screens:
       - state: empty
-        screen_id: 77175a620ac4497a82f3f78129b18dea
+        screen_id: 24441b57af364de4b373cf85506e638f
         folder: 01-signin-empty
         result: success
-        generated_at: '2026-10-03T07:47:08.738Z'
+        generated_at: '2026-11-04T10:31:05.223Z'
       - state: biometric_ready
-        screen_id: 510a85f0b3c248d6bce83d73d94c985e
+        screen_id: cd50d5f3869d43bcbd006852f663db64
         folder: 02-signin-biometric_ready
         result: success
-        generated_at: '2026-10-03T07:48:35.498Z'
+        generated_at: '2026-11-04T10:33:08.552Z'
       - state: submitting
-        screen_id: null
+        screen_id: 37236d56b0c542969f408e0a0fec4568
         folder: 03-signin-submitting
-        result: fallback
-        generated_at: '2026-10-03T07:55:42.099Z'
+        result: success
+        generated_at: '2026-11-04T10:34:50.639Z'
       - state: validation_error
-        screen_id: null
+        screen_id: 76e8f687f7ba47f9a97d3c06dfb60a71
         folder: 04-signin-validation_error
-        result: fallback
-        generated_at: '2026-10-03T08:05:07.424Z'
+        result: success
+        generated_at: '2026-11-04T10:36:35.121Z'
       - state: transport_error
-        screen_id: 9c61d975cd6b46c8bfa9c8293af5b9c4
+        screen_id: ca6abe9d5cf241e383178601744df9eb
         folder: 05-signin-transport_error
         result: success
-        generated_at: '2026-10-03T08:06:21.386Z'
+        generated_at: '2026-11-04T10:38:04.630Z'
       - state: offline
-        screen_id: d608277e5d344bab8b1e70c850c79aef
+        screen_id: 4b130f5116884d30b249646c81f59878
         folder: 06-signin-offline
         result: success
-        generated_at: '2026-10-03T08:08:53.004Z'
+        generated_at: '2026-11-04T10:41:31.856Z'
       - state: locked_out
-        screen_id: fab27a81036b4391971c583ec1225a13
+        screen_id: 16c0c7aae52841b1b2cb7fd70b7939d9
         folder: 07-signin-locked_out
         result: success
-        generated_at: '2026-10-03T08:14:09.048Z'
+        generated_at: '2026-11-04T10:42:59.323Z'
       - state: success
-        screen_id: 2a7f35d0fde34ef0a20ae95029e78722
+        screen_id: 449c9dd966664628be31cf990b217fd0
         folder: 08-signin-success
         result: success
-        generated_at: '2026-10-03T08:15:31.334Z'
+        generated_at: '2026-11-04T10:44:30.399Z'
   home:
     project_id: '10780096558615730514'
     design_system_id: '9551377288795375599'
-    last_run: '2026-10-26T17:53:09.092Z'
+    last_run: '2026-11-04T10:36:52.760Z'
     total_screens: 5
     screens:
       - state: loading
-        screen_id: a42b722b572443db8a28088d6a10ba20
+        screen_id: 2c351c5c121d45f09a94e3eccd9c8f44
         folder: 01-home-loading
         result: success
-        generated_at: '2026-10-26T17:45:45.338Z'
+        generated_at: '2026-11-04T10:29:51.943Z'
       - state: content
-        screen_id: 282d6b4f77e640d096a8194be6a0f9cb
+        screen_id: a263d49423ae4c08b1e64071aae2088c
         folder: 02-home-content
         result: success
-        generated_at: '2026-10-26T17:47:31.085Z'
+        generated_at: '2026-11-04T10:31:53.082Z'
       - state: partial_failure
-        screen_id: 804e388d622f424c81b2fe55d7c1c78c
+        screen_id: b73899cecd9b45e39ec924da2f0044bd
         folder: 03-home-partial_failure
         result: success
-        generated_at: '2026-10-26T17:49:47.937Z'
+        generated_at: '2026-11-04T10:33:20.419Z'
       - state: error
-        screen_id: 456b7e261d7341dd8fee0e9bbf94650f
+        screen_id: ebfd6052646d40eeb8bbbe3f18c5986a
         folder: 04-home-error
         result: success
-        generated_at: '2026-10-26T17:51:20.872Z'
+        generated_at: '2026-11-04T10:34:34.329Z'
       - state: offline
-        screen_id: ffca39fb24294386bc080f274a55306b
+        screen_id: 7abac1dfd7184f209ad3826ed689c472
         folder: 05-home-offline
         result: success
-        generated_at: '2026-10-26T17:52:43.763Z'
+        generated_at: '2026-11-04T10:36:21.111Z'
   offlineSync:
     project_id: '10780096558615730514'
     design_system_id: '9551377288795375599'
-    last_run: '2026-10-27T08:26:37.973Z'
-    total_screens: 2
+    last_run: '2026-11-04T10:36:48.736Z'
+    total_screens: 6
     screens:
+      - state: loading
+        screen_id: 73edb4992ae344d49117d7d63cbe787f
+        folder: 01-offlineSync-loading
+        result: success
+        generated_at: '2026-11-04T10:30:21.873Z'
       - state: content
-        screen_id: 6f0ac0e64d5a45ad91a4daeafbd23e16
+        screen_id: 47d285f3095b482b8f430ca05993803c
         folder: 02-offlineSync-content
         result: success
-        generated_at: '2026-10-27T08:25:44.610Z'
+        generated_at: '2026-11-04T10:31:31.584Z'
+      - state: syncing
+        screen_id: d65b7747606b49659adb692be3953d11
+        folder: 03-offlineSync-syncing
+        result: success
+        generated_at: '2026-11-04T10:32:51.817Z'
       - state: partial_failure
-        screen_id: b810a4704bee431a979246b26cc73194
+        screen_id: d63b6f65a67d44728c6d652636cb93e3
         folder: 04-offlineSync-partial_failure
         result: success
-        generated_at: '2026-10-27T08:26:25.921Z'
+        generated_at: '2026-11-04T10:34:06.015Z'
+      - state: empty
+        screen_id: 11242ba793b3491380fe9fc5c836fc33
+        folder: 05-offlineSync-empty
+        result: success
+        generated_at: '2026-11-04T10:35:09.015Z'
+      - state: offline
+        screen_id: c73186d3dc2240cea488324f1daaec69
+        folder: 06-offlineSync-offline
+        result: success
+        generated_at: '2026-11-04T10:36:33.177Z'
   profile:
     project_id: '10780096558615730514'
     design_system_id: '9551377288795375599'
-    last_run: '2026-10-27T13:12:01.171Z'
-    total_screens: 2
+    last_run: '2026-11-04T10:33:53.338Z'
+    total_screens: 5
     screens:
       - state: loading
-        screen_id: e385d085b0f54234aa850d3a57c89f1a
+        screen_id: a2896a2db3714362b1ed55ec1496c6a3
         folder: 01-profile-loading
         result: success
-        generated_at: '2026-10-27T13:10:10.878Z'
+        generated_at: '2026-11-04T10:29:30.973Z'
+      - state: content
+        screen_id: 817a72b171f74c60a9c2072246d8e394
+        folder: 02-profile-content
+        result: success
+        generated_at: '2026-11-04T10:30:31.782Z'
+      - state: error
+        screen_id: e9a281d4ab21450c8af562b2794ddcfe
+        folder: 03-profile-error
+        result: success
+        generated_at: '2026-11-04T10:31:30.259Z'
+      - state: offline
+        screen_id: d7502b1c2d0f4f5f9c64d3f13c33038b
+        folder: 04-profile-offline
+        result: success
+        generated_at: '2026-11-04T10:32:40.817Z'
       - state: change_password
-        screen_id: 91d38bc4c19049efbe7e6fcf40810389
+        screen_id: a1a088f2f16d41819d2c214130e77f2c
         folder: 05-profile-change_password
         result: success
-        generated_at: '2026-10-27T13:11:46.978Z'
+        generated_at: '2026-11-04T10:33:40.024Z'

@@ -1,0 +1,1 @@
+microfinance,fineract,collections,MFI,credit union,banking,offline,clients,repayment,deposits,groups

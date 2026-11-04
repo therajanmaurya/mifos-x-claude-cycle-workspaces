@@ -1,0 +1,269 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="1080" height="1920">
+  <defs>
+    <!-- Background Sky Gradient -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#021424" />
+      <stop offset="35%" stop-color="#06243F" />
+      <stop offset="65%" stop-color="#0070C0" />
+      <stop offset="85%" stop-color="#00A9EC" />
+      <stop offset="100%" stop-color="#92D050" stop-opacity="0.8" />
+    </linearGradient>
+
+    <!-- Lantern Glow Radial Gradient -->
+    <radialGradient id="lanternGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9" />
+      <stop offset="25%" stop-color="#00A9EC" stop-opacity="0.6" />
+      <stop offset="55%" stop-color="#0070C0" stop-opacity="0.3" />
+      <stop offset="80%" stop-color="#92D050" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#06243F" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Dusk Horizon Glow -->
+    <radialGradient id="horizonAura" cx="50%" cy="100%" r="70%">
+      <stop offset="0%" stop-color="#00A9EC" stop-opacity="0.4" />
+      <stop offset="50%" stop-color="#0070C0" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#021424" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Base Sky Background (Upper third kept serene & open for copy) -->
+  <rect width="1080" height="1920" fill="url(#skyGrad)" />
+  <rect x="0" y="600" width="1080" height="800" fill="url(#horizonAura)" />
+
+  <!-- Subtle Minimal Geometric Stars / Evening Constellations in Upper Sky -->
+  <g opacity="0.65">
+    <circle cx="210" cy="180" r="3" fill="#FFFFFF" />
+    <circle cx="340" cy="130" r="2" fill="#00A9EC" />
+    <circle cx="820" cy="160" r="3.5" fill="#FFFFFF" />
+    <circle cx="910" cy="240" r="2" fill="#FFFFFF" />
+    <circle cx="150" cy="320" r="2.5" fill="#FFFFFF" />
+    <circle cx="740" cy="300" r="2" fill="#00A9EC" />
+    <circle cx="560" cy="190" r="2.5" fill="#FFFFFF" opacity="0.5" />
+    <!-- Subtle crisp vector starlets -->
+    <polygon points="880,110 883,118 891,121 883,124 880,132 877,124 869,121 877,118" fill="#FFFFFF" opacity="0.7" />
+    <polygon points="260,260 262,266 268,268 262,270 260,276 258,270 252,268 258,266" fill="#00A9EC" opacity="0.8" />
+  </g>
+
+  <!-- Distant Rolling Landscape Silhouettes (Clean Flat Editorial Geometry) -->
+  <!-- Layer 1: Distant hills -->
+  <path d="M0,1160 Q280,1050 580,1120 T1080,1090 L1080,1920 L0,1920 Z" fill="#06243F" opacity="0.75" />
+
+  <!-- Layer 2: Midground Ridge & Stylized Acacia / Canopy Trees -->
+  <path d="M0,1240 Q320,1170 700,1230 T1080,1200 L1080,1920 L0,1920 Z" fill="#06243F" />
+
+  <!-- Stylized geometric vegetation silhouettes in background -->
+  <g fill="#021424" opacity="0.6">
+    <!-- Tree Left -->
+    <path d="M120,1240 L124,1160 L128,1240 Z" />
+    <ellipse cx="124" cy="1150" rx="70" ry="24" />
+    <ellipse cx="140" cy="1135" rx="50" ry="18" fill="#06243F" />
+    <!-- Tree Far Right -->
+    <path d="M960,1220 L963,1150 L967,1220 Z" />
+    <ellipse cx="965" cy="1142" rx="80" ry="26" />
+    <ellipse cx="945" cy="1128" rx="55" ry="18" fill="#06243F" />
+  </g>
+
+  <!-- Layer 3: Foreground Gathering Mound -->
+  <path d="M-100,1400 Q240,1280 540,1310 Q840,1340 1180,1290 L1180,1920 L-100,1920 Z" fill="#021424" />
+
+  <!-- Concentric Trust/Growth Resonance Bands (Stylized communal ripple) -->
+  <ellipse cx="540" cy="1540" rx="460" ry="190" fill="none" stroke="#0070C0" stroke-width="2.5" opacity="0.25" stroke-dasharray="8 8" />
+  <ellipse cx="540" cy="1540" rx="380" ry="155" fill="none" stroke="#00A9EC" stroke-width="2" opacity="0.35" />
+  <ellipse cx="540" cy="1540" rx="300" ry="120" fill="none" stroke="#92D050" stroke-width="1.5" opacity="0.4" />
+
+  <!-- Radiant Lantern Glow on Ground & Gathering Center -->
+  <ellipse cx="540" cy="1530" rx="340" ry="160" fill="url(#lanternGlow)" />
+
+  <!-- Stylized Gathering Mats / Geometric seating platform -->
+  <ellipse cx="540" cy="1545" rx="260" ry="85" fill="#06243F" opacity="0.9" />
+  <ellipse cx="540" cy="1545" rx="240" ry="75" fill="#0070C0" opacity="0.3" />
+
+  <!-- ==================== THE GATHERING GROUP ==================== -->
+  
+  <!-- Central Communal Elements: Meeting Notes / Ledger & Lantern -->
+  <!-- Low table / pedestal -->
+  <ellipse cx="540" cy="1540" rx="64" ry="24" fill="#021424" />
+  <path d="M476,1540 L486,1565 L594,1565 L604,1540 Z" fill="#06243F" />
+  
+  <!-- Digital Tablet / Field Ledger with Clean Blue Reflection -->
+  <polygon points="505,1535 550,1525 575,1537 530,1548" fill="#FFFFFF" />
+  <polygon points="510,1536 547,1528 570,1537 533,1546" fill="#00A9EC" opacity="0.85" />
+  <polygon points="522,1538 542,1533 555,1539 535,1544" fill="#92D050" />
+
+  <!-- Lantern Construction -->
+  <g id="lantern">
+    <!-- Glow aura behind frame -->
+    <circle cx="540" cy="1495" r="48" fill="#FFFFFF" opacity="0.45" />
+    <circle cx="540" cy="1495" r="28" fill="#FFFFFF" opacity="0.9" />
+    <!-- Lantern metal base & cap -->
+    <ellipse cx="540" cy="1515" rx="20" ry="7" fill="#021424" />
+    <!-- Glass body -->
+    <path d="M524,1515 L528,1480 L552,1480 L556,1515 Z" fill="#00A9EC" opacity="0.5" />
+    <!-- Core filament light -->
+    <circle cx="540" cy="1495" r="9" fill="#FFFFFF" />
+    <path d="M536,1495 L544,1495" stroke="#92D050" stroke-width="3" stroke-linecap="round" />
+    <!-- Lantern top hood -->
+    <path d="M522,1480 L540,1464 L558,1480 Z" fill="#06243F" />
+    <!-- Handle -->
+    <path d="M530,1468 Q540,1450 550,1468" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
+  </g>
+
+  <!-- ==================== FIGURES (CIRCLE FORMATION) ==================== -->
+
+  <!-- Figure 1: Field Officer (Seated Left Center, Holding Clipboard, Professional) -->
+  <g id="fieldOfficer">
+    <!-- Shadow -->
+    <ellipse cx="380" cy="1555" rx="55" ry="18" fill="#021424" opacity="0.7" />
+    
+    <!-- Torso & Attire (Professional Collared Shirt / Field Vest) -->
+    <!-- Lower Body / Trousers -->
+    <path d="M335,1540 C340,1510 350,1485 375,1485 C395,1485 410,1510 425,1545 C410,1555 350,1555 335,1540 Z" fill="#06243F" />
+    
+    <!-- Field Shirt / Vest -->
+    <path d="M348,1485 L360,1390 L405,1390 L418,1485 Z" fill="#0070C0" />
+    <!-- Crisp Collar Accents -->
+    <polygon points="370,1390 382,1415 385,1390" fill="#FFFFFF" />
+    <polygon points="395,1390 382,1415 380,1390" fill="#00A9EC" />
+    <!-- Field Officer Badge Accent -->
+    <circle cx="395" cy="1420" r="5" fill="#92D050" />
+    
+    <!-- Arm & Clipboard held forward toward the circle -->
+    <path d="M352,1415 Q375,1450 412,1445" fill="none" stroke="#0070C0" stroke-width="18" stroke-linecap="round" />
+    <!-- Hand -->
+    <circle cx="415" cy="1445" r="9" fill="#00A9EC" />
+    <!-- Clipboard/Tablet -->
+    <polygon points="410,1430 435,1420 448,1455 423,1465" fill="#FFFFFF" />
+    <polygon points="414,1432 433,1424 444,1452 425,1460" fill="#021424" />
+    <line x1="422" y1="1435" x2="435" y2="1430" stroke="#92D050" stroke-width="3" />
+    <line x1="425" y1="1442" x2="438" y2="1437" stroke="#00A9EC" stroke-width="3" />
+
+    <!-- Head & Hair -->
+    <circle cx="382" cy="1355" r="24" fill="#00A9EC" />
+    <path d="M362,1355 C362,1335 372,1328 388,1328 C405,1328 410,1342 410,1358 C398,1352 380,1352 362,1355 Z" fill="#021424" />
+  </g>
+
+  <!-- Figure 2: Woman Entrepreneur A (Left Foreground - Dynamic Seated, Headscarf/Wrap) -->
+  <g id="entrepreneurLeft">
+    <!-- Shadow -->
+    <ellipse cx="270" cy="1590" rx="70" ry="22" fill="#021424" opacity="0.8" />
+    
+    <!-- Traditional/Modern Wrap Skirt -->
+    <path d="M210,1575 C220,1520 250,1490 290,1490 C325,1490 345,1525 340,1580 C300,1595 240,1595 210,1575 Z" fill="#00A9EC" />
+    <!-- Decorative geometric pattern line on skirt -->
+    <path d="M225,1555 Q280,1570 330,1555" fill="none" stroke="#92D050" stroke-width="6" stroke-linecap="round" />
+    <path d="M235,1570 Q280,1582 320,1570" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity="0.8" />
+
+    <!-- Shawl / Top -->
+    <path d="M245,1490 Q275,1410 300,1410 Q325,1410 325,1490 Z" fill="#06243F" />
+    <!-- Vibrant Shawl Fold -->
+    <path d="M260,1430 Q290,1460 325,1450 L320,1490 L260,1485 Z" fill="#0070C0" />
+    
+    <!-- Arm gestures listening / engaging -->
+    <path d="M295,1445 Q325,1465 335,1460" fill="none" stroke="#00A9EC" stroke-width="14" stroke-linecap="round" />
+    
+    <!-- Head & Stylized Headwrap -->
+    <circle cx="288" cy="1380" r="22" fill="#FFFFFF" opacity="0.95" />
+    <!-- Graceful structured headwrap (Editorial vector) -->
+    <path d="M268,1380 C265,1355 280,1342 302,1342 C320,1342 328,1360 320,1382 C310,1370 290,1368 268,1380 Z" fill="#92D050" />
+    <path d="M285,1342 C295,1330 315,1332 318,1348 Z" fill="#00A9EC" />
+    <!-- Earring accent -->
+    <circle cx="292" cy="1390" r="3.5" fill="#92D050" />
+  </g>
+
+  <!-- Figure 3: Woman Entrepreneur B (Back Center, Facing Group, Engaged) -->
+  <g id="entrepreneurCenterBack">
+    <!-- Shadow -->
+    <ellipse cx="540" cy="1475" rx="50" ry="16" fill="#021424" opacity="0.6" />
+
+    <!-- Robe / Dress Back View -->
+    <path d="M500,1465 C510,1425 520,1400 540,1400 C560,1400 570,1425 580,1465 Z" fill="#06243F" />
+    <!-- Shawl around shoulders catching lantern rim-light -->
+    <path d="M515,1410 Q540,1435 565,1410 Q555,1400 540,1400 Q525,1400 515,1410 Z" fill="#00A9EC" />
+    
+    <!-- Head & Updo Hairstyle -->
+    <circle cx="540" cy="1368" r="18" fill="#0070C0" />
+    <circle cx="540" cy="1355" r="12" fill="#021424" />
+  </g>
+
+  <!-- Figure 4: Woman Entrepreneur C (Right Center, Taking Notes / Holding Passbook) -->
+  <g id="entrepreneurRight">
+    <!-- Shadow -->
+    <ellipse cx="700" cy="1555" rx="60" ry="18" fill="#021424" opacity="0.75" />
+
+    <!-- Seated Dress / Flowing Fabric -->
+    <path d="M650,1545 C660,1505 680,1480 710,1480 C735,1480 755,1505 765,1545 C735,1560 675,1560 650,1545 Z" fill="#0070C0" />
+    <path d="M670,1535 Q710,1555 750,1535" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" opacity="0.7" />
+
+    <!-- Torso & Vest -->
+    <path d="M680,1485 L690,1400 L730,1400 L738,1485 Z" fill="#92D050" />
+    
+    <!-- Arm holding a microfinance passbook -->
+    <path d="M720,1420 Q690,1445 668,1448" fill="none" stroke="#00A9EC" stroke-width="14" stroke-linecap="round" />
+    <!-- Passbook / booklet -->
+    <polygon points="655,1438 672,1435 675,1458 658,1462" fill="#FFFFFF" />
+    <line x1="660" y1="1444" x2="670" y2="1442" stroke="#0070C0" stroke-width="2" />
+    <line x1="661" y1="1452" x2="671" y2="1450" stroke="#92D050" stroke-width="2" />
+
+    <!-- Head & Elegant Headwrap -->
+    <circle cx="710" cy="1362" r="22" fill="#FFFFFF" />
+    <path d="M692,1355 C695,1335 712,1328 728,1328 C742,1328 748,1342 742,1362 C730,1350 710,1350 692,1355 Z" fill="#06243F" />
+    <ellipse cx="732" cy="1342" rx="10" ry="14" fill="#00A9EC" />
+    <circle cx="705" cy="1372" r="3.5" fill="#92D050" />
+  </g>
+
+  <!-- Figure 5: Woman Entrepreneur D (Right Foreground, Close Seated, Collaborative posture) -->
+  <g id="entrepreneurRightFore">
+    <!-- Shadow -->
+    <ellipse cx="810" cy="1605" rx="75" ry="24" fill="#021424" opacity="0.8" />
+
+    <!-- Lower Robe/Skirt -->
+    <path d="M740,1600 C755,1535 785,1505 825,1505 C865,1505 890,1540 885,1600 C845,1618 780,1618 740,1600 Z" fill="#06243F" />
+    
+    <!-- Bright Pattern Layer -->
+    <path d="M760,1580 Q815,1600 865,1580" fill="none" stroke="#00A9EC" stroke-width="6" stroke-linecap="round" />
+    <path d="M775,1595 Q815,1610 855,1595" fill="none" stroke="#92D050" stroke-width="3" stroke-linecap="round" />
+
+    <!-- Torso & Modern Tailored Blouse -->
+    <path d="M785,1505 L800,1420 L845,1420 L860,1505 Z" fill="#0070C0" />
+    <polygon points="815,1420 825,1445 835,1420" fill="#FFFFFF" />
+
+    <!-- Arms resting attentively forward -->
+    <path d="M795,1440 Q770,1475 750,1470" fill="none" stroke="#0070C0" stroke-width="15" stroke-linecap="round" />
+    <circle cx="748" cy="1470" r="8" fill="#92D050" />
+
+    <!-- Head & Graceful Braided Crown / Updo -->
+    <circle cx="824" cy="1382" r="23" fill="#00A9EC" />
+    <path d="M804,1378 C804,1350 820,1340 840,1340 C858,1340 864,1356 860,1378 C848,1366 824,1366 804,1378 Z" fill="#021424" />
+    <circle cx="848" cy="1350" r="10" fill="#92D050" />
+  </g>
+
+  <!-- ==================== FOREGROUND ACCENTS & GROUND TEXTURE ==================== -->
+  <!-- Stylized geometric flora / prairie grasses at bottom edge -->
+  <g fill="#021424">
+    <path d="M0,1820 Q240,1780 540,1810 T1080,1800 L1080,1920 L0,1920 Z" />
+  </g>
+  <g fill="#06243F" opacity="0.9">
+    <!-- Crisp leaf silhouettes framing bottom corners -->
+    <!-- Bottom Left Grass Sprigs -->
+    <path d="M40,1920 Q60,1830 110,1810 Q80,1850 70,1920 Z" fill="#0070C0" />
+    <path d="M90,1920 Q120,1810 170,1790 Q140,1840 120,1920 Z" fill="#06243F" />
+    <path d="M140,1920 Q160,1840 210,1825 Q180,1865 170,1920 Z" fill="#92D050" opacity="0.8" />
+    
+    <!-- Bottom Right Grass Sprigs -->
+    <path d="M1040,1920 Q1010,1825 960,1805 Q985,1850 995,1920 Z" fill="#0070C0" />
+    <path d="M980,1920 Q950,1810 900,1795 Q930,1845 940,1920 Z" fill="#06243F" />
+    <path d="M930,1920 Q905,1835 855,1825 Q885,1865 895,1920 Z" fill="#92D050" opacity="0.8" />
+  </g>
+
+  <!-- Warm Vector Light Motes / Glow Fireflies around the circle -->
+  <g opacity="0.85">
+    <circle cx="490" cy="1490" r="3" fill="#FFFFFF" />
+    <circle cx="585" cy="1510" r="2.5" fill="#92D050" />
+    <circle cx="510" cy="1460" r="2" fill="#00A9EC" />
+    <circle cx="565" cy="1470" r="3" fill="#FFFFFF" />
+    <circle cx="460" cy="1520" r="2" fill="#92D050" />
+    <circle cx="615" cy="1500" r="2" fill="#FFFFFF" />
+    <circle cx="390" cy="1465" r="2.5" fill="#00A9EC" />
+    <circle cx="670" cy="1475" r="2" fill="#92D050" />
+  </g>
+</svg>

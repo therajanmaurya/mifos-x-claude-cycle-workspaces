@@ -29,7 +29,7 @@ gaps:
     message: >-
       Mockup for signin/empty was updated — preview + render re-check
       recommended.
-    raised_at: '2026-10-03T07:47:08.739Z'
+    raised_at: '2026-11-04T10:31:05.224Z'
     status: open
   - id: 'stitch-render-stale::signin/submitting'
     kind: stitch-render-stale
@@ -39,7 +39,7 @@ gaps:
     message: >-
       Mockup for signin/submitting was updated — preview + render re-check
       recommended.
-    raised_at: '2026-10-02T18:08:26.343Z'
+    raised_at: '2026-11-04T10:34:50.641Z'
     status: open
   - id: 'stitch-render-stale::signin/validation_error'
     kind: stitch-render-stale
@@ -49,7 +49,7 @@ gaps:
     message: >-
       Mockup for signin/validation_error was updated — preview + render re-check
       recommended.
-    raised_at: '2026-10-02T18:10:01.832Z'
+    raised_at: '2026-11-04T10:36:35.124Z'
     status: open
   - id: 'stitch-render-stale::signin/transport_error'
     kind: stitch-render-stale
@@ -59,7 +59,7 @@ gaps:
     message: >-
       Mockup for signin/transport_error was updated — preview + render re-check
       recommended.
-    raised_at: '2026-10-03T08:06:21.387Z'
+    raised_at: '2026-11-04T10:38:04.631Z'
     status: open
   - id: 'stitch-render-stale::signin/offline'
     kind: stitch-render-stale
@@ -69,7 +69,7 @@ gaps:
     message: >-
       Mockup for signin/offline was updated — preview + render re-check
       recommended.
-    raised_at: '2026-10-03T08:08:53.004Z'
+    raised_at: '2026-11-04T10:41:31.858Z'
     status: open
   - id: 'stitch-render-stale::signin/success'
     kind: stitch-render-stale
@@ -79,7 +79,7 @@ gaps:
     message: >-
       Mockup for signin/success was updated — preview + render re-check
       recommended.
-    raised_at: '2026-10-03T08:15:31.334Z'
+    raised_at: '2026-11-04T10:44:30.399Z'
     status: open
   - id: 'stitch-render-stale::signin/biometric_ready'
     kind: stitch-render-stale
@@ -89,7 +89,7 @@ gaps:
     message: >-
       Mockup for signin/biometric_ready was updated — preview + render re-check
       recommended.
-    raised_at: '2026-10-03T07:48:35.499Z'
+    raised_at: '2026-11-04T10:33:08.552Z'
     status: open
   - id: 'stitch-render-stale::signin/locked_out'
     kind: stitch-render-stale
@@ -99,7 +99,7 @@ gaps:
     message: >-
       Mockup for signin/locked_out was updated — preview + render re-check
       recommended.
-    raised_at: '2026-10-03T08:14:09.049Z'
+    raised_at: '2026-11-04T10:42:59.323Z'
     status: open
   - id: 'no-lock-surface::signin/biometric_ready'
     kind: state-not-device-reachable
@@ -3067,7 +3067,7 @@ gaps:
     message: >-
       Mockup for profile/change_password was updated — preview + render re-check
       recommended.
-    raised_at: '2026-10-27T13:11:46.979Z'
+    raised_at: '2026-11-04T10:33:40.025Z'
     status: open
   - id: 'stitch-render-stale::profile/loading'
     kind: stitch-render-stale
@@ -3077,7 +3077,7 @@ gaps:
     message: >-
       Mockup for profile/loading was updated — preview + render re-check
       recommended.
-    raised_at: '2026-10-27T13:10:10.880Z'
+    raised_at: '2026-11-04T10:29:30.975Z'
     status: open
   - id: 'stitch-render-stale::profile/content'
     kind: stitch-render-stale
@@ -3087,7 +3087,7 @@ gaps:
     message: >-
       Mockup for profile/content was updated — preview + render re-check
       recommended.
-    raised_at: '2026-10-27T13:05:15.404Z'
+    raised_at: '2026-11-04T10:30:31.783Z'
     status: open
   - id: 'stitch-render-stale::profile/error'
     kind: stitch-render-stale
@@ -3097,7 +3097,7 @@ gaps:
     message: >-
       Mockup for profile/error was updated — preview + render re-check
       recommended.
-    raised_at: '2026-10-27T13:06:32.069Z'
+    raised_at: '2026-11-04T10:31:30.260Z'
     status: open
   - id: 'stitch-render-stale::profile/offline'
     kind: stitch-render-stale
@@ -3107,5 +3107,113 @@ gaps:
     message: >-
       Mockup for profile/offline was updated — preview + render re-check
       recommended.
-    raised_at: '2026-10-27T13:07:28.241Z'
+    raised_at: '2026-11-04T10:32:40.818Z'
+    status: open
+  - id: 'stitch-render-stale::home/loading'
+    kind: stitch-render-stale
+    feature: home
+    state: loading
+    severity: advisory
+    message: >-
+      Mockup for home/loading was updated — preview + render re-check
+      recommended.
+    raised_at: '2026-11-04T10:29:51.943Z'
+    status: open
+  - id: 'stitch-render-stale::offlineSync/loading'
+    kind: stitch-render-stale
+    feature: offlineSync
+    state: loading
+    severity: advisory
+    message: >-
+      Mockup for offlineSync/loading was updated — preview + render re-check
+      recommended.
+    raised_at: '2026-11-04T10:30:21.874Z'
+    status: open
+  - id: 'stitch-render-stale::offlineSync/content'
+    kind: stitch-render-stale
+    feature: offlineSync
+    state: content
+    severity: advisory
+    message: >-
+      Mockup for offlineSync/content was updated — preview + render re-check
+      recommended.
+    raised_at: '2026-11-04T10:31:31.584Z'
+    status: open
+  - id: 'stitch-render-stale::home/content'
+    kind: stitch-render-stale
+    feature: home
+    state: content
+    severity: advisory
+    message: >-
+      Mockup for home/content was updated — preview + render re-check
+      recommended.
+    raised_at: '2026-11-04T10:31:53.082Z'
+    status: open
+  - id: 'stitch-render-stale::offlineSync/syncing'
+    kind: stitch-render-stale
+    feature: offlineSync
+    state: syncing
+    severity: advisory
+    message: >-
+      Mockup for offlineSync/syncing was updated — preview + render re-check
+      recommended.
+    raised_at: '2026-11-04T10:32:51.818Z'
+    status: open
+  - id: 'stitch-render-stale::home/partial_failure'
+    kind: stitch-render-stale
+    feature: home
+    state: partial_failure
+    severity: advisory
+    message: >-
+      Mockup for home/partial_failure was updated — preview + render re-check
+      recommended.
+    raised_at: '2026-11-04T10:33:20.419Z'
+    status: open
+  - id: 'stitch-render-stale::offlineSync/partial_failure'
+    kind: stitch-render-stale
+    feature: offlineSync
+    state: partial_failure
+    severity: advisory
+    message: >-
+      Mockup for offlineSync/partial_failure was updated — preview + render
+      re-check recommended.
+    raised_at: '2026-11-04T10:34:06.016Z'
+    status: open
+  - id: 'stitch-render-stale::home/error'
+    kind: stitch-render-stale
+    feature: home
+    state: error
+    severity: advisory
+    message: Mockup for home/error was updated — preview + render re-check recommended.
+    raised_at: '2026-11-04T10:34:34.329Z'
+    status: open
+  - id: 'stitch-render-stale::offlineSync/empty'
+    kind: stitch-render-stale
+    feature: offlineSync
+    state: empty
+    severity: advisory
+    message: >-
+      Mockup for offlineSync/empty was updated — preview + render re-check
+      recommended.
+    raised_at: '2026-11-04T10:35:09.016Z'
+    status: open
+  - id: 'stitch-render-stale::home/offline'
+    kind: stitch-render-stale
+    feature: home
+    state: offline
+    severity: advisory
+    message: >-
+      Mockup for home/offline was updated — preview + render re-check
+      recommended.
+    raised_at: '2026-11-04T10:36:21.111Z'
+    status: open
+  - id: 'stitch-render-stale::offlineSync/offline'
+    kind: stitch-render-stale
+    feature: offlineSync
+    state: offline
+    severity: advisory
+    message: >-
+      Mockup for offlineSync/offline was updated — preview + render re-check
+      recommended.
+    raised_at: '2026-11-04T10:36:33.178Z'
     status: open

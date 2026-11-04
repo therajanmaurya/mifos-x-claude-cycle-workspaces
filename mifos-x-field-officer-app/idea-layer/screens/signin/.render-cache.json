@@ -2,66 +2,76 @@
   "version": 1,
   "entries": {
     "stitch.empty": {
-      "hash": "00b758ff802d94526dd93266537439c205bbc7507dbdedf848ba8edaa1fe73e0",
-      "rendered_at": "2026-10-03T09:38:23.076Z",
-      "chars": 7007,
+      "hash": "275687098353bdfb028c03d858b96a0349f876649dc6b5c41fecf41ab4dffa86",
+      "rendered_at": "2026-11-04T10:26:43.760Z",
+      "chars": 7905,
       "shrink_applied": [],
       "failed": false,
       "error": null
     },
     "stitch.submitting": {
-      "hash": "ac48874896a8c09c9f8a3e3d1b67076f397639e5da8d09e12fce99683faf2d8b",
-      "rendered_at": "2026-10-03T09:38:23.082Z",
-      "chars": 7030,
-      "shrink_applied": [],
+      "hash": "6b34762b13f3cce584d6378f2253b0401aa75798fbf9b40d81dc028de1f3dff5",
+      "rendered_at": "2026-11-04T10:26:43.768Z",
+      "chars": 7130,
+      "shrink_applied": [
+        "condense-boilerplate"
+      ],
       "failed": false,
       "error": null
     },
     "stitch.validation_error": {
-      "hash": "86270944f5d40515d0f62dca622390f3e1a171e9886c2a74857fe1190a06b755",
-      "rendered_at": "2026-10-03T09:38:23.084Z",
-      "chars": 7004,
+      "hash": "1a3d03f816e4bd1ccba6e27ed847aaecad976f549ee8d4a3a3b93885ee4a4419",
+      "rendered_at": "2026-11-04T10:26:43.771Z",
+      "chars": 7902,
       "shrink_applied": [],
       "failed": false,
       "error": null
     },
     "stitch.transport_error": {
-      "hash": "477ad91734dac672b7b6aca72c279f0e6c7e7929be4e3460010b2ddb338a5703",
-      "rendered_at": "2026-10-03T09:38:23.086Z",
-      "chars": 7073,
-      "shrink_applied": [],
+      "hash": "ce54d81ce888e51d6ad345aa633d631a87cd8810cc7045aff95189c714084cc9",
+      "rendered_at": "2026-11-04T10:26:43.774Z",
+      "chars": 7335,
+      "shrink_applied": [
+        "condense-boilerplate"
+      ],
       "failed": false,
       "error": null
     },
     "stitch.offline": {
-      "hash": "f9bc2d199446f5feb96e74eaf8e951cea6c1713820842ce34494a3da0dae2047",
-      "rendered_at": "2026-10-03T09:38:23.088Z",
-      "chars": 7010,
-      "shrink_applied": [],
+      "hash": "ef068a89ce23f5334c369ebc0e42193c5f3900a3be95d3fcdb68263ae53124f4",
+      "rendered_at": "2026-11-04T10:26:43.776Z",
+      "chars": 7123,
+      "shrink_applied": [
+        "condense-boilerplate"
+      ],
       "failed": false,
       "error": null
     },
     "stitch.success": {
-      "hash": "a1e14bc7bb21d8d09ff3379a5600539e35dd95e3cedad39ea890e09b6093424f",
-      "rendered_at": "2026-10-03T09:38:23.090Z",
-      "chars": 6977,
+      "hash": "fd6fee2039d5b23c9dc104881cc8dd44b1b0a4691d7fde753302085983c2e4ff",
+      "rendered_at": "2026-11-04T10:26:43.781Z",
+      "chars": 7875,
       "shrink_applied": [],
       "failed": false,
       "error": null
     },
     "stitch.biometric_ready": {
-      "hash": "3b2e15f067890c066497ad0f03edcbc02432c5e1c030e5df2fa7a95e3cc7afc1",
-      "rendered_at": "2026-10-03T09:38:23.081Z",
-      "chars": 7102,
-      "shrink_applied": [],
+      "hash": "ae9c119be2f521793cec6c83804c3dc8330b51741c84569d61c16292d36ecc42",
+      "rendered_at": "2026-11-04T10:26:43.764Z",
+      "chars": 7201,
+      "shrink_applied": [
+        "condense-boilerplate"
+      ],
       "failed": false,
       "error": null
     },
     "stitch.locked_out": {
-      "hash": "5ac7d9e7d5a9403cc5f56f29b97cd510d902ca293390d081baf0cbd6ce448555",
-      "rendered_at": "2026-10-03T09:38:23.089Z",
-      "chars": 7025,
-      "shrink_applied": [],
+      "hash": "a059f8b12c74ec0436f19abfd67c60613db75ec75618269160e35449be92a7a5",
+      "rendered_at": "2026-11-04T10:26:43.779Z",
+      "chars": 7141,
+      "shrink_applied": [
+        "condense-boilerplate"
+      ],
       "failed": false,
       "error": null
     }

@@ -1,0 +1,11 @@
+# Export compliance (ITSAppUsesNonExemptEncryption). The app uses only standard, OS-provided HTTPS/TLS
+# to reach the institution's Fineract server, plus standard cryptography from the platform and
+# third-party SDKs (Firebase). No proprietary or non-standard encryption is implemented.
+uses_encryption: true
+exempt: true
+exemption_reason: >
+  Uses only standard HTTPS/TLS provided by the operating system and standard cryptography in
+  platform and third-party SDKs (Firebase). No proprietary or non-standard encryption is implemented,
+  which qualifies for the ITSAppUsesNonExemptEncryption = NO exemption.
+contains_proprietary_cryptography: false
+available_on_french_store: true

@@ -31,6 +31,24 @@ release_history:
           groups: ["mifos-mobile-apps"]
           release: "https://console.firebase.google.com/project/mifos-mobile-apps/appdistribution/app/android:com.mifos.mifosxdroid/releases/742i8s2rfkpn0"
           release_notes: "Field officer app ported onto the kmp-project-template base (#2706)."
+    - version: "2026.11.1-beta.0.4"
+      build_number: 41
+      timestamp: "2026-11-04T18:30:28+05:30"
+      git_tag: null                     # NOT YET CREATED — run [tag] (upstream openMF) to cut tag + GitHub Release
+      github_release_url: null
+      status: pending                   # flips terminal only after tag + GitHub Release exist (enforcement contract)
+      platforms:
+        android:
+          track: "internal"
+          deployed_at: "2026-11-04T18:30:28+05:30"
+          deployed_by: "local"
+          artifact: "cmp-android-prod-release.aab"
+          version_code: 41
+          build_duration: "9m 54s"
+          build_duration_seconds: 594
+          signing: "legacy upload key from git history b5a57c9 (cert SHA1 F9:97:65:28…) — upload-key reset to the vault key pending"
+          listing: "store-listing v3 (Hero) — synced by [SC-A] 2026-11-04 and re-sent with this deploy"
+          release_notes: "Rebuilt on Kotlin Multiplatform. New home dashboard with today's work, offline sync for chosen centres, groups and clients, a Profile screen with password change, a server picker, and faster, more reliable loading across every screen."
     # Example entry (do not remove — used as schema reference):
     #
     # - version: "1.0.0"

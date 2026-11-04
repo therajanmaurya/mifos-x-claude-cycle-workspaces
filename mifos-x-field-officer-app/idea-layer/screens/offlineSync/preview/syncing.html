@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- render-hash: os-syncing-02 -->
+<!-- render-hash: fcc272c41d80 -->
 <html lang="en"><head>
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Offline sync: syncing</title>
@@ -7,157 +7,201 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
 <style>
 :root{--primary:#4338CA;--on-primary:#FFFFFF;--primary-container:#E0E7FF;--on-primary-container:#1F1D75;
---secondary:#059669;--secondary-container:#D1FAE5;--on-secondary-container:#064E3B;--tertiary:#D97706;--tertiary-container:#FEF3C7;--on-tertiary-container:#78350F;
---error:#DC2626;--error-container:#FFE4E1;--on-error-container:#9F1239;
---background:#FAFAFB;--surface:#FFFFFF;--on-surface:#0F172A;--surface-variant:#E2E8F0;--on-surface-variant:#475569;
---outline:#94A3B8;--outline-variant:#CBD5E1;
---sp-xs:4px;--sp-sm:8px;--sp-md:12px;--sp-lg:16px;--sp-xl:24px;--touch:48px;--r-sm:8px;--r-md:12px;--r-lg:16px;--r-pill:999px}
+--secondary:#059669;--secondary-container:#D1FAE5;--on-secondary-container:#064E3B;
+--tertiary:#D97706;--tertiary-container:#FEF3C7;--on-tertiary-container:#78350F;
+--error:#DC2626;--error-container:#FFE4E1;--on-error-container:#9F1239;--error-outline:#FECDD3;
+--background:#FAFAFB;--surface:#FFFFFF;--surface-2:#FAFAFB;--surface-child:#FBFBFD;--on-surface:#0F172A;--surface-variant:#E2E8F0;--on-surface-variant:#475569;
+--outline:#94A3B8;--outline-variant:#CBD5E1;--hairline:#E2E8F0;--group-container:#F3E8FF;--on-group-container:#6B21A8;--shimmer-a:#E2E8F0;--shimmer-b:#F1F5F9;--scrim:rgba(15,23,42,.42);
+--font:'Outfit',ui-rounded,system-ui,sans-serif;--font-display:'Outfit',ui-rounded,system-ui,sans-serif;--font-mono:'Outfit',ui-monospace,system-ui,sans-serif;--icons:'Material Symbols Rounded';
+--fs-display:28px;--fs-title-lg:22px;--fs-title:16px;--fs-body:14px;--fs-label:12px;--fs-icon:22px;--fs-icon-sm:18px;--lh:1.4;--fw-r:400;--fw-m:500;--fw-sb:600;--fw-b:700;
+--sp-0:0;--sp-xs:4px;--sp-sm:8px;--sp-md:12px;--sp-lg:16px;--sp-xl:24px;--sp-xxl:32px;--sp-fab-clear:104px;
+--r-sm:8px;--r-md:12px;--r-lg:16px;--r-xl:28px;--r-pill:999px;--hair:1px;--ring:2px;
+--touch:48px;--bar-h:64px;--fab-h:56px;--chip-h:32px;--tab-h:36px;--avatar:40px;--avatar-sm:32px;--motif:44px;--row-h:68px;--child-h:56px;--track:8px;--track-thin:4px;--search-h:44px;--tree-indent:28px;--connector:16px;
+--switch-w:52px;--switch-h:32px;--knob:24px;--check:24px;--handle-w:32px;--sk-line:12px;--sk-chip-a:84px;--sk-chip-b:96px;--sk-tile:70px;
+--el-1:0 1px 2px rgba(15,23,42,.05),0 4px 12px rgba(15,23,42,.04);--el-3:0 4px 10px rgba(15,23,42,.10),0 10px 24px rgba(15,23,42,.08);--glow:0 0 0 4px rgba(67,56,202,.10);
+--side-md:300px;--side-lg:400px;--content-max:1200px;--body-max:480px;--sheet-max:720px;--sheet-h:88vh;--dur:1.4s;--dur-spin:1.2s}
+:root[data-theme="dark"]{--primary:#A5B4FC;--on-primary:#1F1D75;--primary-container:#3730A3;--on-primary-container:#E0E7FF;
+--secondary:#34D399;--secondary-container:#064E3B;--on-secondary-container:#D1FAE5;--tertiary:#FBBF24;--tertiary-container:#78350F;--on-tertiary-container:#FEF3C7;
+--error:#F87171;--error-container:#4C0519;--on-error-container:#FFE4E1;--error-outline:#881337;
+--background:#0F172A;--surface:#1E293B;--surface-2:#172033;--surface-child:#1A2436;--on-surface:#F1F5F9;--surface-variant:#334155;--on-surface-variant:#CBD5E1;
+--outline:#64748B;--outline-variant:#334155;--hairline:#334155;--group-container:#3B0764;--on-group-container:#E9D5FF;--shimmer-a:#273449;--shimmer-b:#334155;--scrim:rgba(2,6,23,.6);
+--el-1:0 1px 2px rgba(0,0,0,.4);--el-3:0 6px 18px rgba(0,0,0,.5);--glow:0 0 0 4px rgba(165,180,252,.16)}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Outfit',system-ui,sans-serif;background:var(--background);color:var(--on-surface);-webkit-font-smoothing:antialiased;display:flex;justify-content:center;min-height:100dvh}
-.phone{width:100%;max-width:420px;min-height:100dvh;display:flex;flex-direction:column;position:relative}
-.sym{font-family:'Material Symbols Rounded';line-height:1;display:inline-block;font-size:22px}
-.num{font-variant-numeric:tabular-nums}
+html,body{width:100%;min-height:100vh}
+body{font-family:var(--font);font-size:var(--fs-body);line-height:var(--lh);background:var(--background);color:var(--on-surface);-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;min-height:100vh}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
-:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
-.topbar{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:var(--sp-xs);height:64px;padding:0 var(--sp-xs);background:var(--background)}
-.topbar h1{font-size:20px;font-weight:600;letter-spacing:-.01em}
+:focus-visible{outline:var(--ring) solid var(--primary);outline-offset:var(--ring)}
+.sym{font-family:var(--icons);font-size:var(--fs-icon);line-height:1;display:inline-block;font-weight:var(--fw-r)}
+.sym.sm{font-size:var(--fs-icon-sm)}
+.num{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+.app{flex:1;display:flex;flex-direction:column;width:100%;min-height:100vh;position:relative}
+.topbar{position:sticky;top:var(--sp-0);z-index:3;display:flex;align-items:center;gap:var(--sp-xs);height:var(--bar-h);padding:var(--sp-0) var(--sp-xs);background:var(--background)}
+.topbar h1{font-family:var(--font-display);font-size:var(--fs-title-lg);font-weight:var(--fw-sb)}
 .icon-btn{width:var(--touch);height:var(--touch);display:grid;place-items:center;border-radius:var(--r-pill);color:var(--on-surface-variant);flex:none}
-main{flex:1;padding:0 var(--sp-lg) 104px;display:flex;flex-direction:column;gap:var(--sp-lg)}
-.card{background:var(--surface);border:1px solid var(--outline-variant);border-radius:var(--r-lg);overflow:hidden;box-shadow:0 1px 2px rgba(15,23,42,.05),0 4px 12px rgba(15,23,42,.04)}
-.hdr{padding:var(--sp-lg);display:flex;flex-direction:column;gap:var(--sp-md)}
+main{flex:1;display:flex;flex-direction:column;padding:var(--sp-0) var(--sp-lg) var(--sp-fab-clear)}
+.layout{display:grid;gap:var(--sp-lg);grid-template-columns:minmax(0,1fr);align-content:start;width:100%}
+.card{background:var(--surface);border:var(--hair) solid var(--outline-variant);border-radius:var(--r-lg);box-shadow:var(--el-1);overflow:hidden;align-self:start}
+.pad{padding:var(--sp-lg);display:flex;flex-direction:column;gap:var(--sp-md)}
+.h2{font-size:var(--fs-title);font-weight:var(--fw-sb)}
 .chips{display:flex;flex-wrap:wrap;gap:var(--sp-sm)}
-.chip{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 var(--sp-md);border-radius:var(--r-pill);font-size:13px;font-weight:500;background:var(--surface-variant);color:var(--on-surface-variant)}
-.chip .sym{font-size:18px}
-.chip.on{background:var(--secondary-container);color:var(--on-secondary-container)}
-.chip.run{background:var(--primary-container);color:var(--on-primary-container)}
-.dot{width:8px;height:8px;border-radius:50%;background:currentColor}
-.levels{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-sm)}
-.lv{padding:var(--sp-md);border-radius:var(--r-md);background:var(--background);border:1px solid var(--surface-variant)}
-.lv b{display:block;font-size:24px;font-weight:600;letter-spacing:-.02em}
-.lv span{font-size:13px;color:var(--on-surface-variant);display:inline-flex;align-items:center;gap:4px}
-.lv .sym{font-size:16px}
-.sub{font-size:14px;color:var(--on-surface-variant)}
-.primary-btn{height:var(--touch);border-radius:var(--r-pill);background:var(--primary);color:var(--on-primary);font-weight:600;font-size:15px;display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-sm)}
-.primary-btn[disabled]{background:var(--surface-variant);color:var(--outline);cursor:default}
-.ghost-btn{height:40px;padding:0 var(--sp-lg);border-radius:var(--r-pill);border:1px solid var(--outline-variant);font-weight:500;font-size:14px;color:var(--primary);display:inline-flex;align-items:center;gap:6px;flex:none}
-.sec-h{display:flex;align-items:center;justify-content:space-between;padding:var(--sp-lg) var(--sp-lg) var(--sp-sm)}
-.sec-h h3{font-size:16px;font-weight:600}
-.job{padding:var(--sp-lg);display:flex;flex-direction:column;gap:var(--sp-md);border-color:var(--primary);box-shadow:0 0 0 3px rgba(67,56,202,.08),0 4px 12px rgba(15,23,42,.05)}
-.job-h{display:flex;align-items:center;gap:var(--sp-md)}
-.job-ic{width:40px;height:40px;border-radius:var(--r-md);background:var(--primary-container);color:var(--on-primary-container);display:grid;place-items:center;flex:none}
-.job-ic .sym{animation:spin 1.6s linear infinite}
-@keyframes spin{to{transform:rotate(-360deg)}}
-@media (prefers-reduced-motion:reduce){.job-ic .sym{animation:none}}
-.job-t{flex:1;min-width:0}.job-t b{display:block;font-size:16px;font-weight:600}.job-t span{font-size:13px;color:var(--on-surface-variant)}
-.bar{height:8px;border-radius:var(--r-pill);background:var(--surface-variant);overflow:hidden}
-.bar i{display:block;height:100%;background:var(--primary);border-radius:inherit}
-.prog{display:flex;justify-content:space-between;font-size:13px;color:var(--on-surface-variant)}
-.prog b{color:var(--on-surface);font-weight:600}
-.steps{display:flex;flex-direction:column;border-top:1px solid var(--surface-variant)}
-.step{display:flex;align-items:center;gap:var(--sp-sm);font-size:14px;padding-top:var(--sp-sm)}
-.step .sym{font-size:20px}
-.step.done .sym{color:var(--secondary)}.step.now .sym{color:var(--primary)}.step.next{color:var(--outline)}
-.step em{margin-left:auto;font-style:normal;font-size:13px;color:var(--on-surface-variant)}
-.tabs{display:flex;gap:var(--sp-sm);padding:0 var(--sp-lg) var(--sp-md)}
-.tabs button{height:36px;padding:0 var(--sp-md);border-radius:var(--r-sm);border:1px solid var(--outline-variant);font-size:14px;font-weight:500;color:var(--on-surface-variant);display:inline-flex;align-items:center;gap:6px}
-.tabs button b{font-weight:600}
-.tabs button[aria-selected="true"]{background:var(--primary-container);border-color:var(--primary);color:var(--on-primary-container)}
-.row{display:flex;align-items:center;gap:var(--sp-md);min-height:68px;padding:var(--sp-sm) var(--sp-xs) var(--sp-sm) var(--sp-lg);border-top:1px solid var(--surface-variant)}
-.ava{width:40px;height:40px;border-radius:var(--r-md);display:grid;place-items:center;flex:none;font-weight:600;font-size:14px}
-.ava.c{background:var(--primary-container);color:var(--on-primary-container)}
-.rt{flex:1;min-width:0}
-.rt b{display:block;font-weight:500;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rt span{display:block;font-size:13px;color:var(--on-surface-variant);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rt .st{display:flex;align-items:center;gap:4px;margin-top:4px;font-size:12px;font-weight:500}
-.rt .st .sym{font-size:14px;margin:0;flex:none;color:inherit}
-.rt .st.ok{color:var(--secondary)}.rt .st.wait{color:var(--primary)}.rt .st.bad{color:var(--error)}
-.minibar{height:4px;border-radius:var(--r-pill);background:var(--surface-variant);margin-top:6px;overflow:hidden}
-.minibar i{display:block;height:100%;background:var(--primary)}
-.seg{display:grid;grid-template-columns:1fr 1fr;margin:0 var(--sp-lg);padding:4px;border-radius:var(--r-pill);background:var(--surface-variant)}
-.seg button{height:40px;border-radius:var(--r-pill);font-weight:500;font-size:14px;color:var(--on-surface-variant);display:inline-flex;align-items:center;justify-content:center;gap:6px}
-.seg button[aria-pressed="true"]{background:var(--surface);color:var(--on-surface);box-shadow:0 1px 3px rgba(15,23,42,.12)}
-.lbl{padding:var(--sp-lg) var(--sp-lg) 0;font-size:13px;color:var(--on-surface-variant)}
-.int{display:flex;gap:var(--sp-sm);padding:var(--sp-sm) var(--sp-lg);flex-wrap:wrap}
-.int button{height:36px;padding:0 var(--sp-md);border-radius:var(--r-sm);border:1px solid var(--outline-variant);font-size:14px}
-.int button[aria-pressed="true"]{background:var(--primary-container);border-color:var(--primary);color:var(--on-primary-container);font-weight:600}
-.sw-row{display:flex;align-items:center;justify-content:space-between;min-height:52px;padding:0 var(--sp-lg);font-size:15px;border-top:1px solid var(--surface-variant)}
-.sw{width:52px;height:32px;border-radius:var(--r-pill);background:var(--surface-variant);border:2px solid var(--outline);position:relative;flex:none}
-.sw::after{content:"";position:absolute;top:6px;left:6px;width:16px;height:16px;border-radius:50%;background:var(--outline)}
-.sw.on{background:var(--primary);border-color:var(--primary)}
-.sw.on::after{left:24px;top:4px;width:20px;height:20px;background:var(--on-primary)}
-.note{display:flex;gap:var(--sp-sm);align-items:flex-start;padding:var(--sp-md) var(--sp-lg) var(--sp-lg);font-size:13px;color:var(--on-surface-variant);line-height:1.4;border-top:1px solid var(--surface-variant)}
-.note .sym{font-size:18px}
-.fab{position:fixed;bottom:24px;right:max(16px,calc(50vw - 194px));height:56px;padding:0 var(--sp-xl) 0 var(--sp-lg);border-radius:var(--r-lg);background:var(--primary-container);color:var(--on-primary-container);font-weight:600;font-size:15px;display:inline-flex;align-items:center;gap:var(--sp-sm);box-shadow:0 3px 6px rgba(15,23,42,.15),0 8px 24px rgba(67,56,202,.18)}
+.chip{display:inline-flex;align-items:center;gap:var(--sp-xs);height:var(--chip-h);padding:var(--sp-0) var(--sp-md);border-radius:var(--r-pill);font-size:var(--fs-label);font-weight:var(--fw-m)}
+.chip .dot{width:var(--sp-sm);height:var(--sp-sm);border-radius:var(--r-pill);background:currentColor}
+.chip--ok{background:var(--secondary-container);color:var(--on-secondary-container)}
+.chip--warn{background:var(--tertiary-container);color:var(--on-tertiary-container)}
+.chip--info{background:var(--primary-container);color:var(--on-primary-container)}
+.chip--err{background:var(--error-container);color:var(--on-error-container)}
+.chip--neutral{background:var(--surface-variant);color:var(--on-surface-variant)}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-sm)}
+.tile{border-radius:var(--r-md);background:var(--surface-2);border:var(--hair) solid var(--hairline);padding:var(--sp-md);display:flex;flex-direction:column;gap:var(--sp-xs)}
+.tile b{font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-size:var(--fs-display);font-weight:var(--fw-sb);line-height:1}
+.tile span{display:flex;align-items:center;gap:var(--sp-xs);color:var(--on-surface-variant);font-size:var(--fs-label)}
+.caption{color:var(--on-surface-variant);font-size:var(--fs-label)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-sm);min-height:var(--touch);padding:var(--sp-0) var(--sp-xl);border-radius:var(--r-pill);font-weight:var(--fw-sb)}
+.btn--block{width:100%}
+.btn--disabled{background:var(--surface-variant);color:var(--outline);cursor:not-allowed}
+.btn--outlined{border:var(--hair) solid var(--outline-variant);color:var(--primary);padding:var(--sp-0) var(--sp-lg)}
+.tabs{display:flex;gap:var(--sp-sm);flex-wrap:wrap}
+.tab{display:inline-flex;align-items:center;gap:var(--sp-xs);height:var(--tab-h);padding:var(--sp-0) var(--sp-md);border-radius:var(--r-sm);border:var(--hair) solid var(--outline-variant);font-size:var(--fs-body);font-weight:var(--fw-m);color:var(--on-surface-variant)}
+.tab b{font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-weight:var(--fw-sb)}
+.tab.is-sel{background:var(--primary-container);border-color:var(--primary);color:var(--on-primary-container)}
+.rows{list-style:none;display:flex;flex-direction:column}
+.row{display:flex;align-items:center;gap:var(--sp-md);min-height:var(--row-h);padding:var(--sp-sm) var(--sp-0);border-top:var(--hair) solid var(--hairline)}
+.row-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--sp-xs)}
+.row-title{font-weight:var(--fw-sb)}
+.row-sub{color:var(--on-surface-variant);font-size:var(--fs-label)}
+.avatar{width:var(--avatar);height:var(--avatar);border-radius:var(--r-md);display:grid;place-items:center;font-weight:var(--fw-sb);flex:none;font-size:var(--fs-body)}
+.av-centre{background:var(--primary-container);color:var(--on-primary-container)}
+.status{display:flex;align-items:center;gap:var(--sp-xs);font-size:var(--fs-label);font-weight:var(--fw-m)}
+.st-wait{color:var(--primary)}.st-ok{color:var(--secondary)}
+.row-actions{display:flex;align-items:center}
+.seg{display:grid;grid-template-columns:1fr 1fr;padding:var(--sp-xs);border-radius:var(--r-pill);background:var(--surface-variant)}
+.seg-opt{display:flex;align-items:center;justify-content:center;gap:var(--sp-xs);min-height:var(--touch);border-radius:var(--r-pill);color:var(--on-surface-variant);font-weight:var(--fw-m)}
+.seg-opt.is-sel{background:var(--surface);color:var(--on-surface);box-shadow:var(--el-1)}
+.info{display:flex;gap:var(--sp-sm);color:var(--on-surface-variant);font-size:var(--fs-label);align-items:flex-start}
+.label{font-size:var(--fs-label);font-weight:var(--fw-m);color:var(--on-surface-variant)}
+.opt{display:inline-flex;align-items:center;min-height:var(--touch);padding:var(--sp-0) var(--sp-md);border-radius:var(--r-sm);border:var(--hair) solid var(--outline-variant);font-weight:var(--fw-m);color:var(--on-surface-variant)}
+.opt.is-sel{background:var(--primary-container);border-color:var(--primary);color:var(--on-primary-container)}
+.switch-row{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-md);min-height:var(--touch)}
+.switch{width:var(--switch-w);height:var(--switch-h);border-radius:var(--r-pill);background:var(--surface-variant);border:var(--ring) solid var(--outline);display:flex;align-items:center;padding:var(--sp-0) var(--sp-xs);flex:none}
+.switch i{width:calc(var(--knob) - var(--sp-sm));height:calc(var(--knob) - var(--sp-sm));border-radius:var(--r-pill);background:var(--outline)}
+.switch.on{background:var(--primary);border-color:var(--primary);justify-content:flex-end}.switch.on i{width:var(--knob);height:var(--knob);background:var(--on-primary)}
+.progress{height:var(--track);border-radius:var(--r-pill);background:var(--surface-variant);overflow:hidden}
+.progress>i{display:block;height:100%;background:var(--primary);border-radius:inherit}
+.progress--thin{height:var(--track-thin)}
+.split{display:flex;justify-content:space-between;gap:var(--sp-sm);font-size:var(--fs-label);color:var(--on-surface-variant)}
+.job{border:var(--ring) solid var(--primary);box-shadow:var(--glow),var(--el-1)}
+.head{display:flex;align-items:center;gap:var(--sp-md)}
+.icon-tile{width:var(--avatar);height:var(--avatar);border-radius:var(--r-md);display:grid;place-items:center;background:var(--primary-container);color:var(--primary);flex:none}
+.spin{animation:spin var(--dur-spin) linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.steps{list-style:none;display:flex;flex-direction:column;gap:var(--sp-sm)}
+.step{display:flex;align-items:center;gap:var(--sp-sm);font-size:var(--fs-label)}
+.step span:nth-child(2){flex:1}
+.step--done .sym{color:var(--secondary)}.step--now .sym{color:var(--primary)}.step--queued{color:var(--outline)}
+.fab{position:fixed;right:var(--sp-xl);bottom:var(--sp-xl);z-index:4;display:inline-flex;align-items:center;gap:var(--sp-sm);height:var(--fab-h);padding:var(--sp-0) var(--sp-xl) var(--sp-0) var(--sp-lg);border-radius:var(--r-lg);background:var(--primary-container);color:var(--on-primary-container);font-weight:var(--fw-sb);box-shadow:var(--el-3)}
+@media (min-width:600px){
+  main{padding:var(--sp-0) var(--sp-xl) var(--sp-fab-clear)}
+  .layout{column-gap:var(--sp-xl);row-gap:var(--sp-0);grid-template-columns:minmax(0,var(--side-md)) minmax(0,1fr);grid-template-rows:repeat(5,auto) 1fr}
+  .layout>*{grid-column:1;margin-bottom:var(--sp-xl)}
+  .layout>.a-records{grid-column:2;grid-row:1 / -1;margin-bottom:var(--sp-0)}
+}
+@media (min-width:840px){
+  .layout{max-width:var(--content-max);margin-inline:auto;grid-template-columns:var(--side-lg) minmax(0,1fr)}
+  .topbar{padding-inline:max(var(--sp-xs),calc((100vw - var(--content-max)) / 2 - var(--sp-md)))}
+  .fab{right:max(var(--sp-xl),calc((100vw - var(--content-max)) / 2))}
+}
 </style></head>
-<body><div class="phone" data-testid="offline_sync_screen">
-<header class="topbar"><button class="icon-btn" aria-label="Back"><span class="sym">arrow_back</span></button><h1>Offline sync</h1></header>
-<main>
-  <section class="card hdr" data-testid="offline_sync_header">
-    <div class="chips">
-      <span class="chip on"><span class="dot"></span>Online · Wi-Fi</span>
-      <span class="chip run num"><span class="sym">sync</span>Syncing 2</span>
-    </div>
-    <div class="levels num">
-      <div class="lv"><b>2</b><span><span class="sym">groups</span>Centres</span></div>
-      <div class="lv"><b>5</b><span><span class="sym">diversity_3</span>Groups</span></div>
-      <div class="lv"><b>43</b><span><span class="sym">person</span>Clients</span></div>
-    </div>
-    <p class="sub">Automatic · every 6 h · next at 16:00</p>
-    <button class="primary-btn" disabled data-testid="offline_sync_sync_now" data-action="sync_now"><span class="sym">sync</span>Syncing…</button>
-  </section>
+<body>
+<div class="app" data-shell="root" data-screen-id="offlineSync" data-state="syncing">
+  <header class="topbar" data-shell="top-app-bar" data-variant="small">
+    <button class="icon-btn" aria-label="Back" data-action="navigate_back" data-nav-type="pop"><span class="sym" aria-hidden="true">arrow_back</span></button>
+    <h1>Offline sync</h1>
+  </header>
+  <main data-shell="content" data-state="syncing">
+    <div class="layout" data-component-type="LayoutBox" data-component-id="offline_sync_layout">
+      <section class="card a-summary" data-component-type="header" data-component-variant="summary" data-component-id="summary_header">
+        <div class="pad">
+          <div class="chips">
+            <span class="chip chip--ok"><span class="sym sm" aria-hidden="true">wifi</span>Online, Wi-Fi</span>
+            <span class="chip chip--info"><span class="sym sm" aria-hidden="true">sync</span>Syncing <span class="num">2</span></span>
+          </div>
+          <div class="tiles">
+            <div class="tile"><b>2</b><span><span class="sym sm" aria-hidden="true">location_city</span>Centres</span></div>
+            <div class="tile"><b>5</b><span><span class="sym sm" aria-hidden="true">groups</span>Groups</span></div>
+            <div class="tile"><b>43</b><span><span class="sym sm" aria-hidden="true">person</span>Clients</span></div>
+          </div>
+          <p class="caption">Automatic, every 6 h, next at <span class="num">16:00</span></p>
+          <button class="btn btn--disabled btn--block" disabled aria-disabled="true" data-component-type="button" data-component-id="sync_now" data-action="sync_now"><span class="sym" aria-hidden="true">sync</span>Syncing...</button>
+        </div>
+      </section>
 
-  <section class="card job" data-testid="offline_sync_active_job" aria-live="polite">
-    <div class="job-h">
-      <div class="job-ic"><span class="sym">sync</span></div>
-      <div class="job-t"><b>Downloading 2 records</b><span>Arin Savings, Irving Zamora</span></div>
-      <button class="ghost-btn" data-testid="offline_sync_cancel_job" data-action="cancel_job">Cancel</button>
-    </div>
-    <div class="bar" role="progressbar" aria-valuenow="312" aria-valuemax="1040" aria-label="Downloading, 312 of 1,040"><i style="width:30%"></i></div>
-    <div class="prog num"><span><b>312</b> of 1,040 reads</span><span>~3 min left</span></div>
-    <div class="steps">
-      <div class="step done"><span class="sym">check_circle</span>Templates &amp; products<em class="num">7</em></div>
-      <div class="step now"><span class="sym">downloading</span>Las Palomas · client loans<em class="num">group 1 of 2</em></div>
-      <div class="step next"><span class="sym">radio_button_unchecked</span>Irving Zamora<em>queued</em></div>
-    </div>
-  </section>
+      <section class="card job a-job" aria-live="polite" data-component-type="card" data-component-variant="active" data-component-id="active_job_card">
+        <div class="pad">
+          <div class="head">
+            <span class="icon-tile"><span class="sym spin" aria-hidden="true">sync</span></span>
+            <span class="row-main"><span class="row-title">Downloading 2 records</span><span class="row-sub">Arin Savings, Irving Zamora</span></span>
+            <button class="btn btn--outlined" data-component-type="button" data-component-id="cancel_job" data-action="cancel_job">Cancel</button>
+          </div>
+          <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="1040" aria-valuenow="312" aria-label="Downloading, 312 of 1,040"><i style="width:30%"></i></div>
+          <div class="split"><span><span class="num">312</span> of <span class="num">1,040</span> reads</span><span>~<span class="num">3</span> min left</span></div>
+          <ul class="steps">
+            <li class="step step--done"><span class="sym sm" aria-hidden="true">check_circle</span><span>Templates and products</span><span class="num">7</span></li>
+            <li class="step step--now"><span class="sym sm" aria-hidden="true">download</span><span>Las Palomas, client loans</span><span>group 1 of 2</span></li>
+            <li class="step step--queued"><span class="sym sm" aria-hidden="true">schedule</span><span>Irving Zamora</span><span>queued</span></li>
+          </ul>
+        </div>
+      </section>
 
-  <section class="card" data-testid="offline_sync_records">
-    <div class="sec-h"><h3>On this device</h3></div>
-    <div class="tabs" role="tablist" data-testid="offline_sync_records_level">
-      <button role="tab" aria-selected="true" data-action="records_level">Centres <b class="num">2</b></button>
-      <button role="tab" aria-selected="false" data-action="records_level">Groups <b class="num">5</b></button>
-      <button role="tab" aria-selected="false" data-action="records_level">Clients <b class="num">43</b></button>
-    </div>
-    <div class="row" data-testid="offline_sync_record_row" data-action="open_record">
-      <div class="ava c">AS</div>
-      <div class="rt"><b>Arin Savings</b><span class="num">2 groups · 11 clients</span><span class="st wait"><span class="sym">downloading</span>Syncing… 38%</span><div class="minibar"><i style="width:38%"></i></div></div>
-      <button class="icon-btn" aria-label="Show groups"><span class="sym">expand_more</span></button>
-    </div>
-    <div class="row" data-testid="offline_sync_record_row" data-action="open_record">
-      <div class="ava c">CA</div>
-      <div class="rt"><b>Centro Arin</b><span class="num">3 groups · 31 clients · 74 accounts</span><span class="st ok"><span class="sym">check_circle</span>Synced 2 h ago</span></div>
-      <button class="icon-btn" aria-label="Refresh" data-action="refresh_record"><span class="sym">refresh</span></button>
-      <button class="icon-btn" aria-label="Show groups"><span class="sym">expand_more</span></button>
-    </div>
-  </section>
+      <section class="card a-records" data-component-type="list" data-component-id="offline_records_section">
+        <div class="pad">
+          <h2 class="h2">On this device</h2>
+          <div class="tabs" role="tablist" data-component-type="chip" data-component-id="records_level">
+            <button class="tab is-sel" role="tab" aria-selected="true" data-action="records_level" data-action-params='{"level":"centres"}'>Centres <b>2</b></button>
+            <button class="tab" role="tab" aria-selected="false" data-action="records_level" data-action-params='{"level":"groups"}'>Groups <b>5</b></button>
+            <button class="tab" role="tab" aria-selected="false" data-action="records_level" data-action-params='{"level":"clients"}'>Clients <b>43</b></button>
+          </div>
+          <ul class="rows">
+            <li class="row" data-component-type="ListItem" data-component-id="offline_sync_record_row_18" data-action="open_record" data-action-params='{"kind":"centre","id":18}' role="button" tabindex="0">
+              <span class="avatar av-centre" aria-hidden="true">AS</span>
+              <span class="row-main"><span class="row-title">Arin Savings</span><span class="row-sub">2 groups, 11 clients</span>
+                <span class="status st-wait"><span class="sym sm spin" aria-hidden="true">sync</span>Syncing... <span class="num">38%</span></span>
+                <span class="progress progress--thin" aria-hidden="true"><i style="width:38%"></i></span></span>
+              <span class="row-actions"><span class="icon-btn" aria-hidden="true"><span class="sym">expand_more</span></span></span>
+            </li>
+            <li class="row" data-component-type="ListItem" data-component-id="offline_sync_record_row_10" data-action="open_record" data-action-params='{"kind":"centre","id":10}' role="button" tabindex="0">
+              <span class="avatar av-centre" aria-hidden="true">CA</span>
+              <span class="row-main"><span class="row-title">Centro Arin</span><span class="row-sub">3 groups, 31 clients, 74 accounts</span><span class="status st-ok"><span class="sym sm" aria-hidden="true">check_circle</span>Synced 2 h ago</span></span>
+              <span class="row-actions">
+                <button class="icon-btn" aria-label="Refresh Centro Arin" data-component-type="icon_button" data-component-id="refresh_record" data-action="refresh_record"><span class="sym" aria-hidden="true">refresh</span></button>
+                <span class="icon-btn" aria-hidden="true"><span class="sym">expand_more</span></span>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </section>
 
-  <section class="card" data-testid="offline_sync_refresh_mode">
-    <div class="sec-h"><h3>Sync</h3></div>
-    <div class="seg" role="group" data-testid="offline_sync_refresh_mode_toggle">
-      <button aria-pressed="false" data-action="set_refresh_mode"><span class="sym">touch_app</span>Manual</button>
-      <button aria-pressed="true" data-action="set_refresh_mode"><span class="sym">schedule</span>Automatic</button>
+      <section class="card a-sync" data-component-type="card" data-component-id="refresh_mode_card">
+        <div class="pad">
+          <h2 class="h2">Sync</h2>
+          <div class="seg" role="radiogroup" aria-label="Sync mode" data-component-type="chip" data-component-id="refresh_mode">
+            <button class="seg-opt" role="radio" aria-checked="false" data-action="set_refresh_mode" data-action-params='{"mode":"manual"}'><span class="sym sm" aria-hidden="true">touch_app</span>Manual</button>
+            <button class="seg-opt is-sel" role="radio" aria-checked="true" data-action="set_refresh_mode" data-action-params='{"mode":"automatic"}'><span class="sym sm" aria-hidden="true">schedule</span>Automatic</button>
+          </div>
+          <p class="label">Re-sync your records</p>
+          <div class="chips" role="radiogroup" aria-label="Interval" data-component-type="chip" data-component-id="refresh_interval">
+            <button class="opt" role="radio" aria-checked="false" data-action="set_refresh_interval" data-action-params='{"interval":"1h"}'>Every 1 h</button>
+            <button class="opt is-sel" role="radio" aria-checked="true" data-action="set_refresh_interval" data-action-params='{"interval":"6h"}'>Every 6 h</button>
+            <button class="opt" role="radio" aria-checked="false" data-action="set_refresh_interval" data-action-params='{"interval":"12h"}'>Every 12 h</button>
+            <button class="opt" role="radio" aria-checked="false" data-action="set_refresh_interval" data-action-params='{"interval":"24h"}'>Every 24 h</button>
+          </div>
+          <div class="switch-row" data-component-type="switch" data-component-id="wifi_only"><span>Wi-Fi only</span><button class="switch on" role="switch" aria-checked="true" aria-label="Wi-Fi only" data-action="set_wifi_only"><i></i></button></div>
+          <div class="switch-row" data-component-type="switch" data-component-id="charging_only"><span>Only while charging</span><button class="switch" role="switch" aria-checked="false" aria-label="Only while charging" data-action="set_charging_only"><i></i></button></div>
+          <p class="info"><span class="sym sm" aria-hidden="true">data_usage</span>Syncing downloads a lot of data. Only the records you chose come to this device.</p>
+        </div>
+      </section>
     </div>
-    <p class="lbl">Re-sync your records</p>
-    <div class="int" data-testid="offline_sync_refresh_interval">
-      <button aria-pressed="false" data-action="set_refresh_interval">Every 1 h</button>
-      <button aria-pressed="true" data-action="set_refresh_interval">Every 6 h</button>
-      <button aria-pressed="false" data-action="set_refresh_interval">Every 12 h</button>
-      <button aria-pressed="false" data-action="set_refresh_interval">Every 24 h</button>
-    </div>
-    <div class="sw-row" data-testid="offline_sync_wifi_only" data-action="set_wifi_only"><span>Wi-Fi only</span><span class="sw on" role="switch" aria-checked="true"></span></div>
-    <div class="sw-row" data-testid="offline_sync_charging_only" data-action="set_charging_only"><span>Only while charging</span><span class="sw" role="switch" aria-checked="false"></span></div>
-    <p class="note"><span class="sym">data_usage</span>Syncing downloads a lot of data. Only the records you chose come to this device.</p>
-  </section>
-</main>
-<button class="fab" data-testid="offline_sync_add_records" data-action="add_records"><span class="sym">add</span>Add records</button>
-</div></body></html>
+  </main>
+  <button class="fab" data-shell="fab" data-position="bottom-end" data-component-type="fab" data-component-id="add_records_fab" data-action="add_records"><span class="sym" aria-hidden="true">add</span>Add records</button>
+</div>
+<script src="../../../preview/_shared/preview-runtime.js"></script>
+</body></html>

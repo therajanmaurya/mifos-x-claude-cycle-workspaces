@@ -3,12 +3,12 @@ ui_yaml_sha: d507f376f860c014e7068f2bf3fd3fb66cac58d618ddf536c9e4dc0c77b505f4
 design_md_hash: c1e7dbe50f7725a08e0369f4cb0659b8c1e56ac645d128a4c90c66b8618666ef
 app_shell_hash: 89077f8f960080911cf9c2b934ba619c11591fcb24da55987a5a1bb79f349739
 design_read_hash: 
-content_hash: 93feb4090c7c1ba5f53f26b12b5543fca51de8585d3a47aff2ac654a2cd3fd29
+content_hash: 62bc33d72bbcfe7ea404ad0e99db436f0056bb7aebda6eabb9166f74588f939a
 
 design_read_aesthetic: taste-default
 design_read_dials: {variance: 7, motion: 6, density: 4}
 aesthetic_variant_override: null
-archetype: error_state
+archetype: detail_screen
 
 feature: profile
 state: error
@@ -19,8 +19,8 @@ design_system_id: '9551377288795375599'
 
 generated_by: stitch-prompt-build.ts v2.1.0
 prompt_template_version: stitch-per-state-v3.1.0
-craft_rules_version: v1.2.0
-polished_by: claude-in-session (Step 2 POLISH, source = screens/profile/preview/error.html)
+craft_rules_version: v1.5.0
+polished_by: claude-in-session (Step 2 POLISH, responsive mandate per RULE-MOCKUP-RESPONSIVE-001, source = screens/profile/ui.yaml)
 ---
 
 # profile — error state
@@ -30,7 +30,7 @@ polished_by: claude-in-session (Step 2 POLISH, source = screens/profile/preview/
 
 ↓↓↓ MOCKUP PROMPT
 
-Design the error state of the Profile screen for **Mifos X Field Officer**, a microfinance field-officer app. The server could not return the officer's full name, so the screen keeps everything saved at sign-in and shows one inline error with a retry. This is NOT a full-screen error. Material 3 light theme, 412×915dp phone, the design system's own type scale (do not change the font).
+Design the error state of the Profile screen for **Mifos X Field Officer**, a microfinance field-officer app. The server could not return the officer's full name, so the screen keeps everything saved at sign-in and shows one inline error with a retry. This is NOT a full-screen error. Material 3 light theme, **responsive layout** that works on phones, tablets and desktop windows, the design system's own type scale (do not change the font). Responsive layout (required): fluid full-width layout, no fixed-width root and no phone-width max-width cap. Compact (<600dp): one column in the order below with 16dp side margins. Medium (600-840dp): two columns with a 24dp gutter; the left column holds the Identity Header, the Inline Error directly under it, and Roles; the right column stacks the Office, Signed in to and Account cards; the top app bar spans the full width. Expanded (>=840dp): the same two columns inside a centred content column capped at about 1040dp (left column about 360dp wide), 32dp side margins. Use Tailwind md: and lg: breakpoints.
 
 Palette: background #FAFAFB, surface #FFFFFF, onSurface #0F172A, onSurfaceVariant #475569, primary #4338CA, primaryContainer #E0E7FF, secondaryContainer #D1FAE5, error #DC2626, errorContainer #FFE4E1, onErrorContainer #9F1239, outlineVariant #CBD5E1.
 

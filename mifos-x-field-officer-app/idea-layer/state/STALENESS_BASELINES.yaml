@@ -1,0 +1,11 @@
+# STALENESS_BASELINES.yaml — DERIVED. Written ONLY by core/scripts/content-stale.sh --stamp.
+# Baselines live here, never inside the artifacts they measure
+# (RULE-IDEA-STALENESS-CONVERGENCE-001 SC-1). Do not hand-edit.
+schema_version: "1.0"
+baselines:
+  - entity: "idea-store-assets-generate"
+    feature: "__project__"
+    feature_hash: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    shared_hash: "a1d1d0331e257f53b0e4490ae8683dc3ef1b203d1c696b5b7fd75461cd0364d6"
+    stamped_at: "2026-11-03T21:43:00Z"
+    stamped_by: "content-stale.sh"

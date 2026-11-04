@@ -1,0 +1,19 @@
+# Discrete App Store age-rating declaration (ASC 2023 questionnaire). Every answer derived from the app:
+# a business tool for financial-institution staff — no media library, no social features, no web view
+# to arbitrary sites, no gambling, no purchases.
+cartoon_fantasy_violence: NONE
+realistic_violence: NONE
+prolonged_graphic_sadistic_violence: NONE
+profanity_crude_humor: NONE
+mature_suggestive_themes: NONE
+horror_fear_themes: NONE
+medical_treatment_info: NONE
+alcohol_tobacco_drugs: NONE
+simulated_gambling: NONE
+sexual_content_nudity: NONE
+graphic_sexual_content_nudity: NONE
+contests: NONE
+unrestricted_web_access: false
+gambling_and_contests: false
+made_for_kids: false
+expected_rating: "4+"

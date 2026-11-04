@@ -1,55 +1,83 @@
 <!doctype html>
-<!-- render-hash: os-loading-02 -->
+<!-- render-hash: f33fb59df93b -->
 <html lang="en"><head>
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Offline sync: loading</title>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
 <style>
-:root{--primary:#4338CA;
---background:#FAFAFB;--surface:#FFFFFF;--on-surface:#0F172A;--surface-variant:#E2E8F0;--on-surface-variant:#475569;
---outline-variant:#CBD5E1;
---sp-xs:4px;--sp-sm:8px;--sp-md:12px;--sp-lg:16px;--sp-xl:24px;--touch:48px;--r-sm:8px;--r-md:12px;--r-lg:16px;--r-pill:999px}
+:root{--primary:#4338CA;--background:#FAFAFB;--surface:#FFFFFF;--on-surface:#0F172A;--on-surface-variant:#475569;--outline-variant:#CBD5E1;--hairline:#E2E8F0;--shimmer-a:#E2E8F0;--shimmer-b:#F1F5F9;
+--font:'Outfit',ui-rounded,system-ui,sans-serif;--font-display:'Outfit',ui-rounded,system-ui,sans-serif;--icons:'Material Symbols Rounded';
+--fs-title-lg:22px;--fs-body:14px;--fs-icon:22px;--lh:1.4;--fw-r:400;--fw-sb:600;
+--sp-0:0;--sp-xs:4px;--sp-sm:8px;--sp-md:12px;--sp-lg:16px;--sp-xl:24px;
+--r-sm:8px;--r-md:12px;--r-lg:16px;--r-pill:999px;--hair:1px;--ring:2px;
+--touch:48px;--bar-h:64px;--chip-h:32px;--tab-h:36px;--avatar:40px;--row-h:68px;--sk-line:12px;--sk-chip-a:84px;--sk-chip-b:96px;--sk-tile:70px;
+--el-1:0 1px 2px rgba(15,23,42,.05),0 4px 12px rgba(15,23,42,.04);
+--side-md:300px;--side-lg:400px;--content-max:1200px;--dur:1.4s}
+:root[data-theme="dark"]{--primary:#A5B4FC;--background:#0F172A;--surface:#1E293B;--on-surface:#F1F5F9;--on-surface-variant:#CBD5E1;--outline-variant:#334155;--hairline:#334155;--shimmer-a:#273449;--shimmer-b:#334155;--el-1:0 1px 2px rgba(0,0,0,.4)}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Outfit',system-ui,sans-serif;background:var(--background);color:var(--on-surface);-webkit-font-smoothing:antialiased;display:flex;justify-content:center;min-height:100dvh}
-.phone{width:100%;max-width:420px;min-height:100dvh;display:flex;flex-direction:column}
-.sym{font-family:'Material Symbols Rounded';line-height:1;display:inline-block;font-size:22px}
+html,body{width:100%;min-height:100vh}
+body{font-family:var(--font);font-size:var(--fs-body);line-height:var(--lh);background:var(--background);color:var(--on-surface);-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;min-height:100vh}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
-.topbar{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:var(--sp-xs);height:64px;padding:0 var(--sp-xs);background:var(--background)}
-.topbar h1{font-size:20px;font-weight:600;letter-spacing:-.01em}
-.icon-btn{width:var(--touch);height:var(--touch);display:grid;place-items:center;border-radius:var(--r-pill);color:var(--on-surface-variant)}
-main{flex:1;padding:0 var(--sp-lg) var(--sp-xl);display:flex;flex-direction:column;gap:var(--sp-lg)}
-.card{background:var(--surface);border:1px solid var(--outline-variant);border-radius:var(--r-lg);box-shadow:0 1px 2px rgba(15,23,42,.05),0 4px 12px rgba(15,23,42,.04);padding:var(--sp-lg);display:flex;flex-direction:column;gap:var(--sp-md)}
-.sk{background:linear-gradient(90deg,var(--surface-variant) 0%,#F1F5F9 50%,var(--surface-variant) 100%);background-size:200% 100%;animation:sh 1.4s ease-in-out infinite;border-radius:var(--r-sm)}
-@keyframes sh{from{background-position:200% 0}to{background-position:-200% 0}}
-@media (prefers-reduced-motion:reduce){.sk{animation:none}}
-.chips{display:flex;gap:var(--sp-sm)}
-.chip{height:32px;border-radius:var(--r-pill)}
-.levels{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-sm)}
-.lv{height:70px;border-radius:var(--r-md)}
-.line{height:14px}
-.btn{height:var(--touch);border-radius:var(--r-pill)}
-.tabs{display:flex;gap:var(--sp-sm)}
-.tab{height:36px;width:96px}
-.row{display:flex;align-items:center;gap:var(--sp-md);padding:var(--sp-sm) 0;border-top:1px solid var(--surface-variant)}
-.ava{width:40px;height:40px;border-radius:var(--r-md);flex:none}
-.rt{flex:1;display:flex;flex-direction:column;gap:6px}
+:focus-visible{outline:var(--ring) solid var(--primary);outline-offset:var(--ring)}
+.sym{font-family:var(--icons);font-size:var(--fs-icon);line-height:1;display:inline-block;font-weight:var(--fw-r)}
+.app{flex:1;display:flex;flex-direction:column;width:100%;min-height:100vh}
+.topbar{position:sticky;top:var(--sp-0);z-index:3;display:flex;align-items:center;gap:var(--sp-xs);height:var(--bar-h);padding:var(--sp-0) var(--sp-xs);background:var(--background)}
+.topbar h1{font-family:var(--font-display);font-size:var(--fs-title-lg);font-weight:var(--fw-sb)}
+.icon-btn{width:var(--touch);height:var(--touch);display:grid;place-items:center;border-radius:var(--r-pill);color:var(--on-surface-variant);flex:none}
+main{flex:1;display:flex;flex-direction:column;padding:var(--sp-0) var(--sp-lg) var(--sp-xl)}
+.layout{display:grid;gap:var(--sp-lg);grid-template-columns:minmax(0,1fr);align-content:start;width:100%}
+.card{background:var(--surface);border:var(--hair) solid var(--outline-variant);border-radius:var(--r-lg);box-shadow:var(--el-1);overflow:hidden;align-self:start}
+.pad{padding:var(--sp-lg);display:flex;flex-direction:column;gap:var(--sp-md)}
+.row-flex{display:flex;gap:var(--sp-sm);flex-wrap:wrap}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-sm)}
+.row{display:flex;align-items:center;gap:var(--sp-md);min-height:var(--row-h);border-top:var(--hair) solid var(--hairline)}
+.lines{flex:1;display:flex;flex-direction:column;gap:var(--sp-sm)}
+.sk{display:block;background:linear-gradient(90deg,var(--shimmer-a),var(--shimmer-b),var(--shimmer-a));background-size:200% 100%;animation:shim var(--dur) ease-in-out infinite;border-radius:var(--r-sm);height:var(--sk-line)}
+@keyframes shim{0%{background-position:100% 0}100%{background-position:-100% 0}}
+.sk-chip{height:var(--chip-h);border-radius:var(--r-pill)}.sk-a{width:var(--sk-chip-a)}.sk-b{width:var(--sk-chip-b)}
+.sk-tile{height:var(--sk-tile);border-radius:var(--r-md)}
+.sk-btn{height:var(--touch);border-radius:var(--r-pill)}
+.sk-tab{height:var(--tab-h);width:var(--sk-chip-b)}
+.sk-av{width:var(--avatar);height:var(--avatar);border-radius:var(--r-md);flex:none}
+@media (min-width:600px){
+  main{padding:var(--sp-0) var(--sp-xl) var(--sp-xl)}
+  .layout{column-gap:var(--sp-xl);row-gap:var(--sp-0);grid-template-columns:minmax(0,var(--side-md)) minmax(0,1fr);grid-template-rows:repeat(5,auto) 1fr}
+  .layout>*{grid-column:1;margin-bottom:var(--sp-xl)}
+  .layout>.a-records{grid-column:2;grid-row:1 / -1;margin-bottom:var(--sp-0)}
+}
+@media (min-width:840px){
+  .layout{max-width:var(--content-max);margin-inline:auto;grid-template-columns:var(--side-lg) minmax(0,1fr)}
+  .topbar{padding-inline:max(var(--sp-xs),calc((100vw - var(--content-max)) / 2 - var(--sp-md)))}
+}
 </style></head>
-<body><div class="phone" data-testid="offline_sync_screen">
-<header class="topbar"><button class="icon-btn" aria-label="Back"><span class="sym">arrow_back</span></button><h1>Offline sync</h1></header>
-<main data-testid="offline_sync_skeleton" aria-busy="true">
-  <section class="card" data-testid="offline_sync_header">
-    <div class="chips"><span class="sk chip" style="width:84px"></span><span class="sk chip" style="width:96px"></span></div>
-    <div class="levels"><span class="sk lv"></span><span class="sk lv"></span><span class="sk lv"></span></div>
-    <span class="sk line" style="width:52%"></span>
-    <span class="sk btn"></span>
-  </section>
-  <section class="card">
-    <span class="sk line" style="width:38%;height:18px"></span>
-    <div class="tabs"><span class="sk tab"></span><span class="sk tab"></span><span class="sk tab"></span></div>
-    <div class="row"><span class="sk ava"></span><div class="rt"><span class="sk line" style="width:50%"></span><span class="sk line" style="width:74%;height:12px"></span><span class="sk line" style="width:40%;height:10px"></span></div></div>
-    <div class="row"><span class="sk ava"></span><div class="rt"><span class="sk line" style="width:42%"></span><span class="sk line" style="width:66%;height:12px"></span><span class="sk line" style="width:34%;height:10px"></span></div></div>
-    <div class="row"><span class="sk ava"></span><div class="rt"><span class="sk line" style="width:56%"></span><span class="sk line" style="width:60%;height:12px"></span><span class="sk line" style="width:38%;height:10px"></span></div></div>
-  </section>
-</main>
-</div></body></html>
+<body>
+<div class="app" data-shell="root" data-screen-id="offlineSync" data-state="loading">
+  <header class="topbar" data-shell="top-app-bar" data-variant="small">
+    <button class="icon-btn" aria-label="Back" data-action="navigate_back" data-nav-type="pop"><span class="sym" aria-hidden="true">arrow_back</span></button>
+    <h1>Offline sync</h1>
+  </header>
+  <main data-shell="content" data-state="loading" aria-busy="true" aria-label="Opening the records on this device">
+    <div class="layout" data-component-type="LayoutBox" data-component-id="offline_sync_layout">
+      <section class="card a-summary" data-component-type="header" data-component-variant="skeleton" data-component-id="summary_header">
+        <div class="pad">
+          <div class="row-flex"><span class="sk sk-chip sk-a"></span><span class="sk sk-chip sk-b"></span></div>
+          <div class="tiles"><span class="sk sk-tile"></span><span class="sk sk-tile"></span><span class="sk sk-tile"></span></div>
+          <span class="sk" style="width:50%"></span>
+          <span class="sk sk-btn"></span>
+        </div>
+      </section>
+      <section class="card a-records" data-component-type="shimmer" data-component-id="section_skeletons">
+        <div class="pad">
+          <span class="sk" style="width:33%"></span>
+          <div class="row-flex"><span class="sk sk-tab"></span><span class="sk sk-tab"></span><span class="sk sk-tab"></span></div>
+          <div class="row"><span class="sk sk-av"></span><span class="lines"><span class="sk" style="width:60%"></span><span class="sk" style="width:45%"></span><span class="sk" style="width:30%"></span></span></div>
+          <div class="row"><span class="sk sk-av"></span><span class="lines"><span class="sk" style="width:55%"></span><span class="sk" style="width:40%"></span><span class="sk" style="width:28%"></span></span></div>
+          <div class="row"><span class="sk sk-av"></span><span class="lines"><span class="sk" style="width:50%"></span><span class="sk" style="width:38%"></span><span class="sk" style="width:25%"></span></span></div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+<script src="../../../preview/_shared/preview-runtime.js"></script>
+</body></html>

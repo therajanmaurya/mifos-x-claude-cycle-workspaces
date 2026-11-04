@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "feature": "offlineSync",
+  "states": {
+    "content": {
+      "hash": "edc4cb36f55b2814f0ddc4283ecd107d72f9bd0b004bfc024169f78796f10fa5",
+      "render_hash": "edc4cb36f55b",
+      "stamped_at": "2026-11-04T10:39:55.751Z"
+    },
+    "empty": {
+      "hash": "294105dd6c25c58589a74869c0b4bd3dd42d5efe263b6b0b32481d3d4bf5274b",
+      "render_hash": "294105dd6c25",
+      "stamped_at": "2026-11-04T10:39:55.752Z"
+    },
+    "loading": {
+      "hash": "f33fb59df93b5d206098e96ebb1e03aa71a276e66e6eba61edf4aafbb86aadda",
+      "render_hash": "f33fb59df93b",
+      "stamped_at": "2026-11-04T10:39:55.752Z"
+    },
+    "offline": {
+      "hash": "1a5b609c637992432e4ee724aedd7f9df43f047a8e09c3dba4a4c582c31564f4",
+      "render_hash": "1a5b609c6379",
+      "stamped_at": "2026-11-04T10:39:55.753Z"
+    },
+    "partial_failure": {
+      "hash": "b35808dcee8f11573349594f84001a830303425eced0bb712f3bd61705ffb165",
+      "render_hash": "b35808dcee8f",
+      "stamped_at": "2026-11-04T10:39:55.753Z"
+    },
+    "syncing": {
+      "hash": "fcc272c41d80ad960ea065a0ee123a1f0fbeeac6c33ce5464990eec5b9a09526",
+      "render_hash": "fcc272c41d80",
+      "stamped_at": "2026-11-04T10:39:55.753Z"
+    }
+  },
+  "hash_source": "prompts/{key}.md#content_hash (sanctioned producer hash from stitch-prompt-build.ts; {key} = canonical state key). Raw sha256 over idea-layer bytes is refused by the CI-INTEGRITY-CARVE-OUT guard."
+}

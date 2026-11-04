@@ -17,6 +17,21 @@ android:
     password_source: "secrets.env"     # secrets.env | env_var | manual
     status: "not_generated"            # not_generated | template | project_specific | mismatch
     file: "secrets/live/android/keystores/upload_keystore.keystore"
+  # Which upload key signs Play bundles (read by core/scripts/secrets-android-signing-run.sh).
+  #   legacy → the key Play has registered today (cert SHA1 F9:97:65:28:77:FF:AA:9D:5D:E9:F0:35:7B:80:A9:23:2D:21:AE:93),
+  #            vault aliases mifos-x-field-officer-app-upload-keystore-legacy{,-storepass,-keyalias,-keypass}.
+  #            EXPOSED (public openMF history b5a57c9) — a bridge only.
+  #   vault  → the new key (cert SHA1 F7:1C:29:8D:F4:7F:46:DC:BC:6E:BB:EB:D1:68:0D:39:2E:45:D3:57), materialized by
+  #            /secrets pull into secrets/live/android/keystores/. Flip here AFTER Google approves the reset ([AK]),
+  #            then delete the four legacy aliases.
+  upload_key:
+    active: legacy
+    reset_status: not_requested       # not_requested | requested | approved
+    reset_requested_at: null
+    expected_sha1_legacy: "F9:97:65:28:77:FF:AA:9D:5D:E9:F0:35:7B:80:A9:23:2D:21:AE:93"
+    # Generated 2026-11-04 by core/scripts/keystore-manager.sh: PKCS12, RSA-4096, key password == store
+    # password, alias "upload". Public cert for the reset: regenerate with android-cert-digest.sh --export-pem (never committed)
+    expected_sha1_vault: "17:18:A6:D8:AB:10:B6:A0:49:47:19:36:43:1B:5D:B8:40:92:F2:90"
   firebase:
     prod_app_id: "1:728434912738:android:ecdb5b96f0e735661a1dbb"   # com.mifos.mifosxdroid (cmp-android/google-services.json)
     demo_app_id: "1:728434912738:android:53d0930e402622611a1dbb"   # com.mifos.mifosxdroid.demo
@@ -25,6 +40,9 @@ android:
     credentials_file: "secrets/android/firebaseAppDistributionServiceCredentialsFile.json"
   play_store:
     registered: true
+    # DERIVED from package_name — https://play.google.com/store/apps/details?id=<pkg>.
+    # Valid before publication; the URL 404s until the first release is live.
+    listing_url: "https://play.google.com/store/apps/details?id=com.mifos.mifosxdroid"
     # DERIVED from package_name by core/scripts/deploy-config-autoconfigure.sh on every [GE] run —
     # https://play.google.com/store/apps/details?id=<package_name>. Never hand-type it. It is valid
     # (and correct) before the app is published; the URL simply 404s until the first release is live,
@@ -49,6 +67,16 @@ ios:
     key_id: ""
     issuer_id: ""
     key_path: "secrets/apple/appstore/AuthKey.p8"
+  # TestFlight tester roster — deployment-layer mirror (RULE-DEPLOY-TESTFLIGHT-BOTH-GROUPS-001).
+  # Emails are PUBLIC identifiers, not secrets. roster materialized from _org/company.yaml by deploy-testers-roster-sync.sh
+  testflight:
+    internal_group: "mifos-mobile-apps"
+    external_group: "mifos-mobile-apps"
+    external_public_link: true
+    external_testers:
+      - rajanmaurya154@gmail.com
+      - edcable@gmail.com
+      - skniyajali0@gmail.com
   code_signing:
     match_type: "adhoc"                # adhoc | appstore | development
     match_git_url: ""
@@ -72,7 +100,7 @@ ios_shared:
 
 mac:
   configured: true
-  bundle_id: ""
+  bundle_id: "com.mifos.mifosxdroid"
   team_id: ""                          # inherits from ios_shared.team_id if empty
   catalyst: false                      # Mac Catalyst (iOS app on Mac) vs native
   app_store_connect:

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Mifos X">
+  <!-- Mifos X mark — four triangles around a white X. Colours sampled from the shipped Android
+       adaptive icon (app-profile/icons/android/res/mipmap-xxxhdpi/ic_launcher_monochrome.webp);
+       geometry matches the org mark (mifos-x-open-banking relay/site/assets/mifos-mark.svg). -->
+  <defs>
+    <linearGradient id="mx-right" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#007EB2"/>
+      <stop offset="1" stop-color="#00B4F0"/>
+    </linearGradient>
+  </defs>
+  <path fill="#92D050" d="M4 4h56L32 32z"/>
+  <path fill="url(#mx-right)" d="M60 4v56L32 32z"/>
+  <path fill="#00B050" d="M60 60H4l28-28z"/>
+  <path fill="#0070C0" d="M4 60V4l28 28z"/>
+  <path stroke="#fff" stroke-width="6" stroke-linecap="square" d="M4 4l56 56M60 4L4 60"/>
+</svg>

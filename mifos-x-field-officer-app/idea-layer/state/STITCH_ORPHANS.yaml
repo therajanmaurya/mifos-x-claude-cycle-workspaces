@@ -2,9 +2,9 @@ schema: stitch-orphans/v1
 note: >-
   Stitch SDK has no delete endpoint. Open cleanup_url in Stitch UI and delete manually, then set cleanup_status:
   cleaned.
-last_updated: '2026-10-27T08:22:17.683Z'
-total: 9
-pending: 9
+last_updated: '2026-11-04T10:28:10.628Z'
+total: 25
+pending: 25
 orphans:
   - feature: home
     state: content
@@ -77,4 +77,132 @@ orphans:
     project_id: '10780096558615730514'
     deprecated_at: '2026-10-27T08:22:17.683Z'
     cleanup_url: https://stitch.google.com/projects/10780096558615730514/screens/d83502617855493d968ee48eb67f9f31
+    cleanup_status: pending_manual
+  - feature: home
+    state: loading
+    old_screen_id: a42b722b572443db8a28088d6a10ba20
+    new_screen_id: null
+    project_id: '10780096558615730514'
+    deprecated_at: '2026-11-04T10:26:53.005Z'
+    cleanup_url: https://stitch.google.com/projects/10780096558615730514/screens/a42b722b572443db8a28088d6a10ba20
+    cleanup_status: pending_manual
+  - feature: home
+    state: content
+    old_screen_id: 282d6b4f77e640d096a8194be6a0f9cb
+    new_screen_id: null
+    project_id: '10780096558615730514'
+    deprecated_at: '2026-11-04T10:26:53.005Z'
+    cleanup_url: https://stitch.google.com/projects/10780096558615730514/screens/282d6b4f77e640d096a8194be6a0f9cb
+    cleanup_status: pending_manual
+  - feature: home
+    state: partial_failure
+    old_screen_id: 804e388d622f424c81b2fe55d7c1c78c
+    new_screen_id: null
+    project_id: '10780096558615730514'
+    deprecated_at: '2026-11-04T10:26:53.005Z'
+    cleanup_url: https://stitch.google.com/projects/10780096558615730514/screens/804e388d622f424c81b2fe55d7c1c78c
+    cleanup_status: pending_manual
+  - feature: home
+    state: error
+    old_screen_id: 456b7e261d7341dd8fee0e9bbf94650f
+    new_screen_id: null
+    project_id: '10780096558615730514'
+    deprecated_at: '2026-11-04T10:26:53.005Z'
+    cleanup_url: https://stitch.google.com/projects/10780096558615730514/screens/456b7e261d7341dd8fee0e9bbf94650f
+    cleanup_status: pending_manual
+  - feature: home
+    state: offline
+    old_screen_id: ffca39fb24294386bc080f274a55306b
+    new_screen_id: null
+    project_id: '10780096558615730514'
+    deprecated_at: '2026-11-04T10:26:53.005Z'
+    cleanup_url: https://stitch.google.com/projects/10780096558615730514/screens/ffca39fb24294386bc080f274a55306b
+    cleanup_status: pending_manual
+  - feature: profile
+    state: loading
+    old_screen_id: e385d085b0f54234aa850d3a57c89f1a
+    new_screen_id: null
+    project_id: '10780096558615730514'
+    deprecated_at: '2026-11-04T10:27:11.021Z'
+    cleanup_url: https://stitch.google.com/projects/10780096558615730514/screens/e385d085b0f54234aa850d3a57c89f1a
+    cleanup_status: pending_manual
+  - feature: profile
+    state: content
+    old_screen_id: f550c7cb48e240bba933eb2641f23d44
+    new_screen_id: null
+    project_id: '10780096558615730514'
+    deprecated_at: '2026-11-04T10:27:11.021Z'
+    cleanup_url: https://stitch.google.com/projects/10780096558615730514/screens/f550c7cb48e240bba933eb2641f23d44
+    cleanup_status: pending_manual
+  - feature: profile
+    state: error
+    old_screen_id: 36077ac5014644989092a9e0b11eb1bf
+    new_screen_id: null
+    project_id: '10780096558615730514'
+    deprecated_at: '2026-11-04T10:27:11.021Z'
+    cleanup_url: https://stitch.google.com/projects/10780096558615730514/screens/36077ac5014644989092a9e0b11eb1bf
+    cleanup_status: pending_manual
+  - feature: profile
+    state: offline
+    old_screen_id: 9fb7f0b8d057427d979dce671d5f4995
+    new_screen_id: null
+    project_id: '10780096558615730514'
+    deprecated_at: '2026-11-04T10:27:11.021Z'
+    cleanup_url: https://stitch.google.com/projects/10780096558615730514/screens/9fb7f0b8d057427d979dce671d5f4995
+    cleanup_status: pending_manual
+  - feature: profile
+    state: change_password
+    old_screen_id: 91d38bc4c19049efbe7e6fcf40810389
+    new_screen_id: null
+    project_id: '10780096558615730514'
+    deprecated_at: '2026-11-04T10:27:11.021Z'
+    cleanup_url: https://stitch.google.com/projects/10780096558615730514/screens/91d38bc4c19049efbe7e6fcf40810389
+    cleanup_status: pending_manual
+  - feature: offlineSync
+    state: loading
+    old_screen_id: a50eeace91804ad7868cd5555915aa71
+    new_screen_id: null
+    project_id: '10780096558615730514'
+    deprecated_at: '2026-11-04T10:28:10.628Z'
+    cleanup_url: https://stitch.google.com/projects/10780096558615730514/screens/a50eeace91804ad7868cd5555915aa71
+    cleanup_status: pending_manual
+  - feature: offlineSync
+    state: content
+    old_screen_id: 6f0ac0e64d5a45ad91a4daeafbd23e16
+    new_screen_id: null
+    project_id: '10780096558615730514'
+    deprecated_at: '2026-11-04T10:28:10.628Z'
+    cleanup_url: https://stitch.google.com/projects/10780096558615730514/screens/6f0ac0e64d5a45ad91a4daeafbd23e16
+    cleanup_status: pending_manual
+  - feature: offlineSync
+    state: syncing
+    old_screen_id: 575d866ceba849cc9436ee3e2760dfdb
+    new_screen_id: null
+    project_id: '10780096558615730514'
+    deprecated_at: '2026-11-04T10:28:10.628Z'
+    cleanup_url: https://stitch.google.com/projects/10780096558615730514/screens/575d866ceba849cc9436ee3e2760dfdb
+    cleanup_status: pending_manual
+  - feature: offlineSync
+    state: partial_failure
+    old_screen_id: b810a4704bee431a979246b26cc73194
+    new_screen_id: null
+    project_id: '10780096558615730514'
+    deprecated_at: '2026-11-04T10:28:10.628Z'
+    cleanup_url: https://stitch.google.com/projects/10780096558615730514/screens/b810a4704bee431a979246b26cc73194
+    cleanup_status: pending_manual
+  - feature: offlineSync
+    state: empty
+    old_screen_id: c00e5480fc034dd280bc25420a204b4a
+    new_screen_id: null
+    project_id: '10780096558615730514'
+    deprecated_at: '2026-11-04T10:28:10.628Z'
+    cleanup_url: https://stitch.google.com/projects/10780096558615730514/screens/c00e5480fc034dd280bc25420a204b4a
+    cleanup_status: pending_manual
+  - feature: offlineSync
+    state: offline
+    old_screen_id: 3bcb0e1e0cdc4ff79999f0dd000c5e4e
+    new_screen_id: null
+    project_id: '10780096558615730514'
+    deprecated_at: '2026-11-04T10:28:10.628Z'
+    cleanup_url: https://stitch.google.com/projects/10780096558615730514/screens/3bcb0e1e0cdc4ff79999f0dd000c5e4e
     cleanup_status: pending_manual

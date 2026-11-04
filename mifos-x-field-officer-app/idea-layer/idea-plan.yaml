@@ -35,6 +35,35 @@ identity:
   subtype: kmp-app
   platforms: [android, ios, desktop, web]
 
+# ──────────────── DESIGN READ (RULE-DESIGN-READ-001) ────────────────
+# Authored via /idea-plan STEP 1.7 on 2026-11-04 (inferred, operator-accepted [A]). Consumed by the
+# Stitch prompt polish (stitch-polish.ts) and the LLM render — its absence made polish fail for
+# every feature during the responsive-mockup regeneration.
+design_read:
+  _schema_version: "1.0"
+  _last_inferred_at: "2026-11-04T16:30:00+05:30"
+  _signal_sources:
+    - idea-layer/idea-plan.yaml#identity
+    - idea-layer/design-system/DESIGN.md
+    - idea-layer/design-system/design-tokens.yaml
+    - idea-layer/design-system/branding/mifos-x-mark.svg
+    - idea-layer/screens/home/ui.yaml
+  reading: "A trust-first field tool for microfinance officers: calm, legible, data-dense screens built for one-handed use outdoors on phones and on tablets."
+  page_kind: dashboard
+  audience: "Loan officers and field staff at microfinance institutions running Mifos X / Fineract, on mid-range Android phones and tablets"
+  vibe_language: "trustworthy, clear, calm, data-dense, professional"
+  aesthetic_family: minimalist-ui
+  dials:
+    variance: 3
+    motion: 2
+    density: 6
+  brand_constraints:
+    accent_color: "design-tokens primary (#4338CA in-app); brand marks Mifos X #0070C0 / #00B050"
+    typography: "Outfit"
+    theme: light
+    radius_system: soft
+  quiet_constraints: [regulated-industry, accessibility-first]
+
 repository:
   source_path: "source/mifos-x-field-officer-app"
   migration_reference_ref: "6b66e8a43"   # the ORIGINAL app — the specification being migrated FROM

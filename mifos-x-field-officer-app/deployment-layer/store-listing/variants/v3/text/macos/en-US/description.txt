@@ -1,0 +1,40 @@
+Mifos X Field Officer is the mobile app for loan officers and field staff at microfinance institutions, credit unions and banks that run Mifos X / Apache Fineract. Visit clients, open accounts, disburse and collect loans, and record savings deposits from the field, even where there is no network.
+
+Built by the Mifos Initiative, a nonprofit working on financial inclusion for the world's unbanked, it connects to your institution's own Fineract server. Your institution holds the data; the app is the field officer's window into it.
+
+WORK OFFLINE, SYNC LATER
+• Choose the centres, groups and clients you will visit, and the app downloads everything you need before you leave the office.
+• Keep working with no connection. Actions you take offline are saved as drafts.
+• When you are back in coverage, Sync & Drafts uploads them to the server.
+
+YOUR DAY ON ONE SCREEN
+• A home dashboard with today's collections, your work queue, meetings and your portfolio.
+• Every card follows your Fineract permissions, so you only see what you are allowed to act on.
+
+CLIENTS
+• Register new clients with their personal details, identifiers, photo and signature.
+• View, edit and activate clients, and attach documents and notes.
+• Search across clients, groups, centres and accounts.
+
+LOANS
+• Create loan applications and follow them through approval and disbursement.
+• Record repayments and view each loan's schedule, charges and transactions.
+
+SAVINGS AND RECURRING DEPOSITS
+• Open savings and recurring deposit accounts.
+• Record deposits and withdrawals, and view balances and history.
+
+CENTRES, GROUPS AND COLLECTION SHEETS
+• Manage centres and groups and their members.
+• Run individual and group collection sheets for a meeting in one pass.
+
+REPORTS AND APPROVALS
+• Run your institution's reports from the device.
+• Work through the checker inbox to approve or reject pending tasks.
+
+SECURE BY DESIGN
+• Sign in with the credentials your institution issues.
+• Data is sent only to your institution's server, over an encrypted connection.
+• The offline copy on the device is encrypted and cleared when you sign out.
+
+This app needs a Mifos X / Apache Fineract account from your institution. Mifos X Field Officer is free and open source under the Mozilla Public License 2.0. Source code, issues and contributor guides: github.com/openMF/mifos-x-field-officer-app

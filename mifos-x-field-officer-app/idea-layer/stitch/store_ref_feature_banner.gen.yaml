@@ -1,0 +1,55 @@
+_schema_version: '1.0'
+asset_id: store_ref_feature_banner
+feature: null
+kind: illustration
+intent_summary: >-
+  A WIDE 2:1 landscape full-bleed panoramic illustration for a 1024x500 store banner: rolling green fields and a village market connected by a soft winding path, a field officer with a tablet small on the right third, Mifos blue sky fading to deep navy on the LEFT half which stays open and calm for a headline. Flat-vector editorial style, geometric, crisp.
+
+engine: google-stitch
+engine_status: conditional
+backend: stitch-mcp
+license: google-stitch-tos
+license_status: confirmed
+commercial_ok: true
+license_confirmed_by: operator
+license_confirmed_at: "2026-10-12"
+license_confirmed_for_account: a7
+license_note: >-
+  Hosted-service output governed by Google's Stitch Terms of Service. The operator who owns
+  this account has confirmed the ToS permits commercial use — see
+  STITCH_ACCOUNTS_REGISTRY.yaml#license_confirmation.
+
+produced_by: /idea-feature-stitch-art
+stitch_screen_id: 9cddaeeb201f44e8b273a28a5c6d3e2f
+stitch_project_id: 10780096558615730514
+authoring: stitch-prompt-generated
+
+declared_size: 1024x500
+bytes: 859162
+source_sha256: 284539382197326c0ad120ddde5845d4a73a77a7e8c647cc8710ed8be860dfdd
+wired_to: workspaces/mifos-x/mifos-x-field-officer-app/idea-layer/stitch/store_ref_feature_banner.png
+generated_at: '2026-11-04T11:30:07Z'
+generated_by: /idea-feature-stitch-art
+
+device_fidelity: pending-device-verify
+human_signed_off: false
+
+prompt: >-
+  Produce a single store-listing-backdrop asset.
+  .
+  SUBJECT AND INTENT
+  A WIDE 2:1 landscape full-bleed panoramic illustration for a 1024x500 store banner: rolling green fields and a village market connected by a soft winding path, a field officer with a tablet small on the right third, Mifos blue sky fading to deep navy on the LEFT half which stays open and calm for a headline. Flat-vector editorial style, geometric, crisp.
+  .
+  PALETTE (HARD CONSTRAINT)
+  Use ONLY: #0070C0, #00A9EC, #00B050, #92D050, #00406E, #FFFFFF.
+  .
+  TONE (HARD CONSTRAINT)
+  The asset must read as: trustworthy, calm, hopeful, professional.
+  .
+  HOUSE RULES
+  Composition must be self-contained and reusable -- no app chrome, no status bar, no nav bar.
+  No lettering of any kind: no words, labels, captions, watermarks or signature marks.
+  No stock-photo look, no photobashing, no visible brand marks of other products.
+  If the asset is SVG or HTML, NEVER place <defs>, <symbol> or any referenced geometry inside a hidden container (class="hidden", display:none, visibility:hidden, or width=0/height=0). Gradient and <use> references do not resolve out of a display:none subtree and the artwork renders blank. Put shared defs in the SAME visible <svg> that draws them, or position the defs host off-screen with `position:absolute;width:0;height:0;overflow:hidden` -- never display:none.
+vector_original: workspaces/mifos-x/mifos-x-field-officer-app/idea-layer/stitch/store_ref_feature_banner.svg
+vector_size: 1024x500

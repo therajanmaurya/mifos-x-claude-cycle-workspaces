@@ -1,0 +1,283 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 500" width="1024" height="500">
+  <defs>
+    <!-- Sky Panoramic Gradient: Left deep navy fading to Mifos cyan and blue on the right -->
+    <linearGradient id="skyGrad" x1="0%" y1="20%" x2="100%" y2="80%">
+      <stop offset="0%" stop-color="#00406E" />
+      <stop offset="38%" stop-color="#00406E" />
+      <stop offset="65%" stop-color="#0070C0" />
+      <stop offset="85%" stop-color="#00A9EC" />
+      <stop offset="100%" stop-color="#FFFFFF" />
+    </linearGradient>
+
+    <!-- Morning Sun Aura Glow on Right Horizon -->
+    <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
+      <stop offset="35%" stop-color="#00A9EC" stop-opacity="0.45" />
+      <stop offset="70%" stop-color="#0070C0" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#0070C0" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Path Texture / Gradient Leading from Right Foreground toward village -->
+    <linearGradient id="pathGrad" x1="100%" y1="100%" x2="45%" y2="50%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="40%" stop-color="#FFFFFF" stop-opacity="0.95" />
+      <stop offset="80%" stop-color="#00A9EC" stop-opacity="0.75" />
+      <stop offset="100%" stop-color="#FFFFFF" />
+    </linearGradient>
+
+    <!-- Distant Mountain Gradient -->
+    <linearGradient id="distMountain" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00406E" stop-opacity="0.85" />
+      <stop offset="50%" stop-color="#0070C0" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#00A9EC" stop-opacity="0.6" />
+    </linearGradient>
+
+    <!-- Soft Atmospheric Mist -->
+    <linearGradient id="mistLayer" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00406E" stop-opacity="0" />
+      <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.25" />
+      <stop offset="80%" stop-color="#FFFFFF" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.2" />
+    </linearGradient>
+  </defs>
+
+  <!-- 1. BASE PANORAMIC SKY (Left half deep navy & uncluttered for headline overlay) -->
+  <rect width="1024" height="500" fill="url(#skyGrad)" />
+
+  <!-- Subtle Atmospheric Sun & Radiance (Right Half Horizon, Y: ~210) -->
+  <circle cx="830" cy="205" r="140" fill="url(#sunGlow)" />
+  <circle cx="830" cy="205" r="60" fill="#FFFFFF" fill-opacity="0.75" />
+  <circle cx="830" cy="205" r="32" fill="#FFFFFF" />
+
+  <!-- Delicate Geometric Bird Silhouettes (Hopeful upward flight over morning horizon) -->
+  <g fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.6">
+    <path d="M 720 120 Q 728 112 736 120 Q 744 112 752 120" />
+    <path d="M 750 142 Q 756 136 762 142 Q 768 136 774 142" />
+    <path d="M 870 105 Q 878 97 886 105 Q 894 97 902 105" />
+    <path d="M 660 160 Q 666 154 672 160 Q 678 154 684 160" opacity="0.45" />
+  </g>
+
+  <!-- Left Open Space Ambient Vector Constellation / Subtle Light Accents -->
+  <g opacity="0.35">
+    <circle cx="120" cy="80" r="1.5" fill="#FFFFFF" />
+    <circle cx="210" cy="65" r="2" fill="#00A9EC" />
+    <circle cx="280" cy="110" r="1.5" fill="#FFFFFF" />
+    <circle cx="160" cy="140" r="2.5" fill="#FFFFFF" opacity="0.5" />
+    <circle cx="340" cy="75" r="2" fill="#FFFFFF" />
+    <circle cx="420" cy="130" r="1.5" fill="#00A9EC" />
+  </g>
+
+  <!-- 2. DISTANT LAYERED MOUNTAINS & RIDGES -->
+  <path d="M 0 310 L 140 270 L 310 295 L 480 250 L 670 280 L 830 220 L 970 255 L 1024 235 L 1024 380 L 0 380 Z" fill="url(#distMountain)" opacity="0.55" />
+  <path d="M 0 335 L 190 290 L 390 315 L 590 265 L 760 275 L 910 240 L 1024 265 L 1024 400 L 0 400 Z" fill="#00406E" opacity="0.65" />
+
+  <!-- Mist Band Across Middle Horizon -->
+  <rect x="250" y="260" width="774" height="40" fill="url(#mistLayer)" />
+
+  <!-- 3. MIDGROUND AGRICULTURAL GREEN FIELDS & ROLLING SLOPES -->
+  <!-- Far rolling green terrace (Left to Center) -->
+  <path d="M 0 350 Q 240 310 520 335 Q 740 355 1024 300 L 1024 440 L 0 440 Z" fill="#0070C0" opacity="0.75" />
+
+  <!-- Middle agricultural hill in vibrant green (#00B050) -->
+  <path d="M 0 380 Q 280 330 610 360 Q 820 320 1024 340 L 1024 470 L 0 470 Z" fill="#00B050" />
+
+  <!-- Terraced farm plots / contour crop lines on midground hill (Editorial geometric bands) -->
+  <g fill="none" stroke="#92D050" stroke-width="2.5" stroke-linecap="round" opacity="0.7">
+    <path d="M 50 382 Q 220 348 440 368" />
+    <path d="M 80 400 Q 260 364 500 385" />
+    <path d="M 140 418 Q 320 384 540 402" />
+    <path d="M 680 355 Q 840 335 990 348" />
+  </g>
+
+  <!-- Rolling lush green pasture layer (#92D050) -->
+  <path d="M 120 400 Q 420 345 760 380 Q 930 355 1024 370 L 1024 500 L 120 500 Z" fill="#92D050" />
+
+  <!-- Deep Mifos Navy base grounding terrace on lower-left into center -->
+  <path d="M 0 415 Q 260 375 580 420 Q 860 395 1024 430 L 1024 500 L 0 500 Z" fill="#00406E" />
+  <path d="M 0 450 Q 220 420 480 445 L 480 500 L 0 500 Z" fill="#0070C0" opacity="0.5" />
+
+  <!-- 4. RURAL VILLAGE & COMMUNITY MARKET (Positioned gracefully in midground Center-Left, X: 410 - 640, Y: 310 - 370) -->
+  <g id="village-market">
+    <!-- Village tree clusters behind huts -->
+    <circle cx="430" cy="325" r="16" fill="#92D050" />
+    <circle cx="450" cy="318" r="18" fill="#00A9EC" />
+    <circle cx="470" cy="328" r="14" fill="#00B050" />
+    <rect x="448" y="330" width="5" height="15" fill="#00406E" />
+
+    <!-- Community Building / Cooperative Hub -->
+    <rect x="480" y="324" width="46" height="26" fill="#FFFFFF" rx="2" />
+    <polygon points="474,324 503,302 532,324" fill="#00406E" />
+    <rect x="498" y="292" width="10" height="11" fill="#0070C0" />
+    <polygon points="496,292 503,283 510,292" fill="#00A9EC" />
+    <rect x="496" y="334" width="14" height="16" fill="#0070C0" />
+    <circle cx="503" cy="314" r="5" fill="#00A9EC" />
+
+    <!-- Marketplace Canopy 1 (Teal-blue #00A9EC) -->
+    <rect x="536" y="336" width="3" height="18" fill="#00406E" />
+    <rect x="560" y="336" width="3" height="18" fill="#00406E" />
+    <polygon points="530,336 550,322 570,336" fill="#00A9EC" />
+    <rect x="536" y="344" width="26" height="10" fill="#FFFFFF" />
+
+    <!-- Marketplace Canopy 2 (Lush green #92D050) -->
+    <rect x="574" y="334" width="3" height="20" fill="#00406E" />
+    <rect x="602" y="334" width="3" height="20" fill="#00406E" />
+    <polygon points="568,334 590,320 612,334" fill="#92D050" />
+    <rect x="574" y="343" width="30" height="11" fill="#FFFFFF" />
+
+    <!-- Small homestead / cottage -->
+    <rect x="618" y="330" width="30" height="20" fill="#FFFFFF" rx="1" />
+    <polygon points="613,330 633,314 653,330" fill="#0070C0" />
+    <rect x="629" y="339" width="8" height="11" fill="#00406E" />
+
+    <!-- Foliage bushes surrounding the market -->
+    <circle cx="530" cy="346" r="10" fill="#00B050" />
+    <circle cx="614" cy="344" r="9" fill="#00A9EC" />
+    <circle cx="655" cy="340" r="12" fill="#92D050" />
+    <circle cx="670" cy="345" r="9" fill="#00B050" />
+  </g>
+
+  <!-- 5. THE WINDING PATH (Leading from village market ~X:540, Y:354 toward bottom-right third ~X:820, Y:500) -->
+  <path d="M 545 354
+           C 570 380, 610 395, 640 405
+           C 690 420, 720 425, 750 445
+           C 785 468, 770 480, 790 500
+           L 870 500
+           C 845 470, 840 455, 805 435
+           C 765 410, 720 400, 680 385
+           C 640 370, 600 365, 570 354 Z"
+        fill="url(#pathGrad)" />
+
+  <!-- Path Contour Accents (Crisp vector lines marking topography) -->
+  <g fill="none" stroke="#00A9EC" stroke-width="2" stroke-linecap="round" opacity="0.6">
+    <path d="M 575 366 Q 590 370 605 368" />
+    <path d="M 620 384 Q 640 390 660 387" />
+    <path d="M 675 404 Q 700 412 725 407" />
+    <path d="M 730 426 Q 755 436 780 430" />
+    <path d="M 770 454 Q 795 464 825 456" />
+    <path d="M 790 482 Q 820 492 850 485" />
+  </g>
+
+  <!-- 6. EDITORIAL VECTOR TREES & SCENIC VEGETATION -->
+  <!-- Left accent trees (Framing the agricultural landscape softly) -->
+  <g id="trees-left">
+    <path d="M 280 400 L 280 425" stroke="#00406E" stroke-width="5" stroke-linecap="round" />
+    <circle cx="280" cy="390" r="22" fill="#00B050" />
+    <circle cx="268" cy="384" r="14" fill="#92D050" />
+    <circle cx="292" cy="394" r="12" fill="#00A9EC" />
+
+    <path d="M 330 415 L 330 435" stroke="#00406E" stroke-width="4" stroke-linecap="round" />
+    <polygon points="330,375 310,420 350,420" fill="#0070C0" />
+    <polygon points="330,365 316,400 344,400" fill="#92D050" />
+
+    <path d="M 180 425 L 180 450" stroke="#00406E" stroke-width="6" stroke-linecap="round" />
+    <circle cx="180" cy="410" r="26" fill="#00406E" />
+    <circle cx="168" cy="404" r="18" fill="#0070C0" />
+  </g>
+
+  <!-- Right side trees (Flanking the path and framing the field officer) -->
+  <g id="trees-right">
+    <!-- Tree cluster near officer background -->
+    <path d="M 890 380 L 890 420" stroke="#00406E" stroke-width="6" stroke-linecap="round" />
+    <circle cx="890" cy="365" r="28" fill="#00B050" />
+    <circle cx="875" cy="355" r="18" fill="#92D050" />
+    <circle cx="905" cy="370" r="16" fill="#00A9EC" />
+
+    <!-- Elegant canopy tree on far right -->
+    <path d="M 960 365 L 960 415" stroke="#00406E" stroke-width="7" stroke-linecap="round" />
+    <polygon points="960,325 930,390 990,390" fill="#0070C0" />
+    <polygon points="960,310 940,360 980,360" fill="#92D050" />
+
+    <!-- Foreground right bush cluster -->
+    <circle cx="930" cy="445" r="26" fill="#00406E" />
+    <circle cx="955" cy="455" r="20" fill="#00B050" />
+    <circle cx="910" cy="460" r="16" fill="#92D050" />
+    <circle cx="880" cy="475" r="14" fill="#00A9EC" />
+  </g>
+
+  <!-- Foreground bottom edge flora accents -->
+  <g id="foreground-accents">
+    <circle cx="80" cy="485" r="22" fill="#00406E" />
+    <circle cx="105" cy="492" r="16" fill="#00B050" />
+    <circle cx="60" cy="495" r="14" fill="#92D050" />
+
+    <circle cx="440" cy="490" r="20" fill="#00406E" />
+    <circle cx="465" cy="496" r="14" fill="#92D050" />
+  </g>
+
+  <!-- 7. THE FIELD OFFICER (Hero Figure on the Right Third, X: ~755, Y: ~400 - 475) -->
+  <!-- Stride posture walking along the path, holding a glowing digital tablet -->
+  <g id="field-officer" transform="translate(745, 396)">
+    <!-- Cast Shadow on Path -->
+    <ellipse cx="28" cy="74" rx="26" ry="7" fill="#00406E" opacity="0.35" />
+
+    <!-- Legs in dynamic forward stride toward village -->
+    <g id="officer-legs">
+      <!-- Left leg (leading stride forward/left) -->
+      <path d="M 22 40 L 14 56 L 6 70" stroke="#00406E" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" />
+      <polygon points="2,70 9,68 8,73 1,73" fill="#00406E" />
+
+      <!-- Right leg (grounded back stride) -->
+      <path d="M 31 40 L 36 56 L 42 70" stroke="#0070C0" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" />
+      <polygon points="38,70 47,68 47,73 37,73" fill="#00406E" />
+    </g>
+
+    <!-- Torso / Attire (Professional crisp white field shirt with Mifos blue collar/accents) -->
+    <g id="officer-body">
+      <!-- Jacket / Shirt -->
+      <path d="M 16 16 L 38 16 L 41 41 L 13 41 Z" fill="#FFFFFF" />
+      <!-- Collar & Placket -->
+      <polygon points="25,16 30,16 29,26 26,26" fill="#0070C0" />
+      <line x1="27" y1="16" x2="27" y2="40" stroke="#00A9EC" stroke-width="1.5" />
+      <!-- Belt -->
+      <rect x="13" y="39.5" width="28" height="3" fill="#00406E" />
+      <rect x="25" y="39" width="4" height="4" fill="#FFFFFF" />
+      <!-- Credential Lanyard / Badge -->
+      <path d="M 22 16 Q 25 25 27 28 Q 29 25 32 16" fill="none" stroke="#92D050" stroke-width="1.2" />
+      <rect x="24.5" y="28" width="5" height="7" rx="1" fill="#00A9EC" />
+    </g>
+
+    <!-- Head & Visor / Cap -->
+    <g id="officer-head">
+      <!-- Neck -->
+      <rect x="24" y="11" width="6" height="6" fill="#0070C0" />
+      <!-- Head / Profile facing left toward village -->
+      <circle cx="27" cy="7" r="7.5" fill="#00406E" />
+      <!-- Professional field cap / visor pointing forward-left -->
+      <path d="M 19 6 Q 23 2 29 2 L 34 5 Q 28 6 19 6 Z" fill="#00A9EC" />
+      <path d="M 18 6 L 13 5 Q 16 7 19 7.5 Z" fill="#0070C0" />
+    </g>
+
+    <!-- Right Arm (Swinging naturally backward) -->
+    <g id="officer-right-arm">
+      <path d="M 37 18 L 44 29 L 48 39" stroke="#FFFFFF" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+      <circle cx="48" cy="39" r="3" fill="#0070C0" />
+    </g>
+
+    <!-- Left Arm & Digital Tablet (Held forward securely, screen facing upward) -->
+    <g id="officer-left-arm-tablet">
+      <path d="M 17 18 L 10 28 L 18 36" stroke="#FFFFFF" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+      
+      <!-- Digital Tablet (Iconic microfinance mobile ledger) -->
+      <g transform="translate(6, 24) rotate(-12)">
+        <rect x="0" y="0" width="16" height="22" rx="2" fill="#00406E" stroke="#FFFFFF" stroke-width="1" />
+        <rect x="1.5" y="1.5" width="13" height="19" rx="1" fill="#00A9EC" />
+        <!-- Stylized Ledger Graph & Rows on Tablet Screen -->
+        <rect x="3" y="4" width="10" height="1.5" rx="0.5" fill="#FFFFFF" />
+        <rect x="3" y="7" width="6" height="1.2" rx="0.5" fill="#92D050" />
+        <polyline points="3,16 6,13 9,15 12,10" fill="none" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" />
+        <circle cx="12" cy="10" r="1.2" fill="#92D050" />
+      </g>
+
+      <!-- Forearm & hand supporting tablet -->
+      <path d="M 11 31 L 16 38" stroke="#0070C0" stroke-width="4" stroke-linecap="round" />
+      <circle cx="16" cy="38" r="2.8" fill="#00406E" />
+    </g>
+  </g>
+
+  <!-- 8. SUBTLE MORNING SUNLIGHT RAYS (Soft diagonal geometric light across the right sky) -->
+  <g fill="#FFFFFF" opacity="0.04">
+    <polygon points="830,205 600,0 720,0" />
+    <polygon points="830,205 820,0 950,0" />
+    <polygon points="830,205 1024,30 1024,120" />
+  </g>
+</svg>

@@ -1,0 +1,283 @@
+# Mifos X Field Officer — Store-assets deck MANIFEST (themes + assets), variant v2.
+# Authored by /idea-store-assets-generate STEP 3, grounded in the deterministic brief
+# (store-assets-generate-brief.ts): palette from core/designsystem (indigo #4338CA · emerald · amber),
+# screens + states from idea-layer/mockups/{screen}/stitch/*-{screen}-{state}/code.html.
+# Audience: loan officers working in the field for a microfinance institution on Mifos X / Fineract.
+# Copy is plain and factual — a work tool for institution staff, not a consumer finance app.
+
+# icon_source — the app is LIVE on Play (com.mifos.mifosxdroid) with an established Mifos mark, so the
+# icon master is the shipped brand PNG (1024²), not an invented logo concept. No CONCEPTS.yaml is
+# authored: icon-gen would prefer it over this PNG and rebrand a live app.
+icon_source: source/mifos-x-field-officer-app/app-profile/icons/ios.png
+
+themes:
+  # Brand themes from the Mifos X mark (idea-layer/design-system/branding/mifos-x-mark.svg):
+  # blue #0070C0 · sky #00A9EC · green #00B050 · lime #92D050. Theme ids kept so asset rows are unchanged.
+  # indigo (id kept) — Mifos blue, the light default: blue → deep navy, lime eyebrow (the mark's top triangle).
+  - id: indigo
+    frameBg: 'linear-gradient(160deg, #0070C0 0%, #00406E 100%)'
+    overlayText: '#FFFFFF'
+    overlayEyebrow: '#92D050'
+    pillBg: rgba(255, 255, 255, 0.16)
+    groundImage: idea-layer/stitch/store_ref_field_visit.png        # Stitch reference — `scene` design only
+  # night — dark parity: midnight navy with a sky-blue glow (the mark's right triangle).
+  - id: night
+    frameBg: >-
+      radial-gradient(circle at 28% 18%, rgba(0, 169, 236, 0.22) 0%, transparent 55%),
+      linear-gradient(160deg, #06243F 0%, #021424 100%)
+    overlayText: '#EAF6FD'
+    overlayEyebrow: '#00A9EC'
+    pillBg: rgba(0, 112, 192, 0.22)
+    groundImage: idea-layer/stitch/store_ref_group_meeting.png
+  # field — Mifos green (the mark's bottom triangle), for sync / offline screens.
+  - id: field
+    frameBg: 'linear-gradient(160deg, #00A04A 0%, #00602D 100%)'
+    overlayText: '#FFFFFF'
+    overlayEyebrow: '#D6F0B0'
+    pillBg: rgba(255, 255, 255, 0.16)
+    groundImage: idea-layer/stitch/store_ref_offline_village.jpg
+
+assets:
+  # ── Phone (orders 1-7) ─────────────────────────────────────────────────
+  - order: 1
+    screen: home
+    state: content
+    source: stitch
+    theme: indigo
+    frame: phone
+    assetPath: idea-layer/store-assets/01-home-content.html
+    copy:
+      en:
+        eyebrow: Your day at a glance
+        title: Your portfolio, ready when you are.
+        subtitle: Clients, loans due and collections for your office in one dashboard, straight from your Mifos X server.
+        tags:
+          - Dashboard
+          - Portfolio
+  - order: 2
+    screen: offlineSync
+    state: content
+    source: stitch
+    theme: field
+    frame: phone
+    assetPath: idea-layer/store-assets/02-offlineSync-content.html
+    copy:
+      en:
+        eyebrow: Built for the field
+        title: Work offline, sync when you're back.
+        subtitle: Download centres and groups before a visit, record work with no signal, and send it when you reconnect.
+        tags:
+          - Offline
+          - Sync
+  - order: 3
+    screen: home
+    state: offline
+    source: stitch
+    theme: night
+    frame: phone
+    assetPath: idea-layer/store-assets/03-home-offline.html
+    copy:
+      en:
+        eyebrow: No signal, no problem
+        title: Keep working without a connection.
+        subtitle: The last synced data stays on your device, so a village with no coverage doesn't stop the day.
+        tags:
+          - Offline
+          - Reliable
+  - order: 4
+    screen: offlineSync
+    state: syncing
+    source: stitch
+    theme: field
+    frame: phone
+    assetPath: idea-layer/store-assets/04-offlineSync-syncing.html
+    copy:
+      en:
+        eyebrow: Upload in one tap
+        title: See every record as it syncs.
+        subtitle: Clients, loan repayments and savings transactions upload with progress you can follow, item by item.
+        tags:
+          - Sync
+          - Progress
+  - order: 5
+    screen: signin
+    state: biometric_ready
+    source: stitch
+    theme: indigo
+    frame: phone
+    assetPath: idea-layer/store-assets/05-signin-biometric_ready.html
+    copy:
+      en:
+        eyebrow: Your institution's account
+        title: Sign in with the account you were given.
+        subtitle: Connect to your institution's own Fineract server. Your data goes to your institution, nowhere else.
+        tags:
+          - Secure
+          - Fineract
+  - order: 6
+    screen: profile
+    state: content
+    source: stitch
+    theme: night
+    frame: phone
+    assetPath: idea-layer/store-assets/06-profile-content.html
+    copy:
+      en:
+        eyebrow: Your officer profile
+        title: Your office, server and tenant in one place.
+        subtitle: See who you're signed in as, which office you serve, and change your password without leaving the app.
+        tags:
+          - Profile
+          - Account
+  - order: 7
+    screen: offlineSync
+    state: partial_failure
+    source: stitch
+    theme: field
+    frame: phone
+    assetPath: idea-layer/store-assets/07-offlineSync-partial_failure.html
+    copy:
+      en:
+        eyebrow: Nothing gets lost
+        title: Failed uploads wait for a retry.
+        subtitle: If the server refuses a record, it stays on your device with the reason, ready to fix and send again.
+        tags:
+          - Sync
+          - Retry
+  # ── Feature graphics (orders 9-12) ─────────────────────────────────────
+  - order: 9
+    screen: feature-graphic
+    state: hero
+    source: stitch
+    theme: indigo
+    frame: feature-graphic
+    variant: hero-right
+    hero_screen: home
+    hero_state: content
+    assetPath: idea-layer/store-assets/09-feature-graphic-hero.html
+    ground_image: idea-layer/stitch/store_ref_feature_banner.png   # WIDE 2:1 reference for the 1024×500 banner
+    copy:
+      en:
+        eyebrow: Mifos X Field Officer
+        title: Microfinance work, in the field.
+        subtitle: Clients, loans and collections on your Mifos X server.
+        tags:
+          - Mifos X
+          - Field work
+  - order: 10
+    screen: feature-graphic
+    state: centered
+    source: stitch
+    theme: field
+    frame: feature-graphic
+    variant: centered
+    hero_screen: offlineSync
+    hero_state: content
+    assetPath: idea-layer/store-assets/10-feature-graphic-centered.html
+    copy:
+      en:
+        eyebrow: Offline first
+        title: Work offline. Sync later.
+        subtitle: Built for places where the signal drops.
+        tags:
+          - Offline
+          - Sync
+  - order: 11
+    screen: feature-graphic
+    state: showcase
+    source: stitch
+    theme: night
+    frame: feature-graphic
+    variant: showcase
+    hero_screen: profile
+    hero_state: content
+    assetPath: idea-layer/store-assets/11-feature-graphic-showcase.html
+    copy:
+      en:
+        eyebrow: Mifos X Field Officer
+        title: Connected to your institution.
+        subtitle: Your own Fineract server, your own account.
+        tags:
+          - Fineract
+          - Secure
+  - order: 12
+    screen: feature-graphic
+    state: duo
+    source: stitch
+    theme: indigo
+    frame: feature-graphic
+    variant: duo
+    hero_screen: home
+    hero_state: content
+    hero_screen_2: offlineSync
+    hero_state_2: syncing
+    assetPath: idea-layer/store-assets/12-feature-graphic-duo.html
+    copy:
+      en:
+        eyebrow: Mifos X Field Officer
+        title: Plan the day. Sync the work.
+        subtitle: A dashboard for your portfolio and an offline queue for your visits.
+        tags:
+          - Dashboard
+          - Sync
+  # ── Tablets (orders 13-15) ─────────────────────────────────────────────
+  - order: 13
+    screen: home
+    state: content
+    source: stitch
+    theme: indigo
+    frame: tablet
+    assetPath: idea-layer/store-assets/13-home-content.html
+    copy:
+      en:
+        eyebrow: Your day at a glance
+        title: Your portfolio, ready when you are.
+        subtitle: Clients, loans due and collections for your office in one dashboard, straight from your Mifos X server.
+        tags:
+          - Dashboard
+          - Portfolio
+  - order: 14
+    screen: offlineSync
+    state: content
+    source: stitch
+    theme: field
+    frame: tablet
+    assetPath: idea-layer/store-assets/14-offlineSync-content.html
+    copy:
+      en:
+        eyebrow: Built for the field
+        title: Work offline, sync when you're back.
+        subtitle: Download centres and groups before a visit, record work with no signal, and send it when you reconnect.
+        tags:
+          - Offline
+          - Sync
+  - order: 15
+    screen: profile
+    state: content
+    source: stitch
+    theme: night
+    frame: tablet
+    assetPath: idea-layer/store-assets/15-profile-content.html
+    copy:
+      en:
+        eyebrow: Your officer profile
+        title: Your office, server and tenant in one place.
+        subtitle: See who you're signed in as, which office you serve, and change your password without leaving the app.
+        tags:
+          - Profile
+          - Account
+  # ── App icon (order 16) ────────────────────────────────────────────────
+  - order: 16
+    screen: app-icon
+    state: default
+    source: stitch
+    theme: indigo
+    frame: icon
+    icon_source: source/mifos-x-field-officer-app/app-profile/icons/ios.png
+    assetPath: idea-layer/store-assets/16-app-icon-default.html
+    copy:
+      en:
+        eyebrow: ''
+        title: MifosXDroid
+        subtitle: app icon
+        tags: []

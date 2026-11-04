@@ -8,7 +8,7 @@ role: brand
 
 # ──────────────── PRODUCTION ────────────────
 produced_by: /idea-branding
-produced_at: "2026-10-03"
+produced_at: "2026-11-04"   # RE-DERIVED: the 2026-10-03 output was the template gear/dollar (see `history`)
 engine: deterministic-derivation          # no generative model involved
 
 # ──────────────── WIRING (SVA-3) ────────────────
@@ -20,7 +20,7 @@ wired_by: "SignInScreen.kt LogoTile() — Image(painter = painterResource(Res.dr
 
 # ──────────────── LICENSE + DEVICE TRUTH (SVA-4) ────────────────
 license_status: project-owned
-device_fidelity: pass
+device_fidelity: pending   # the 2026-10-03 pass below was for the gear artwork; re-capture the Mifos X mark
 device_fidelity_verified_at: '2026-10-03'
 device_fidelity_evidence: idea-layer/testers/captures/signin-brandmark-20261003/01-brandmark.png
 device_fidelity_device: "OnePlus CPH2423 (Q4CIZHA6Y5GMJV89), apk md5 86b2d0f0b1619cd9f99bc8d97c248277"
@@ -38,10 +38,18 @@ derivation:
   source_kind: adaptive-icon-foreground
   steps:
     - "read the 432x432 RGBA foreground"
-    - "compute the content bbox from the ALPHA channel: (108,108,324,324)"
-    - "crop to that bbox, removing the adaptive safe-zone padding (exactly the inner 50%)"
-    - "centre on a square transparent canvas, 216x216"
-  output: { width: 216, height: 216, mode: RGBA, bytes: 7596 }
+    - "compute the content bbox from the ALPHA channel: (84,84,347,347) — the Mifos X mark"
+    - "crop to that bbox, removing the adaptive safe-zone padding"
+    - "resize to a square transparent canvas, 216x216 (LANCZOS); the X gaps stay transparent so the tile tints through"
+  output: { width: 216, height: 216, mode: RGBA, md5: fcac11312c19c64777e1bac64f14f10e }
+
+history:
+  - date: "2026-10-03"
+    artwork: "template App Toolkit gear/dollar — the launcher foreground at the time (bbox 108..324)"
+  - date: "2026-11-04"
+    artwork: "Mifos X mark (lime/green/blue/sky triangles) — re-derived after /idea-branding found the
+      sign-in tile still showing the gear. A derivation only stays current if it is RE-RUN when its
+      source changes; `consistency_proof` below holds only from this date."
 
 # ──────────────── WHY THIS SOURCE ────────────────
 rationale: >

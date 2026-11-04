@@ -3,7 +3,7 @@ ui_yaml_sha: d507f376f860c014e7068f2bf3fd3fb66cac58d618ddf536c9e4dc0c77b505f4
 design_md_hash: c1e7dbe50f7725a08e0369f4cb0659b8c1e56ac645d128a4c90c66b8618666ef
 app_shell_hash: 89077f8f960080911cf9c2b934ba619c11591fcb24da55987a5a1bb79f349739
 design_read_hash: 
-content_hash: 6bb2ca2f92f275b1f9f576ef634cbb8944fa491ba947d237755a37d60560c896
+content_hash: b471062254212be9833bdf0099c2041db2efa69e4995e15a5173f5a7003e8eb6
 
 design_read_aesthetic: taste-default
 design_read_dials: {variance: 7, motion: 6, density: 4}
@@ -19,8 +19,8 @@ design_system_id: '9551377288795375599'
 
 generated_by: stitch-prompt-build.ts v2.1.0
 prompt_template_version: stitch-per-state-v3.1.0
-craft_rules_version: v1.2.0
-polished_by: claude-in-session (Step 2 POLISH, source = screens/profile/preview/change_password.html; v2 after the first render invented an ID, a session chip and an assignment card)
+craft_rules_version: v1.5.0
+polished_by: claude-in-session (Step 2 POLISH, responsive mandate per RULE-MOCKUP-RESPONSIVE-001, source = screens/profile/ui.yaml)
 ---
 
 # profile — change_password state
@@ -30,7 +30,7 @@ polished_by: claude-in-session (Step 2 POLISH, source = screens/profile/preview/
 
 ↓↓↓ MOCKUP PROMPT
 
-Design the change_password state of the Profile screen for **Mifos X Field Officer**, a microfinance field-officer app. A bottom sheet is open over the Profile screen; the officer has typed two different passwords, so the second field shows the mismatch and Save is disabled. Material 3 light theme, 412×915dp phone, the design system's own type scale (do not change the font).
+Design the change_password state of the Profile screen for **Mifos X Field Officer**, a microfinance field-officer app. A bottom sheet is open over the Profile screen; the officer has typed two different passwords, so the second field shows the mismatch and Save is disabled. Material 3 light theme, **responsive layout** that works on phones, tablets and desktop windows, the design system's own type scale (do not change the font). Responsive layout (required): fluid full-width layout, no fixed-width root and no phone-width max-width cap. Compact (<600dp): the sheet spans the full width from the bottom edge, the dimmed profile above it is one column. Medium (600-840dp): the dimmed profile behind the scrim uses its two-column layout (identity on the left), and the sheet is centred at the bottom with a max width of about 560dp and 28dp top corners. Expanded (>=840dp): the dimmed profile sits in a centred content column capped at about 1040dp, and the sheet stays centred at about 560dp wide. Use Tailwind md: and lg: breakpoints.
 
 Palette: background #FAFAFB, surface #FFFFFF, onSurface #0F172A, onSurfaceVariant #475569, primary #4338CA, onPrimary #FFFFFF, primaryContainer #E0E7FF, surfaceVariant #E2E8F0, error #DC2626, outline #94A3B8, outlineVariant #CBD5E1.
 

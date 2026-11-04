@@ -1,93 +1,171 @@
 <!doctype html>
-<!-- render-hash: bf66fa83eac0 -->
-<html lang="en"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Profile: content</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
+<!-- render-hash: 25553c22f551 -->
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Profile: Mifos X Field Officer</title>
 <style>
-:root{--primary:#4338CA;--on-primary:#FFFFFF;--primary-container:#E0E7FF;--on-primary-container:#1F1D75;
---secondary:#059669;--secondary-container:#D1FAE5;--on-secondary-container:#064E3B;--tertiary:#D97706;--tertiary-container:#FEF3C7;--on-tertiary-container:#78350F;
---error:#DC2626;--error-container:#FFE4E1;--on-error-container:#9F1239;
---background:#FAFAFB;--surface:#FFFFFF;--on-surface:#0F172A;--surface-variant:#E2E8F0;--on-surface-variant:#475569;
---outline:#94A3B8;--outline-variant:#CBD5E1;--scrim:rgba(15,23,42,.42);
---sp-xs:4px;--sp-sm:8px;--sp-md:12px;--sp-lg:16px;--sp-xl:24px;--touch:48px;--r-sm:8px;--r-md:12px;--r-lg:16px;--r-xl:28px;--r-pill:999px}
-[data-theme="dark"]{--primary:#A5B4FC;--on-primary:#1E1B4B;--primary-container:#312E81;--on-primary-container:#E0E7FF;
---secondary:#34D399;--secondary-container:#064E3B;--on-secondary-container:#D1FAE5;--tertiary:#FBBF24;--tertiary-container:#78350F;--on-tertiary-container:#FEF3C7;
---error:#F87171;--error-container:#7F1D1D;--on-error-container:#FFE4E1;
---background:#0F172A;--surface:#1E293B;--on-surface:#F1F5F9;--surface-variant:#334155;--on-surface-variant:#CBD5E1;--outline:#64748B;--outline-variant:#475569}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Outfit',system-ui,sans-serif;background:var(--background);color:var(--on-surface);-webkit-font-smoothing:antialiased;display:flex;justify-content:center;min-height:100dvh}
-.phone{width:100%;max-width:420px;min-height:100dvh;display:flex;flex-direction:column;position:relative;overflow:hidden}
-.sym{font-family:'Material Symbols Rounded';line-height:1;display:inline-block;font-size:22px}
-button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
-:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
-.topbar{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:var(--sp-xs);height:64px;padding:0 var(--sp-xs);background:var(--background)}
-.topbar h1{font-size:20px;font-weight:600;letter-spacing:-.01em}
-.icon-btn{width:var(--touch);height:var(--touch);display:grid;place-items:center;border-radius:var(--r-pill);color:var(--on-surface-variant);flex:none}
-main{flex:1;padding:var(--sp-sm) var(--sp-lg) 40px;display:flex;flex-direction:column;gap:var(--sp-xl)}
-.hero{display:flex;align-items:center;gap:var(--sp-lg);padding:var(--sp-sm) var(--sp-xs) 0}
-.disc{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;flex:none;background:var(--primary-container);color:var(--primary);font-size:26px;font-weight:700;box-shadow:0 0 0 4px var(--surface),0 4px 14px rgba(67,56,202,.18)}
-.who{min-width:0}
-.who h2{font-size:26px;font-weight:600;letter-spacing:-.02em;line-height:1.15}
-.who p{font-size:14px;color:var(--on-surface-variant);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.group h3{font-size:14px;font-weight:600;color:var(--on-surface-variant);padding:0 var(--sp-xs) var(--sp-sm)}
-.list{background:var(--surface);border:1px solid var(--outline-variant);border-radius:var(--r-lg);overflow:hidden}
-.item{display:flex;align-items:center;gap:var(--sp-lg);min-height:56px;padding:var(--sp-sm) var(--sp-lg)}
-.item+.item{border-top:1px solid var(--surface-variant)}
-.item>.sym{color:var(--on-surface-variant);flex:none}
-.item .t{flex:1;min-width:0}
-.item .t>span{display:block;font-size:13px;color:var(--on-surface-variant)}
-.item .t>b{display:block;font-size:15px;font-weight:500;margin-top:1px;overflow-wrap:anywhere}
-.item .t>small{display:block;font-size:13px;color:var(--on-surface-variant);margin-top:4px;line-height:1.4}
-.item.act{cursor:pointer}
-.item.danger,.item.danger>.sym{color:var(--error)}
-.live{display:inline-flex;align-items:center;gap:4px;height:22px;padding:0 8px;margin-left:8px;border-radius:var(--r-pill);background:var(--secondary-container);color:var(--on-secondary-container);font-size:11px;font-weight:600;vertical-align:2px}
-.live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--secondary)}
-.roles{display:flex;flex-wrap:wrap;gap:var(--sp-sm);padding:var(--sp-md) var(--sp-lg)}
-.role{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 var(--sp-md);border-radius:var(--r-sm);border:1px solid var(--outline-variant);font-size:13px;font-weight:500}
-.role .sym{font-size:18px;color:var(--primary)}
-.link{color:var(--primary);font-weight:600}
-</style></head>
-<body><div class="phone" data-testid="profile_screen">
-<header class="topbar"><button class="icon-btn" aria-label="Back" data-testid="profile_back" data-od-nav="home"><span class="sym">arrow_back</span></button><h1>Profile</h1></header>
-<main>
-  <section class="hero" data-testid="profile_identity">
-    <div class="disc" aria-hidden="true">IZ</div>
-    <div class="who">
-      <h2>Irving Zepeda</h2>
-      <p>fieldofficer</p>
-      <p>oficial.campo@gmail.com</p>
-    </div>
-  </section>
-
-  <section class="group">
-    <div class="list">
-      <div class="item"><span class="sym">apartment</span><div class="t"><span>Office</span><b>CENTRAL</b></div></div>
-      <div class="item" data-testid="profile_scope"><span class="sym">insights</span><div class="t"><span>What Home shows</span><b>Office: CENTRAL</b><small>Your own portfolio when you're linked to a staff record, otherwise your whole office.</small></div></div>
-    </div>
-  </section>
-
-  <section class="group" data-testid="profile_roles">
-    <h3>Roles</h3>
-    <div class="list"><div class="roles"><span class="role"><span class="sym">badge</span>OFICIAL DE CAMPO</span></div></div>
-  </section>
-
-  <section class="group" data-testid="profile_session">
-    <h3>Signed in to</h3>
-    <div class="list">
-      <div class="item"><span class="sym">dns</span><div class="t"><b>Mifos field officer gateway<span class="live">Live</span></b></div></div>
-      <div class="item"><span class="sym">link</span><div class="t"><span>Server</span><b>https://apis.mifos.community/1.0/field/v1/</b></div></div>
-      <div class="item"><span class="sym">tag</span><div class="t"><span>Tenant</span><b>mifos-bank-1</b></div></div>
-      <div class="item act" data-testid="profile_server_settings" data-od-nav="serverConfig"><span class="sym">tune</span><div class="t"><b class="link">Server settings</b></div><span class="sym">chevron_right</span></div>
-    </div>
-  </section>
-
-  <section class="group" data-testid="profile_actions">
-    <div class="list">
-      <div class="item act" data-testid="profile_change_password" data-od-state="change_password"><span class="sym">lock_reset</span><div class="t"><b>Change password</b></div><span class="sym">chevron_right</span></div>
-      <div class="item act danger" data-testid="profile_sign_out" data-action="sign_out"><span class="sym">logout</span><div class="t"><b>Sign out</b></div></div>
-    </div>
-  </section>
+:root {
+  --color-background: #FAFAFB;
+  --color-surface: #FFFFFF;
+  --color-on-surface: #0F172A;
+  --color-on-surface-variant: #475569;
+  --color-primary: #4338CA;
+  --color-on-primary: #FFFFFF;
+  --color-primary-container: #E0E7FF;
+  --color-on-primary-container: #1F1D75;
+  --color-secondary: #059669;
+  --color-secondary-container: #D1FAE5;
+  --color-on-secondary-container: #064E3B;
+  --color-tertiary-container: #FEF3C7;
+  --color-on-tertiary-container: #78350F;
+  --color-error: #DC2626;
+  --color-error-container: #FFE4E1;
+  --color-on-error-container: #9F1239;
+  --color-outline: #94A3B8;
+  --color-outline-variant: #CBD5E1;
+  --color-divider: #E2E8F0;
+  --color-surface-variant: #E2E8F0;
+  --color-scrim: rgba(15, 23, 42, 0.42);
+  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
+  --font-family: "Outfit", ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --space-xs: 4px; --space-sm: 8px; --space-md: 12px; --space-lg: 16px; --space-xl: 24px; --space-xxl: 32px;
+  --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px;
+}
+[data-theme="dark"] {
+  --color-background: #0F172A;
+  --color-surface: #1E293B;
+  --color-on-surface: #F1F5F9;
+  --color-on-surface-variant: #CBD5E1;
+  --color-primary: #A5B4FC;
+  --color-on-primary: #1F1D75;
+  --color-primary-container: #312E81;
+  --color-on-primary-container: #E0E7FF;
+  --color-secondary-container: #064E3B;
+  --color-on-secondary-container: #D1FAE5;
+  --color-tertiary-container: #78350F;
+  --color-on-tertiary-container: #FEF3C7;
+  --color-error: #F87171;
+  --color-error-container: #4C0519;
+  --color-on-error-container: #FFE4E1;
+  --color-outline: #64748B;
+  --color-outline-variant: #334155;
+  --color-divider: #334155;
+  --color-surface-variant: #334155;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { width: 100%; min-height: 100vh; background: var(--color-background); color: var(--color-on-surface); font-family: var(--font-family); -webkit-font-smoothing: antialiased; }
+.appbar { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; gap: var(--space-xs); height: 64px; padding: 0 var(--space-xs); background: var(--color-background); }
+.icon-btn { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border: 0; border-radius: 50%; background: transparent; color: var(--color-on-surface); cursor: pointer; }
+.icon-btn:focus-visible, .row-link:focus-visible, .text-btn:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+.appbar h1 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: 0; }
+.page { width: 100%; margin: 0 auto; padding: var(--space-sm) var(--space-lg) var(--space-xxl); display: grid; grid-template-columns: 1fr; gap: var(--space-xl); }
+.col { display: flex; flex-direction: column; gap: var(--space-xl); min-width: 0; }
+.identity { display: flex; align-items: center; gap: var(--space-lg); }
+.avatar { flex: none; width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; background: var(--color-primary-container); color: var(--color-primary); font-size: 26px; font-weight: 700; box-shadow: 0 0 0 4px var(--color-surface); }
+.id-text { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.name { margin: 0 0 var(--space-xs); font-size: 24px; font-weight: 600; line-height: 1.25; }
+.meta { margin: 0; font-size: 14px; color: var(--color-on-surface-variant); overflow-wrap: anywhere; }
+.section-title { margin: 0 0 var(--space-sm); font-size: 14px; font-weight: 500; color: var(--color-on-surface-variant); }
+.card { background: var(--color-surface); border: 1px solid var(--color-outline-variant); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); overflow: hidden; }
+.row { display: flex; align-items: center; gap: var(--space-lg); min-height: 56px; padding: var(--space-sm) var(--space-lg); }
+.row + .row { border-top: 1px solid var(--color-divider); }
+.row svg { flex: none; color: var(--color-on-surface-variant); }
+.row-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.label { font-size: 12px; color: var(--color-on-surface-variant); }
+.value { font-size: 16px; color: var(--color-on-surface); overflow-wrap: anywhere; }
+.support { font-size: 12px; color: var(--color-on-surface-variant); line-height: 1.4; }
+.mono { font-variant-numeric: tabular-nums; }
+.chips { display: flex; flex-wrap: wrap; gap: var(--space-sm); padding: var(--space-md) var(--space-lg); }
+.chip { display: inline-flex; align-items: center; gap: var(--space-sm); height: 32px; padding: 0 var(--space-md); border: 1px solid var(--color-outline); border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; }
+.chip svg { color: var(--color-primary); }
+.pill { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 var(--space-sm); border-radius: 11px; background: var(--color-secondary-container); color: var(--color-on-secondary-container); font-size: 12px; font-weight: 600; }
+.pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--color-secondary); }
+.row-link { width: 100%; border: 0; background: transparent; font: inherit; color: inherit; text-align: left; cursor: pointer; }
+.row-link:hover { background: var(--color-surface-variant); }
+.link-label { font-size: 16px; font-weight: 600; color: var(--color-primary); }
+.danger, .danger svg { color: var(--color-error); }
+.chev { margin-left: auto; }
+@media (min-width: 600px) {
+  .appbar { padding: 0 var(--space-md); }
+  .page { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: var(--space-xl); padding: var(--space-lg) var(--space-xl) var(--space-xxl); align-items: start; }
+  .col-left { position: sticky; top: 80px; }
+}
+@media (min-width: 840px) {
+  .page { max-width: 1040px; grid-template-columns: 360px minmax(0, 1fr); padding: var(--space-xl) var(--space-xxl) 48px; }
+  .identity { flex-direction: column; align-items: flex-start; }
+  .avatar { width: 96px; height: 96px; font-size: 34px; }
+}
+</style>
+</head>
+<body>
+<header class="appbar">
+  <button class="icon-btn" type="button" aria-label="Back" data-testid="profile_back" data-nav-to="home">
+    <svg width="24" height="24" viewBox="0 0 48 48" aria-hidden="true"><path d="M40 22H15.7l11.2-11.2L24 8 8 24l16 16 2.8-2.8L15.7 26H40z" fill="currentColor"/></svg>
+  </button>
+  <h1>Profile</h1>
+</header>
+<main class="page" data-screen="profile" data-state="content">
+  <div class="col col-left">
+    <section class="identity" data-testid="profile_identity">
+      <div class="avatar" role="img" aria-label="Irving Zepeda">IZ</div>
+      <div class="id-text">
+        <p class="name">Irving Zepeda</p>
+        <p class="meta">fieldofficer</p>
+        <p class="meta">oficial.campo@gmail.com</p>
+      </div>
+    </section>
+    <section data-testid="profile_roles">
+      <h2 class="section-title">Roles</h2>
+      <div class="card"><div class="chips">
+        <span class="chip"><svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 44q-1.6 0-2.8-1.2Q4 41.6 4 40V18q0-1.6 1.2-2.8Q6.4 14 8 14h10V8q0-1.6 1.2-2.8Q20.4 4 22 4h4q1.6 0 2.8 1.2Q30 6.4 30 8v6h10q1.6 0 2.8 1.2Q44 16.4 44 18v22q0 1.6-1.2 2.8Q41.6 44 40 44zm4-8h12v-.9q0-.9-.5-1.6-.5-.8-1.4-1.1-1.1-.5-2-.6-1-.2-2.1-.2t-2.1.2q-1 .2-2 .6-.9.4-1.4 1.1-.5.7-.5 1.6zm16-3h8v-3h-8zm-10-3q1.2 0 2.1-.9.9-.9.9-2.1t-.9-2.1Q19.2 24 18 24t-2.1.9Q15 25.8 15 27t.9 2.1q.9.9 2.1.9zm10-3h8v-3h-8zM22 18h4V8h-4z" fill="currentColor"/></svg>OFICIAL DE CAMPO</span>
+      </div></div>
+    </section>
+  </div>
+  <div class="col">
+    <section class="card" data-testid="profile_scope" aria-label="Office">
+      <div class="row">
+        <svg width="24" height="24" viewBox="0 0 48 48" aria-hidden="true"><path d="M4 42V14h10V6h20v16h10v20H26v-8h-4v8zm4-4h4v-4H8zm0-8h4v-4H8zm0-8h4v-4H8zm10 8h4v-4h-4zm0-8h4v-4h-4zm0-8h4v-4h-4zm8 16h4v-4h-4zm0-8h4v-4h-4zm0-8h4v-4h-4zm10 24h4v-4h-4zm0-8h4v-4h-4z" fill="currentColor"/></svg>
+        <div class="row-body"><span class="label">Office</span><span class="value">CENTRAL</span></div>
+      </div>
+      <div class="row">
+        <svg width="24" height="24" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 40q-1.6 0-2.8-1.2T4 36t1.2-2.8T8 32h.5q.3 0 .7.1l9.1-9.1q-.1-.4-.1-.7V22q0-1.6 1.2-2.8T22 18t2.8 1.2T26 22v.4q0 .3-.1.7l5.1 5.1q.4-.1.7-.1h1q.3 0 .7.1l7.1-7.1q-.1-.4-.1-.7V20q0-1.6 1.2-2.8T44 16q1.6 0 2.8 1.2T48 20t-1.2 2.8T44 24h-.5q-.3 0-.7-.1l-7.1 7.1q.1.4.1.7v.4q0 1.6-1.2 2.8T32 36t-2.8-1.2T28 32v-.4q0-.3.1-.7L23 25.8q-.4.1-.7.1H22h-.3q-.3 0-.7-.1l-9.1 9.1q.1.4.1.7v.4q0 1.6-1.2 2.8T8 40z" fill="currentColor"/></svg>
+        <div class="row-body"><span class="label">What Home shows</span><span class="value">Office: CENTRAL</span><span class="support">Your own portfolio when you're linked to a staff record, otherwise your whole office.</span></div>
+      </div>
+    </section>
+    <section data-testid="profile_session">
+      <h2 class="section-title">Signed in to</h2>
+      <div class="card">
+        <div class="row">
+          <svg width="24" height="24" viewBox="0 0 48 48" aria-hidden="true"><path d="M14 14q-.8 0-1.4.6T12 16t.6 1.4T14 18t1.4-.6T16 16t-.6-1.4T14 14zm0 16q-.8 0-1.4.6T12 32t.6 1.4T14 34t1.4-.6T16 32t-.6-1.4T14 30zM8 6h32q.9 0 1.4.6T42 8v14q0 .9-.6 1.4T40 24H8q-.9 0-1.4-.6T6 22V8q0-.9.6-1.4T8 6zm0 18h32q.9 0 1.4.6T42 26v14q0 .9-.6 1.4T40 42H8q-.9 0-1.4-.6T6 40V26q0-.9.6-1.4T8 24z" fill="currentColor"/></svg>
+          <div class="row-body"><span class="value">Mifos field officer gateway</span></div>
+          <span class="pill">Live</span>
+        </div>
+        <div class="row"><div class="row-body"><span class="label">Server</span><span class="value mono">https://apis.mifos.community/1.0/field/v1/</span></div></div>
+        <div class="row"><div class="row-body"><span class="label">Tenant</span><span class="value mono">mifos-bank-1</span></div></div>
+        <button class="row row-link" type="button" data-testid="profile_server_settings" data-nav-to="serverConfig">
+          <svg width="24" height="24" viewBox="0 0 48 48" aria-hidden="true" style="color: var(--color-primary)"><path d="M22 42V30h4v4h16v4H26v4zM6 38v-4h12v4zm8-8v-4H6v-4h8v-4h4v12zm8-4v-4h20v4zm8-8V6h4v4h8v4h-8v4zM6 14v-4h20v4z" fill="currentColor"/></svg>
+          <span class="link-label">Server settings</span>
+          <svg class="chev" width="24" height="24" viewBox="0 0 48 48" aria-hidden="true"><path d="M18.75 36 16 33.25 25.2 24 16 14.75 18.75 12l12 12z" fill="currentColor"/></svg>
+        </button>
+      </div>
+    </section>
+    <section class="card" data-testid="profile_actions" aria-label="Account">
+      <button class="row row-link" type="button" data-testid="profile_change_password" data-action="open_change_password">
+        <svg width="24" height="24" viewBox="0 0 48 48" aria-hidden="true"><path d="M26 42q-7.5 0-12.75-5.25T8 24h4q0 5.85 4.075 9.925Q20.15 38 26 38t9.925-4.075Q40 29.85 40 24t-4.075-9.925Q31.85 10 26 10q-3.1 0-5.825 1.275T15.5 14.8H20v4H8.5V7.3h4v4.3q2.75-3.1 6.5-4.85T26 5q7.5 0 12.75 5.25T44 23q0 7.5-5.25 12.75T26 42zm-4-10q-.8 0-1.4-.6T20 30v-6q0-.8.6-1.4T22 22v-2q0-1.65 1.175-2.825Q24.35 16 26 16t2.825 1.175Q30 18.35 30 20v2q.8 0 1.4.6T32 24v6q0 .8-.6 1.4T30 32zm2-10h4v-2q0-.85-.575-1.425Q26.85 18 26 18t-1.425.575Q24 19.15 24 20z" fill="currentColor"/></svg>
+        <span class="value">Change password</span>
+        <svg class="chev" width="24" height="24" viewBox="0 0 48 48" aria-hidden="true"><path d="M18.75 36 16 33.25 25.2 24 16 14.75 18.75 12l12 12z" fill="currentColor"/></svg>
+      </button>
+      <button class="row row-link danger" type="button" data-testid="profile_sign_out" data-action="sign_out">
+        <svg width="24" height="24" viewBox="0 0 48 48" aria-hidden="true"><path d="M9 42q-1.2 0-2.1-.9Q6 40.2 6 39V9q0-1.2.9-2.1Q7.8 6 9 6h14.55v3H9v30h14.55v3zm24.3-9.25-2.15-2.15 5.1-5.1h-17.5v-3h17.4l-5.1-5.1 2.15-2.15 8.8 8.8z" fill="currentColor"/></svg>
+        <span class="value danger">Sign out</span>
+      </button>
+    </section>
+  </div>
 </main>
-</div></body></html>
+<div class="snackbar-host" data-testid="profile_snackbar" aria-live="polite" hidden></div>
+<script src="../../../preview/_shared/preview-runtime.js"></script>
+</body>
+</html>

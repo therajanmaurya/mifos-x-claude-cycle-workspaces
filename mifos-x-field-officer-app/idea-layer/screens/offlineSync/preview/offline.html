@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- render-hash: os-offline-02 -->
+<!-- render-hash: 1a5b609c6379 -->
 <html lang="en"><head>
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Offline sync: offline</title>
@@ -7,112 +7,147 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
 <style>
 :root{--primary:#4338CA;--on-primary:#FFFFFF;--primary-container:#E0E7FF;--on-primary-container:#1F1D75;
---secondary:#059669;--secondary-container:#D1FAE5;--on-secondary-container:#064E3B;--tertiary:#D97706;--tertiary-container:#FEF3C7;--on-tertiary-container:#78350F;
---error:#DC2626;--error-container:#FFE4E1;--on-error-container:#9F1239;
---background:#FAFAFB;--surface:#FFFFFF;--on-surface:#0F172A;--surface-variant:#E2E8F0;--on-surface-variant:#475569;
---outline:#94A3B8;--outline-variant:#CBD5E1;
---sp-xs:4px;--sp-sm:8px;--sp-md:12px;--sp-lg:16px;--sp-xl:24px;--touch:48px;--r-sm:8px;--r-md:12px;--r-lg:16px;--r-pill:999px}
+--secondary:#059669;--secondary-container:#D1FAE5;--on-secondary-container:#064E3B;
+--tertiary:#D97706;--tertiary-container:#FEF3C7;--on-tertiary-container:#78350F;
+--background:#FAFAFB;--surface:#FFFFFF;--surface-2:#FAFAFB;--on-surface:#0F172A;--surface-variant:#E2E8F0;--on-surface-variant:#475569;
+--outline:#94A3B8;--outline-variant:#CBD5E1;--hairline:#E2E8F0;
+--font:'Outfit',ui-rounded,system-ui,sans-serif;--font-display:'Outfit',ui-rounded,system-ui,sans-serif;--font-mono:'Outfit',ui-monospace,system-ui,sans-serif;--icons:'Material Symbols Rounded';
+--fs-display:28px;--fs-title-lg:22px;--fs-title:16px;--fs-body:14px;--fs-label:12px;--fs-icon:22px;--fs-icon-sm:18px;--lh:1.4;--fw-r:400;--fw-m:500;--fw-sb:600;
+--sp-0:0;--sp-xs:4px;--sp-sm:8px;--sp-md:12px;--sp-lg:16px;--sp-xl:24px;
+--r-sm:8px;--r-md:12px;--r-lg:16px;--r-pill:999px;--hair:1px;--ring:2px;
+--touch:48px;--bar-h:64px;--chip-h:32px;--tab-h:36px;--avatar:40px;--row-h:68px;--search-h:44px;
+--el-1:0 1px 2px rgba(15,23,42,.05),0 4px 12px rgba(15,23,42,.04);
+--side-md:300px;--side-lg:400px;--content-max:1200px}
+:root[data-theme="dark"]{--primary:#A5B4FC;--on-primary:#1F1D75;--primary-container:#3730A3;--on-primary-container:#E0E7FF;
+--secondary:#34D399;--secondary-container:#064E3B;--on-secondary-container:#D1FAE5;--tertiary:#FBBF24;--tertiary-container:#78350F;--on-tertiary-container:#FEF3C7;
+--background:#0F172A;--surface:#1E293B;--surface-2:#172033;--on-surface:#F1F5F9;--surface-variant:#334155;--on-surface-variant:#CBD5E1;
+--outline:#64748B;--outline-variant:#334155;--hairline:#334155;--el-1:0 1px 2px rgba(0,0,0,.4)}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Outfit',system-ui,sans-serif;background:var(--background);color:var(--on-surface);-webkit-font-smoothing:antialiased;display:flex;justify-content:center;min-height:100dvh}
-.phone{width:100%;max-width:420px;min-height:100dvh;display:flex;flex-direction:column;position:relative}
-.sym{font-family:'Material Symbols Rounded';line-height:1;display:inline-block;font-size:22px}
-.num{font-variant-numeric:tabular-nums}
+html,body{width:100%;min-height:100vh}
+body{font-family:var(--font);font-size:var(--fs-body);line-height:var(--lh);background:var(--background);color:var(--on-surface);-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;min-height:100vh}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
-:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
-.topbar{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:var(--sp-xs);height:64px;padding:0 var(--sp-xs);background:var(--background)}
-.topbar h1{font-size:20px;font-weight:600;letter-spacing:-.01em}
+:focus-visible{outline:var(--ring) solid var(--primary);outline-offset:var(--ring)}
+.sym{font-family:var(--icons);font-size:var(--fs-icon);line-height:1;display:inline-block;font-weight:var(--fw-r)}
+.sym.sm{font-size:var(--fs-icon-sm)}
+.app{flex:1;display:flex;flex-direction:column;width:100%;min-height:100vh;position:relative}
+.topbar{position:sticky;top:var(--sp-0);z-index:3;display:flex;align-items:center;gap:var(--sp-xs);height:var(--bar-h);padding:var(--sp-0) var(--sp-xs);background:var(--background)}
+.topbar h1{font-family:var(--font-display);font-size:var(--fs-title-lg);font-weight:var(--fw-sb)}
 .icon-btn{width:var(--touch);height:var(--touch);display:grid;place-items:center;border-radius:var(--r-pill);color:var(--on-surface-variant);flex:none}
-main{flex:1;padding:0 var(--sp-lg) 104px;display:flex;flex-direction:column;gap:var(--sp-lg)}
-.banner{display:flex;gap:var(--sp-md);align-items:flex-start;padding:var(--sp-md) var(--sp-lg);border-radius:var(--r-md);background:var(--tertiary-container);color:var(--on-tertiary-container);font-size:14px;line-height:1.4}
-.banner .sym{font-size:20px;margin-top:1px}
-.card{background:var(--surface);border:1px solid var(--outline-variant);border-radius:var(--r-lg);overflow:hidden;box-shadow:0 1px 2px rgba(15,23,42,.05),0 4px 12px rgba(15,23,42,.04)}
-.hdr{padding:var(--sp-lg);display:flex;flex-direction:column;gap:var(--sp-md)}
+main{flex:1;display:flex;flex-direction:column;padding:var(--sp-0) var(--sp-lg) var(--sp-xl)}
+.layout{display:grid;gap:var(--sp-lg);grid-template-columns:minmax(0,1fr);align-content:start;width:100%}
+.card{background:var(--surface);border:var(--hair) solid var(--outline-variant);border-radius:var(--r-lg);box-shadow:var(--el-1);overflow:hidden;align-self:start}
+.pad{padding:var(--sp-lg);display:flex;flex-direction:column;gap:var(--sp-md)}
+.h2{font-size:var(--fs-title);font-weight:var(--fw-sb)}
 .chips{display:flex;flex-wrap:wrap;gap:var(--sp-sm)}
-.chip{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 var(--sp-md);border-radius:var(--r-pill);font-size:13px;font-weight:500;background:var(--surface-variant);color:var(--on-surface-variant)}
-.chip .sym{font-size:18px}
-.chip.off{background:var(--tertiary-container);color:var(--on-tertiary-container)}
-.levels{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-sm)}
-.lv{padding:var(--sp-md);border-radius:var(--r-md);background:var(--background);border:1px solid var(--surface-variant)}
-.lv b{display:block;font-size:24px;font-weight:600;letter-spacing:-.02em}
-.lv span{font-size:13px;color:var(--on-surface-variant);display:inline-flex;align-items:center;gap:4px}
-.lv .sym{font-size:16px}
-.sub{font-size:14px;color:var(--on-surface-variant)}
-.primary-btn{height:var(--touch);border-radius:var(--r-pill);background:var(--primary);color:var(--on-primary);font-weight:600;font-size:15px;display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-sm)}
-.primary-btn[disabled]{background:var(--surface-variant);color:var(--outline);cursor:default}
-.sec-h{display:flex;align-items:center;justify-content:space-between;padding:var(--sp-lg) var(--sp-lg) var(--sp-sm)}
-.sec-h h3{font-size:16px;font-weight:600}
-.tabs{display:flex;gap:var(--sp-sm);padding:0 var(--sp-lg) var(--sp-md)}
-.tabs button{height:36px;padding:0 var(--sp-md);border-radius:var(--r-sm);border:1px solid var(--outline-variant);font-size:14px;font-weight:500;color:var(--on-surface-variant);display:inline-flex;align-items:center;gap:6px}
-.tabs button b{font-weight:600}
-.tabs button[aria-selected="true"]{background:var(--primary-container);border-color:var(--primary);color:var(--on-primary-container)}
-.search{margin:0 var(--sp-lg) var(--sp-md);height:44px;border-radius:var(--r-pill);background:var(--background);border:1px solid var(--surface-variant);display:flex;align-items:center;gap:var(--sp-sm);padding:0 var(--sp-lg);color:var(--on-surface-variant);font-size:14px}
-.search .sym{font-size:20px}
-.row{display:flex;align-items:center;gap:var(--sp-md);min-height:68px;padding:var(--sp-sm) var(--sp-xs) var(--sp-sm) var(--sp-lg);border-top:1px solid var(--surface-variant)}
-.ava{width:40px;height:40px;border-radius:var(--r-md);display:grid;place-items:center;flex:none;font-weight:600;font-size:14px}
-.ava.k{background:var(--secondary-container);color:var(--on-secondary-container)}
-.rt{flex:1;min-width:0}
-.rt b{display:block;font-weight:500;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rt span{display:block;font-size:13px;color:var(--on-surface-variant);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rt .st{display:flex;align-items:center;gap:4px;margin-top:4px;font-size:12px;font-weight:500}
-.rt .st .sym{font-size:14px;margin:0;flex:none;color:inherit}
-.rt .st.ok{color:var(--secondary)}.rt .st.old{color:var(--tertiary)}.rt .st.bad{color:var(--error)}
-.drafts{display:flex;align-items:center;gap:var(--sp-md);padding:var(--sp-md) var(--sp-lg);font-size:14px;color:var(--on-surface-variant)}
-.drafts .sym{color:var(--primary)}
-.drafts a{margin-left:auto;color:var(--primary);font-weight:600;text-decoration:none;white-space:nowrap}
+.chip{display:inline-flex;align-items:center;gap:var(--sp-xs);height:var(--chip-h);padding:var(--sp-0) var(--sp-md);border-radius:var(--r-pill);font-size:var(--fs-label);font-weight:var(--fw-m)}
+.chip--warn{background:var(--tertiary-container);color:var(--on-tertiary-container)}
+.chip--neutral{background:var(--surface-variant);color:var(--on-surface-variant)}
+.num{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-sm)}
+.tile{border-radius:var(--r-md);background:var(--surface-2);border:var(--hair) solid var(--hairline);padding:var(--sp-md);display:flex;flex-direction:column;gap:var(--sp-xs)}
+.tile b{font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-size:var(--fs-display);font-weight:var(--fw-sb);line-height:1}
+.tile span{display:flex;align-items:center;gap:var(--sp-xs);color:var(--on-surface-variant);font-size:var(--fs-label)}
+.caption{color:var(--on-surface-variant);font-size:var(--fs-label)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-sm);min-height:var(--touch);padding:var(--sp-0) var(--sp-xl);border-radius:var(--r-pill);font-weight:var(--fw-sb);width:100%}
+.btn--disabled{background:var(--surface-variant);color:var(--outline);cursor:not-allowed}
+.banner{display:flex;align-items:center;gap:var(--sp-sm);padding:var(--sp-md) var(--sp-lg);border-radius:var(--r-md);background:var(--tertiary-container);color:var(--on-tertiary-container);font-weight:var(--fw-m)}
+.tabs{display:flex;gap:var(--sp-sm);flex-wrap:wrap}
+.tab{display:inline-flex;align-items:center;gap:var(--sp-xs);height:var(--tab-h);padding:var(--sp-0) var(--sp-md);border-radius:var(--r-sm);border:var(--hair) solid var(--outline-variant);font-size:var(--fs-body);font-weight:var(--fw-m);color:var(--on-surface-variant)}
+.tab b{font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-weight:var(--fw-sb)}
+.tab.is-sel{background:var(--primary-container);border-color:var(--primary);color:var(--on-primary-container)}
+.search{display:flex;align-items:center;gap:var(--sp-sm);height:var(--search-h);padding:var(--sp-0) var(--sp-md);border-radius:var(--r-md);background:var(--surface-2);border:var(--hair) solid var(--outline-variant);color:var(--on-surface-variant);width:100%}
+.rows{list-style:none;display:flex;flex-direction:column}
+.row{display:flex;align-items:center;gap:var(--sp-md);min-height:var(--row-h);padding:var(--sp-sm) var(--sp-0);border-top:var(--hair) solid var(--hairline)}
+.row-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--sp-xs)}
+.row-title{font-weight:var(--fw-sb)}
+.row-sub{color:var(--on-surface-variant);font-size:var(--fs-label)}
+.avatar{width:var(--avatar);height:var(--avatar);border-radius:var(--r-md);display:grid;place-items:center;font-weight:var(--fw-sb);flex:none;font-size:var(--fs-body);background:var(--secondary-container);color:var(--on-secondary-container)}
+.status{display:flex;align-items:center;gap:var(--sp-xs);font-size:var(--fs-label);font-weight:var(--fw-m)}
+.st-ok{color:var(--secondary)}.st-warn{color:var(--tertiary)}
+.drafts{display:flex;align-items:center;gap:var(--sp-md);padding:var(--sp-md) var(--sp-lg)}
+.drafts>.sym{color:var(--primary)}
+.drafts p{flex:1;color:var(--on-surface-variant)}
+.link{display:inline-flex;align-items:center;min-height:var(--touch);color:var(--primary);font-weight:var(--fw-sb)}
+@media (min-width:600px){
+  main{padding:var(--sp-0) var(--sp-xl) var(--sp-xl)}
+  .layout{column-gap:var(--sp-xl);row-gap:var(--sp-0);grid-template-columns:minmax(0,var(--side-md)) minmax(0,1fr);grid-template-rows:repeat(5,auto) 1fr}
+  .layout>*{grid-column:1;margin-bottom:var(--sp-xl)}
+  .layout>.a-banner{grid-column:1 / -1;grid-row:1}
+  .layout>.a-records{grid-column:2;grid-row:2 / -1;margin-bottom:var(--sp-0)}
+}
+@media (min-width:840px){
+  .layout{max-width:var(--content-max);margin-inline:auto;grid-template-columns:var(--side-lg) minmax(0,1fr)}
+  .topbar{padding-inline:max(var(--sp-xs),calc((100vw - var(--content-max)) / 2 - var(--sp-md)))}
+  .row-main{flex-direction:row;flex-wrap:wrap;align-items:baseline;column-gap:var(--sp-md)}
+  .row-main .status{margin-left:auto}
+  .row-main .row-sub{flex-basis:100%;order:3}
+}
 </style></head>
-<body><div class="phone" data-testid="offline_sync_screen">
-<header class="topbar"><button class="icon-btn" aria-label="Back"><span class="sym">arrow_back</span></button><h1>Offline sync</h1></header>
-<main>
-  <div class="banner" role="status" data-testid="offline_sync_offline_banner"><span class="sym">cloud_off</span><span>You're offline. Everything on this device still opens; syncing resumes when you're back online.</span></div>
+<body>
+<div class="app" data-shell="root" data-screen-id="offlineSync" data-state="offline">
+  <header class="topbar" data-shell="top-app-bar" data-variant="small">
+    <button class="icon-btn" aria-label="Back" data-action="navigate_back" data-nav-type="pop"><span class="sym" aria-hidden="true">arrow_back</span></button>
+    <h1>Offline sync</h1>
+  </header>
+  <main data-shell="content" data-state="offline">
+    <div class="layout" data-component-type="LayoutBox" data-component-id="offline_sync_layout">
+      <div class="banner a-banner" role="status" data-component-type="banner" data-component-id="offline_banner"><span class="sym" aria-hidden="true">cloud_off</span>You're offline. Everything on this device still opens; syncing resumes when you're back online.</div>
 
-  <section class="card hdr" data-testid="offline_sync_header">
-    <div class="chips">
-      <span class="chip off"><span class="sym">wifi_off</span>Offline</span>
-      <span class="chip num"><span class="sym">sync_problem</span>3 to sync</span>
-    </div>
-    <div class="levels num">
-      <div class="lv"><b>2</b><span><span class="sym">groups</span>Centres</span></div>
-      <div class="lv"><b>5</b><span><span class="sym">diversity_3</span>Groups</span></div>
-      <div class="lv"><b>43</b><span><span class="sym">person</span>Clients</span></div>
-    </div>
-    <p class="sub">Offline · last synced 2 h ago</p>
-    <button class="primary-btn" disabled data-testid="offline_sync_sync_now" data-action="sync_now"><span class="sym">sync_disabled</span>Sync when online</button>
-  </section>
+      <section class="card a-summary" data-component-type="header" data-component-variant="summary" data-component-id="summary_header">
+        <div class="pad">
+          <div class="chips">
+            <span class="chip chip--warn"><span class="sym sm" aria-hidden="true">wifi_off</span>Offline</span>
+            <span class="chip chip--neutral"><span class="num">3</span>&nbsp;to sync</span>
+          </div>
+          <div class="tiles">
+            <div class="tile"><b>2</b><span><span class="sym sm" aria-hidden="true">location_city</span>Centres</span></div>
+            <div class="tile"><b>5</b><span><span class="sym sm" aria-hidden="true">groups</span>Groups</span></div>
+            <div class="tile"><b>43</b><span><span class="sym sm" aria-hidden="true">person</span>Clients</span></div>
+          </div>
+          <p class="caption">Offline, last synced 2 h ago</p>
+          <button class="btn btn--disabled" disabled aria-disabled="true" data-component-type="button" data-component-id="sync_now" data-action="sync_now"><span class="sym" aria-hidden="true">sync_disabled</span>Sync when online</button>
+        </div>
+      </section>
 
-  <section class="card" data-testid="offline_sync_records">
-    <div class="sec-h"><h3>On this device</h3></div>
-    <div class="tabs" role="tablist" data-testid="offline_sync_records_level">
-      <button role="tab" aria-selected="false" data-action="records_level">Centres <b class="num">2</b></button>
-      <button role="tab" aria-selected="false" data-action="records_level">Groups <b class="num">5</b></button>
-      <button role="tab" aria-selected="true" data-action="records_level">Clients <b class="num">43</b></button>
-    </div>
-    <div class="search"><span class="sym">search</span>Search 43 clients on this device</div>
-    <div class="row" data-testid="offline_sync_record_row" data-action="open_record">
-      <div class="ava k">IZ</div>
-      <div class="rt"><b>Irving Zamora</b><span class="num">1 loan · 1 savings · chosen</span><span class="st old"><span class="sym">history</span>Out of date · synced 2 days ago</span></div>
-      <button class="icon-btn" aria-label="Open"><span class="sym">chevron_right</span></button>
-    </div>
-    <div class="row" data-testid="offline_sync_record_row" data-action="open_record">
-      <div class="ava k">FA</div>
-      <div class="rt"><b>FOTest Asha</b><span class="num">2 loans · 1 savings · 3 docs · via MARIPOSAS MONARCAS</span><span class="st ok"><span class="sym">check_circle</span>Synced 2 h ago</span></div>
-      <button class="icon-btn" aria-label="Open"><span class="sym">chevron_right</span></button>
-    </div>
-    <div class="row" data-testid="offline_sync_record_row" data-action="open_record">
-      <div class="ava k">JH</div>
-      <div class="rt"><b>José Luis Hernández</b><span class="num">2 loans · 1 closed · via Las Margaritas</span><span class="st ok"><span class="sym">check_circle</span>Synced 2 h ago</span></div>
-      <button class="icon-btn" aria-label="Open"><span class="sym">chevron_right</span></button>
-    </div>
-    <div class="row" data-testid="offline_sync_record_row" data-action="open_record">
-      <div class="ava k">MT</div>
-      <div class="rt"><b>María Guadalupe Torres</b><span class="num">1 loan · 2 savings · via MARIPOSAS MONARCAS</span><span class="st ok"><span class="sym">check_circle</span>Synced 2 h ago</span></div>
-      <button class="icon-btn" aria-label="Open"><span class="sym">chevron_right</span></button>
-    </div>
-  </section>
+      <section class="card a-records" data-component-type="list" data-component-id="offline_records_section">
+        <div class="pad">
+          <h2 class="h2">On this device</h2>
+          <div class="tabs" role="tablist" data-component-type="chip" data-component-id="records_level">
+            <button class="tab" role="tab" aria-selected="false" data-action="records_level" data-action-params='{"level":"centres"}'>Centres <b>2</b></button>
+            <button class="tab" role="tab" aria-selected="false" data-action="records_level" data-action-params='{"level":"groups"}'>Groups <b>5</b></button>
+            <button class="tab is-sel" role="tab" aria-selected="true" data-action="records_level" data-action-params='{"level":"clients"}'>Clients <b>43</b></button>
+          </div>
+          <label class="search"><span class="sym sm" aria-hidden="true">search</span><span>Search 43 clients on this device</span></label>
+          <ul class="rows">
+            <li class="row" data-component-type="ListItem" data-component-id="offline_sync_record_row_205" data-action="open_record" data-action-params='{"kind":"client","id":205}' role="button" tabindex="0">
+              <span class="avatar" aria-hidden="true">IZ</span>
+              <span class="row-main"><span class="row-title">Irving Zamora</span><span class="status st-warn"><span class="sym sm" aria-hidden="true">history</span>Out of date, synced 2 days ago</span><span class="row-sub">1 loan, 1 savings, chosen</span></span>
+              <span class="sym" aria-hidden="true">chevron_right</span>
+            </li>
+            <li class="row" data-component-type="ListItem" data-component-id="offline_sync_record_row_192" data-action="open_record" data-action-params='{"kind":"client","id":192}' role="button" tabindex="0">
+              <span class="avatar" aria-hidden="true">FA</span>
+              <span class="row-main"><span class="row-title">FOTest Asha</span><span class="status st-ok"><span class="sym sm" aria-hidden="true">check_circle</span>Synced 2 h ago</span><span class="row-sub">2 loans, 1 savings, 3 docs, via MARIPOSAS MONARCAS</span></span>
+              <span class="sym" aria-hidden="true">chevron_right</span>
+            </li>
+            <li class="row" data-component-type="ListItem" data-component-id="offline_sync_record_row_311" data-action="open_record" data-action-params='{"kind":"client","id":311}' role="button" tabindex="0">
+              <span class="avatar" aria-hidden="true">JH</span>
+              <span class="row-main"><span class="row-title">José Luis Hernández</span><span class="status st-ok"><span class="sym sm" aria-hidden="true">check_circle</span>Synced 2 h ago</span><span class="row-sub">2 loans, 1 closed, via Las Margaritas</span></span>
+              <span class="sym" aria-hidden="true">chevron_right</span>
+            </li>
+            <li class="row" data-component-type="ListItem" data-component-id="offline_sync_record_row_310" data-action="open_record" data-action-params='{"kind":"client","id":310}' role="button" tabindex="0">
+              <span class="avatar" aria-hidden="true">MT</span>
+              <span class="row-main"><span class="row-title">María Guadalupe Torres</span><span class="status st-ok"><span class="sym sm" aria-hidden="true">check_circle</span>Synced 2 h ago</span><span class="row-sub">1 loan, 2 savings, via MARIPOSAS MONARCAS</span></span>
+              <span class="sym" aria-hidden="true">chevron_right</span>
+            </li>
+          </ul>
+        </div>
+      </section>
 
-  <section class="card drafts">
-    <span class="sym">edit_note</span>
-    <span>Work you do offline is saved as drafts.</span>
-    <a href="#" data-action="open_drafts">Sync &amp; Drafts</a>
-  </section>
-</main>
-</div></body></html>
+      <section class="card a-drafts" data-component-type="card" data-component-id="drafts_link">
+        <div class="drafts"><span class="sym" aria-hidden="true">edit_note</span><p>Work you do offline is saved as drafts.</p><button class="link" data-action="open_drafts">Sync &amp; Drafts</button></div>
+      </section>
+    </div>
+  </main>
+</div>
+<script src="../../../preview/_shared/preview-runtime.js"></script>
+</body></html>

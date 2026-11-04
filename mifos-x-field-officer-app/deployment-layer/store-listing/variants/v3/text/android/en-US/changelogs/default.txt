@@ -1,0 +1,1 @@
+Rebuilt on Kotlin Multiplatform. New home dashboard with today's work, offline sync for chosen centres, groups and clients, a Profile screen with password change, a server picker, and faster, more reliable loading across every screen.

@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "feature": "signin",
+  "states": {
+    "biometric_ready": {
+      "hash": "ca95575de84561996c125120626e0e817d6024f443c63fed0550a5772e5c268a",
+      "render_hash": "ca95575de845",
+      "stamped_at": "2026-11-04T10:50:52.235Z"
+    },
+    "empty": {
+      "hash": "6050164aa87c144dffd71af39cce3391ec73c6a956f2d4c84446cd18c975b9a1",
+      "render_hash": "6050164aa87c",
+      "stamped_at": "2026-11-04T10:50:52.239Z"
+    },
+    "locked_out": {
+      "hash": "dc9e923405206878bbcd7c6fd8548af2f1175cbac1c7e9687bc8033eb834730a",
+      "render_hash": "dc9e92340520",
+      "stamped_at": "2026-11-04T10:50:52.239Z"
+    },
+    "offline": {
+      "hash": "b6d2fc485356f0eb88e5d968eda9f5f52b42eeadecaf7aa51049a321103e35a7",
+      "render_hash": "b6d2fc485356",
+      "stamped_at": "2026-11-04T10:50:52.240Z"
+    },
+    "submitting": {
+      "hash": "c43182d98fc261453d6770ac85790dd787e6dbffd3df0ee53cf3815e97443e8d",
+      "render_hash": "c43182d98fc2",
+      "stamped_at": "2026-11-04T10:50:52.240Z"
+    },
+    "success": {
+      "hash": "dd1ebb64d639e3e22ebe17ea0dd7dc56daf34a1bcee9b08a5b553f25d6f3f3fe",
+      "render_hash": "dd1ebb64d639",
+      "stamped_at": "2026-11-04T10:50:52.240Z"
+    },
+    "transport_error": {
+      "hash": "4ec86a2c0240ec314b6209aa512bd47e1afb5140a65261a960afbae48a091f7f",
+      "render_hash": "4ec86a2c0240",
+      "stamped_at": "2026-11-04T10:50:52.241Z"
+    },
+    "validation_error": {
+      "hash": "a6b409429657a94a7c361c42aa8d5a3d26ee3fec5a2f5c7be1546393f3e5d51b",
+      "render_hash": "a6b409429657",
+      "stamped_at": "2026-11-04T10:50:52.241Z"
+    }
+  },
+  "hash_source": "prompts/{key}.md#content_hash (sanctioned producer hash from stitch-prompt-build.ts; {key} = canonical state key). Raw sha256 over idea-layer bytes is refused by the CI-INTEGRITY-CARVE-OUT guard."
+}

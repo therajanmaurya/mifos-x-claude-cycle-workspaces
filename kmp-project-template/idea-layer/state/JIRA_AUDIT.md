@@ -64,7 +64,7 @@ Only 4 of 59 tickets are referenced by any commit, branch or PR (KMPPT-91 #134 c
 | KMPPT-61 | Docs + migration guide | To Do | Docs cover the bash tooling only | After Gradle tasks exist |
 | KMPPT-62 | Backward compatibility wrapper | To Do | Nothing migrated, so nothing to wrap | After Gradle tasks exist, or close with epic |
 | KMPPT-68 | Sync monitoring + diagnostics | To Do | No progress/metrics/alerting in sync | Close as out of scope, or a summary report |
-| KMPPT-93 | Rename `dev` → `development` | In Progress | Default branch still `dev`; `development` is 143 behind; `sync-dirs.yaml` hard-codes `dev` | Decide; migrate fork workflows first |
+| KMPPT-93 | Rename `dev` → `development` | Done | Closed 2026-11-04 on maintainer confirmation. At close GitHub still reported default `dev` (`development` 143 behind); `sync-dirs.yaml` references `dev` | Update `sync-dirs.yaml` if the GitHub switch is still pending |
 
 ## STALE — close as superseded
 

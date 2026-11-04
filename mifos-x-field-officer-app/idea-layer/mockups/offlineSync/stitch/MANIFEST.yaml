@@ -1,48 +1,48 @@
 feature: offlineSync
 project_id: '10780096558615730514'
 design_system_id: '9551377288795375599'
-generated_at: '2026-10-27T08:26:37.973Z'
+generated_at: '2026-11-04T10:36:48.736Z'
 version: 1
 states:
   loading:
-    screen_id: a50eeace91804ad7868cd5555915aa71
+    screen_id: 73edb4992ae344d49117d7d63cbe787f
     result: success
     folder: 01-offlineSync-loading
-    generated_at: '2026-10-27T08:18:24.894Z'
+    generated_at: '2026-11-04T10:30:21.873Z'
     html_downloaded: true
     png_downloaded: true
   content:
-    screen_id: 6f0ac0e64d5a45ad91a4daeafbd23e16
+    screen_id: 47d285f3095b482b8f430ca05993803c
     result: success
     folder: 02-offlineSync-content
-    generated_at: '2026-10-27T08:25:44.610Z'
+    generated_at: '2026-11-04T10:31:31.584Z'
     html_downloaded: true
     png_downloaded: true
   syncing:
-    screen_id: 575d866ceba849cc9436ee3e2760dfdb
+    screen_id: d65b7747606b49659adb692be3953d11
     result: success
     folder: 03-offlineSync-syncing
-    generated_at: '2026-10-27T08:19:29.107Z'
+    generated_at: '2026-11-04T10:32:51.817Z'
     html_downloaded: true
     png_downloaded: true
   partial_failure:
-    screen_id: b810a4704bee431a979246b26cc73194
+    screen_id: d63b6f65a67d44728c6d652636cb93e3
     result: success
     folder: 04-offlineSync-partial_failure
-    generated_at: '2026-10-27T08:26:25.921Z'
+    generated_at: '2026-11-04T10:34:06.015Z'
     html_downloaded: true
     png_downloaded: true
   empty:
-    screen_id: c00e5480fc034dd280bc25420a204b4a
+    screen_id: 11242ba793b3491380fe9fc5c836fc33
     result: success
     folder: 05-offlineSync-empty
-    generated_at: '2026-10-27T08:21:05.798Z'
+    generated_at: '2026-11-04T10:35:09.015Z'
     html_downloaded: true
     png_downloaded: true
   offline:
-    screen_id: 3bcb0e1e0cdc4ff79999f0dd000c5e4e
+    screen_id: c73186d3dc2240cea488324f1daaec69
     result: success
     folder: 06-offlineSync-offline
-    generated_at: '2026-10-27T08:22:02.931Z'
+    generated_at: '2026-11-04T10:36:33.177Z'
     html_downloaded: true
     png_downloaded: true

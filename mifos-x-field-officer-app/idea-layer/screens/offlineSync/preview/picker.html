@@ -1,83 +1,111 @@
 <!doctype html>
-<!-- render-hash: os-picker-02 -->
 <html lang="en"><head>
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Offline sync: record picker</title>
+<title>Offline sync: add records</title>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
 <style>
 :root{--primary:#4338CA;--on-primary:#FFFFFF;--primary-container:#E0E7FF;--on-primary-container:#1F1D75;
---secondary:#059669;--secondary-container:#D1FAE5;--on-secondary-container:#064E3B;
---background:#FAFAFB;--surface:#FFFFFF;--on-surface:#0F172A;--surface-variant:#E2E8F0;--on-surface-variant:#475569;
---outline:#94A3B8;--outline-variant:#CBD5E1;
---sp-xs:4px;--sp-sm:8px;--sp-md:12px;--sp-lg:16px;--sp-xl:24px;--touch:48px;--r-sm:8px;--r-md:12px;--r-lg:16px;--r-xl:28px;--r-pill:999px}
+--secondary-container:#D1FAE5;--on-secondary-container:#064E3B;
+--background:#FAFAFB;--surface:#FFFFFF;--surface-2:#FAFAFB;--on-surface:#0F172A;--surface-variant:#E2E8F0;--on-surface-variant:#475569;
+--outline:#94A3B8;--outline-variant:#CBD5E1;--hairline:#E2E8F0;--scrim:rgba(15,23,42,.42);
+--font:'Outfit',ui-rounded,system-ui,sans-serif;--font-display:'Outfit',ui-rounded,system-ui,sans-serif;--icons:'Material Symbols Rounded';
+--fs-title-lg:22px;--fs-title:18px;--fs-body:14px;--fs-label:12px;--fs-icon:22px;--fs-icon-sm:18px;--lh:1.4;--fw-r:400;--fw-m:500;--fw-sb:600;
+--sp-0:0;--sp-xs:4px;--sp-sm:8px;--sp-md:12px;--sp-lg:16px;--sp-xl:24px;--sp-xxl:32px;
+--r-sm:8px;--r-md:12px;--r-lg:16px;--r-xl:28px;--r-pill:999px;--hair:1px;--ring:2px;
+--touch:48px;--bar-h:64px;--chip-h:28px;--tab-h:40px;--avatar:40px;--row-h:64px;--search-h:48px;--check:24px;--handle-w:32px;--track-thin:4px;
+--el-3:0 4px 10px rgba(15,23,42,.10),0 10px 24px rgba(15,23,42,.08);
+--sheet-max:720px;--sheet-h:88vh;--dur:.32s}
+:root[data-theme="dark"]{--primary:#A5B4FC;--on-primary:#1F1D75;--primary-container:#3730A3;--on-primary-container:#E0E7FF;
+--secondary-container:#064E3B;--on-secondary-container:#D1FAE5;
+--background:#0F172A;--surface:#1E293B;--surface-2:#172033;--on-surface:#F1F5F9;--surface-variant:#334155;--on-surface-variant:#CBD5E1;
+--outline:#64748B;--outline-variant:#334155;--hairline:#334155;--scrim:rgba(2,6,23,.6);--el-3:0 6px 18px rgba(0,0,0,.5)}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Outfit',system-ui,sans-serif;background:#475569;color:var(--on-surface);-webkit-font-smoothing:antialiased;display:flex;justify-content:center;min-height:100dvh}
-.phone{width:100%;max-width:420px;min-height:100dvh;display:flex;flex-direction:column;justify-content:flex-end;background:rgba(15,23,42,.45)}
-.sym{font-family:'Material Symbols Rounded';line-height:1;display:inline-block;font-size:22px}
-.num{font-variant-numeric:tabular-nums}
+html,body{width:100%;min-height:100vh}
+body{font-family:var(--font);font-size:var(--fs-body);line-height:var(--lh);background:var(--background);color:var(--on-surface);-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;min-height:100vh}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
-:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
-.sheet{background:var(--surface);border-radius:var(--r-xl) var(--r-xl) 0 0;min-height:92dvh;display:flex;flex-direction:column;box-shadow:0 -8px 32px rgba(15,23,42,.25)}
-.grab{width:32px;height:4px;border-radius:var(--r-pill);background:var(--outline-variant);margin:var(--sp-md) auto var(--sp-xs)}
-.sh-h{display:flex;align-items:center;gap:var(--sp-xs);padding:0 var(--sp-xs) 0 var(--sp-lg);min-height:56px}
-.sh-h h2{flex:1;font-size:20px;font-weight:600;letter-spacing:-.01em}
-.icon-btn{width:var(--touch);height:var(--touch);display:grid;place-items:center;border-radius:var(--r-pill);color:var(--on-surface-variant)}
-.tabs{display:flex;gap:var(--sp-sm);padding:var(--sp-xs) var(--sp-lg) var(--sp-md)}
-.tabs button{height:36px;padding:0 var(--sp-md);border-radius:var(--r-sm);border:1px solid var(--outline-variant);font-size:14px;font-weight:500;color:var(--on-surface-variant);display:inline-flex;align-items:center;gap:6px}
-.tabs button[aria-selected="true"]{background:var(--primary-container);border-color:var(--primary);color:var(--on-primary-container)}
-.tabs .badge{min-width:20px;height:20px;padding:0 6px;border-radius:var(--r-pill);background:var(--primary);color:var(--on-primary);font-size:12px;display:inline-grid;place-items:center}
-.search{margin:0 var(--sp-lg) var(--sp-sm);height:48px;border-radius:var(--r-pill);background:var(--surface-variant);display:flex;align-items:center;gap:var(--sp-sm);padding:0 var(--sp-lg);color:var(--on-surface-variant);font-size:15px}
-.hint{padding:var(--sp-xs) var(--sp-lg) var(--sp-sm);font-size:13px;color:var(--on-surface-variant)}
-.list{flex:1}
-.row{display:flex;align-items:center;gap:var(--sp-md);min-height:68px;padding:var(--sp-sm) var(--sp-lg);border-top:1px solid var(--surface-variant)}
-.row.sel{background:#F5F7FF}
-.cb{width:22px;height:22px;border-radius:6px;border:2px solid var(--outline);flex:none;display:grid;place-items:center}
-.row.sel .cb{background:var(--primary);border-color:var(--primary);color:var(--on-primary)}
-.cb .sym{font-size:18px}
-.rt{flex:1;min-width:0}
-.rt b{display:block;font-weight:500;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rt span{display:block;font-size:13px;color:var(--on-surface-variant);margin-top:2px}
-.ondev{display:inline-flex;align-items:center;gap:4px;height:24px;padding:0 var(--sp-sm);border-radius:var(--r-pill);background:var(--secondary-container);color:var(--on-secondary-container);font-size:12px;font-weight:500;flex:none}
-.ondev .sym{font-size:14px}
-.foot{position:sticky;bottom:0;padding:var(--sp-md) var(--sp-lg) var(--sp-lg);background:var(--surface);border-top:1px solid var(--surface-variant);display:flex;flex-direction:column;gap:var(--sp-sm)}
-.foot p{font-size:13px;color:var(--on-surface-variant);text-align:center}
-.primary-btn{height:52px;border-radius:var(--r-pill);background:var(--primary);color:var(--on-primary);font-weight:600;font-size:16px;display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-sm)}
+:focus-visible{outline:var(--ring) solid var(--primary);outline-offset:var(--ring)}
+.sym{font-family:var(--icons);font-size:var(--fs-icon);line-height:1;display:inline-block;font-weight:var(--fw-r)}
+.sym.sm{font-size:var(--fs-icon-sm)}
+.app{flex:1;display:flex;flex-direction:column;width:100%;min-height:100vh;position:relative}
+.topbar{display:flex;align-items:center;gap:var(--sp-xs);height:var(--bar-h);padding:var(--sp-0) var(--sp-xs);background:var(--background)}
+.topbar h1{font-family:var(--font-display);font-size:var(--fs-title-lg);font-weight:var(--fw-sb)}
+.icon-btn{width:var(--touch);height:var(--touch);display:grid;place-items:center;border-radius:var(--r-pill);color:var(--on-surface-variant);flex:none}
+main{flex:1}
+.scrim{position:fixed;inset:var(--sp-0);background:var(--scrim);z-index:5}
+.sheet{position:fixed;left:var(--sp-0);right:var(--sp-0);bottom:var(--sp-0);z-index:6;height:var(--sheet-h);display:flex;flex-direction:column;background:var(--surface);border-radius:var(--r-xl) var(--r-xl) var(--sp-0) var(--sp-0);box-shadow:var(--el-3);animation:rise var(--dur) ease-out}
+@keyframes rise{from{transform:translateY(8%);opacity:.6}to{transform:none;opacity:1}}
+.handle{width:var(--handle-w);height:var(--track-thin);border-radius:var(--r-pill);background:var(--outline-variant);margin:var(--sp-md) auto var(--sp-xs)}
+.sheet-head{display:flex;align-items:center;justify-content:space-between;padding:var(--sp-sm) var(--sp-sm) var(--sp-sm) var(--sp-lg)}
+.sheet-head h2{font-size:var(--fs-title);font-weight:var(--fw-sb)}
+.sheet-body{flex:1;overflow:auto;padding:var(--sp-0) var(--sp-lg);display:flex;flex-direction:column;gap:var(--sp-md)}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:var(--hair) solid var(--hairline)}
+.tab{min-height:var(--tab-h);font-weight:var(--fw-m);color:var(--on-surface-variant);border-bottom:var(--ring) solid transparent}
+.tab.is-sel{color:var(--primary);border-bottom-color:var(--primary)}
+.search{display:flex;align-items:center;gap:var(--sp-sm);height:var(--search-h);padding:var(--sp-0) var(--sp-md);border-radius:var(--r-md);background:var(--surface-2);border:var(--hair) solid var(--outline-variant);color:var(--on-surface-variant)}
+.rows{list-style:none;display:flex;flex-direction:column}
+.row{display:flex;align-items:center;gap:var(--sp-md);min-height:var(--row-h);border-top:var(--hair) solid var(--hairline)}
+.row:first-child{border-top:0}
+.row-main{flex:1;min-width:0;display:flex;flex-direction:column}
+.row-title{font-weight:var(--fw-sb)}
+.row-sub{color:var(--on-surface-variant);font-size:var(--fs-label)}
+.check{width:var(--check);height:var(--check);border-radius:var(--sp-xs);border:var(--ring) solid var(--outline);display:grid;place-items:center;flex:none;color:var(--on-primary)}
+.check.on{background:var(--primary);border-color:var(--primary)}
+.chip{display:inline-flex;align-items:center;gap:var(--sp-xs);height:var(--chip-h);padding:var(--sp-0) var(--sp-sm);border-radius:var(--r-pill);font-size:var(--fs-label);font-weight:var(--fw-m);background:var(--secondary-container);color:var(--on-secondary-container)}
+.sheet-foot{padding:var(--sp-md) var(--sp-lg) var(--sp-lg);border-top:var(--hair) solid var(--hairline);background:var(--surface)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-sm);min-height:var(--touch);width:100%;border-radius:var(--r-pill);font-weight:var(--fw-sb);background:var(--primary);color:var(--on-primary)}
+@media (min-width:600px){
+  .sheet{left:var(--sp-0);right:var(--sp-0);top:var(--sp-0);bottom:var(--sp-0);margin:auto;width:min(calc(100vw - var(--sp-xxl) * 2),var(--sheet-max));height:min(var(--sheet-h),calc(100vh - var(--sp-xxl) * 2));border-radius:var(--r-xl)}
+  .handle{visibility:hidden}
+  .sheet-foot{display:flex;justify-content:flex-end}
+  .btn{width:auto;padding:var(--sp-0) var(--sp-xl)}
+}
+@media (min-width:840px){
+  .rows{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--sp-xl)}
+  .row:nth-child(2){border-top:0}
+}
 </style></head>
-<body><div class="phone">
-<section class="sheet" role="dialog" aria-label="Keep on this device" data-testid="offline_sync_picker">
-  <div class="grab"></div>
-  <div class="sh-h"><h2>Keep on this device</h2><button class="icon-btn" aria-label="Close"><span class="sym">close</span></button></div>
-  <div class="tabs" role="tablist" data-testid="offline_sync_picker_tabs">
-    <button role="tab" aria-selected="true" data-action="picker_tab"><span class="sym">groups</span>Centres <span class="badge num">2</span></button>
-    <button role="tab" aria-selected="false" data-action="picker_tab">Groups</button>
-    <button role="tab" aria-selected="false" data-action="picker_tab">Clients</button>
-  </div>
-  <div class="search" data-testid="offline_sync_picker_search" data-action="picker_search"><span class="sym">search</span>Search by name or account number</div>
-  <p class="hint">A centre brings its groups, their clients and all their accounts.</p>
-  <div class="list" data-testid="offline_sync_picker_list">
-    <div class="row" data-testid="offline_sync_picker_row" data-action="picker_select">
-      <span class="cb"></span>
-      <div class="rt"><b>Arin Savings</b><span class="num">2 groups · 11 clients</span></div>
-      <span class="ondev"><span class="sym">download_done</span>On device</span>
+<body>
+<div class="app" data-shell="root" data-screen-id="offlineSync" data-state="picker_open">
+  <header class="topbar" data-shell="top-app-bar" data-variant="small">
+    <button class="icon-btn" aria-label="Back" data-action="navigate_back" data-nav-type="pop"><span class="sym" aria-hidden="true">arrow_back</span></button>
+    <h1>Offline sync</h1>
+  </header>
+  <main data-shell="content" data-state="picker_open"></main>
+  <div class="scrim" aria-hidden="true"></div>
+  <section class="sheet" role="dialog" aria-modal="true" aria-labelledby="picker-title" data-component-type="bottom_sheet" data-component-id="record_picker">
+    <div class="handle" aria-hidden="true"></div>
+    <div class="sheet-head"><h2 id="picker-title">Add records for offline</h2><button class="icon-btn" aria-label="Close" data-action="close_picker"><span class="sym" aria-hidden="true">close</span></button></div>
+    <div class="sheet-body">
+      <div class="tabs" role="tablist" data-component-type="chip" data-component-id="picker_tabs">
+        <button class="tab is-sel" role="tab" aria-selected="true" data-action="picker_tab" data-action-params='{"tab":"centres"}'>Centres</button>
+        <button class="tab" role="tab" aria-selected="false" data-action="picker_tab" data-action-params='{"tab":"groups"}'>Groups</button>
+        <button class="tab" role="tab" aria-selected="false" data-action="picker_tab" data-action-params='{"tab":"clients"}'>Clients</button>
+      </div>
+      <label class="search" data-component-type="text_field" data-component-id="picker_search" data-action="picker_search"><span class="sym sm" aria-hidden="true">search</span><span>Search by name or account number</span></label>
+      <ul class="rows" data-component-type="list" data-component-id="picker_list">
+        <li class="row" role="checkbox" aria-checked="true" tabindex="0" data-component-type="ListItem" data-component-id="offline_sync_picker_row_10" data-action="picker_select" data-action-params='{"id":10}'>
+          <span class="check on" aria-hidden="true"><span class="sym sm">check</span></span>
+          <span class="row-main"><span class="row-title">Centro Arin</span><span class="row-sub">3 groups, 31 clients</span></span>
+          <span class="chip"><span class="sym sm" aria-hidden="true">download_done</span>On device</span>
+        </li>
+        <li class="row" role="checkbox" aria-checked="false" tabindex="0" data-component-type="ListItem" data-component-id="offline_sync_picker_row_18" data-action="picker_select" data-action-params='{"id":18}'>
+          <span class="check" aria-hidden="true"></span>
+          <span class="row-main"><span class="row-title">Arin Savings</span><span class="row-sub">2 groups, 11 clients</span></span>
+          <span class="chip"><span class="sym sm" aria-hidden="true">download_done</span>On device</span>
+        </li>
+        <li class="row" role="checkbox" aria-checked="true" tabindex="0" data-component-type="ListItem" data-component-id="offline_sync_picker_row_22" data-action="picker_select" data-action-params='{"id":22}'>
+          <span class="check on" aria-hidden="true"><span class="sym sm">check</span></span>
+          <span class="row-main"><span class="row-title">Centro Morelia Norte</span><span class="row-sub">4 groups, 51 clients</span></span>
+        </li>
+        <li class="row" role="checkbox" aria-checked="false" tabindex="0" data-component-type="ListItem" data-component-id="offline_sync_picker_row_27" data-action="picker_select" data-action-params='{"id":27}'>
+          <span class="check" aria-hidden="true"></span>
+          <span class="row-main"><span class="row-title">Centro Las Flores</span><span class="row-sub">3 groups, 27 clients</span></span>
+        </li>
+      </ul>
     </div>
-    <div class="row" data-testid="offline_sync_picker_row" data-action="picker_select">
-      <span class="cb"></span>
-      <div class="rt"><b>Centro Arin</b><span class="num">3 groups · 31 clients</span></div>
-      <span class="ondev"><span class="sym">download_done</span>On device</span>
-    </div>
-    <div class="row sel" data-testid="offline_sync_picker_row" data-action="picker_select">
-      <span class="cb"><span class="sym">check</span></span>
-      <div class="rt"><b>Centro Las Flores</b><span class="num">3 groups · 27 clients</span></div>
-    </div>
-    <div class="row sel" data-testid="offline_sync_picker_row" data-action="picker_select">
-      <span class="cb"><span class="sym">check</span></span>
-      <div class="rt"><b>Centro Morelia Norte</b><span class="num">4 groups · 51 clients</span></div>
-    </div>
-  </div>
-  <div class="foot">
-    <p class="num">About 2,300 reads · closed accounts and documents included</p>
-    <button class="primary-btn" data-testid="offline_sync_picker_download" data-action="picker_download"><span class="sym">download</span>Download 2 for offline</button>
-  </div>
-</section>
-</div></body></html>
+    <div class="sheet-foot"><button class="btn" data-component-type="button" data-component-id="picker_download" data-action="picker_download"><span class="sym" aria-hidden="true">download</span>Download 2 for offline</button></div>
+  </section>
+</div>
+<script src="../../../preview/_shared/preview-runtime.js"></script>
+</body></html>
