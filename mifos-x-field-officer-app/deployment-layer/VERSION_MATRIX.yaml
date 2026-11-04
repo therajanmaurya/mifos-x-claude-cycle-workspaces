@@ -89,10 +89,10 @@ platforms:
 
   android_playstore_production:
     display_name: "PlayStore Promote to Production"
-    deployed_version: null
-    status: not_deployed
-    timestamp: null
-    deploy_mode: null
+    deployed_version: "2026.11.1-beta.0.4"
+    status: submitted                  # beta → production, version code 41, rollout 1.0; Google review pending
+    timestamp: "2026-11-04T21:02:01+05:30"
+    deploy_mode: local
     requires: [android_playstore_beta]
     metadata:
       track: "production"

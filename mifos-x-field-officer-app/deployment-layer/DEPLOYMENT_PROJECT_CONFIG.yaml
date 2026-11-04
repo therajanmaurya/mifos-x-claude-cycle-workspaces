@@ -26,8 +26,8 @@ android:
   #            then delete the four legacy aliases.
   upload_key:
     active: legacy
-    reset_status: not_requested       # not_requested | requested | approved
-    reset_requested_at: null
+    reset_status: requested           # not_requested | requested | approved
+    reset_requested_at: "2026-11-04T21:00:00+05:30"   # reason: compromised; new cert SHA1 17:18:A6:D8:…:F2:90
     expected_sha1_legacy: "F9:97:65:28:77:FF:AA:9D:5D:E9:F0:35:7B:80:A9:23:2D:21:AE:93"
     # Generated 2026-11-04 by core/scripts/keystore-manager.sh: PKCS12, RSA-4096, key password == store
     # password, alias "upload". Public cert for the reset: regenerate with android-cert-digest.sh --export-pem (never committed)

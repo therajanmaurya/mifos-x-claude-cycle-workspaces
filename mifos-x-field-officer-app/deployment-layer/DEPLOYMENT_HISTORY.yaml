@@ -45,6 +45,7 @@ release_history:
           artifact: "cmp-android-prod-release.aab"
           version_code: 41
           promoted_to_beta_at: "2026-11-04T20:37:47+05:30"   # [A2] promoteToBeta, track move only (77s)
+          promoted_to_production_at: "2026-11-04T21:02:01+05:30"   # [A3] promote_to_production, rollout 1.0 (87s); in Google review
           build_duration: "9m 54s"
           build_duration_seconds: 594
           signing: "legacy upload key from git history b5a57c9 (cert SHA1 F9:97:65:28…) — upload-key reset to the vault key pending"
