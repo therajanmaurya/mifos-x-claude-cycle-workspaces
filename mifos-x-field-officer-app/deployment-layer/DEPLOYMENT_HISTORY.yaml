@@ -34,9 +34,9 @@ release_history:
     - version: "2026.11.1-beta.0.4"
       build_number: 41
       timestamp: "2026-11-04T18:30:28+05:30"
-      git_tag: null                     # NOT YET CREATED — run [tag] (upstream openMF) to cut tag + GitHub Release
-      github_release_url: null
-      status: pending                   # flips terminal only after tag + GitHub Release exist (enforcement contract)
+      git_tag: "2026.11.1-beta.0.4"     # annotated, openMF @ a7b4a103c
+      github_release_url: "https://github.com/openMF/mifos-x-field-officer-app/releases/tag/2026.11.1-beta.0.4"
+      status: completed
       platforms:
         android:
           track: "internal"
@@ -44,6 +44,7 @@ release_history:
           deployed_by: "local"
           artifact: "cmp-android-prod-release.aab"
           version_code: 41
+          promoted_to_beta_at: "2026-11-04T20:37:47+05:30"   # [A2] promoteToBeta, track move only (77s)
           build_duration: "9m 54s"
           build_duration_seconds: 594
           signing: "legacy upload key from git history b5a57c9 (cert SHA1 F9:97:65:28…) — upload-key reset to the vault key pending"
