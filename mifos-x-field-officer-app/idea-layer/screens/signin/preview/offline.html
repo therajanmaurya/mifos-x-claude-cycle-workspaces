@@ -1,117 +1,166 @@
 <!doctype html>
-<!-- render-hash: b6d2fc485356 -->
 <html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sign in, offline: Mifos X Field Officer</title>
+<title>Sign in offline: Mifos X Field Officer</title>
 <style>
 :root {
   --color-background: #FAFAFB;
-  --color-surface: #FFFFFF;
-  --color-on-surface: #0F172A;
+  --color-on-background: #0F172A;
+  --color-surface-card: #FFFFFF;
+  --color-surface-variant: #E2E8F0;
   --color-on-surface-variant: #475569;
   --color-primary: #4338CA;
   --color-on-primary: #FFFFFF;
+  --color-primary-container: #E0E7FF;
+  --color-on-primary-container: #1F1D75;
   --color-secondary-container: #D1FAE5;
+  --color-tertiary: #D97706;
+  --color-tertiary-container: #FEF3C7;
+  --color-on-tertiary-container: #78350F;
+  --color-error: #F87171;
+  --color-on-error-container: #9F1239;
   --color-outline: #94A3B8;
   --color-outline-variant: #CBD5E1;
   --color-inverse-surface: #1E293B;
   --color-inverse-on-surface: #F1F5F9;
-  --color-inverse-primary: #A5B4FC;
-  --color-ground: #EEF0FB;
+  --color-ground: #EEF0FA;
   --color-brand-panel: #1F1D75;
-  --color-on-brand-panel: #E0E7FF;
-  --color-on-brand-panel-muted: #A5B4FC;
+  --color-on-brand-panel: #FFFFFF;
+  --color-on-brand-panel-muted: #C7D2FE;
+  --color-scrim: rgba(15, 23, 42, 0.32);
+  --color-disabled-container: rgba(15, 23, 42, 0.12);
+  --color-on-disabled: rgba(15, 23, 42, 0.38);
   --mark-lime: #92D050;
   --mark-green: #00B050;
   --mark-blue: #0070C0;
   --mark-sky-a: #00B0F0;
   --mark-sky-b: #7FD8F8;
   --mark-x: #FFFFFF;
-  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.06), 0 12px 32px rgba(31, 29, 117, 0.10);
-  --shadow-float: 0 6px 20px rgba(15, 23, 42, 0.22);
+  --el-1: 0 1px 2px rgba(15, 23, 42, 0.06), 0 2px 6px rgba(15, 23, 42, 0.05);
+  --el-2: 0 1px 2px rgba(15, 23, 42, 0.06), 0 16px 40px rgba(31, 29, 117, 0.10);
+  --el-3: 0 4px 12px rgba(15, 23, 42, 0.18), 0 12px 28px rgba(15, 23, 42, 0.16);
   --font-family: "Outfit", ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --space-xs: 4px; --space-sm: 8px; --space-md: 12px; --space-lg: 16px; --space-xl: 24px; --space-xxl: 32px; --space-xxxl: 48px;
-  --radius-field: 8px; --radius-tile: 16px; --radius-card: 28px;
-  --card-max: 480px;
-  --content-max: 1200px;
+  --fs-headline: 24px; --lh-headline: 32px;
+  --fs-display: 32px; --lh-display: 40px;
+  --fs-body: 16px; --lh-body: 24px;
+  --fs-body-md: 14px; --lh-body-md: 20px;
+  --fs-small: 12px; --lh-small: 16px;
+  --fs-chip: 13px;
+  --fw-regular: 400; --fw-medium: 500; --fw-semibold: 600;
+  --sp-xs: 4px; --sp-sm: 8px; --sp-md: 12px; --sp-lg: 16px; --sp-xl: 24px; --sp-xxl: 32px; --sp-xxxl: 48px;
+  --touch-min: 48px;
+  --field-h: 56px;
+  --chip-h: 32px;
+  --icon: 24px; --icon-sm: 18px;
+  --tile: 64px; --tile-mark: 36px; --brand-mark: 88px;
+  --spinner: 48px; --spinner-w: 4px;
+  --border-w: 1px; --border-w-strong: 2px;
+  --r-md: 12px; --r-lg: 20px; --r-full: 999px;
+  --form-max: 400px;
+  --card-medium: 480px;
+  --content-expanded: 1200px;
+  --stage-min: 680px;
+  --snackbar-max: 560px;
 }
 [data-theme="dark"] {
   --color-background: #0F172A;
-  --color-surface: #1E293B;
-  --color-on-surface: #F1F5F9;
+  --color-on-background: #F1F5F9;
+  --color-surface-card: #1E293B;
+  --color-surface-variant: #334155;
   --color-on-surface-variant: #CBD5E1;
   --color-primary: #A5B4FC;
   --color-on-primary: #1F1D75;
+  --color-primary-container: #312E81;
+  --color-on-primary-container: #E0E7FF;
   --color-secondary-container: #064E3B;
+  --color-tertiary: #FBBF24;
+  --color-tertiary-container: #451A03;
+  --color-on-tertiary-container: #FEF3C7;
+  --color-error: #F87171;
+  --color-on-error-container: #FECDD3;
   --color-outline: #64748B;
   --color-outline-variant: #334155;
-  --color-inverse-surface: #F1F5F9;
-  --color-inverse-on-surface: #1E293B;
-  --color-inverse-primary: #4338CA;
-  --color-ground: #111827;
-  --color-brand-panel: #1E1B4B;
-  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.35);
+  --color-inverse-surface: #E2E8F0;
+  --color-inverse-on-surface: #0F172A;
+  --color-ground: #0F172A;
+  --color-brand-panel: #312E81;
+  --color-on-brand-panel: #FFFFFF;
+  --color-on-brand-panel-muted: #C7D2FE;
+  --color-scrim: rgba(0, 0, 0, 0.5);
+  --color-disabled-container: rgba(241, 245, 249, 0.12);
+  --color-on-disabled: rgba(241, 245, 249, 0.38);
+  --el-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --el-2: 0 1px 2px rgba(0, 0, 0, 0.4), 0 16px 40px rgba(0, 0, 0, 0.35);
+  --el-3: 0 4px 12px rgba(0, 0, 0, 0.45), 0 12px 28px rgba(0, 0, 0, 0.4);
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; }
-body { width: 100%; min-height: 100vh; background: var(--color-surface); color: var(--color-on-surface); font-family: var(--font-family); -webkit-font-smoothing: antialiased; }
-button { font: inherit; }
-.page { width: 100%; min-height: 100vh; display: flex; flex-direction: column; }
-.brand-panel { display: none; }
-.card { flex: 1; width: 100%; display: flex; flex-direction: column; padding: var(--space-lg) var(--space-xl) 88px; background: var(--color-surface); }
-.form { flex: 1; display: flex; flex-direction: column; }
-.chip { align-self: center; display: inline-flex; align-items: center; min-height: 48px; padding: 0 var(--space-md); border: 0; border-radius: 999px; background: transparent; color: var(--color-on-surface-variant); font-size: 13px; letter-spacing: 0.1px; cursor: pointer; }
-.chip-inner { display: inline-flex; align-items: center; gap: var(--space-sm); height: 32px; padding: 0 var(--space-sm) 0 var(--space-md); border: 1px solid var(--color-outline-variant); border-radius: 999px; background: var(--color-background); }
-.chip svg { width: 16px; height: 16px; flex: none; }
-.chip .host { color: var(--color-on-surface); font-weight: 500; }
-.chip .sep { opacity: 0.5; }
-.mark-tile { align-self: center; margin-top: var(--space-xxl); width: 72px; height: 72px; display: grid; place-items: center; border-radius: var(--radius-tile); background: var(--color-secondary-container); }
-.mark-tile svg { width: 44px; height: 44px; }
-.title { margin-top: var(--space-xl); text-align: center; }
-.title h1 { margin: 0; font-size: 24px; line-height: 32px; font-weight: 600; letter-spacing: -0.2px; }
-.title p { margin: var(--space-xs) 0 0; font-size: 14px; line-height: 20px; color: var(--color-on-surface-variant); }
-.fields { margin-top: var(--space-xxl); display: flex; flex-direction: column; gap: var(--space-lg); }
-.field { position: relative; display: flex; align-items: center; gap: var(--space-md); height: 56px; padding: 0 var(--space-xs) 0 var(--space-md); border: 1px solid var(--color-outline); border-radius: var(--radius-field); background: var(--color-surface); }
-.field > svg { width: 24px; height: 24px; flex: none; color: var(--color-on-surface-variant); }
-.field label { position: absolute; top: -9px; left: 10px; padding: 0 var(--space-xs); background: var(--color-surface); font-size: 12px; line-height: 16px; color: var(--color-on-surface-variant); }
-.field .value { flex: 1; font-size: 16px; color: var(--color-on-surface); }
-.field .value.masked { letter-spacing: 3px; }
-.icon-btn { width: 48px; height: 48px; flex: none; display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 50%; background: transparent; color: var(--color-on-surface-variant); cursor: pointer; }
-.icon-btn svg { width: 24px; height: 24px; }
-.primary { margin-top: var(--space-xl); width: 100%; min-height: 48px; display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 999px; background: var(--color-primary); color: var(--color-on-primary); font-size: 15px; font-weight: 600; letter-spacing: 0.2px; cursor: pointer; box-shadow: 0 1px 2px rgba(31, 29, 117, 0.25); }
-.consent { margin: var(--space-xxl) 0 0; padding-top: var(--space-lg); text-align: center; font-size: 12px; line-height: 18px; color: var(--color-on-surface-variant); }
-.consent a { color: var(--color-primary); font-weight: 500; text-decoration: none; }
-.spacer { flex: 1; }
-.snackbar { position: fixed; left: var(--space-lg); right: var(--space-lg); bottom: var(--space-lg); display: flex; align-items: center; gap: var(--space-md); min-height: 48px; padding: var(--space-md) var(--space-lg); border-radius: var(--radius-field); background: var(--color-inverse-surface); color: var(--color-inverse-on-surface); font-size: 14px; line-height: 20px; box-shadow: var(--shadow-float); }
-.snackbar svg { width: 20px; height: 20px; flex: none; color: var(--color-inverse-primary); }
+body { min-height: 100vh; background: var(--color-surface-card); color: var(--color-on-background); font-family: var(--font-family); -webkit-font-smoothing: antialiased; }
+button, input { font: inherit; color: inherit; }
+.defs { position: absolute; }
+.ic { width: var(--icon); height: var(--icon); flex: none; fill: currentColor; }
+.ic-sm { width: var(--icon-sm); height: var(--icon-sm); }
+.root { width: 100%; min-height: 100vh; display: flex; flex-direction: column; }
+.stage { flex: 1; width: 100%; display: flex; }
+.brand { display: none; }
+.card { flex: 1; width: 100%; min-height: 100vh; display: flex; flex-direction: column; background: var(--color-surface-card); }
+.content { flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; align-items: center; gap: var(--sp-xl); padding: var(--sp-sm) var(--sp-xl) var(--sp-xl); }
+.chip { align-self: center; max-width: 100%; min-height: var(--touch-min); display: inline-flex; align-items: center; padding: 0; border: 0; background: transparent; cursor: pointer; }
+.chip-pill { height: var(--chip-h); max-width: 100%; display: inline-flex; align-items: center; gap: var(--sp-sm); padding: 0 var(--sp-sm) 0 var(--sp-md); border: var(--border-w) solid var(--color-outline-variant); border-radius: var(--r-full); color: var(--color-on-surface-variant); font-size: var(--fs-chip); font-weight: var(--fw-medium); letter-spacing: 0.1px; white-space: nowrap; }
+.chip-pill span { overflow: hidden; text-overflow: ellipsis; }
+.chip:hover .chip-pill { background: var(--color-background); }
+.chip-chev { opacity: 0.7; }
+.form-area { width: 100%; max-width: var(--form-max); display: flex; flex-direction: column; align-items: center; gap: var(--sp-xl); }
+.logo { width: var(--tile); height: var(--tile); display: grid; place-items: center; border-radius: var(--r-lg); background: var(--color-secondary-container); margin-top: var(--sp-lg); }
+.mark { width: var(--tile-mark); height: var(--tile-mark); display: block; }
+.title { text-align: center; display: flex; flex-direction: column; gap: var(--sp-xs); }
+.title h1 { margin: 0; font-size: var(--fs-headline); line-height: var(--lh-headline); font-weight: var(--fw-semibold); letter-spacing: -0.2px; }
+.title p { margin: 0; font-size: var(--fs-body-md); line-height: var(--lh-body-md); color: var(--color-on-surface-variant); }
+.fields { width: 100%; display: flex; flex-direction: column; gap: var(--sp-lg); }
+.field { width: 100%; display: flex; flex-direction: column; gap: var(--sp-xs); }
+.field-box { position: relative; min-height: var(--field-h); display: flex; align-items: center; gap: var(--sp-md); padding: 0 var(--sp-xs) 0 var(--sp-md); border: var(--border-w) solid var(--color-outline); border-radius: var(--r-md); color: var(--color-on-surface-variant); cursor: text; }
+.field-box:focus-within { border: var(--border-w-strong) solid var(--color-primary); }
+.field-label { position: absolute; top: calc(var(--sp-sm) * -1); left: var(--sp-md); padding: 0 var(--sp-xs); background: var(--color-surface-card); font-size: var(--fs-small); line-height: var(--lh-small); color: var(--color-on-surface-variant); }
+.field-box input { flex: 1; min-width: 0; height: var(--field-h); border: 0; outline: 0; background: transparent; font-size: var(--fs-body); color: var(--color-on-background); }
+.field-box input::placeholder { color: var(--color-outline); }
+.field-lead { margin-right: var(--sp-xs); }
+.field-trail { width: var(--touch-min); height: var(--touch-min); flex: none; display: grid; place-items: center; border: 0; border-radius: var(--r-full); background: transparent; color: var(--color-on-surface-variant); cursor: pointer; }
+.btn { width: 100%; min-height: var(--touch-min); display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-sm); border-radius: var(--r-full); font-size: var(--fs-body); font-weight: var(--fw-semibold); letter-spacing: 0.2px; cursor: pointer; }
+.btn-primary { border: 0; background: var(--color-primary); color: var(--color-on-primary); box-shadow: var(--el-1); }
+.btn-primary:hover { filter: brightness(1.06); }
+.btn-primary:disabled { background: var(--color-disabled-container); color: var(--color-on-disabled); box-shadow: none; filter: none; cursor: not-allowed; }
+.consent-bar { flex: none; padding: var(--sp-lg) var(--sp-xl) calc(var(--sp-lg) + env(safe-area-inset-bottom)); }
+.consent { margin: 0 auto; max-width: var(--form-max); text-align: center; font-size: var(--fs-small); line-height: var(--lh-small); color: var(--color-on-surface-variant); }
+.consent a { color: var(--color-primary); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+.snackbar { position: fixed; left: 50%; bottom: calc(var(--sp-xxxl) + var(--sp-xxl) + env(safe-area-inset-bottom)); transform: translateX(-50%); width: min(calc(100% - var(--sp-xxl)), var(--snackbar-max)); min-height: var(--touch-min); display: flex; align-items: center; padding: var(--sp-md) var(--sp-lg); border-radius: var(--r-md); background: var(--color-inverse-surface); color: var(--color-inverse-on-surface); box-shadow: var(--el-3); font-size: var(--fs-body-md); line-height: var(--lh-body-md); z-index: 5; }
 :focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
-/* medium (600-840): the same form as a centred card on a brand-tinted ground */
 @media (min-width: 600px) {
   body { background: var(--color-ground); }
-  .page { align-items: center; justify-content: center; padding: var(--space-xxxl) var(--space-xl); }
-  .card { flex: none; max-width: var(--card-max); border-radius: var(--radius-card); padding: var(--space-xl) var(--space-xxl) var(--space-xxl); box-shadow: var(--shadow-card); }
-  .spacer { display: none; }
-  .snackbar { left: 50%; right: auto; transform: translateX(-50%); width: calc(100% - var(--space-xxxl)); max-width: var(--card-max); }
+  .root { justify-content: center; padding: var(--sp-xxl) var(--sp-xl); }
+  .stage { flex: none; max-width: var(--card-medium); margin: 0 auto; }
+  .card { min-height: 0; border-radius: var(--r-lg); box-shadow: var(--el-2); overflow: hidden; }
+  .content { padding: var(--sp-xl) var(--sp-xxl) var(--sp-lg); }
+  .consent-bar { padding: var(--sp-sm) var(--sp-xxl) var(--sp-xl); }
 }
-/* expanded (>=840): brand panel left, sign-in card right, content capped near 1200 */
 @media (min-width: 840px) {
-  .page { flex-direction: row; align-items: stretch; justify-content: center; gap: var(--space-xxxl); max-width: var(--content-max); margin: 0 auto; padding: var(--space-xxxl); }
-  .brand-panel { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: var(--space-xxxl); border-radius: var(--radius-card); background: var(--color-brand-panel); color: var(--color-on-brand-panel); }
-  .brand-panel .big-mark { width: 112px; height: 112px; border-radius: 22px; overflow: hidden; display: block; }
-  .brand-panel h2 { margin: var(--space-xxl) 0 var(--space-md); font-size: 40px; line-height: 46px; font-weight: 600; letter-spacing: -0.6px; max-width: 12ch; }
-  .brand-panel p { margin: 0; font-size: 17px; line-height: 26px; color: var(--color-on-brand-panel-muted); max-width: 34ch; }
-  .card { align-self: center; flex: 0 1 var(--card-max); }
-  .card .mark-tile { display: none; }
-  .card .title { margin-top: var(--space-lg); text-align: left; }
-  .snackbar { left: auto; right: calc((100% - min(100%, var(--content-max))) / 2 + var(--space-xxxl)); transform: none; width: var(--card-max); }
+  .stage { max-width: var(--content-expanded); min-height: var(--stage-min); display: grid; grid-template-columns: 5fr 6fr; border-radius: var(--r-lg); box-shadow: var(--el-2); overflow: hidden; }
+  .brand { display: flex; flex-direction: column; justify-content: flex-end; gap: var(--sp-lg); padding: var(--sp-xxxl); background: var(--color-brand-panel); color: var(--color-on-brand-panel); }
+  .brand-tile { width: var(--brand-mark); height: var(--brand-mark); margin-bottom: auto; border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--el-2); }
+  .brand-tile svg { width: 100%; height: 100%; display: block; }
+  .brand h2 { margin: 0; font-size: var(--fs-display); line-height: var(--lh-display); font-weight: var(--fw-semibold); letter-spacing: -0.4px; }
+  .brand p { margin: 0; max-width: 40ch; font-size: var(--fs-body); line-height: var(--lh-body); color: var(--color-on-brand-panel-muted); }
+  .card { border-radius: 0; box-shadow: none; }
+  .content { justify-content: center; padding: var(--sp-xxxl) var(--sp-xxxl) var(--sp-lg); }
+  .logo { display: none; }
+  .consent-bar { padding: var(--sp-sm) var(--sp-xxxl) var(--sp-xxl); }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<svg width="0" height="0" class="defs" aria-hidden="true">
   <defs>
     <linearGradient id="mark-sky" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" style="stop-color: var(--mark-sky-a)"/>
@@ -122,56 +171,76 @@ button { font: inherit; }
       <polygon points="0,200 200,200 100,100" style="fill: var(--mark-green)"/>
       <polygon points="0,0 0,200 100,100" style="fill: var(--mark-blue)"/>
       <polygon points="200,0 200,200 100,100" fill="url(#mark-sky)"/>
-      <path d="M0 0 L200 200 M200 0 L0 200" style="stroke: var(--mark-x)" stroke-width="22"/>
+      <path d="M0 0 L200 200 M200 0 L0 200" style="stroke: var(--mark-x)" stroke-width="20"/>
     </symbol>
+    <symbol id="i-dns" viewBox="0 0 24 24"><path d="M20 13H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1v-6c0-.55-.45-1-1-1zM7 19c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM20 3H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1zM7 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></symbol>
+    <symbol id="i-person" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></symbol>
+    <symbol id="i-visibility-off" viewBox="0 0 24 24"><path d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"/></symbol>
   </defs>
 </svg>
-<div class="page" data-screen="signin" data-state="offline">
-  <aside class="brand-panel" aria-label="Mifos X Field Officer">
-    <svg class="big-mark" role="img" aria-label="Mifos X mark"><use href="#mifos-mark"/></svg>
-    <h2>Mifos X Field Officer</h2>
-    <p>Client visits, loan collections and savings work for officers in the field.</p>
-  </aside>
+<div class="root" data-shell="root" data-screen-id="signin" data-state="offline">
+  <div class="stage" data-component-type="LayoutBox" data-component-id="stage">
 
-  <main class="card">
-    <button class="chip" type="button" data-nav-to="serverConfig" aria-label="Change server: apis.mifos.community, tenant mifos-bank-1">
-      <span class="chip-inner">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19.14 12.94c.04-.3.06-.61.06-.94s-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96a7 7 0 0 0-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84a.48.48 0 0 0-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.48.48 0 0 0-.59.22L2.74 8.87a.48.48 0 0 0 .12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.48.48 0 0 0-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z"/></svg>
-        <span class="host">apis.mifos.community</span><span class="sep">·</span><span>mifos-bank-1</span>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-      </span>
-    </button>
+    <aside class="brand" data-component-type="LayoutBox" data-component-id="brand_panel" aria-label="Mifos X Field Officer">
+      <span class="brand-tile" data-component-type="Image" data-component-id="brand_panel_mark"><svg role="img" aria-label="Mifos X"><use href="#mifos-mark"/></svg></span>
+      <h2 data-component-type="Text" data-component-variant="display_small" data-component-id="brand_panel_name">Mifos X Field Officer</h2>
+      <p data-component-type="Text" data-component-variant="body_large" data-component-id="brand_panel_line">For loan officers and field staff running Mifos X.</p>
+    </aside>
 
-    <div class="form">
-      <div class="mark-tile"><svg role="img" aria-label="App logo"><use href="#mifos-mark"/></svg></div>
-      <div class="title">
-        <h1>Mifos X Field Officer</h1>
-        <p>Please enter your credentials</p>
-      </div>
+    <section class="card" data-component-type="Scaffold" data-component-id="signin_scaffold">
+      <main class="content" data-shell="content" data-state="offline" data-component-type="LayoutBox" data-component-id="content">
+        <button class="chip" type="button" data-component-type="AssistChip" data-component-id="instance_chip" data-nav-to="serverConfig" data-nav-type="push" aria-label="Server apis.mifos.community, tenant mifos-bank-1. Change server">
+          <span class="chip-pill">
+            <svg class="ic ic-sm" aria-hidden="true"><use href="#i-dns"/></svg>
+            <span>apis.mifos.community · mifos-bank-1</span>
+            <svg class="ic ic-sm chip-chev" aria-hidden="true"><use href="#i-chevron"/></svg>
+          </span>
+        </button>
 
-      <div class="fields">
-        <div class="field">
-          <label>Username</label>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-          <span class="value">fieldofficer</span>
+        <div class="form-area">
+          <div class="logo" data-component-type="Image" data-component-id="logo">
+            <svg class="mark" role="img" aria-label="Mifos X"><use href="#mifos-mark"/></svg>
+          </div>
+
+          <div class="title" data-component-type="TextBlock" data-component-id="title">
+            <h1>Mifos X Field Officer</h1>
+            <p>Please enter your credentials</p>
+          </div>
+
+          <div class="fields">
+            <div class="field" data-component-type="OutlinedTextField" data-component-id="username_field">
+              <label class="field-box">
+                <span class="field-label">Username</span>
+                <svg class="ic field-lead" aria-hidden="true"><use href="#i-person"/></svg>
+                <input type="text" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="Enter username" value="fieldofficer">
+              </label>
+            </div>
+
+            <div class="field" data-component-type="OutlinedTextField" data-component-id="password_field">
+              <label class="field-box">
+                <span class="field-label">Password</span>
+                <svg class="ic field-lead" aria-hidden="true"><use href="#i-lock"/></svg>
+                <input type="password" name="password" autocomplete="current-password" autocapitalize="none" placeholder="Enter password" value="password123">
+                <button class="field-trail" type="button" data-component-type="IconButton" data-component-id="toggle_visibility" data-action="local_state" data-action-params='{"target":"passwordVisibility"}' aria-label="Show password">
+                  <svg class="ic" aria-hidden="true"><use href="#i-visibility-off"/></svg>
+                </button>
+              </label>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" type="button" data-component-type="Button" data-component-variant="primary" data-component-id="login_button" data-action="submit" data-action-params='{"target":"authenticate"}'>Login</button>
         </div>
-        <div class="field">
-          <label>Password</label>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18 8h-1V6A5 5 0 0 0 7 6v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zm-6 9a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm3.1-9H8.9V6a3.1 3.1 0 0 1 6.2 0v2z"/></svg>
-          <span class="value masked" aria-label="Password, 8 characters">••••••••</span>
-          <button class="icon-btn" type="button" data-action="local_state" aria-label="Show password"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 7a5 5 0 0 1 5 5c0 .65-.13 1.26-.36 1.83l2.92 2.92A11.8 11.8 0 0 0 22.99 12 11.83 11.83 0 0 0 7.97 5.24l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46A11.8 11.8 0 0 0 1 12a11.82 11.82 0 0 0 15.38 6.66l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55A2.82 2.82 0 0 0 9 12a3 3 0 0 0 3 3c.22 0 .44-.03.65-.08l1.55 1.55A4.97 4.97 0 0 1 7 12c0-.79.2-1.53.53-2.2zm4.31-.78 3.15 3.15.02-.16a3 3 0 0 0-3-3l-.17.01z"/></svg></button>
-        </div>
-      </div>
+      </main>
 
-      <button class="primary" type="button" data-action="submit">Login</button>
-      <div class="spacer"></div>
-      <p class="consent">By signing in you agree to our <a href="#" data-od-nav data-action="open_url">Terms of Service</a> and <a href="#" data-od-nav data-action="open_url">Privacy Policy</a>.</p>
-    </div>
-  </main>
-</div>
-<div class="snackbar" role="alert">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.64 7c-.45-.34-4.93-4-11.64-4-1.5 0-2.89.19-4.15.48L18.18 13.8 23.64 7zm-6.6 8.22L3.27 1.44 2 2.72l2.05 2.06C1.91 5.76.59 6.82.36 7l11.63 14.49.01.01.01-.01 3.9-4.86 3.32 3.32 1.27-1.27-3.46-3.46z"/></svg>
-  <span>You are offline. Signing in needs a connection.</span>
+      <footer class="consent-bar" data-component-type="LayoutBox" data-component-id="bottom_bar">
+        <p class="consent" data-component-type="LegalText" data-component-variant="body_small" data-component-id="consent_text" data-testid="signin:consent">By signing in you accept our <a role="link" tabindex="0" data-component-type="Link" data-component-id="terms_link" data-action="open_terms" aria-label="Terms &amp; Conditions - opens in the app">Terms &amp; Conditions</a> and <a role="link" tabindex="0" data-component-type="Link" data-component-id="privacy_policy_link" data-action="open_privacy_policy" aria-label="Privacy Policy - opens in the app">Privacy Policy</a>.</p>
+      </footer>
+    </section>
+  </div>
+
+  <div class="snackbar" role="status" aria-live="polite" data-component-type="Snackbar" data-component-id="snackbar">You are offline. Signing in needs a connection.</div>
 </div>
 <script src="../../../preview/_shared/preview-runtime.js"></script>
 </body>

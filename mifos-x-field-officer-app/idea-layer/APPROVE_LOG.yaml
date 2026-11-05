@@ -509,3 +509,26 @@ approvals:
     status_before: approved
     status_after: approved
     bypass_flags: []
+
+  - feature: signin
+    action: approve
+    approved_at: "2026-11-05T14:15:00Z"
+    approved_by: human
+    approval_mode: explicit-human-gate
+    approval_context: >-
+      operator "go ahead quickly finish the open" (2026-11-05), given after being told the regenerated sign-in renders
+      differ from the 07:50 approval and asked to approve them.
+    reason: >-
+      Logo-fidelity regeneration: states empty..transport_error (13:29–13:40) and locked_out + success (14:02–14:05)
+      regenerated; every render now draws the Mifos X mark (0 account_balance glyphs), carries "By signing in you
+      accept our Terms & Conditions and Privacy Policy." with both links, 0 "Terms of Service". stitch-verify 28/28
+      (report-only re-run; the post-generate pass printed 12 transient sv-fail before status merge, not reproducible),
+      G-MOCKUP-RESPONSIVE 101 files.
+    hash_before: "5a59aac225c501807f1f587193acb32b3d0247c1cf6ac81ff2d1c5d7185a35b8"
+    approve_hash: "sha256:220ddc602831afb5da67b710bd3639f837835fdc84e95c75539d0bc97a436a7f"
+    hash_source: "core/scripts/approve-hash.sh signin --current-hash (approve_hash_method: approve-hash.sh/v1)"
+    status_before: approved
+    status_after: approved
+    contract_version: "2.0.0"
+    predicate_version: "1.0.0"
+    bypass_flags: []

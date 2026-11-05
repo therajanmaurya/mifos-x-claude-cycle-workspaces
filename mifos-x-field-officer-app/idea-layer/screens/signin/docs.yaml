@@ -56,8 +56,9 @@ version_lineage:
   v2: "2026-10-03 — professional redesign on the migrated substrate; shipped 2026-10-05"
 
 status: approved
-approve_hash: "5a59aac225c501807f1f587193acb32b3d0247c1cf6ac81ff2d1c5d7185a35b8"
-approved_at: '2026-11-05T07:50:00Z'
+approve_hash: "sha256:220ddc602831afb5da67b710bd3639f837835fdc84e95c75539d0bc97a436a7f"
+approve_hash_method: approve-hash.sh/v1
+approved_at: '2026-11-05T14:15:00Z'
 approved_by: /idea-approve
 approve_predicate_version: "1.0.0"
 approve_contract_version: "2.0.0"
@@ -101,6 +102,17 @@ status_history:
       operator 2026-11-05 consent-line change: ui/flow/docs/tests/_strings updated, all 8 Stitch screens regenerated
       (consent copy + both links verified in every code.html), responsive brief added to visual_treatment, responsive
       gate green; predicate + disclosures in APPROVE_LOG.yaml
+  - from: approved
+    to: approved
+    at: '2026-11-05T14:15:00Z'
+    by: /idea-approve
+    contract_version: "2.0.0"
+    bypass_flags: []
+    note: >-
+      operator "go ahead quickly finish the open" (2026-11-05) — re-approval of the logo-fidelity regeneration: all 8
+      Stitch renders now draw the Mifos X mark (no account_balance glyph), carry the consent copy with both links, stitch
+      verify 28/28, responsive gate green. Stamped with core/scripts/approve-hash.sh (approve_hash_method v1), replacing
+      the self-invalidating staleness-resolve composite stamp.
 
 # ──────────────── IMPLEMENTATION DRIFT — CLOSED ────────────────
 # This block existed because the docset was redesigned to v2 while source still implemented v1.
