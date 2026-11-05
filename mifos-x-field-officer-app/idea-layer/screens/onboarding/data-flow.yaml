@@ -1,0 +1,35 @@
+feature: onboarding
+last_generate:
+  command: "/idea-data-flow onboarding"
+  timestamp: "2026-11-05T00:00:00Z"
+  generated_by: "claude"
+
+entries:
+  - trigger: on_mount
+    source: local.app_privacy_config      # AppPrivacyConfig.PRIVACY_POLICY_URL + AppOrgLinks["terms"]
+    target_state: intro_clients
+    note: "no network, no loading state — the first page renders at once"
+  - trigger: on_allow_get_started
+    source: local.user_data_repository    # setAnalyticsConsent(true) → setCrashReportingConsent(true) → setFirstTimeState(false)
+    target_state: privacy
+    loading_state: privacy.saving
+    error_state: privacy
+    on_error:
+      nav_target: null
+      error_code: local_write_failed
+    then: "RootNavViewModel observes firstTimeUser = false → sign-in"
+    note: "both switches turn ON before the write; setFirstTimeState LAST so consent is stored before RootNav moves"
+  - trigger: on_continue_choices
+    source: local.user_data_repository    # setAnalyticsConsent(analytics) → setCrashReportingConsent(crashReports) → setFirstTimeState(false)
+    target_state: privacy
+    loading_state: privacy.saving
+    error_state: privacy
+    on_error:
+      nav_target: null
+      error_code: local_write_failed
+    then: "RootNavViewModel observes firstTimeUser = false → sign-in"
+    note: "saves switches exactly as shown; setFirstTimeState LAST; nothing is saved if the write throws"
+derived:
+  state_rule: "the current pager page; privacy.saving while the three writes run"
+  consent_rule: "analytics and crashReports start false; on_allow_get_started saves both true; on_continue_choices saves each switch exactly as shown; setFirstTimeState(false) LAST in both paths"
+  button_label_rule: "continue_choices label = 'Continue without sharing' when both switches off; 'Continue with my choices' when either on"

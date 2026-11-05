@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "entries": {
+    "stitch.intro_clients": {
+      "hash": "beab8317fc9caeeca2aadb8f04c34e352354dfad07024cb4a12e1f5afd772e7f",
+      "rendered_at": "2026-11-05T07:58:01.070Z",
+      "chars": 6630,
+      "shrink_applied": [],
+      "failed": false,
+      "error": null
+    },
+    "stitch.intro_collections": {
+      "hash": "e568cbd8d4432f0d08aacb7f5acd4dc2e7e61468e083580cfecc28613cca2863",
+      "rendered_at": "2026-11-05T07:58:01.076Z",
+      "chars": 6610,
+      "shrink_applied": [],
+      "failed": false,
+      "error": null
+    },
+    "stitch.intro_offline": {
+      "hash": "d0af7cd85677abf6004a72d6b020f9571b17fdef12b8f624ba8129b069f94ea4",
+      "rendered_at": "2026-11-05T07:58:01.082Z",
+      "chars": 6594,
+      "shrink_applied": [],
+      "failed": false,
+      "error": null
+    },
+    "stitch.privacy": {
+      "hash": "6358a173f6592a0f305968bc381eff6dfb8e65b571900e4b7a8b5d4f5ae860cc",
+      "rendered_at": "2026-11-05T07:58:01.088Z",
+      "chars": 7886,
+      "shrink_applied": [],
+      "failed": false,
+      "error": null
+    }
+  }
+}

@@ -2,17 +2,19 @@
   "version": 1,
   "entries": {
     "stitch.empty": {
-      "hash": "275687098353bdfb028c03d858b96a0349f876649dc6b5c41fecf41ab4dffa86",
-      "rendered_at": "2026-11-04T10:26:43.760Z",
-      "chars": 7905,
-      "shrink_applied": [],
+      "hash": "c59c92330b2264d702deb530c31e8e49d45bd15fbfb20b650faf5762fcab42f5",
+      "rendered_at": "2026-11-05T07:57:22.375Z",
+      "chars": 7618,
+      "shrink_applied": [
+        "condense-boilerplate"
+      ],
       "failed": false,
       "error": null
     },
     "stitch.submitting": {
-      "hash": "6b34762b13f3cce584d6378f2253b0401aa75798fbf9b40d81dc028de1f3dff5",
-      "rendered_at": "2026-11-04T10:26:43.768Z",
-      "chars": 7130,
+      "hash": "98253910942c89608150770771d244b7f9bb654c9d5d3fcf05eaf92a1b235d47",
+      "rendered_at": "2026-11-05T07:57:22.380Z",
+      "chars": 7811,
       "shrink_applied": [
         "condense-boilerplate"
       ],
@@ -20,17 +22,19 @@
       "error": null
     },
     "stitch.validation_error": {
-      "hash": "1a3d03f816e4bd1ccba6e27ed847aaecad976f549ee8d4a3a3b93885ee4a4419",
-      "rendered_at": "2026-11-04T10:26:43.771Z",
-      "chars": 7902,
-      "shrink_applied": [],
+      "hash": "ca6e4d79172f5addf4f4ae1d0e16c0c2ae126ca3443caf2d3266a27bd289d728",
+      "rendered_at": "2026-11-05T07:57:22.382Z",
+      "chars": 7615,
+      "shrink_applied": [
+        "condense-boilerplate"
+      ],
       "failed": false,
       "error": null
     },
     "stitch.transport_error": {
-      "hash": "ce54d81ce888e51d6ad345aa633d631a87cd8810cc7045aff95189c714084cc9",
-      "rendered_at": "2026-11-04T10:26:43.774Z",
-      "chars": 7335,
+      "hash": "a7f9406afea7c1fd0825c8ef4bfc5b789ec0f36c2ad03631e328ed5860fdd054",
+      "rendered_at": "2026-11-05T07:57:22.383Z",
+      "chars": 7979,
       "shrink_applied": [
         "condense-boilerplate"
       ],
@@ -38,9 +42,9 @@
       "error": null
     },
     "stitch.offline": {
-      "hash": "ef068a89ce23f5334c369ebc0e42193c5f3900a3be95d3fcdb68263ae53124f4",
-      "rendered_at": "2026-11-04T10:26:43.776Z",
-      "chars": 7123,
+      "hash": "2428daae13b097a19088219d104667aac4899c85b005d767250cc2157c0c7d50",
+      "rendered_at": "2026-11-05T07:57:22.385Z",
+      "chars": 7767,
       "shrink_applied": [
         "condense-boilerplate"
       ],
@@ -48,17 +52,19 @@
       "error": null
     },
     "stitch.success": {
-      "hash": "fd6fee2039d5b23c9dc104881cc8dd44b1b0a4691d7fde753302085983c2e4ff",
-      "rendered_at": "2026-11-04T10:26:43.781Z",
-      "chars": 7875,
-      "shrink_applied": [],
+      "hash": "e3c84bf4816783d1b58e92d5f6e6615df35bc1bcd11d497862dd7bccf4eceee3",
+      "rendered_at": "2026-11-05T07:57:22.388Z",
+      "chars": 7588,
+      "shrink_applied": [
+        "condense-boilerplate"
+      ],
       "failed": false,
       "error": null
     },
     "stitch.biometric_ready": {
-      "hash": "ae9c119be2f521793cec6c83804c3dc8330b51741c84569d61c16292d36ecc42",
-      "rendered_at": "2026-11-04T10:26:43.764Z",
-      "chars": 7201,
+      "hash": "03e574bd2b5f0fdedca4c43bfd59033915225f4546a5df580969cdc537b0d2f7",
+      "rendered_at": "2026-11-05T07:57:22.377Z",
+      "chars": 7845,
       "shrink_applied": [
         "condense-boilerplate"
       ],
@@ -66,9 +72,9 @@
       "error": null
     },
     "stitch.locked_out": {
-      "hash": "a059f8b12c74ec0436f19abfd67c60613db75ec75618269160e35449be92a7a5",
-      "rendered_at": "2026-11-04T10:26:43.779Z",
-      "chars": 7141,
+      "hash": "6a3e3afc867203a11544ba70b6cd56cd7264148eaf7d5544797cbf275b28e1d4",
+      "rendered_at": "2026-11-05T07:57:22.387Z",
+      "chars": 7785,
       "shrink_applied": [
         "condense-boilerplate"
       ],

@@ -1,7 +1,7 @@
 # Feature Registry — mifos-x-field-officer-app
 
-> **Total**: 21 | **Designed**: 20 | **Implemented**: 20
-> **Last Updated**: 2026-10-26
+> **Total**: 24 | **Designed**: 20 | **Implemented**: 20
+> **Last Updated**: 2026-11-04
 
 ---
 
@@ -32,3 +32,4 @@
 | 21 | home | home | P0 | signin, search, clientList, individualCollectionSheet, checkerInbox, syncAndDrafts, runReports | v2 | ❌ | ❌ | scaffold · enrich_staleness: stale |
 | 22 | offlineSync | offlineSync | P1 | settings, clientList, individualCollectionSheet | v2 | ❌ | ❌ | scaffold · enrich_staleness: stale |
 | 23 | profile | account | P1 | signin, home, serverConfig, settings | v2 | ❌ | ❌ | scaffold · enrich_staleness: stale |
+| 24 | onboarding | authentication | P1 | signin, serverConfig | v2 | ❌ | ❌ | enhanced 2026-11-05 (privacy: Allow / Continue without + Terms link) · enhanced 2026-11-05 (design: fixed bottom action bar, shared-axis page transition, 32dp mark — FR-ONB-08) · enrich_staleness: stale · 4/4 mockups stale |

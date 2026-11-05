@@ -1,0 +1,34 @@
+feature: onboarding
+project_id: '10780096558615730514'
+design_system_id: '9551377288795375599'
+generated_at: '2026-11-05T06:26:54.604Z'
+version: 1
+states:
+  intro_clients:
+    screen_id: 99fd140a61c74a36833f11c39627074f
+    result: success
+    folder: 01-onboarding-intro_clients
+    generated_at: '2026-11-05T06:23:25.940Z'
+    html_downloaded: true
+    png_downloaded: true
+  intro_collections:
+    screen_id: e7427ee8ab0a4fa4b1f9efdb9a359508
+    result: success
+    folder: 02-onboarding-intro_collections
+    generated_at: '2026-11-05T06:25:02.223Z'
+    html_downloaded: true
+    png_downloaded: true
+  intro_offline:
+    screen_id: 283d76c0b569458e9f4c5aac49423b29
+    result: success
+    folder: 03-onboarding-intro_offline
+    generated_at: '2026-11-05T06:26:30.967Z'
+    html_downloaded: true
+    png_downloaded: true
+  privacy:
+    screen_id: 7dfe1dafb40d4f38bfb48a9c1bcacc0a
+    result: success
+    folder: 04-onboarding-privacy
+    generated_at: '2026-11-05T06:17:15.968Z'
+    html_downloaded: true
+    png_downloaded: true

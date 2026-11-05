@@ -21,6 +21,60 @@ findings:
     kind: sub-action-leaf-missing
     severity: error
 gaps:
+  - id: 'asymmetric-inbound::onboarding→serverConfig'
+    kind: asymmetric-nav-edge
+    feature: onboarding
+    severity: advisory
+    message: >-
+      onboarding/flow.yaml declares outbound connect_instance_link →
+      serverConfig, but screens/serverConfig/flow.yaml#inbound_routes has no
+      `from: onboarding` row. Fix belongs in serverConfig's flow.yaml (owner:
+      serverConfig) via /idea-sync; not edited by /idea-verify --feature
+      onboarding.
+    fix_belongs_in: 'screens/serverConfig/flow.yaml#inbound_routes'
+    raised_by: /idea-verify --feature onboarding
+    raised_at: '2026-11-04T18:15:00Z'
+    status: open
+  - id: 'a11y-label-heuristic::onboarding'
+    kind: validation-coverage
+    feature: onboarding
+    severity: advisory
+    rule: RULE-IDEA-A11Y-LABEL-001
+    message: >-
+      Graph-audit heuristic counts `accessibility_label` on button/text_button
+      components (skip, next, get_started); ui.yaml carries
+      a11y.contentDescription on all three instead, so passes_a11y_label reads
+      false.
+    raised_by: /idea-verify --feature onboarding
+    raised_at: '2026-11-04T18:15:00Z'
+    status: open
+  - id: 'visual-assets-not-generated::onboarding'
+    kind: visual-asset-ungenerated
+    feature: onboarding
+    severity: advisory
+    rule: RULE-SCREEN-VISUAL-ASSETS-001
+    message: >-
+      5 declared visual_assets (onboarding_brand_mark + 4 illustrations) have no
+      .gen.yaml provenance sidecar yet (SVA-3). Generated + wired at
+      /kmp-implement STEP 2.ASSETS (/idea-branding, /idea-feature-stitch-art);
+      blocks matrix-green, not approval.
+    raised_by: /idea-verify --feature onboarding
+    raised_at: '2026-11-04T18:15:00Z'
+    status: open
+  - id: 'stitch-screen-png-not-page-capture::onboarding/privacy'
+    kind: stitch-capture-defect
+    feature: onboarding
+    state: privacy
+    severity: advisory
+    message: >-
+      mockups/onboarding/stitch/04-onboarding-privacy/screen.png is a 200x200
+      image, not a page capture (intro pages are 2560x2048). code.html is
+      complete (title, both switches, links, Get started, lg: rules);
+      stitch-verify reports sv-pass. Re-fetch the screenshot via
+      /idea-feature-stitch-verify.
+    raised_by: /idea-verify --feature onboarding
+    raised_at: '2026-11-04T18:15:00Z'
+    status: open
   - id: 'stitch-render-stale::signin/empty'
     kind: stitch-render-stale
     feature: signin
@@ -29,7 +83,7 @@ gaps:
     message: >-
       Mockup for signin/empty was updated — preview + render re-check
       recommended.
-    raised_at: '2026-11-04T10:31:05.224Z'
+    raised_at: '2026-11-05T07:59:21.925Z'
     status: open
   - id: 'stitch-render-stale::signin/submitting'
     kind: stitch-render-stale
@@ -39,7 +93,7 @@ gaps:
     message: >-
       Mockup for signin/submitting was updated — preview + render re-check
       recommended.
-    raised_at: '2026-11-04T10:34:50.641Z'
+    raised_at: '2026-11-05T08:04:58.001Z'
     status: open
   - id: 'stitch-render-stale::signin/validation_error'
     kind: stitch-render-stale
@@ -49,7 +103,7 @@ gaps:
     message: >-
       Mockup for signin/validation_error was updated — preview + render re-check
       recommended.
-    raised_at: '2026-11-04T10:36:35.124Z'
+    raised_at: '2026-11-05T08:07:05.407Z'
     status: open
   - id: 'stitch-render-stale::signin/transport_error'
     kind: stitch-render-stale
@@ -59,7 +113,7 @@ gaps:
     message: >-
       Mockup for signin/transport_error was updated — preview + render re-check
       recommended.
-    raised_at: '2026-11-04T10:38:04.631Z'
+    raised_at: '2026-11-05T08:10:11.555Z'
     status: open
   - id: 'stitch-render-stale::signin/offline'
     kind: stitch-render-stale
@@ -69,7 +123,7 @@ gaps:
     message: >-
       Mockup for signin/offline was updated — preview + render re-check
       recommended.
-    raised_at: '2026-11-04T10:41:31.858Z'
+    raised_at: '2026-11-05T07:43:04.367Z'
     status: open
   - id: 'stitch-render-stale::signin/success'
     kind: stitch-render-stale
@@ -79,7 +133,7 @@ gaps:
     message: >-
       Mockup for signin/success was updated — preview + render re-check
       recommended.
-    raised_at: '2026-11-04T10:44:30.399Z'
+    raised_at: '2026-11-05T08:35:15.481Z'
     status: open
   - id: 'stitch-render-stale::signin/biometric_ready'
     kind: stitch-render-stale
@@ -89,7 +143,7 @@ gaps:
     message: >-
       Mockup for signin/biometric_ready was updated — preview + render re-check
       recommended.
-    raised_at: '2026-11-04T10:33:08.552Z'
+    raised_at: '2026-11-05T08:02:17.126Z'
     status: open
   - id: 'stitch-render-stale::signin/locked_out'
     kind: stitch-render-stale
@@ -99,7 +153,7 @@ gaps:
     message: >-
       Mockup for signin/locked_out was updated — preview + render re-check
       recommended.
-    raised_at: '2026-11-04T10:42:59.323Z'
+    raised_at: '2026-11-05T08:32:32.849Z'
     status: open
   - id: 'no-lock-surface::signin/biometric_ready'
     kind: state-not-device-reachable
@@ -3216,4 +3270,44 @@ gaps:
       Mockup for offlineSync/offline was updated — preview + render re-check
       recommended.
     raised_at: '2026-11-04T10:36:33.178Z'
+    status: open
+  - id: 'stitch-render-stale::onboarding/privacy'
+    kind: stitch-render-stale
+    feature: onboarding
+    state: privacy
+    severity: advisory
+    message: >-
+      Mockup for onboarding/privacy was updated — preview + render re-check
+      recommended.
+    raised_at: '2026-11-05T06:17:15.971Z'
+    status: open
+  - id: 'stitch-render-stale::onboarding/intro_clients'
+    kind: stitch-render-stale
+    feature: onboarding
+    state: intro_clients
+    severity: advisory
+    message: >-
+      Mockup for onboarding/intro_clients was updated — preview + render
+      re-check recommended.
+    raised_at: '2026-11-05T06:23:25.941Z'
+    status: open
+  - id: 'stitch-render-stale::onboarding/intro_collections'
+    kind: stitch-render-stale
+    feature: onboarding
+    state: intro_collections
+    severity: advisory
+    message: >-
+      Mockup for onboarding/intro_collections was updated — preview + render
+      re-check recommended.
+    raised_at: '2026-11-05T06:25:02.224Z'
+    status: open
+  - id: 'stitch-render-stale::onboarding/intro_offline'
+    kind: stitch-render-stale
+    feature: onboarding
+    state: intro_offline
+    severity: advisory
+    message: >-
+      Mockup for onboarding/intro_offline was updated — preview + render
+      re-check recommended.
+    raised_at: '2026-11-05T06:26:30.969Z'
     status: open

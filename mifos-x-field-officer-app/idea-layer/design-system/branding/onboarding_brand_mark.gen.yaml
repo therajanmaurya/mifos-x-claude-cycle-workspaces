@@ -1,0 +1,40 @@
+# Provenance sidecar for onboarding_brand_mark.png (RULE-SCREEN-VISUAL-ASSETS-001 SVA-2/SVA-3).
+
+schema_version: "1.0"
+asset_id: onboarding_brand_mark
+file: onboarding_brand_mark.png
+kind: logo
+role: brand
+
+# ──────────────── PRODUCTION ────────────────
+produced_by: /idea-branding
+produced_at: "2026-11-05"
+engine: deterministic-derivation          # no generative model involved
+
+# ──────────────── WIRING (SVA-3) ────────────────
+wired_to: source/mifos-x-field-officer-app/feature/onboarding/src/commonMain/composeResources/drawable/onboarding_brand_mark.png
+wired_by: "OnboardingScreen.kt OnboardingTopBar() — Image(painter = painterResource(Res.drawable.onboarding_brand_mark))"
+
+# ──────────────── LICENSE + DEVICE TRUTH (SVA-4) ────────────────
+license_status: project-owned
+device_fidelity: pending-device-verify
+human_signed_off: false
+
+derivation:
+  same_as: signin_brand_mark.gen.yaml
+  note: >
+    Byte-identical to the sign-in mark (md5 fcac11312c19c64777e1bac64f14f10e): the same 216x216 RGBA crop of the
+    launcher's adaptive-icon foreground (app-profile/icons/android/res/mipmap-xxxhdpi/ic_launcher_foreground.webp),
+    i.e. the real Mifos X mark. A brand mark is derived, never generated — a model asked for a logo invents one.
+  output: { width: 216, height: 216, mode: RGBA, md5: fcac11312c19c64777e1bac64f14f10e }
+
+states:
+  intro_clients: { asset: onboarding_brand_mark.png }
+  intro_collections: { asset: onboarding_brand_mark.png }
+  intro_offline: { asset: onboarding_brand_mark.png }
+  privacy: { asset: onboarding_brand_mark.png }
+
+consistency: app-icon-family
+license:
+  status: project-owned
+  note: "Derived from the fork's own app-profile icon set; no third-party or model-generated pixels."

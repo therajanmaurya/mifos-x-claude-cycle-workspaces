@@ -1,0 +1,87 @@
+# Journey — a field officer opens the app for the first time and chooses what to share.
+#
+# Derived 2026-11-04 by /idea-flows (cascade step 5 of /idea-feature-enrich onboarding) from
+# flows/authentication.yaml edges finish-onboarding + onboarding-configure-instance and
+# screens/onboarding/flow.yaml. Each step names the screen, the action and the SUCCESS SIGNAL.
+
+schema_version: "1.0"
+journey_id: field-officer-first-run
+name: "Field officer's first run"
+persona: field-officer
+priority: P1
+# The journey starts at the RootNavState.ShowOnboarding destination (a root state, not a nav edge from
+# another screen) — declared so the nav-graph audit seeds onboarding as an entry screen.
+entry_point: onboarding
+exit_point: signin
+
+description: >
+  Runs once per device, before sign-in. The officer learns in three pages what the app is for and then
+  makes an explicit privacy choice — both switches start off, nothing is collected until they say so.
+
+preconditions:
+  - "fresh install (no stored user record)"
+  - "build whose app-profile sets security.first_run_onboarding: true (template seam 3dd68cd9 synced)"
+
+# ──────────────── HAPPY PATH ────────────────
+screen_sequence:
+  - step: 1
+    screen: onboarding
+    state: intro_clients
+    action: "launch the app"
+    success_signal: "onboarding_pager is visible before any sign-in screen; page indicator reads Page 1 of 4"
+  - step: 2
+    screen: onboarding
+    state: intro_collections
+    action: "tap onboarding_next"
+    success_signal: "the collections page shows with Page 2 of 4"
+  - step: 3
+    screen: onboarding
+    state: intro_offline
+    action: "tap onboarding_next"
+    success_signal: "the offline page shows with Page 3 of 4"
+  - step: 4
+    screen: onboarding
+    state: privacy
+    action: "tap onboarding_next"
+    success_signal: "onboarding_analytics_switch and onboarding_crash_reports_switch are both OFF"
+    why: "no pre-ticked consent — the default must be the officer's own choice"
+  - step: 5
+    screen: onboarding
+    state: privacy
+    action: "turn onboarding_crash_reports_switch ON, tap onboarding_continue_choices (reads 'Continue with my choices'; pinned in the bottom bar, no scroll needed)"
+    success_signal: "crash reporting consent stored true, analytics false, firstTimeUser false"
+  - step: 6
+    screen: signin
+    state: empty
+    action: "await routing"
+    success_signal: "sign-in shows; relaunching opens sign-in directly, never onboarding again"
+
+# ──────────────── BRANCHES ────────────────
+branches:
+  - id: skip-intro
+    at: 1
+    when: "the officer taps Skip"
+    action: "tap onboarding_skip"
+    expect_state: privacy
+    success_signal: "the privacy page opens; nothing has been saved"
+  - id: connect-instance
+    at: 4
+    when: "the officer's Mifos instance differs from the shipped default"
+    action: "scroll the privacy content until onboarding_connect_instance is visible (it is the last scrolling item), tap it → serverConfig → back"
+    success_signal: "Server config opens; back returns to the privacy page with the switches unchanged"
+  - id: leave-without-choosing
+    at: 1
+    when: "the officer presses system back on page 1"
+    success_signal: "the app closes; on relaunch onboarding shows again and both consents are still false"
+  - id: save-failed
+    at: 5
+    when: "a local preference write throws"
+    success_signal: "onboarding_save_failed shows in the bottom bar; both privacy buttons are enabled again; onboarding is not marked done"
+
+# ──────────────── COVERAGE ────────────────
+covers_states: [intro_clients, intro_collections, intro_offline, privacy]
+covers_flows: [authentication]
+
+external_gates:
+  - id: first-run-seam-not-synced
+    reason: "until /kmp-project-template-sync --dev 3dd68cd9 lands in the fork, UserData.DEFAULT.firstTimeUser is false and a fresh install skips onboarding — device runs record pending-device-verify, never a fake green"

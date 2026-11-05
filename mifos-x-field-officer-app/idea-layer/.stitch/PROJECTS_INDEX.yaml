@@ -1,53 +1,23 @@
 version: '2.0'
 workspace: mifos-x/mifos-x-field-officer-app
-updated: '2026-11-04T10:44:50.782Z'
+updated: '2026-11-05T08:35:29.923Z'
 features:
   signin:
     project_id: '10780096558615730514'
     design_system_id: '9551377288795375599'
-    last_run: '2026-11-04T10:44:50.473Z'
-    total_screens: 8
+    last_run: '2026-11-05T08:35:29.732Z'
+    total_screens: 2
     screens:
-      - state: empty
-        screen_id: 24441b57af364de4b373cf85506e638f
-        folder: 01-signin-empty
-        result: success
-        generated_at: '2026-11-04T10:31:05.223Z'
-      - state: biometric_ready
-        screen_id: cd50d5f3869d43bcbd006852f663db64
-        folder: 02-signin-biometric_ready
-        result: success
-        generated_at: '2026-11-04T10:33:08.552Z'
-      - state: submitting
-        screen_id: 37236d56b0c542969f408e0a0fec4568
-        folder: 03-signin-submitting
-        result: success
-        generated_at: '2026-11-04T10:34:50.639Z'
-      - state: validation_error
-        screen_id: 76e8f687f7ba47f9a97d3c06dfb60a71
-        folder: 04-signin-validation_error
-        result: success
-        generated_at: '2026-11-04T10:36:35.121Z'
-      - state: transport_error
-        screen_id: ca6abe9d5cf241e383178601744df9eb
-        folder: 05-signin-transport_error
-        result: success
-        generated_at: '2026-11-04T10:38:04.630Z'
-      - state: offline
-        screen_id: 4b130f5116884d30b249646c81f59878
-        folder: 06-signin-offline
-        result: success
-        generated_at: '2026-11-04T10:41:31.856Z'
       - state: locked_out
-        screen_id: 16c0c7aae52841b1b2cb7fd70b7939d9
+        screen_id: 914c475e8e6a4d82ac4a1ccda7a836ff
         folder: 07-signin-locked_out
         result: success
-        generated_at: '2026-11-04T10:42:59.323Z'
+        generated_at: '2026-11-05T08:32:32.848Z'
       - state: success
-        screen_id: 449c9dd966664628be31cf990b217fd0
+        screen_id: 921e3b620e8849cfbf37ef991e14d49b
         folder: 08-signin-success
         result: success
-        generated_at: '2026-11-04T10:44:30.399Z'
+        generated_at: '2026-11-05T08:35:15.480Z'
   home:
     project_id: '10780096558615730514'
     design_system_id: '9551377288795375599'
@@ -146,3 +116,24 @@ features:
         folder: 05-profile-change_password
         result: success
         generated_at: '2026-11-04T10:33:40.024Z'
+  onboarding:
+    project_id: '10780096558615730514'
+    design_system_id: '9551377288795375599'
+    last_run: '2026-11-05T06:26:54.604Z'
+    total_screens: 3
+    screens:
+      - state: intro_clients
+        screen_id: 99fd140a61c74a36833f11c39627074f
+        folder: 01-onboarding-intro_clients
+        result: success
+        generated_at: '2026-11-05T06:23:25.940Z'
+      - state: intro_collections
+        screen_id: e7427ee8ab0a4fa4b1f9efdb9a359508
+        folder: 02-onboarding-intro_collections
+        result: success
+        generated_at: '2026-11-05T06:25:02.223Z'
+      - state: intro_offline
+        screen_id: 283d76c0b569458e9f4c5aac49423b29
+        folder: 03-onboarding-intro_offline
+        result: success
+        generated_at: '2026-11-05T06:26:30.967Z'

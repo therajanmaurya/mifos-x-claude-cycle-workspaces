@@ -1,0 +1,196 @@
+# screens/onboarding/tests.yaml — emitted by /idea-feature-enrich Phase 3 (sub-plan 05 T4), 2026-11-05
+# schema_version: v1.0.0  source: idea-feature-enrich  feature: onboarding
+# Re-emitted after /idea-plan-add enhance onboarding 2026-11-05 (operator decisions A "Allow / Continue without" +
+# B agreement line "By using our service you accept our Terms & Conditions and Privacy Policy."): get_started
+# scenarios replaced by allow-all / continue-without / continue-with-one-on; both agreement links covered. The
+# sentence is ONE Text tagged onboarding_agreement with inline LinkAnnotation spans — the links are tapped by TEXT.
+# Re-emitted again after the 2026-11-05 operator DESIGN feedback (FR-ONB-08): fixed bottom action bar (dots +
+# Next / the two finishing buttons never scroll), shared-axis-X page transition, 32dp brand mark on every page,
+# save error as inline text in the bar (onboarding_save_failed). +4 scenarios.
+schema_version: v1.0.0
+feature: onboarding
+state_coverage: [intro_clients, intro_collections, intro_offline, privacy]
+scenarios:
+  - id: intro_clients_fresh_install_opens_onboarding
+    preconditions:
+      - "fresh install (no stored user record) of a build whose app-profile sets security.first_run_onboarding: true"
+      - "prod build"
+    actions:
+      - "launch the app"
+    assertions:
+      - "onboarding_pager is visible before any sign-in screen"
+      - "page 1 shows 'Your clients, groups and centres — in the field' with the Mifos X mark and its illustration"
+      - "onboarding_page_indicator reads 'Page 1 of 4'"
+    priority: high
+  - id: intro_clients_next_through_to_privacy
+    preconditions: ["fresh install", "onboarding open on page 1"]
+    actions: ["tap onboarding_next", "tap onboarding_next", "tap onboarding_next"]
+    assertions:
+      - "pages 2 and 3 show the collections and offline copy in order"
+      - "the privacy page opens with onboarding_analytics_switch OFF and onboarding_crash_reports_switch OFF"
+      - "onboarding_allow_get_started and onboarding_continue_choices are both visible, same width and height; onboarding_next is not"
+      - "onboarding_continue_choices reads 'Continue without sharing'"
+      - "onboarding_agreement reads 'By using our service you accept our Terms & Conditions and Privacy Policy.' in the scrolling content, below the no-client-data note and above 'You can change this later in Settings.'"
+    priority: high
+  - id: intro_clients_skip_lands_on_privacy
+    preconditions: ["fresh install", "onboarding open on page 1"]
+    actions: ["tap onboarding_skip"]
+    assertions:
+      - "the privacy page opens directly"
+      - "both switches are OFF and nothing has been saved"
+      - "sign-in is not reached until Allow and get started or Continue is tapped"
+    priority: high
+  - id: intro_collections_back_returns_to_clients
+    preconditions: ["onboarding open on page 2"]
+    actions: ["press system back"]
+    assertions: ["page 1 shows", "the app does not close", "nothing is saved"]
+    priority: medium
+  - id: intro_offline_swipe_matches_next
+    preconditions: ["onboarding open on page 3"]
+    actions: ["swipe left"]
+    assertions: ["the privacy page opens exactly as Next would", "no consent is stored by swiping"]
+    priority: medium
+  - id: intro_clients_bottom_bar_fixed
+    preconditions: ["onboarding open on page 1", "a short phone window (e.g. 360x640dp) or a large font scale so the content outgrows the screen"]
+    actions: ["scroll the page content", "tap onboarding_next", "tap onboarding_next"]
+    assertions:
+      - "onboarding_page_indicator (centred) and onboarding_next (full content width) stay pinned at the bottom of the screen while the illustration, title and body scroll above them"
+      - "onboarding_next and the dots keep the same on-screen position on pages 1, 2 and 3"
+      - "the content never scrolls underneath the brand-mark row at the top"
+    priority: medium
+  - id: intro_clients_page_transition_shared_axis
+    preconditions: ["onboarding open on page 1", "animations enabled"]
+    actions: ["tap onboarding_next", "press system back"]
+    assertions:
+      - "on Next the outgoing page content slides and fades out toward the start while the next page slides in from the end (KptSharedAxis forward, MaterialTheme.motion.durationLong1 = 450ms)"
+      - "on back the motion runs the other way (KptSharedAxis back)"
+      - "the brand-mark row and the bottom bar (dots + Next) do not move during either transition"
+    priority: medium
+  - id: privacy_allow_get_started_saves_both_on
+    preconditions: ["fresh install", "prod build", "on the privacy page with both switches untouched (OFF)"]
+    actions: ["tap onboarding_allow_get_started"]
+    assertions:
+      - "both switches show ON while saving"
+      - "observeAnalyticsConsent emits true and observeCrashReportingConsent emits true"
+      - "setFirstTimeState(false) is the last of the three writes"
+      - "sign-in opens"
+      - "PrivacyConsentApplier enables both Analytics and Crashlytics collection"
+    priority: high
+  - id: privacy_finishing_buttons_visible_without_scroll
+    preconditions: ["on the privacy page", "a short phone window (e.g. 360x640dp)"]
+    actions: ["do not scroll", "then scroll the privacy content to its end"]
+    assertions:
+      - "without any scroll, onboarding_page_indicator, onboarding_allow_get_started (filled) and onboarding_continue_choices (outlined) are all fully visible in the bottom bar, full content width, Allow above Continue"
+      - "entering the privacy page crossfades Next out and the two buttons in (durationMedium1 = 250ms); the bar itself does not slide"
+      - "onboarding_connect_instance is the last scrolling item and may only become visible after scrolling; the bottom bar stays put while the content scrolls"
+    priority: high
+  - id: privacy_continue_without_saves_both_off
+    preconditions: ["fresh install", "prod build", "on the privacy page with both switches untouched (OFF)"]
+    actions: ["tap onboarding_continue_choices (label 'Continue without sharing')"]
+    assertions:
+      - "observeAnalyticsConsent emits false and observeCrashReportingConsent emits false"
+      - "setFirstTimeState(false) is the last of the three writes"
+      - "sign-in opens"
+      - "no Analytics or Crashlytics collection is enabled"
+    priority: high
+  - id: privacy_continue_with_one_on_saves_crash_reports_only
+    preconditions: ["fresh install", "on the privacy page"]
+    actions:
+      - "turn onboarding_crash_reports_switch ON"
+      - "leave onboarding_analytics_switch OFF"
+      - "tap onboarding_continue_choices"
+      - "force-stop and relaunch"
+    assertions:
+      - "onboarding_continue_choices reads 'Continue with my choices' once the crash reports switch is ON"
+      - "observeCrashReportingConsent emits true and observeAnalyticsConsent emits false"
+      - "PrivacyConsentApplier enables crash reporting only"
+      - "the app opens straight on sign-in"
+    priority: high
+  - id: privacy_continue_label_follows_switches
+    preconditions: ["on the privacy page"]
+    actions: ["turn onboarding_analytics_switch ON", "turn onboarding_analytics_switch OFF"]
+    assertions:
+      - "with analytics ON the secondary button reads 'Continue with my choices'"
+      - "with both OFF again it reads 'Continue without sharing'"
+      - "onboarding_allow_get_started keeps the label 'Allow and get started' throughout"
+    priority: medium
+  - id: privacy_shown_once_after_finishing
+    preconditions: ["onboarding completed with Allow and get started or Continue"]
+    actions: ["force-stop and relaunch the app"]
+    assertions: ["the app opens on sign-in", "onboarding_pager is not visible"]
+    priority: high
+  - id: privacy_consent_survives_sign_out
+    preconditions: ["onboarding completed with crash reports ON", "signed in"]
+    actions: ["sign out"]
+    assertions: ["sign-in shows, not onboarding", "observeCrashReportingConsent still emits true"]
+    priority: medium
+  - id: intro_clients_leave_without_choosing
+    preconditions: ["fresh install", "onboarding open on page 1"]
+    actions: ["press system back to leave the app", "relaunch"]
+    assertions: ["both stored consents are still false", "onboarding shows again"]
+    priority: medium
+  - id: privacy_back_keeps_switch_values_in_memory
+    preconditions: ["on the privacy page with analytics turned ON, not yet saved"]
+    actions: ["press system back", "tap onboarding_next"]
+    assertions:
+      - "page 3 shows on back"
+      - "the privacy page still shows analytics ON"
+      - "observeAnalyticsConsent still emits false (nothing saved yet)"
+    priority: medium
+  - id: privacy_save_failed_keeps_page
+    preconditions: ["on the privacy page", "UserDataRepository write made to throw (fake repository in the ViewModel test)"]
+    actions: ["tap onboarding_allow_get_started"]
+    assertions:
+      - "onboarding_save_failed shows 'Couldn't save your choices. Try again.' in the bottom bar, between the dots and the two buttons, in the error colour"
+      - "onboarding_allow_get_started and onboarding_continue_choices are enabled again and the page stays"
+      - "setFirstTimeState(false) was not called — onboarding is not marked done"
+    priority: medium
+  - id: privacy_open_terms_in_app
+    preconditions: ["on the privacy page"]
+    actions: ["tap the text 'Terms & Conditions' inside onboarding_agreement"]
+    assertions:
+      - "https://mifos-products.pages.dev/mobile/field-officer/terms/ (AppOrgLinks[\"terms\"]) opens in-app (UrlLauncher.launchInApp), titled 'Terms & Conditions — Field Officer App'"
+      - "closing it returns to the privacy page with switches unchanged and nothing saved"
+    priority: medium
+  - id: privacy_open_privacy_policy_in_app
+    preconditions: ["on the privacy page"]
+    actions: ["tap the text 'Privacy Policy' inside onboarding_agreement"]
+    assertions:
+      - "https://mifos-products.pages.dev/mobile/field-officer/privacy/ (AppPrivacyConfig.PRIVACY_POLICY_URL) opens in-app (UrlLauncher.launchInApp)"
+      - "closing it returns to the privacy page with switches unchanged and nothing saved"
+    priority: medium
+  - id: privacy_connect_instance_and_back
+    preconditions: ["on the privacy page with crash reports ON"]
+    actions: ["scroll the privacy content until onboarding_connect_instance is visible", "tap onboarding_connect_instance", "press back"]
+    assertions: ["Server config opens", "back returns to the privacy page", "crash reports is still ON"]
+    priority: low
+  - id: privacy_change_later_in_settings_privacy
+    preconditions: ["onboarding completed with Continue without sharing", "signed in", "Settings → Privacy sheet ported into feature/settings (FR-SET-PRIV-01, in progress)"]
+    actions: ["open Settings", "tap settings_privacy_row", "turn privacy_analytics_switch ON"]
+    assertions: ["observeAnalyticsConsent emits true", "the note on the onboarding privacy page is now backed by a real Settings surface"]
+    priority: medium
+  - id: privacy_expanded_two_pane_layout
+    preconditions: ["a tablet or desktop window ≥ 840dp wide", "on the privacy page"]
+    actions: ["render the page"]
+    assertions:
+      - "onboarding_illustration_privacy fills the start pane and the privacy content (switches, note, agreement line) sits in the end pane"
+      - "the bottom bar (dots + both buttons) sits under the END pane; nothing sits under the illustration"
+      - "content width is capped at 1040dp — never a phone column inside a tablet canvas"
+    priority: low
+  - id: intro_clients_brand_mark_every_page
+    preconditions: ["onboarding open on page 1"]
+    actions: ["tap onboarding_skip"]
+    assertions:
+      - "onboarding_brand_mark is 32dp at the top start on page 1"
+      - "on the privacy page (Skip hidden) onboarding_brand_mark is still shown, at the same position — the top row keeps its 48dp minimum height"
+    priority: low
+  - id: intro_clients_accessibility_labels
+    preconditions: ["TalkBack / VoiceOver on"]
+    actions: ["move through every page"]
+    assertions:
+      - "each page title is announced as a heading"
+      - "the page indicator reads 'Page n of 4' and is not focusable"
+      - "each switch reads its label, description and On/Off as one node"
+      - "the Terms & Conditions and Privacy Policy spans in onboarding_agreement are announced as links and each is activatable"
+      - "the intro illustrations are not announced"
+    priority: medium

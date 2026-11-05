@@ -1,0 +1,664 @@
+schema_version: '3.1'
+id: onboarding
+name: Onboarding
+description: >
+  First-run onboarding, shown ONCE on a fresh install before sign-in. Three short intro pages say what the app is for —
+  managing clients, groups and centres in the field; collecting repayments and running collection sheets; working
+  offline and syncing later — and a final privacy page asks, with both switches OFF, whether to share usage analytics
+  and send crash reports. Two equally visible buttons finish it: "Allow and get started" turns both on and saves them;
+  "Continue without sharing" / "Continue with my choices" saves the switches exactly as shown. Either one marks
+  onboarding done (last) and opens sign-in; it never shows again on that device. An agreement line in the privacy
+  content — "By using our service you accept our Terms & Conditions and Privacy Policy." — links both in-app. Skip on
+  the intro pages jumps to the privacy page, so consent is never skipped silently. On every page the dots and the
+  primary action(s) sit in a fixed bottom bar, only the content above scrolls, and page content moves with the
+  shared-axis-X transition; a 32dp Mifos X mark sits at the top start of every page.
+feature: onboarding
+flow: authentication
+version: '1.0'
+tags:
+  - first-run
+  - privacy
+  - consent
+  - P1
+status: approved
+approve_hash: "sha256:b3304ec2d9eee2e1519d519cd05f9e4059811e0bfb77dd2176b852091a01222d"
+approve_hash_method: approve-hash.sh/v1
+approved_at: '2026-11-05T06:55:00Z'
+approved_by: /idea-approve
+approve_predicate_version: "1.0.0"
+approve_contract_version: "2.0.0"
+cluster: authentication
+is_primary_flow: false
+acceptance_refs:
+  - FR-ONB-01
+  - FR-ONB-02
+  - FR-ONB-03
+  - FR-ONB-04
+  - FR-ONB-05
+  - FR-ONB-06
+  - FR-ONB-07
+  - FR-ONB-08
+  - NFR-ONB-01
+related_refs:
+  - FR-SET-PRIV-01
+scaffolded_at: '2026-11-04T12:30:00Z'
+scaffolded_by: /idea-plan-add
+enriched_at: '2026-11-05T06:05:00Z'
+enriched_by: /idea-feature-enrich
+module_path: feature/onboarding
+has_ui: true
+has_api: false
+has_server: false
+entry_point: true
+bottom_nav: false
+navigates_to:
+  - signin
+  - serverConfig
+route:
+  name: OnboardingRoute
+  params: {}
+entry_points:
+  - source: rootNav
+    action: RootNavState.ShowOnboarding (RootNavViewModel.kt:56 — userData.firstTimeUser == true)
+    params: {}
+screens:
+  - id: onboarding
+    name: OnboardingScreen
+    viewmodel: OnboardingViewModel
+    description: 'One screen, one ViewModel: a four-page pager (three intro pages + privacy) — a wizard in pages, not four routes'
+    states_handled:
+      - intro_clients
+      - intro_collections
+      - intro_offline
+      - privacy
+dependencies:
+  tier: 2
+  features:
+    - feature: signin
+      type: navigation
+      required: true
+      check: feature/signin exists — Allow and get started / Continue land there via RootNav Auth
+    - feature: serverConfig
+      type: navigation
+      required: false
+      check: feature/settings ServerConfigRoute exists (the optional Connect to your Mifos instance link)
+    - feature: settings
+      type: data
+      required: false
+      check: feature/settings PrivacySheet — FR-SET-PRIV-01, backs settings_later_note (in progress)
+  services:
+    - UserDataRepository
+    - UrlLauncher
+  shared_entities:
+    - UserData
+provenance:
+  decided: operator product decision 2026-11-04 — resolves screens/signin/ui.yaml#feature_split.deferred_candidate
+  enhanced: >-
+    operator product decisions 2026-11-05 — A "Allow / Continue without" + B "Create + publish Terms"
+    (/idea-plan-add enhance onboarding); agreement copy revised the same day to "By using our service you accept our
+    Terms & Conditions and Privacy Policy." Then operator design feedback 2026-11-05 (fixed bottom action bar,
+    shared-axis-X page transition, 32dp brand mark) — implemented in source first and verified on a physical device,
+    then materialized here by /idea-plan-add enhance onboarding.
+  original: 6b66e8a43 shipped no onboarding screen; RootNavState.ShowOnboarding has always fallen through to sign-in
+  current_source:
+    - cmp-navigation/src/commonMain/kotlin/cmp/navigation/rootnav/RootNavViewModel.kt
+    - cmp-navigation/src/commonMain/kotlin/cmp/navigation/rootnav/RootNavScreen.kt
+    - core/data/src/commonMain/kotlin/kpt/core/data/user/UserDataRepository.kt
+    - core/datastore/src/commonMain/kotlin/kpt/core/datastore/prefs/UserPreferencesRepository.kt
+    - core/model/src/commonMain/kotlin/kpt/core/model/user/UserData.kt
+    - core/model/src/commonMain/kotlin/kpt/core/model/config/AppPrivacyConfig.kt
+    - core/model/src/commonMain/kotlin/kpt/core/model/config/AppOrgLinks.kt
+    - core/model/src/commonMain/kotlin/kpt/core/model/config/AppSecurityConfig.kt
+    - core-base/platform/src/commonMain/kotlin/kpt/core/base/platform/url/UrlLauncherImpl.kt
+    - app-profile/app.yaml
+    - cmp-navigation/src/commonMain/kotlin/cmp/navigation/privacy/PrivacyConsentApplier.kt
+    - cmp-android/src/prod/AndroidManifest.xml
+    - feature/onboarding/src/commonMain/kotlin/kpt/feature/onboarding/ui/OnboardingScreen.kt
+    - core-base/ui/src/commonMain/kotlin/kpt/core/base/ui/motion/KptSharedAxis.kt
+  reuses:
+    - >-
+      UserDataRepository.setAnalyticsConsent(granted) / setCrashReportingConsent(granted) — the stored choices
+      PrivacyConsentApplier already follows
+    - UserDataRepository.setFirstTimeState(false) — the flag RootNavViewModel reads
+    - feature/settings ServerConfigRoute — the same screen sign-in's instance chip opens
+    - AppPrivacyConfig.PRIVACY_POLICY_URL (generated from app-profile/app.yaml#org.privacy_url)
+    - >-
+      AppOrgLinks["terms"] (generated from app-profile/app.yaml#org.links.terms →
+      https://mifos-products.pages.dev/mobile/field-officer/terms/)
+    - UrlLauncher.launchInApp (core-base/platform, cmp-open-url openInApp) — both agreement links open in-app
+    - >-
+      core-base/ui KptSharedAxis (enterForward / exitForward / enterBack / exitBack) + MaterialTheme.motion
+      durations — the template motion, never a hand-rolled transition (core-base/ui MOTION.md)
+decisions:
+  - id: shown-once-before-signin
+    decision: >-
+      Onboarding is the RootNavState.ShowOnboarding destination. Finishing it (either privacy button) calls
+      setFirstTimeState(false); RootNavViewModel then resolves to Auth and the app lands on sign-in. It never shows
+      again on that device — sign-out does not reset it (clearUserData copies the loaded record and only resets
+      session fields).
+    why: operator 2026-11-04 — "shown ONCE on a fresh install before sign-in"
+  - id: consent-off-until-chosen
+    decision: >-
+      Both switches start OFF (no pre-ticked consent). They are held in memory until one of the two privacy buttons is
+      tapped (2026-11-05: Allow and get started saves both ON; Continue saves both exactly as shown). Leaving by
+      back/close without either button saves nothing — both stay OFF and onboarding shows again next launch.
+    why: >-
+      the standing plan "analytics off until consent; onboarding is the place to ask" — prod builds start Firebase
+      Analytics and Crashlytics collection OFF (cmp-android/src/prod/AndroidManifest.xml) and AppPrivacyConfig defaults
+      both to false; GDPR consent must be an affirmative act
+  - id: consent-allow-or-continue-without
+    decided_at: '2026-11-05'
+    decision: >-
+      The privacy page ends with two EQUALLY VISIBLE buttons, replacing the single Get started. Both switches still
+      start OFF and stay visible for a granular choice. PRIMARY allow_get_started "Allow and get started" sets BOTH
+      consents ON, saves analytics=true and crashReports=true, then setFirstTimeState(false) LAST, then sign-in.
+      SECONDARY continue_choices (outlined, same size) saves the switches exactly as shown, then
+      setFirstTimeState(false); its label reads "Continue without sharing" when both are off and "Continue with my
+      choices" when either is on. The write contract keeps its shape (persist_file → UserDataRepository.setAnalyticsConsent
+      / setCrashReportingConsent / setFirstTimeState).
+    why: >-
+      operator decision 2026-11-05 ("Allow / Continue without"), taken after being told that pre-ticked or opt-out
+      consent is invalid under GDPR + ePrivacy, UK GDPR / PECR and India DPDP s.6 — consent must be a free, specific,
+      affirmative act, and declining must be as easy and as visible as accepting. One tap allows both; the decline
+      path is a full button, never a buried link.
+    supersedes: the single get_started button (2026-11-04)
+  - id: agreement-line-terms-and-privacy
+    decided_at: '2026-11-05'
+    decision: >-
+      An agreement line agreement_text — "By using our service you accept our Terms & Conditions and Privacy Policy."
+      — Terms & Conditions FIRST, then Privacy Policy, both in-app links: Terms & Conditions → AppOrgLinks["terms"]
+      (https://mifos-products.pages.dev/mobile/field-officer/terms/), Privacy Policy →
+      AppPrivacyConfig.PRIVACY_POLICY_URL. It is ONE Text with inline LinkAnnotation spans tagged onboarding_agreement;
+      spans cannot carry their own testTag, so tests tap each link by its text. The standalone privacy_policy_link and
+      its testTag onboarding_privacy_policy fold into this line and are retired. Placement revised by the design
+      feedback below: it sits in the scrolling content, below the no-client-data note and above "You can change this
+      later in Settings.", no longer in the bottom bar.
+    why: >-
+      operator decision 2026-11-05 ("Create + publish Terms"): the Terms page was published and verified live (title
+      "Terms & Conditions — Field Officer App"; source workspaces/mifos-x/mifos-products
+      content/legal/field-officer/terms.md; app-profile/app.yaml#org.links.terms). Copy and link order set by the
+      operator the same day.
+  - id: fixed-bottom-action-bar
+    decided_at: '2026-11-05'
+    decision: >-
+      Every page has three regions: a fixed top row (32dp Mifos X mark at top start, Skip at top end on the intro
+      pages, 48dp minimum height on every page), a scrolling content region, and a FIXED bottom action bar. Intro bar:
+      centred page dots, then a full-width Next. Privacy bar: centred dots, then the save-failed error text when shown,
+      then full-width filled "Allow and get started", then full-width outlined "Continue without sharing" / "Continue
+      with my choices". Only the content scrolls — on privacy: title, lead, both switch rows, the no-client-data note,
+      the agreement line, "You can change this later in Settings.", then "Connect to your Mifos instance" (the last
+      item, which may need a scroll on a phone). On expanded (≥840dp) the bar sits under the end (text) pane. The
+      save error is inline error text in the bar (save_failed_text, tag onboarding_save_failed), replacing the
+      save_error_snackbar overlay.
+    why: >-
+      operator direct design feedback 2026-11-05 — the finishing buttons must never need a scroll to reach, and the
+      primary action should sit in the same place on every page. Implemented in OnboardingScreen.kt (PageActions) and
+      verified on a physical device before this docset was updated.
+  - id: shared-axis-page-transition
+    decided_at: '2026-11-05'
+    decision: >-
+      Page content changes with the template shared-axis-X motion — core-base/ui KptSharedAxis enterForward /
+      exitForward when the target page is later (Next, swipe left, Skip), enterBack / exitBack otherwise (back, swipe
+      right), durations from MaterialTheme.motion (durationLong1, 450ms). Only the content region moves; the top row
+      and the bottom bar never slide. The bar's buttons crossfade (durationMedium1, 250ms) when the privacy page swaps
+      Next for the two finishing buttons.
+    why: >-
+      operator direct design feedback 2026-11-05; the template motion system is the one sanctioned transition source
+      (core-base/ui MOTION.md), so no feature-local animation spec is invented.
+  - id: brand-mark-32dp
+    decided_at: '2026-11-05'
+    decision: >-
+      The Mifos X mark is 32dp (spacing.xxl), not 48dp, and shows on every page, privacy included. The top row keeps a
+      48dp minimum height on every page so the mark does not jump on the privacy page where Skip is hidden.
+    why: operator direct design feedback 2026-11-05 — at 48dp the mark competed with the page title on a phone
+  - id: skip-lands-on-privacy
+    decision: Skip on any intro page jumps to the privacy page, never past it.
+    why: consent is never skipped silently; the intro pages are optional, the choice is not
+  - id: consent-applies-through-existing-applier
+    decision: >-
+      Onboarding only WRITES the two stored choices. PrivacyConsentApplier (commonMain, every platform) already observes
+      them and switches collection on or off, so onboarding has no Firebase dependency of its own.
+    why: one place applies consent; a second applier would drift
+  - id: instance-link-optional
+    decision: >-
+      The privacy page offers "Connect to your Mifos instance" → serverConfig (same screen sign-in links to); back
+      returns to the privacy page.
+    why: a first-run officer whose instance differs from the shipped default can fix it before reaching sign-in
+  - id: full-screen-shell
+    decision: Full screen, no top app bar, no bottom navigation, no drawer (ui.yaml#shell).
+    why: pre-auth; there is nothing to go back to and no tab to switch
+  - id: first-run-via-template-seam
+    decision: >-
+      A fresh install reaches ShowOnboarding through the template seam
+      app-profile/app.yaml#security.first_run_onboarding (this fork sets true) → generated
+      AppSecurityConfig.FIRST_RUN_ONBOARDING → UserData.DEFAULT.firstTimeUser — not a fork-local edit of core/model.
+    why: >-
+      core/model is template-derived (RULE-TEMPLATE-MODULE-FIX-UPSTREAM-001); a seam keeps the template default false
+      for forks that ship no onboarding. Decided 2026-11-04 after the scaffold.
+  - id: settings-privacy-in-same-pass
+    decision: >-
+      FR-SET-PRIV-01 (Settings → Privacy sheet) is built in the same pass as onboarding, by porting the template's
+      PrivacySheet into this fork's fork-owned feature/settings.
+    why: >-
+      the privacy page promises "change this later in Settings", and installs that predate onboarding have no other way
+      to opt in. Decided 2026-11-04 after the scaffold.
+implementation_preconditions:
+  - id: fresh-install-first-time-user
+    finding: >-
+      UserData.DEFAULT sets firstTimeUser = false in this fork today (core/model/.../user/UserData.kt), so a fresh
+      install never emits RootNavState.ShowOnboarding — the onboarding branch is unreachable until a fresh install
+      starts with firstTimeUser = true.
+    fix_belongs_in: >-
+      template seam app-profile/app.yaml#security.first_run_onboarding → AppSecurityConfig.FIRST_RUN_ONBOARDING →
+      UserData.DEFAULT.firstTimeUser
+    severity: high
+    status: in-progress
+    fix:
+      kind: template-seam
+      seam: >-
+        app-profile/app.yaml#security.first_run_onboarding (ABSENT = false) → generated
+        AppSecurityConfig.FIRST_RUN_ONBOARDING → UserData.DEFAULT.firstTimeUser = AppSecurityConfig.FIRST_RUN_ONBOARDING
+      template_repo: mifos-x/kmp-project-template
+      template_branch: session-kmp-project-template-20261103235731716
+      template_commit: 3dd68cd9
+      template_pr: 316
+      fork_side: 'app-profile/app.yaml#security.first_run_onboarding: true — set in this fork (uncommitted, 2026-11-04)'
+      arrives_via: /kmp-project-template-sync --dev 3dd68cd9
+      verified_in_source:
+        - >-
+          template 3dd68cd9: UserData.DEFAULT.firstTimeUser = AppSecurityConfig.FIRST_RUN_ONBOARDING;
+          FIRST_RUN_ONBOARDING defaults false
+        - fork core/model/.../user/UserData.kt still reads firstTimeUser = false — closes when the sync lands
+  - id: rootnav-route
+    finding: >-
+      RootNavScreen.kt maps ShowOnboarding → navigateToSignIn and rootTargetRoute(ShowOnboarding) returns the sign-in
+      route (pinned by RootNavViewModelTest).
+    fix_belongs_in: cmp-navigation RootNavScreen + rootTargetRoute → OnboardingRoute; update RootNavViewModelTest
+    severity: high
+    status: open
+  - id: upgraded-installs-never-asked
+    finding: >-
+      An install that already has a stored record decodes firstTimeUser = false, so it will not see onboarding; its
+      consent stays OFF (the default) with no screen to opt in until the Settings privacy toggles exist.
+    fix_belongs_in: FR-SET-PRIV-01 (Settings → Privacy sheet) — in scope in the same pass
+    severity: medium
+    status: in-progress
+follow_ups:
+  - id: settings-privacy-toggles
+    requirement: FR-SET-PRIV-01
+    owner_feature: settings
+    status: in-progress
+    note: >-
+      Settings → Privacy: a bottom sheet with "Share usage analytics" and "Send crash reports" switches bound to the
+      same stored choices (observeAnalyticsConsent / observeCrashReportingConsent → setAnalyticsConsent /
+      setCrashReportingConsent) plus the privacy policy link. The kmp-project-template upstream dev already ships it —
+      feature/settings/.../PrivacySheet.kt (c56bd440, PR #313), SettingsViewModel.updateAnalyticsConsent /
+      updateCrashReportingConsent, TestTags.Privacy (privacy_sheet, privacy_analytics_switch,
+      privacy_crash_reports_switch, privacy_policy_link) and the Privacy row settings_privacy_row. This fork's
+      feature/settings is fork-owned (never synced), so it is PORTED into the fork, not pulled by the template sync; the
+      port has started (the fork's SettingsViewModelTest already exercises updateAnalyticsConsent /
+      updateCrashReportingConsent, 2026-11-04). It is the surface the privacy page's settings_later_note promises and
+      the only opt-in path for installs that predate onboarding.
+    template_source: >-
+      workspaces/mifos-x/kmp-project-template
+      feature/settings/src/commonMain/kotlin/kpt/feature/settings/PrivacySheet.kt
+    backs:
+      - settings_later_note
+permission_model:
+  note: Pre-auth; no Fineract call and no permission is involved.
+states_summary:
+  - intro_clients
+  - intro_collections
+  - intro_offline
+  - privacy
+documentation:
+  user_stories:
+    - actor: field officer
+      action: see in three pages what the app does before signing in
+      benefit: know it covers clients, collections and offline work
+    - actor: field officer
+      action: allow both in one tap, or choose each switch, or continue without sharing — all equally easy
+      benefit: nothing is collected unless I agree, and saying no costs no extra effort
+    - actor: field officer
+      action: find Next and the finishing buttons in the same place at the bottom of every page, without scrolling
+      benefit: move through onboarding with one thumb on a small phone
+    - actor: field officer
+      action: read the Terms & Conditions and the Privacy Policy in the app before continuing
+      benefit: know what using the service accepts
+    - actor: field officer
+      action: point the app at my Mifos instance before signing in
+      benefit: reach the right server on first launch
+  success_metrics:
+    - metric: onboarding_completion_rate
+      target: ≥ 95% of fresh installs reach sign-in through Allow and get started or Continue
+    - metric: collection_before_consent
+      target: 0 Analytics/Crashlytics events before a switch is on (NFR-ONB-01)
+  feature_flags:
+    - name: security.first_run_onboarding
+      type: boolean
+      default: true
+      rollout: app-profile/app.yaml — this fork
+metadata:
+  category: settings
+  implementation_ready: true
+  impl_ready_at: '2026-11-05T06:05:00Z'
+  impl_ready_schema: v2
+contracts:
+  - capability: key-value-preferences
+    platform_spec: >-
+      multiplatform-settings (core/datastore) through UserDataRepository: setAnalyticsConsent, setCrashReportingConsent,
+      then setFirstTimeState(false) LAST — written once, on Allow and get started (both true) or Continue (as shown)
+    permission: none
+    error_cases:
+      - LocalWriteFailed
+  - capability: open-url
+    platform_spec: >-
+      UrlLauncher.launchInApp(url) (core-base/platform → cmp-open-url openInApp) for the two agreement links:
+      AppOrgLinks["terms"] and AppPrivacyConfig.PRIVACY_POLICY_URL
+    permission: none
+    error_cases:
+      - NoBrowserAvailable
+libraries:
+  - capability: key-value-preferences
+    library: multiplatform-settings
+    version: 1.3.0
+    targets:
+      - android
+      - ios
+      - desktop
+      - web
+  - capability: open-url
+    library: cmp-open-url
+    version: 3.5.34          # kmptoolkit (gradle/libs.versions.toml)
+    targets:
+      - android
+      - ios
+      - desktop
+      - web
+vm_actions:
+  - name: NextPage
+    handles:
+      - next_page
+    signature: fun next()
+    state_mutations:
+      - 'page = page + 1 (max: privacy)'
+    side_effects: []
+    error_handling:
+      AlreadyOnLastPage: no-op — Next is not shown on the privacy page, and a swipe past it does nothing
+  - name: PreviousPage
+    handles:
+      - previous_page
+    signature: fun back()
+    state_mutations:
+      - page = page - 1; on the first page the back press is passed to the system
+    side_effects:
+      - 'on the first page: event ExitApp — nothing is saved'
+    error_handling:
+      FirstPage: the press goes to the system and the app closes; both consents stay off and onboarding shows again next launch
+  - name: Skip
+    handles:
+      - skip_to_privacy
+    signature: fun skip()
+    state_mutations:
+      - page = privacy
+    side_effects: []
+    error_handling:
+      AlreadyOnPrivacy: no-op — Skip is not shown on the privacy page
+  - name: AnalyticsToggled
+    handles:
+      - toggle_analytics
+    signature: 'fun setAnalytics(granted: Boolean)'
+    state_mutations:
+      - analytics = granted (in memory)
+      - continueLabel = if (analytics || crashReports) ContinueWithChoices else ContinueWithout
+    side_effects: []
+    error_handling:
+      SavingInProgress: the switch is disabled while a privacy button saves, so a toggle cannot change what is being written
+  - name: CrashReportsToggled
+    handles:
+      - toggle_crash_reports
+    signature: 'fun setCrashReports(granted: Boolean)'
+    state_mutations:
+      - crashReports = granted (in memory)
+      - continueLabel = if (analytics || crashReports) ContinueWithChoices else ContinueWithout
+    side_effects: []
+    error_handling:
+      SavingInProgress: the switch is disabled while a privacy button saves, so a toggle cannot change what is being written
+  - name: OpenTerms
+    handles:
+      - open_terms
+    signature: fun openTerms()
+    state_mutations: []
+    side_effects:
+      - event OpenUrlInApp(AppOrgLinks["terms"]) → UrlLauncher.launchInApp
+    error_handling:
+      NoBrowserAvailable: launchInApp returning false is caught; the privacy page stays as it was with both switches unchanged
+      LinkMissing: AppOrgLinks["terms"] is null only if app-profile drops org.links.terms — the span renders as plain text, never a dead link
+  - name: OpenPrivacyPolicy
+    handles:
+      - open_privacy_policy
+    signature: fun openPrivacyPolicy()
+    state_mutations: []
+    side_effects:
+      - event OpenUrlInApp(AppPrivacyConfig.PRIVACY_POLICY_URL) → UrlLauncher.launchInApp
+    error_handling:
+      NoBrowserAvailable: launchInApp returning false is caught; the privacy page stays as it was with both switches unchanged
+  - name: OpenServerConfig
+    handles:
+      - open_server_config
+    signature: fun openServerConfig()
+    state_mutations: []
+    side_effects:
+      - event OpenServerConfig → ServerConfigRoute
+    error_handling:
+      SavingInProgress: the link is disabled while a privacy button saves; it opens Server config once the page is idle again
+  - name: AllowAll
+    handles:
+      - allow_all_and_finish
+    signature: 'suspend fun allowAll(): Result<Unit>'
+    state_mutations:
+      - analytics = true; crashReports = true (both switches show ON)
+      - saving = true
+      - saving = false; saveFailed = true (on failure)
+    side_effects:
+      - UserDataRepository.setAnalyticsConsent(true)
+      - UserDataRepository.setCrashReportingConsent(true)
+      - UserDataRepository.setFirstTimeState(false) — LAST, so the consent is stored before RootNav moves on
+      - RootNavViewModel resolves to Auth → sign-in
+    error_handling:
+      LocalWriteFailed: >-
+        saving = false; save_failed_text shows in the bottom bar; the page stays with both buttons enabled again;
+        setFirstTimeState is not called, so nothing partial is treated as done
+  - name: ContinueWithChoices
+    handles:
+      - continue_with_choices
+    signature: 'suspend fun continueWithChoices(): Result<Unit>'
+    state_mutations:
+      - saving = true
+      - saving = false; saveFailed = true (on failure)
+    side_effects:
+      - UserDataRepository.setAnalyticsConsent(analytics)
+      - UserDataRepository.setCrashReportingConsent(crashReports)
+      - UserDataRepository.setFirstTimeState(false) — LAST, so the consent is stored before RootNav moves on
+      - RootNavViewModel resolves to Auth → sign-in
+    error_handling:
+      LocalWriteFailed: >-
+        saving = false; save_failed_text shows in the bottom bar; the page stays with both buttons enabled again;
+        setFirstTimeState is not called, so nothing partial is treated as done
+state_model:
+  OnboardingViewModel:
+    state:
+      name: OnboardingState
+      fields:
+        page:
+          type: OnboardingPage
+          default: OnboardingPage.Clients
+        analytics:
+          type: Boolean
+          default: 'false'
+        crashReports:
+          type: Boolean
+          default: 'false'
+        saving:
+          type: Boolean
+          default: 'false'
+        saveFailed:
+          type: Boolean
+          default: 'false'
+      derived:
+        continueLabel: 'if (analytics || crashReports) ContinueWithChoices else ContinueWithout'
+    screen_state:
+      name: OnboardingPage
+      members:
+        - Clients
+        - Collections
+        - Offline
+        - Privacy
+    errors:
+      name: OnboardingError
+      types:
+        - type: LocalWriteFailed
+          retry: true
+          message_key: screens.onboarding.save_failed
+    events:
+      name: OnboardingEvent
+      members:
+        - name: OpenUrlInApp
+          params:
+            url: String
+        - name: OpenServerConfig
+        - name: ExitApp
+    actions:
+      name: OnboardingAction
+      members:
+        - name: Next
+          trigger: Tap Next / swipe left
+        - name: Back
+          trigger: System back / swipe right
+        - name: Skip
+          trigger: Tap Skip
+        - name: SetAnalytics
+          params:
+            granted: Boolean
+          trigger: Analytics switch
+        - name: SetCrashReports
+          params:
+            granted: Boolean
+          trigger: Crash reports switch
+        - name: OpenTerms
+          trigger: '"Terms & Conditions" span in the agreement line'
+        - name: OpenPrivacyPolicy
+          trigger: '"Privacy Policy" span in the agreement line'
+        - name: OpenServerConfig
+          trigger: Connect to your Mifos instance
+        - name: AllowAll
+          trigger: Allow and get started
+        - name: ContinueWithChoices
+          trigger: Continue without sharing / Continue with my choices
+    di:
+      - UserDataRepository
+      - UrlLauncher
+error_cases:
+  - LocalWriteFailed
+  - NoBrowserAvailable
+test_fixtures:
+  source: screens/onboarding/tests.yaml
+  scenario_count: 24
+  priority_distribution:
+    high: 8
+    medium: 13
+    low: 3
+status_history:
+  - from: null
+    to: draft
+    at: '2026-11-04T12:30:00Z'
+    by: /idea-plan-add add-feature onboarding
+  - from: draft
+    to: enriched
+    at: '2026-11-04T18:00:00Z'
+    by: /idea-feature-enrich onboarding
+  - from: enriched
+    to: designed
+    at: '2026-11-04T17:49:53.989Z'
+    by: /idea-feature-stitch
+  - from: designed
+    to: approved
+    at: '2026-11-04T18:19:00Z'
+    by: /idea-approve
+    contract_version: "2.0.0"
+    bypass_flags: []
+    note: >-
+      operator instructed "continue all end to end" (2026-11-04) after design review: enriched docset, 4/4 fresh
+      Stitch mockups, responsive gate green; predicate + disclosures in APPROVE_LOG.yaml
+  - from: approved
+    to: enriched
+    at: '2026-11-05T00:45:00Z'
+    by: /idea-approve --unapprove
+    reason: "privacy page consent pattern + terms link changed 2026-11-05 by operator decision"
+    cleared: [approve_hash e00397478a4ff855cca3207fb2b0a6bcf6649b79d6267fed452c0c8a7b895b9c]
+    dependents_warned: []
+  - from: enriched
+    to: approved
+    at: '2026-11-05T01:00:00Z'
+    by: /idea-approve
+    contract_version: "2.0.0"
+    bypass_flags: []
+    note: >-
+      operator decisions 2026-11-05 "Allow / Continue without" + "Create + publish Terms": docset re-enriched, privacy
+      Stitch screen regenerated (cfcd36ef05fc41eab673f86a411bec33), privacy preview + exports + data-flow + demo-data
+      regenerated, responsive gate green; predicate + disclosures in APPROVE_LOG.yaml
+  - from: approved
+    to: enriched
+    at: '2026-11-05T06:01:00Z'
+    by: /idea-approve --unapprove
+    reason: "operator design feedback 2026-11-05: bottom-pinned actions, page transition, 32dp mark"
+    cleared: [approve_hash 070b181a7151373ca769cec99ebe56406ff9a9b599756e20488a75f7b3103cff]
+    dependents_warned: []
+  - from: enriched
+    to: designed
+    at: '2026-11-05T06:17:37.462Z'
+    by: /idea-feature-stitch
+  - from: designed
+    to: approved
+    at: '2026-11-05T06:55:00Z'
+    by: /idea-approve
+    contract_version: "2.0.0"
+    bypass_flags: []
+    note: >-
+      operator design feedback 2026-11-05 (fixed bottom action bar, shared-axis-X transition, 32dp mark): docset
+      re-enriched, all 4 Stitch screens regenerated (intro 99fd140a / e7427ee8 / 283d76c0, privacy 7dfe1daf), 4 previews
+      re-rendered, SPEC re-exported, responsive gate green for onboarding; predicate + disclosures in APPROVE_LOG.yaml
+enrichment_history:
+  - at: '2026-11-04T18:00:00Z'
+    by: /idea-feature-enrich onboarding --auto
+    changes:
+      - business_logic authored (composite, multiplatform-settings, required_modules core/data+datastore+model)
+      - >-
+        feature_profile re-derived from scaffold-default: content_input_submit/MEMORY_ONLY →
+        local_only_prefs/OFFLINE_LOCAL_ONLY (FPC-2)
+      - >-
+        visual_assets +onboarding_privacy_illustration (expanded start pane); components +privacy_illustration,
+        +save_error_snackbar
+      - get_started effect persist_db → persist_file (preference write, key-value-preferences provider)
+      - fresh-install-first-time-user → template seam, in-progress; FR-SET-PRIV-01 → in-progress, same pass
+      - 'tests.yaml re-authored: 17 scenarios, {state}_{interaction} ids'
+      - 'vm_actions: handles[] links + non-empty error_handling (impl-ready IR-3/IR-4)'
+  - at: '2026-11-05T00:00:00Z'
+    by: /idea-feature-enrich onboarding (STEP 5.5 + 5.6, after /idea-plan-add enhance onboarding)
+    changes:
+      - >-
+        decisions +consent-allow-or-continue-without (operator decision A) +agreement-line-terms-and-privacy
+        (operator decision B, operator copy "By using our service you accept our Terms & Conditions and Privacy
+        Policy."); consent-off-until-chosen + shown-once-before-signin reworded for the two buttons
+      - 'vm_actions: GetStarted → AllowAll + ContinueWithChoices; +OpenTerms; OpenPrivacyPolicy opens in-app'
+      - 'contracts/libraries: +open-url (UrlLauncher.launchInApp, cmp-open-url 3.5.34)'
+      - 'acceptance_refs +FR-ONB-07; tests.yaml re-emitted: 20 scenarios (7 high / 11 medium / 2 low)'
+  - at: '2026-11-05T06:05:00Z'
+    by: /idea-feature-enrich onboarding (STEP 5.5 + 5.6, after /idea-plan-add enhance onboarding — design feedback)
+    changes:
+      - >-
+        decisions +fixed-bottom-action-bar +shared-axis-page-transition +brand-mark-32dp (operator design feedback
+        2026-11-05, device-verified source); agreement-line-terms-and-privacy placement moved to the scrolling content
+      - 'vm_actions AllowAll/ContinueWithChoices error_handling: save_error_snackbar → save_failed_text (bottom bar)'
+      - 'provenance: +OnboardingScreen.kt, +KptSharedAxis.kt; user_stories +fixed bottom actions'
+      - 'acceptance_refs +FR-ONB-08; tests.yaml re-emitted: 24 scenarios (8 high / 13 medium / 3 low)'

@@ -16,9 +16,12 @@ inbound_routes:
     meaning: "not authenticated"
     reachable: true
 
-  - from: rootNav
-    when: "RootNavState.ShowOnboarding"
-    meaning: "first run — no onboarding screen exists in this fork, so it falls through to sign-in"
+  - from: onboarding
+    when: "RootNavState.ShowOnboarding → onboarding → Allow and get started / Continue"
+    meaning: >
+      first run — ShowOnboarding routes to screens/onboarding (decided 2026-11-04); its Allow and get started (both ON)
+      or Continue (as shown) button saves the privacy choices + setFirstTimeState(false) (2026-11-05), and RootNavViewModel then resolves to Auth, which lands here. Until
+      /implement re-points RootNavScreen, the source still maps ShowOnboarding straight to sign-in.
     reachable: true
 
   - from: rootNav
@@ -54,6 +57,24 @@ transitions:
       URL cannot otherwise be fixed, and the two states where sign-in is stuck or paused are exactly
       when the user needs the way out most. Verified on device 2026-10-05: the chip stays enabled
       while the submit button is disabled.
+
+  # 2026-11-05 /idea-plan-add enhance signin — the consent line's two spans open IN-APP (screen-level
+  # onOpenTerms / onOpenPrivacyPolicy → LocalUrlLauncher.launchInApp; no ViewModel action, no state change).
+  - id: open_terms
+    from: [empty, biometric_ready, submitting, validation_error, transport_error, offline, locked_out, success]
+    trigger: "consent_text › 'Terms & Conditions' span"
+    to_external: 'AppOrgLinks["terms"]'
+    open_mode: in_app
+    scope: screen
+    note: "https://mifos-products.pages.dev/mobile/field-officer/terms/ in Custom Tabs / SFSafariViewController; closing it returns to sign-in with both fields unchanged"
+
+  - id: open_privacy_policy
+    from: [empty, biometric_ready, submitting, validation_error, transport_error, offline, locked_out, success]
+    trigger: "consent_text › 'Privacy Policy' span"
+    to_external: "AppPrivacyConfig.PRIVACY_POLICY_URL"
+    open_mode: in_app
+    scope: screen
+    note: "opens in-app; closing it returns to sign-in with both fields unchanged"
 
   - id: submit_invalid
     from: empty

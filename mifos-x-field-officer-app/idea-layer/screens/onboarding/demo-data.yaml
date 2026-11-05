@@ -1,0 +1,54 @@
+# onboarding — demo data (RULE-PROTO-CONTENT-001: real copy, no placeholders). The copy matches
+# _strings/strings.yaml screens.onboarding.*; the URLs are the shipped AppPrivacyConfig and AppOrgLinks values.
+
+schema_version: "3.1"
+feature: onboarding
+last_generate:
+  command: "/idea-data-demo onboarding"
+  timestamp: "2026-11-05T00:00:00Z"
+  generated_by: "claude"
+  content_hash: "6070aa6dd9f3f2ce16ab717aea2dd1da02d1bf7557cae311a115155ea77e7fd7"
+
+items:
+  - id: onboarding_demo_clients
+    page: intro_clients
+    title: "Your clients, groups and centres — in the field"
+    body: "Look up a client, open a group or a centre and see their loans and savings, wherever your visits take you."
+    illustration: onboarding_clients_illustration
+    created_at: "2026-11-04T12:30:00Z"
+  - id: onboarding_demo_collections
+    page: intro_collections
+    title: "Collect repayments and run collection sheets"
+    body: "Record repayments at the meeting and work through a centre's collection sheet client by client."
+    illustration: onboarding_collections_illustration
+  - id: onboarding_demo_offline
+    page: intro_offline
+    title: "No signal? Keep working"
+    body: "Records you keep on the device open offline. What you capture is saved and syncs when you're back online."
+    illustration: onboarding_offline_illustration
+  - id: onboarding_demo_privacy_default
+    page: privacy
+    analytics: false
+    crashReports: false
+    continueLabel: "Continue without sharing"
+    privacyPolicyUrl: "https://mifos-products.pages.dev/mobile/field-officer/privacy/"
+    termsUrl: "https://mifos-products.pages.dev/mobile/field-officer/terms/"
+    note: "a fresh install — both switches OFF; Continue label reads 'Continue without sharing'"
+  - id: onboarding_demo_privacy_crash_only
+    page: privacy
+    variant: crash_reports_only
+    analytics: false
+    crashReports: true
+    continueLabel: "Continue with my choices"
+    privacyPolicyUrl: "https://mifos-products.pages.dev/mobile/field-officer/privacy/"
+    termsUrl: "https://mifos-products.pages.dev/mobile/field-officer/terms/"
+    note: "the officer agreed to crash reports only; Continue saves exactly this; label reads 'Continue with my choices'"
+  - id: onboarding_demo_privacy_both_on
+    page: privacy
+    variant: both_on
+    analytics: true
+    crashReports: true
+    continueLabel: "Continue with my choices"
+    privacyPolicyUrl: "https://mifos-products.pages.dev/mobile/field-officer/privacy/"
+    termsUrl: "https://mifos-products.pages.dev/mobile/field-officer/terms/"
+    note: "both switches on before tapping; Allow and get started saves analytics=true and crashReports=true; Continue would save the same"

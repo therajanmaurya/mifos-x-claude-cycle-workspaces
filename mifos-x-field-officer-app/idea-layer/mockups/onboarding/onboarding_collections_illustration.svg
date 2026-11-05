@@ -1,0 +1,264 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Soft shadow filter for focal items -->
+    <filter id="gentleShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#4338CA" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- 1. BASE CANVAS & GENEROUS MARGINS (#F8FAFC) -->
+  <rect width="800" height="600" fill="#F8FAFC"/>
+
+  <!-- 2. AMBIENT ATMOSPHERIC BACKDROP & SUBTLE RURAL GEOMETRY -->
+  <!-- Peaceful morning warmth aura -->
+  <circle cx="580" cy="190" r="140" fill="#E0E7FF" opacity="0.6"/>
+  <circle cx="580" cy="190" r="85" fill="#F8FAFC"/>
+
+  <!-- Soft rolling background hills with clean curves -->
+  <path d="M 40 375 Q 240 320 480 355 Q 660 380 760 335 L 760 560 L 40 560 Z" fill="#E0E7FF" opacity="0.45"/>
+  <path d="M 40 415 Q 310 365 570 405 Q 680 425 760 390 L 760 560 L 40 560 Z" fill="#E0E7FF" opacity="0.85"/>
+  <path d="M 40 450 Q 250 410 520 435 Q 660 450 760 430 L 760 560 L 40 560 Z" fill="#059669" opacity="0.14"/>
+
+  <!-- Communal Meeting Shelter / Gentle Pavilion Canopy overhead -->
+  <g id="canopy-shelter">
+    <!-- Curved supportive bamboo/timber beams (#D97706) -->
+    <path d="M 90 200 Q 400 135 710 200 L 690 215 Q 400 155 110 215 Z" fill="#D97706" opacity="0.9"/>
+    <!-- Upright pillars -->
+    <line x1="140" y1="210" x2="140" y2="470" stroke="#D97706" stroke-width="4.5" stroke-linecap="round" opacity="0.4"/>
+    <line x1="660" y1="210" x2="660" y2="470" stroke="#D97706" stroke-width="4.5" stroke-linecap="round" opacity="0.4"/>
+    
+    <!-- Stylized tree canopy fringe extending into shade on left -->
+    <circle cx="110" cy="175" r="55" fill="#059669" opacity="0.2"/>
+    <circle cx="150" cy="150" r="45" fill="#059669" opacity="0.3"/>
+    <circle cx="80" cy="210" r="40" fill="#059669" opacity="0.25"/>
+  </g>
+
+  <!-- 3. COMMUNAL MEETING PLATFORM & SEATING MOUND -->
+  <ellipse cx="400" cy="485" rx="310" ry="55" fill="#059669" opacity="0.18"/>
+  <ellipse cx="400" cy="480" rx="250" ry="42" fill="#E0E7FF" opacity="0.75"/>
+
+  <!-- Low community table / cooperative meeting counter in foreground -->
+  <g id="communal-table" filter="url(#gentleShadow)">
+    <ellipse cx="400" cy="465" rx="190" ry="24" fill="#F8FAFC"/>
+    <path d="M 215 463 Q 400 488 585 463 L 575 482 Q 400 504 225 482 Z" fill="#E0E7FF"/>
+  </g>
+
+  <!-- 4. SEATED COMMUNITY MEMBER IN BACKGROUND (Attentive cooperative observer) -->
+  <g id="background-observer" transform="translate(195, 345)">
+    <ellipse cx="28" cy="85" rx="25" ry="8" fill="#059669" opacity="0.2"/>
+    <!-- Skirt / garment (#E0E7FF and #059669) -->
+    <path d="M 10 50 Q 28 42 46 50 L 50 82 Q 28 88 6 82 Z" fill="#059669" opacity="0.85"/>
+    <path d="M 14 32 Q 28 25 42 32 L 45 52 Q 28 56 11 52 Z" fill="#E0E7FF"/>
+    <!-- Head & wrap -->
+    <circle cx="28" cy="16" r="11" fill="#D97706"/>
+    <path d="M 18 14 C 18 6 26 2 34 3 C 41 6 40 13 36 17 Z" fill="#4338CA" opacity="0.9"/>
+  </g>
+
+  <!-- 5. THE CLIENT (Left Side - Handing over Cash) -->
+  <g id="client-figure" transform="translate(230, 275)" filter="url(#gentleShadow)">
+    <!-- Cast ground shadow -->
+    <ellipse cx="50" cy="188" rx="42" ry="12" fill="#4338CA" opacity="0.12"/>
+
+    <!-- Seated Lower Wrap / Skirt in rich Amber #D97706 -->
+    <path d="M 12 112 Q 50 96 88 112 L 95 184 Q 50 196 6 184 Z" fill="#D97706"/>
+    <!-- Decorative wrap border fold (#F8FAFC) -->
+    <path d="M 10 138 Q 50 126 90 138" fill="none" stroke="#F8FAFC" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
+
+    <!-- Upper Garment / Blouse in Fresh Emerald #059669 -->
+    <path d="M 22 62 Q 50 50 78 62 L 82 116 Q 50 122 18 116 Z" fill="#059669"/>
+    
+    <!-- Shawl fold across shoulders in gentle Lavender #E0E7FF -->
+    <path d="M 24 64 Q 50 84 76 64 L 72 90 Q 50 102 28 90 Z" fill="#E0E7FF" opacity="0.9"/>
+
+    <!-- Left arm resting gently on knee -->
+    <path d="M 26 76 Q 16 102 24 125" fill="none" stroke="#D97706" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="25" cy="126" r="5" fill="#D97706"/>
+
+    <!-- Head & Graceful Headwrap -->
+    <circle cx="50" cy="30" r="17" fill="#D97706"/>
+    <!-- Styled fabric headwrap in #4338CA and #059669 -->
+    <path d="M 35 28 C 34 14 44 6 56 6 C 68 6 70 17 65 28 C 60 21 44 20 35 28 Z" fill="#4338CA"/>
+    <circle cx="60" cy="13" r="5" fill="#059669"/>
+    <circle cx="39" cy="33" r="2.5" fill="#E0E7FF"/>
+
+    <!-- Right Arm extended gracefully across table handing cash -->
+    <path d="M 70 75 Q 105 82 135 78" fill="none" stroke="#059669" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="137" cy="78" r="7" fill="#D97706"/>
+
+    <!-- THE CASH / BANKNOTES (Exchanged at center) -->
+    <g transform="translate(136, 64) rotate(-8)">
+      <!-- Primary bill in #059669 -->
+      <rect x="0" y="0" width="34" height="20" rx="3.5" fill="#059669"/>
+      <rect x="3" y="3" width="28" height="14" rx="2" fill="#F8FAFC" opacity="0.25"/>
+      <circle cx="17" cy="10" r="4.5" fill="#F8FAFC" opacity="0.5"/>
+      
+      <!-- Overlapping secondary bill -->
+      <g transform="translate(6, 6) rotate(14)">
+        <rect x="0" y="0" width="32" height="19" rx="3.5" fill="#059669" stroke="#E0E7FF" stroke-width="1"/>
+        <circle cx="16" cy="9.5" r="4" fill="#E0E7FF" opacity="0.6"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- 6. THE COLLECTION SHEET (Centerpiece on table with name roster & checkboxes) -->
+  <g id="collection-sheet" transform="translate(362, 385) rotate(-4)" filter="url(#gentleShadow)">
+    <!-- Clipboard base in warm Amber #D97706 -->
+    <rect x="0" y="0" width="88" height="106" rx="6" fill="#D97706"/>
+    <!-- Top metal binder clip in #4338CA & #E0E7FF -->
+    <rect x="28" y="-6" width="32" height="11" rx="3" fill="#4338CA"/>
+    <circle cx="44" cy="-1" r="2.5" fill="#E0E7FF"/>
+    
+    <!-- Crisp White Ledger Paper (#FFFFFF / #F8FAFC) -->
+    <rect x="5" y="6" width="78" height="94" rx="3" fill="#F8FAFC"/>
+
+    <!-- Header bar representing collection title block -->
+    <rect x="10" y="12" width="42" height="4.5" rx="1.5" fill="#4338CA"/>
+    <rect x="56" y="12" width="20" height="4.5" rx="1.5" fill="#059669" opacity="0.3"/>
+    <line x1="10" y1="21" x2="77" y2="21" stroke="#E0E7FF" stroke-width="1.5"/>
+
+    <!-- Row 1 (Confirmed client check) -->
+    <circle cx="15" cy="29" r="2.5" fill="#4338CA" opacity="0.4"/>
+    <rect x="21" y="27" width="28" height="3.5" rx="1" fill="#4338CA" opacity="0.75"/>
+    <rect x="53" y="27" width="12" height="3.5" rx="1" fill="#D97706" opacity="0.8"/>
+    <!-- Emerald Checkmark Badge -->
+    <circle cx="72" cy="29" r="3.5" fill="#059669"/>
+    <path d="M 70.5 29 L 71.5 30 L 73.5 28" fill="none" stroke="#F8FAFC" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Row 2 (Confirmed client check) -->
+    <circle cx="15" cy="40" r="2.5" fill="#4338CA" opacity="0.4"/>
+    <rect x="21" y="38" width="24" height="3.5" rx="1" fill="#4338CA" opacity="0.75"/>
+    <rect x="53" y="38" width="14" height="3.5" rx="1" fill="#D97706" opacity="0.8"/>
+    <circle cx="72" cy="40" r="3.5" fill="#059669"/>
+    <path d="M 70.5 40 L 71.5 41 L 73.5 39" fill="none" stroke="#F8FAFC" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Row 3 (Currently recorded repayment transaction) -->
+    <rect x="8" y="47.5" width="72" height="14" rx="3" fill="#E0E7FF" opacity="0.7"/>
+    <circle cx="15" cy="54.5" r="2.8" fill="#4338CA"/>
+    <rect x="21" y="52.5" width="26" height="4" rx="1" fill="#4338CA"/>
+    <rect x="51" y="52.5" width="15" height="4" rx="1" fill="#059669"/>
+    <circle cx="72" cy="54.5" r="3.8" fill="#4338CA"/>
+    <path d="M 70.3 54.5 L 71.5 55.7 L 73.7 53.3" fill="none" stroke="#F8FAFC" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Row 4 (Upcoming client row) -->
+    <circle cx="15" cy="69" r="2.5" fill="#E0E7FF"/>
+    <rect x="21" y="67" width="22" height="3.5" rx="1" fill="#E0E7FF"/>
+    <rect x="53" y="67" width="12" height="3.5" rx="1" fill="#E0E7FF"/>
+    <circle cx="72" cy="69" r="3.5" fill="#E0E7FF"/>
+
+    <!-- Row 5 (Upcoming client row) -->
+    <circle cx="15" cy="80" r="2.5" fill="#E0E7FF"/>
+    <rect x="21" y="78" width="27" height="3.5" rx="1" fill="#E0E7FF"/>
+    <rect x="53" y="78" width="10" height="3.5" rx="1" fill="#E0E7FF"/>
+    <circle cx="72" cy="80" r="3.5" fill="#E0E7FF"/>
+
+    <!-- Row 6 (Upcoming client row) -->
+    <circle cx="15" cy="91" r="2.5" fill="#E0E7FF"/>
+    <rect x="21" y="89" width="19" height="3.5" rx="1" fill="#E0E7FF"/>
+    <rect x="53" y="89" width="13" height="3.5" rx="1" fill="#E0E7FF"/>
+    <circle cx="72" cy="91" r="3.5" fill="#E0E7FF"/>
+
+    <!-- Officer recording stylus / pen placed alongside -->
+    <line x1="91" y1="20" x2="87" y2="75" stroke="#4338CA" stroke-width="3" stroke-linecap="round"/>
+    <polygon points="87,75 85.5,80 89,78" fill="#059669"/>
+  </g>
+
+  <!-- 7. THE FIELD OFFICER (Right Side - Recording on Smartphone) -->
+  <g id="officer-figure" transform="translate(480, 245)" filter="url(#gentleShadow)">
+    <!-- Cast ground shadow -->
+    <ellipse cx="65" cy="220" rx="45" ry="12" fill="#4338CA" opacity="0.14"/>
+
+    <!-- Trousers in Deep Indigo #4338CA -->
+    <!-- Left Leg -->
+    <path d="M 45 140 L 40 216 L 28 216 L 35 140 Z" fill="#4338CA"/>
+    <rect x="26" y="212" width="18" height="7" rx="3.5" fill="#D97706"/>
+    <!-- Right Leg -->
+    <path d="M 64 140 L 72 216 L 84 216 L 75 140 Z" fill="#4338CA"/>
+    <rect x="70" y="212" width="18" height="7" rx="3.5" fill="#D97706"/>
+
+    <!-- Belt in Warm Amber #D97706 -->
+    <rect x="36" y="136" width="44" height="6" rx="1.5" fill="#D97706"/>
+
+    <!-- Crisp Professional Field Uniform Shirt in Pure #F8FAFC with Indigo collar -->
+    <path d="M 32 60 L 86 60 L 82 138 L 36 138 Z" fill="#F8FAFC" stroke="#E0E7FF" stroke-width="2"/>
+    <!-- Collar and button placket (#4338CA) -->
+    <polygon points="52,60 59,76 66,60" fill="#4338CA"/>
+    <line x1="59" y1="76" x2="59" y2="136" stroke="#4338CA" stroke-width="2.5"/>
+
+    <!-- Officer Identification Lanyard in Emerald #059669 -->
+    <path d="M 48 60 Q 59 90 59 98 Q 59 90 70 60" fill="none" stroke="#059669" stroke-width="2.5"/>
+    <rect x="53" y="98" width="12" height="17" rx="2.5" fill="#4338CA"/>
+    <rect x="55" y="100.5" width="8" height="5" rx="1" fill="#E0E7FF"/>
+    <line x1="55" y1="108" x2="63" y2="108" stroke="#F8FAFC" stroke-width="1.2"/>
+    <line x1="55" y1="111" x2="61" y2="111" stroke="#F8FAFC" stroke-width="1.2"/>
+
+    <!-- Officer Head & Friendly Cap -->
+    <circle cx="59" cy="34" r="17" fill="#D97706"/>
+    <!-- Field Visor / Cap in Deep Indigo #4338CA -->
+    <path d="M 44 32 C 44 18 54 12 70 12 C 78 12 81 20 78 32 Z" fill="#4338CA"/>
+    <!-- Visor rim pointing left toward client -->
+    <path d="M 40 31 L 58 29 L 56 34 L 38 34 Z" fill="#4338CA"/>
+    <!-- Cap accent band in Emerald #059669 -->
+    <path d="M 44 30 Q 58 27 72 30" fill="none" stroke="#059669" stroke-width="2.5"/>
+
+    <!-- Left Arm extended across table, hand receiving/verifying cash exchange -->
+    <path d="M 36 68 Q -10 95 -42 85" fill="none" stroke="#F8FAFC" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="-42" cy="84" r="7" fill="#D97706"/>
+
+    <!-- Right Arm holding and interacting with smartphone -->
+    <path d="M 80 68 Q 50 96 16 92" fill="none" stroke="#F8FAFC" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="16" cy="92" r="6" fill="#D97706"/>
+
+    <!-- THE SMARTPHONE (Key technology artifact held in hand) -->
+    <g transform="translate(-14, 62) rotate(-10)">
+      <!-- Phone Casing in Deep Indigo #4338CA -->
+      <rect x="0" y="0" width="28" height="50" rx="5" fill="#4338CA" stroke="#E0E7FF" stroke-width="1.5"/>
+      <!-- Soft Pale Screen Display #E0E7FF -->
+      <rect x="2.5" y="3.5" width="23" height="43" rx="3" fill="#E0E7FF"/>
+
+      <!-- App Header bar on phone screen -->
+      <rect x="2.5" y="3.5" width="23" height="10" rx="2" fill="#4338CA"/>
+      <rect x="5" y="7" width="10" height="2" rx="0.5" fill="#F8FAFC"/>
+      <circle cx="21" cy="8" r="1.5" fill="#059669"/>
+
+      <!-- Recorded repayment entry on phone -->
+      <rect x="5.5" y="16.5" width="17" height="3" rx="1" fill="#4338CA" opacity="0.8"/>
+      <rect x="5.5" y="21.5" width="12" height="2.5" rx="0.8" fill="#D97706"/>
+
+      <!-- Prominent Emerald Verification Checkmark Pill on phone -->
+      <g transform="translate(6, 27)">
+        <rect x="0" y="0" width="16" height="10" rx="5" fill="#059669"/>
+        <path d="M 5 5 L 7 7 L 11 3" fill="none" stroke="#F8FAFC" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+
+      <!-- Bottom ledger indicator line -->
+      <rect x="5.5" y="40" width="17" height="2" rx="0.5" fill="#4338CA" opacity="0.4"/>
+      <!-- Home pill bar -->
+      <rect x="10" y="44" width="8" height="1" rx="0.5" fill="#4338CA"/>
+    </g>
+  </g>
+
+  <!-- 8. REASSURING TRUST & HARMONY AURA (Central floating emblem) -->
+  <g transform="translate(382, 280)" filter="url(#gentleShadow)">
+    <circle cx="18" cy="18" r="18" fill="#F8FAFC"/>
+    <circle cx="18" cy="18" r="14" fill="#E0E7FF"/>
+    <!-- Shield-leaf check glyph in #059669 -->
+    <path d="M 12 18 L 16 22 L 24 14" fill="none" stroke="#059669" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- 9. FOREGROUND PRAIRIE GRASS & BOTANICAL ACCENTS (#059669 & #E0E7FF) -->
+  <!-- Left corner flora -->
+  <g id="foreground-flora-left">
+    <path d="M 70 560 Q 85 520 108 515 Q 96 538 90 560" fill="#059669"/>
+    <path d="M 90 560 Q 112 525 136 524 Q 120 542 116 560" fill="#059669" opacity="0.75"/>
+    <circle cx="108" cy="515" r="3.5" fill="#D97706"/>
+    <path d="M 145 565 Q 155 538 170 534 Q 160 550 156 565" fill="#059669"/>
+  </g>
+
+  <!-- Right corner flora -->
+  <g id="foreground-flora-right">
+    <path d="M 730 560 Q 712 522 688 516 Q 700 538 706 560" fill="#059669"/>
+    <path d="M 710 560 Q 688 528 664 526 Q 678 544 682 560" fill="#059669" opacity="0.75"/>
+    <circle cx="688" cy="516" r="3.5" fill="#D97706"/>
+    <path d="M 645 565 Q 635 538 618 534 Q 630 550 633 565" fill="#059669"/>
+  </g>
+</svg>

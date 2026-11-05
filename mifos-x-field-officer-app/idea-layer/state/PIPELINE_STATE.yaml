@@ -64,6 +64,50 @@ features:
       (screens/home/preview/*.html, provenance-stamped; audit needs_render_screen=false). Stitch generated 5/5 but local
       download is blocked (get_screen "invalid argument"), so the preview is the design tier until that is fixed. Next:
       design review → /kmp-implement.
+  onboarding:
+    status: approved
+    last_capability: /idea-approve
+    last_run_at: '2026-11-05T01:00:00Z'
+    approve_hash: 070b181a7151373ca769cec99ebe56406ff9a9b599756e20488a75f7b3103cff
+    approved_at: '2026-11-05T01:00:00Z'
+    previous_approve_hash: e00397478a4ff855cca3207fb2b0a6bcf6649b79d6267fed452c0c8a7b895b9c
+    last_enrich_at: '2026-11-05T00:00:00Z'
+    docset_version: '3.1'
+    enrich_staleness: fresh
+    data_staleness: stale
+    enhanced_at: '2026-11-05T00:00:00Z'
+    enhancement: >-
+      operator decisions 2026-11-05: A "Allow / Continue without" (get_started → allow_get_started + continue_choices),
+      B agreement line with in-app Privacy Policy + Terms links (FR-ONB-07)
+    implementation_staleness: never
+    implemented: false
+    quality_score: 72
+    quality_note: >-
+      QUALITY_FORMULA.md (legacy 12-category) scored strictly: completeness 10, states 2, api_coverage 0, nav_targets 0,
+      content 10, style 10, layout 10, api_contracts 10, a11y 5, state_model 5, dependencies 5, screens 5. The 28
+      missing points are structural for a static local-only pager — no loading/content/error states, no api[] data
+      components, no on_click.action == navigate — and cannot be earned without inventing states or APIs (forbidden,
+      pipeline STEP A.4.3 #3). Below the 90 bar → requires_attention recorded; no further enrich loop changes it.
+    requires_attention: true
+    design_tier_consumed: preview
+    feature_profile:
+      combo_id: local_only_prefs
+      store_archetype: OFFLINE_LOCAL_ONLY
+    states:
+      - intro_clients
+      - intro_collections
+      - intro_offline
+      - privacy
+    open_gaps:
+      - first-run-seam-not-synced::onboarding
+      - rootnav-route::onboarding
+      - settings-privacy-port-in-progress::settings
+      - visual-assets-not-generated::onboarding
+    note: >
+      First-run onboarding (3 intro pages + privacy consent, both switches OFF). Scaffolded by /idea-plan-add and
+      enriched 2026-11-04 by /idea-feature-enrich --auto: business_logic authored, feature_profile re-derived (FPC-2),
+      privacy illustration + save-error snackbar added, 17 test scenarios, impl-ready docs (IR-3/IR-4 clean), 4 previews
+      rendered + provenance-stamped, journey field-officer-first-run. Next: /idea-approve onboarding.
 pending_phase_rebalance: true
 pending_phase_rebalance_reason:
   triggered_at: '2026-10-26T16:45:00Z'
@@ -76,26 +120,86 @@ pending_phase_rebalance_reason:
     - feature_id: offlineSync
       flow_id: null
       delta_type: new
+    - feature_id: onboarding
+      flow_id: authentication
+      delta_type: new
+      triggered_at: '2026-11-04T12:30:00Z'
+    - feature_id: onboarding
+      flow_id: authentication
+      delta_type: modified
+      trigger_source: idea-feature-enrich
+      delta_kind: enrichment-churn
+      triggered_at: '2026-11-04T16:52:00Z'
 capabilities:
-  kmp-implement:
+  idea-plan-add:
     status: success
     last_run:
-      at: '2026-10-27T01:36:00Z'
+      at: '2026-11-05T00:00:00Z'
       status: success
       actor: claude
-      command: /implement home → /kmp-implement home
-      args: home
+      command: /idea-plan-add enhance onboarding
+      args: enhance onboarding
+    metrics_enhance_onboarding:
+      classification: ENHANCEMENT
+      components_added: 3
+      components_removed: 2
+      strings_added: 5
+      strings_removed: 1
+      requirements_revised: 3
+      requirements_added: 1
+    previous_run:
+      at: '2026-11-04T12:30:00Z'
+      command: /idea-plan-add add-feature onboarding
     metrics:
-      files_generated: 6
-      tests_generated: 2
+      items_added: 1
+      files_scaffolded: 8
+      requirements_added: 8
+      strings_added: 23
+    warnings:
+      - idea-layer/training/TRAINING_MASTER.yaml absent (project training) — framework training used
+      - >-
+        IDEA_CORE.yaml started with onboarding nodes only; 6 pre-existing screens have no node (reverse-derive via
+        /idea-core-scaffold)
+  kmp-implement:
+    status: pending-device-verify
+    last_run:
+      at: '2026-11-05T12:00:00Z'
+      status: pending-device-verify
+      actor: claude
+      command: /kmp-implement onboarding
+      args: onboarding
+      note: >-
+        Source, navigation, 20 locales, 10 Roborazzi goldens; desktop + android + ios tests green, assembleProdDebug
+        green. Device verify waits on the template sync (firstTimeUser default from
+        app.yaml#security.first_run_onboarding, template 3dd68cd9). jsBrowserTest/wasmJsBrowserTest red project-wide
+        (skiko not loaded) — queued upstream compose-web-browser-tests-skia-not-loaded.
+    metrics:
+      files_generated: 8
+      tests_generated: 4
       layers_touched: 5
   idea-verify:
     status: success
-    last_verify_ts: '2026-10-27T16:40:00Z'
+    last_verify_ts: '2026-11-04T18:15:00Z'
     last_run:
-      at: '2026-10-27T16:40:00Z'
+      at: '2026-11-04T18:15:00Z'
       status: success
       actor: claude
+      command: /idea-verify --feature onboarding
+    metrics_onboarding:
+      yaml_parse: pass (7/7 siblings + journey)
+      schema_version: pass (3.1)
+      nav_targets: pass (signin, serverConfig)
+      flow_transitions: pass (8/8 on_click/on_back actions)
+      i18n_missing: 0
+      action_contracts: 8/8 (G-ACTION-CONTRACT - 0 onboarding failures)
+      sub_action_completeness: 0 onboarding violations
+      orphan: fixed — journeys/field-officer-first-run.yaml entry_point onboarding
+      stitch_verify: 4/4 sv-pass
+      export_roundtrip: pass
+      errors: 0
+      advisories: 4
+    previous_run:
+      at: '2026-10-27T16:40:00Z'
       command: /idea-verify --feature offlineSync
     metrics:
       yaml_parse: pass
@@ -106,7 +210,48 @@ capabilities:
       advisories: 1
       repaired: state/CAPABILITY_GAPS.yaml duplicate fix_belongs_in key (broke the Stitch cascade)
   idea-feature-enrich:
+    status: success
     last_run:
+      at: '2026-11-05T00:00:00Z'
+      status: success
+      actor: claude
+      command: /idea-feature-enrich onboarding (STEP 5.5 tests-emit + 5.6 docs-emit after enhance)
+      args: onboarding
+    metrics_enhance_onboarding:
+      scenarios: 20
+      vm_actions: 11
+      action_contracts: 10
+      ledger_stamp: d9a0bc102480013a3b6e73b37b1ce3756aa244bf1681417d2096139b9f9fdfc8
+    previous_onboarding_run:
+      at: '2026-11-04T16:55:00Z'
+      command: /idea-feature-enrich onboarding --auto
+    metrics:
+      features_enriched: 1
+      avg_quality: 72
+      scenarios: 17
+      action_contracts: 8/8
+      visual_assets: 5
+      previews_rendered: 4
+      errors: 0
+      warnings: 2
+    warnings:
+      - >-
+        quality 72 < 90 (legacy formula; states/api/nav categories inapplicable to a static local-only pager) →
+        requires_attention
+      - >-
+        design_read quiet_constraint accessibility-first (≤4 interactive/screen) exceeded on privacy page (5) —
+        operator-decided components kept
+    cascade_onboarding:
+      shape: inline-serial (dispatched-subagent run; 3-branch fan-out would be a 2-level dispatch)
+      step_1_idea_data: >-
+        ran — spine + source-of-truth-sync PASS; dtos none (no API); data-flow/demo children not applicable (no
+        data-layer capability)
+      step_2_idea_api_extend: not applicable — api.yaml endpoints []
+      step_3_idea_feature_render: ran — 4 previews written, provenance-stamped, re-verified as no-op after the A.9/A.11/A.13 ui pass
+      step_4_idea_feature_stitch: ran — --build-prompts, 4 prompts (cloud generation not part of this cascade arg)
+      step_5_idea_flows: ran — flow.yaml transitions + outbound_routes, journeys/field-officer-first-run.yaml
+      step_6_idea_verify: ran — idea-graph-audit matrix-partial, 0 errors
+    previous_offlineSync_run:
       at: '2026-10-27T16:30:00Z'
       status: success
       actor: claude
@@ -138,26 +283,95 @@ capabilities:
       step_4_idea_feature_stitch: not run — 8 prompts present; see STITCH_STATE.yaml (all sv-fallback)
       step_5_idea_flows: satisfied inline — flow.yaml regenerated with the 8 v2 transitions
       step_6_idea_verify: partial — CAPABILITY_GAPS.yaml updated; framework-verify-contract.sh crashes (pre-existing, unrelated)
+  idea-feature-render:
+    status: success
+    last_run:
+      at: '2026-11-04T16:50:30Z'
+      status: success
+      actor: claude
+      command: /idea-feature-render --feature onboarding --auto
+      args: '--feature onboarding --auto'
+    metrics:
+      screens_rendered: 1
+      states_rendered: 4
+      cache_hits: 0
+      verified_noop_recorded: 1
+      vf2_hooks: intro 2/2 per state · privacy 5/5 (3 data-action + 2 data-nav-to)
+    detail_ref: EXPORT_MATRIX.yaml
   idea-feature-stitch:
     last_run:
-      at: '2026-11-04T10:44:50.786Z'
+      at: '2026-11-05T08:35:29.931Z'
       status: success
-      duration_ms: 902165
+      duration_ms: 288048
       actor: claude
       command: /idea-feature-stitch --features signin --force
+    errors: 0
+    warnings: 0
     metrics:
-      build_prompts_last_run: '2026-11-04T10:26:43.784Z'
-      states_written_this_run: 8
+      build_prompts_last_run: '2026-11-05T07:58:01.090Z'
+      states_written_this_run: 4
       states_failed_this_run: 0
-      avg_chars_per_state: 7452
+      avg_chars_per_state: 6930
       project_id: '10780096558615730514'
       design_system_id: '9551377288795375599'
       features_generated_this_run: 1
-      states_generated_this_run: 8
+      states_generated_this_run: 2
       states_fallback_this_run: 0
       stitch_produced_nothing: false
     detail_ref: state/STITCH_STATE.yaml
+  idea-feature-export:
+    status: success
+    last_run:
+      at: '2026-11-05T00:50:00Z'
+      status: success
+      actor: claude
+      command: /idea-feature-export onboarding
+      args: onboarding
+      scope: spec+api_md
+      regen_reason: '2026-11-05 operator decisions A+B: allow_get_started + continue_choices + agreement_text'
+    errors: 0
+    warnings: 1
+    metrics:
+      features_exported: 1
+      files_written: 2
+      roundtrip_passed: 1
+      export_matrix_cells_updated: 2
+    warnings_detail:
+      - E3 (api[] ≥1 entry) not applicable — local-only feature, api.yaml endpoints []
+    staleness_refresh:
+      onboarding: warn
+    detail_ref: EXPORT_MATRIX.yaml
+  idea-approve:
+    status: success
+    last_run:
+      at: '2026-11-04T18:19:00Z'
+      status: success
+      actor: claude
+      command: /idea-approve onboarding
+      args: onboarding
+    errors: 0
+    warnings: 2
+    metrics:
+      features_approved: 1
+    warnings_detail:
+      - C2 pass-with-disclosure (c2-mtime — previews + tests.yaml mtime-older than ui.yaml, content-current)
+      - STEP 1.5 docs.yaml has no contract_version (stamped 2.0.0 per home/offlineSync/profile precedent)
+    detail_ref: APPROVE_LOG.yaml
+pipeline_progress:
+  onboarding:
+    specify:
+      status: done
+      source_hash_mismatch: false
+      at: '2026-11-05T00:50:00Z'
+      capability: /idea-feature-export
+      regen_at: '2026-11-05T00:50:00Z'
+      regen_reason: 'operator decisions A+B 2026-11-05: allow_get_started + continue_choices + agreement_text'
+    design:
+      status: done
+      source_hash_mismatch: false
+      at: '2026-11-04T16:50:30Z'
+      capability: /idea-feature-render
 design_system:
   stitch:
     tokens_hash: 065d7fa8
-    tokens_hashed_at: '2026-11-04T10:44:50.784Z'
+    tokens_hashed_at: '2026-11-05T08:35:29.928Z'

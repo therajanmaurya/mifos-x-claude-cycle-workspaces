@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "feature": "onboarding",
+  "states": {
+    "intro_clients": {
+      "hash": "8eac7c9caeeda9f184e0574639d374babb181fe35f1000aff72706c31e1bc44c",
+      "render_hash": "8eac7c9caeed",
+      "stamped_at": "2026-11-05T06:15:13.649Z"
+    },
+    "intro_collections": {
+      "hash": "078847049b2f13920e5f17c3a5e13be23c98672448a5fdf2f306bd38af097e67",
+      "render_hash": "078847049b2f",
+      "stamped_at": "2026-11-05T06:15:13.652Z"
+    },
+    "intro_offline": {
+      "hash": "ef92e9dcf6f2a146696791f909d6942b0e34af2899ba59afbbd677d430722a84",
+      "render_hash": "ef92e9dcf6f2",
+      "stamped_at": "2026-11-05T06:15:13.654Z"
+    },
+    "privacy": {
+      "hash": "f80aeeb3705dadbf6d5ef8b1d8606e28324d9a8aa0c6df1ab2bfc7e8edb30013",
+      "render_hash": "f80aeeb3705d",
+      "stamped_at": "2026-11-05T06:15:13.655Z"
+    }
+  },
+  "hash_source": "prompts/{key}.md#content_hash (sanctioned producer hash from stitch-prompt-build.ts; {key} = canonical state key). Raw sha256 over idea-layer bytes is refused by the CI-INTEGRITY-CARVE-OUT guard."
+}

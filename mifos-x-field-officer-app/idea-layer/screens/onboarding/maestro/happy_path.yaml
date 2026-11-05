@@ -1,0 +1,50 @@
+appId: com.mifos.mifosxdroid
+---
+# Fresh install → onboarding → privacy page (both OFF, two equally visible buttons, agreement line with
+# Terms & Conditions + Privacy Policy links) → "Continue without sharing" (saves both OFF) → sign-in; relaunch → straight to sign-in.
+# 2026-11-05 operator decisions A ("Allow / Continue without") + B (agreement line). The allow-all path
+# (onboarding_allow_get_started) is covered in tests.yaml privacy_allow_get_started_saves_both_on.
+# 2026-11-05 design feedback: Next, the dots and both finishing buttons sit in a FIXED bottom bar — they are on
+# screen without any scrollUntilVisible. The agreement line is in the scrolling content above the bar; only
+# onboarding_connect_instance (the last scrolling item) may need a scroll on a phone.
+- clearState
+- launchApp
+- assertVisible:
+    id: "onboarding_pager"
+- assertVisible:            # 32dp mark, top start, every page
+    id: "onboarding_brand_mark"
+- tapOn:
+    id: "onboarding_next"
+- tapOn:
+    id: "onboarding_next"
+- tapOn:
+    id: "onboarding_next"
+- assertVisible:            # both OFF by default — no pre-ticked consent
+    id: "onboarding_analytics_switch"
+    checked: false
+- assertVisible:
+    id: "onboarding_crash_reports_switch"
+    checked: false
+- assertVisible:            # decision B — ONE Text with inline LinkAnnotation spans; links found by TEXT
+    id: "onboarding_agreement"
+- assertVisible:
+    text: ".*Terms & Conditions.*"
+- assertVisible:
+    text: ".*Privacy Policy.*"
+- assertVisible:            # mark stays on the privacy page (Skip hidden, row keeps 48dp)
+    id: "onboarding_brand_mark"
+- assertVisible:            # decision A — both buttons visible WITHOUT scrolling (fixed bottom bar), decline path not hidden
+    id: "onboarding_allow_get_started"
+- assertVisible:
+    id: "onboarding_continue_choices"
+    text: "Continue without sharing"
+- tapOn:
+    id: "onboarding_continue_choices"
+- assertVisible:
+    id: "signin:consent"
+- stopApp
+- launchApp
+- assertNotVisible:
+    id: "onboarding_pager"
+- assertVisible:
+    id: "signin:consent"

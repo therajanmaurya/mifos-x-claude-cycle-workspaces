@@ -60,6 +60,56 @@
       "p": "5d10913c",
       "pv": "900d83bd",
       "r": "8abb22ae"
+    },
+    "onboarding:render": {
+      "p": "e6fa0054",
+      "pv": "900d83bd",
+      "r": "4597e425"
+    },
+    "home:export_stitch": {
+      "p": "1ce6ff31",
+      "pv": "900d83bd",
+      "r": "5c245823"
+    },
+    "offlineSync:export_spec": {
+      "p": "f5637d14",
+      "pv": "900d83bd",
+      "r": "3a3ac105"
+    },
+    "offlineSync:export_stitch": {
+      "p": "f5637d14",
+      "pv": "900d83bd",
+      "r": "3a3ac105"
+    },
+    "profile:export_spec": {
+      "p": "ae2bb034",
+      "pv": "900d83bd",
+      "r": "ac9211dc"
+    },
+    "profile:export_stitch": {
+      "p": "ae2bb034",
+      "pv": "900d83bd",
+      "r": "ac9211dc"
+    },
+    "onboarding:mockup": {
+      "p": "e6fa0054",
+      "pv": "900d83bd",
+      "r": "4597e425"
+    },
+    "onboarding:export_spec": {
+      "p": "4d1391b5",
+      "pv": "900d83bd",
+      "r": "130b5b5b"
+    },
+    "onboarding:export_mockup": {
+      "p": "4d1391b5",
+      "pv": "900d83bd",
+      "r": "130b5b5b"
+    },
+    "onboarding:export_stitch": {
+      "p": "4d1391b5",
+      "pv": "900d83bd",
+      "r": "130b5b5b"
     }
   }
 }

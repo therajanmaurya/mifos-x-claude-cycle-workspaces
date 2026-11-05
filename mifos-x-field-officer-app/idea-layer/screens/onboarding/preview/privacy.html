@@ -1,0 +1,216 @@
+<!doctype html>
+<!-- render-hash: f80aeeb3705d -->
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onboarding, page 4 of 4, privacy: Mifos X Field Officer</title>
+<style>
+:root {
+  --color-background: #FAFAFB;
+  --color-on-background: #0F172A;
+  --color-on-surface-variant: #475569;
+  --color-primary: #4338CA;
+  --color-on-primary: #FFFFFF;
+  --color-primary-container: #E0E7FF;
+  --color-on-primary-container: #1F1D75;
+  --color-secondary: #059669;
+  --color-secondary-container: #D1FAE5;
+  --color-on-secondary-container: #064E3B;
+  --color-error: #B3261E;
+  --color-surface-card: #FFFFFF;
+  --color-outline: #94A3B8;
+  --color-outline-variant: #CBD5E1;
+  --color-switch-track: #CBD5E1;
+  --color-switch-thumb: #FFFFFF;
+  --mark-lime: #92D050;
+  --mark-green: #00B050;
+  --mark-blue: #0070C0;
+  --mark-sky-a: #00B0F0;
+  --mark-sky-b: #7FD8F8;
+  --mark-x: #FFFFFF;
+  --el-0: none;
+  --el-1: 0 1px 2px rgba(15, 23, 42, 0.06), 0 2px 6px rgba(15, 23, 42, 0.05);
+  --el-2: 0 1px 2px rgba(15, 23, 42, 0.06), 0 12px 32px rgba(31, 29, 117, 0.10);
+  --el-thumb: 0 1px 2px rgba(15, 23, 42, 0.25);
+  --font-family: "Outfit", ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fs-headline: 28px; --lh-headline: 36px;
+  --fs-headline-lg: 32px; --lh-headline-lg: 40px;
+  --fs-body: 16px; --lh-body: 24px;
+  --fs-body-md: 14px; --lh-body-md: 20px;
+  --fs-small: 13px; --lh-small: 20px;
+  --fw-regular: 400; --fw-medium: 500; --fw-semibold: 600;
+  --sp-xs: 4px; --sp-sm: 8px; --sp-md: 12px; --sp-lg: 16px; --sp-xl: 24px; --sp-xxl: 32px; --sp-xxxl: 48px;
+  --mark-size: 32px;
+  --touch-min: 48px;
+  --switch-w: 52px; --switch-h: 32px; --thumb: 16px; --thumb-inset: 8px;
+  --icon: 24px;
+  --dot: 8px; --dot-active: 24px;
+  --border-w: 1px;
+  --r-sm: 8px; --r-md: 12px; --r-xl: 24px; --r-full: 999px;
+  --content-medium: 560px;
+  --content-expanded: 1040px;
+}
+[data-theme="dark"] {
+  --color-background: #0F172A;
+  --color-on-background: #F1F5F9;
+  --color-on-surface-variant: #CBD5E1;
+  --color-primary: #A5B4FC;
+  --color-on-primary: #1F1D75;
+  --color-primary-container: #312E81;
+  --color-on-primary-container: #E0E7FF;
+  --color-secondary: #34D399;
+  --color-secondary-container: #064E3B;
+  --color-on-secondary-container: #D1FAE5;
+  --color-error: #F87171;
+  --color-surface-card: #1E293B;
+  --color-outline: #64748B;
+  --color-outline-variant: #334155;
+  --color-switch-track: #334155;
+  --color-switch-thumb: #94A3B8;
+  --el-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --el-2: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body { width: 100%; min-height: 100vh; display: flex; flex-direction: column; background: var(--color-background); color: var(--color-on-background); font-family: var(--font-family); -webkit-font-smoothing: antialiased; }
+button { font: inherit; }
+.defs { position: absolute; }
+.root { flex: 1; width: 100%; height: 100vh; display: flex; flex-direction: column; margin: 0 auto; padding: var(--sp-md) var(--sp-xl) 0; }
+.top-row { flex: none; min-height: var(--touch-min); display: flex; align-items: center; justify-content: space-between; }
+.mark { width: var(--mark-size); height: var(--mark-size); border-radius: var(--r-sm); overflow: hidden; display: block; }
+.content { flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: var(--sp-xl); padding: var(--sp-lg) 0; }
+.hero { display: none; border-radius: var(--r-xl); background: var(--color-primary-container); box-shadow: var(--el-1); overflow: hidden; aspect-ratio: 4 / 3; }
+.hero svg { width: 100%; height: 100%; display: block; }
+.body { display: flex; flex-direction: column; gap: var(--sp-lg); }
+.body h1 { margin: 0; font-size: var(--fs-headline); line-height: var(--lh-headline); font-weight: var(--fw-semibold); letter-spacing: -0.2px; }
+.lead { margin: 0; font-size: var(--fs-body); line-height: var(--lh-body); color: var(--color-on-surface-variant); max-width: 46ch; }
+.choices { display: flex; flex-direction: column; }
+.choice { display: flex; align-items: center; gap: var(--sp-md); min-height: var(--touch-min); padding: var(--sp-md) 0; border: 0; background: transparent; color: inherit; text-align: left; cursor: pointer; width: 100%; }
+.choice + .choice { border-top: var(--border-w) solid var(--color-outline-variant); }
+.choice-text { flex: 1; display: flex; flex-direction: column; gap: var(--sp-xs); }
+.choice-label { font-size: var(--fs-body); line-height: var(--lh-body); font-weight: var(--fw-medium); color: var(--color-on-background); }
+.choice-desc { font-size: var(--fs-small); line-height: var(--lh-small); color: var(--color-on-surface-variant); }
+.switch { flex: none; position: relative; width: var(--switch-w); height: var(--switch-h); border-radius: var(--r-full); background: var(--color-switch-track); border: 2px solid var(--color-outline); }
+.switch::after { content: ""; position: absolute; top: 50%; left: var(--thumb-inset); width: var(--thumb); height: var(--thumb); margin-top: calc(var(--thumb) / -2); border-radius: var(--r-full); background: var(--color-outline); box-shadow: var(--el-thumb); }
+.note { display: flex; align-items: center; gap: var(--sp-md); padding: var(--sp-lg); border-radius: var(--r-md); background: var(--color-secondary-container); color: var(--color-on-secondary-container); font-size: var(--fs-body-md); line-height: var(--lh-body-md); box-shadow: var(--el-1); }
+.note svg { width: var(--icon); height: var(--icon); flex: none; }
+.agreement { margin: 0; font-size: var(--fs-body-md); line-height: var(--lh-body-md); color: var(--color-on-surface-variant); }
+.agreement a { color: var(--color-primary); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+.later { margin: 0; font-size: var(--fs-small); line-height: var(--lh-small); color: var(--color-on-surface-variant); }
+.connect { align-self: flex-start; min-height: var(--touch-min); padding: 0 var(--sp-md); margin-left: calc(var(--sp-md) * -1); border: 0; border-radius: var(--r-full); background: transparent; color: var(--color-primary); font-size: var(--fs-body-md); font-weight: var(--fw-medium); cursor: pointer; }
+.bar-row { flex: none; display: flex; }
+.bar-spacer { display: none; }
+.bar { flex: 1; display: flex; flex-direction: column; align-items: center; gap: var(--sp-md); padding: var(--sp-lg) 0 calc(var(--sp-lg) + env(safe-area-inset-bottom)); background: var(--color-background); }
+.dots { display: flex; align-items: center; gap: var(--sp-sm); margin-bottom: var(--sp-xs); }
+.dot { width: var(--dot); height: var(--dot); border-radius: var(--r-full); background: var(--color-outline-variant); }
+.dot.on { width: var(--dot-active); background: var(--color-primary); }
+.save-failed { align-self: stretch; margin: 0; font-size: var(--fs-body-md); line-height: var(--lh-body-md); color: var(--color-error); }
+.btn { width: 100%; min-height: var(--touch-min); display: inline-flex; align-items: center; justify-content: center; border-radius: var(--r-full); font-size: var(--fs-body); font-weight: var(--fw-semibold); letter-spacing: 0.2px; cursor: pointer; }
+.btn-primary { border: 0; background: var(--color-primary); color: var(--color-on-primary); box-shadow: var(--el-1); }
+.btn-outlined { border: var(--border-w) solid var(--color-outline); background: transparent; color: var(--color-primary); }
+:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+@media (min-width: 600px) {
+  .root { max-width: var(--content-medium); padding-top: var(--sp-xl); }
+}
+@media (min-width: 840px) {
+  .root { max-width: var(--content-expanded); padding: var(--sp-xl) var(--sp-xxl) 0; }
+  .content { flex-direction: row; align-items: center; gap: var(--sp-xxl); }
+  .hero { display: block; flex: 1; }
+  .body { flex: 1; }
+  .body h1 { font-size: var(--fs-headline-lg); line-height: var(--lh-headline-lg); }
+  .bar-row { gap: var(--sp-xxl); }
+  .bar-spacer { display: block; flex: 1; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" class="defs" aria-hidden="true">
+  <defs>
+    <linearGradient id="mark-sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" style="stop-color: var(--mark-sky-a)"/>
+      <stop offset="1" style="stop-color: var(--mark-sky-b)"/>
+    </linearGradient>
+    <symbol id="mifos-mark" viewBox="0 0 200 200">
+      <polygon points="0,0 200,0 100,100" style="fill: var(--mark-lime)"/>
+      <polygon points="0,200 200,200 100,100" style="fill: var(--mark-green)"/>
+      <polygon points="0,0 0,200 100,100" style="fill: var(--mark-blue)"/>
+      <polygon points="200,0 200,200 100,100" fill="url(#mark-sky)"/>
+      <path d="M0 0 L200 200 M200 0 L0 200" style="stroke: var(--mark-x)" stroke-width="22"/>
+    </symbol>
+  </defs>
+</svg>
+<div class="root" data-shell="root" data-screen-id="onboarding" data-state="privacy" data-component-type="Pager" data-component-id="pager" aria-label="Onboarding, page 4 of 4 - privacy choices">
+
+  <header class="top-row" data-component-type="LayoutBox" data-component-id="top_row">
+    <svg class="mark" role="img" aria-label="Mifos X" data-component-type="Image" data-component-id="brand_mark"><use href="#mifos-mark"/></svg>
+  </header>
+
+  <main class="content" data-shell="content" data-state="privacy" data-component-type="LayoutBox" data-component-id="content">
+    <div class="hero" data-component-type="Image" data-component-variant="decorative" data-component-id="privacy_illustration">
+      <svg viewBox="0 0 800 600" role="img" aria-label="An officer's phone showing two switches, both off, beside a closed padlock and a small shield">
+        <rect x="290" y="90" width="220" height="420" rx="28" style="fill: var(--color-on-primary-container)"/>
+        <rect x="304" y="112" width="192" height="376" rx="16" style="fill: var(--color-surface-card)"/>
+        <rect x="326" y="190" width="90" height="12" rx="6" style="fill: var(--color-outline-variant)"/>
+        <rect x="420" y="180" width="54" height="32" rx="16" style="fill: var(--color-switch-track)"/>
+        <circle cx="438" cy="196" r="10" style="fill: var(--color-outline)"/>
+        <rect x="326" y="270" width="110" height="12" rx="6" style="fill: var(--color-outline-variant)"/>
+        <rect x="420" y="260" width="54" height="32" rx="16" style="fill: var(--color-switch-track)"/>
+        <circle cx="438" cy="276" r="10" style="fill: var(--color-outline)"/>
+        <rect x="190" y="390" width="74" height="60" rx="10" style="fill: var(--color-primary)"/>
+        <path d="M207 390 v-20 a20 20 0 0 1 40 0 v20" style="fill: none; stroke: var(--color-primary)" stroke-width="10"/>
+        <path d="M580 360 l44 16 v30 c0 26 -20 44 -44 54 c-24 -10 -44 -28 -44 -54 v-30 z" style="fill: var(--color-secondary)"/>
+        <path d="M562 410 l14 14 l26 -28" style="fill: none; stroke: var(--color-surface-card)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <div class="body" data-component-type="LayoutBox" data-component-id="privacy_body">
+      <h1 data-component-type="Text" data-component-variant="headline_medium" data-component-id="privacy_title">Help improve the app</h1>
+      <p class="lead" data-component-type="Text" data-component-variant="body_large" data-component-id="privacy_lead">Both are off unless you turn them on. Allow both in one tap, or choose below, you can still use everything.</p>
+
+      <div class="choices" data-component-type="LayoutBox" data-component-id="choices">
+        <button class="choice" type="button" role="switch" aria-checked="false" data-component-type="Switch" data-component-variant="off" data-component-id="analytics_switch" data-action="toggle_analytics" aria-label="Share usage analytics, which screens and features are used, and how often. No client names, account numbers or amounts. Off">
+          <span class="choice-text">
+            <span class="choice-label">Share usage analytics</span>
+            <span class="choice-desc">Which screens and features are used, and how often. No client names, account numbers or amounts.</span>
+          </span>
+          <span class="switch" aria-hidden="true"></span>
+        </button>
+        <button class="choice" type="button" role="switch" aria-checked="false" data-component-type="Switch" data-component-variant="off" data-component-id="crash_reports_switch" data-action="toggle_crash_reports" aria-label="Send crash reports, when the app crashes: the error, the app version and the device model, so we can fix it. No client data. Off">
+          <span class="choice-text">
+            <span class="choice-label">Send crash reports</span>
+            <span class="choice-desc">When the app crashes: the error, the app version and the device model, so we can fix it. No client data.</span>
+          </span>
+          <span class="switch" aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <div class="note" data-component-type="Text" data-component-variant="body_medium" data-component-id="no_client_data_note">
+        <svg viewBox="0 0 24 24" aria-label="Shield" role="img"><path style="fill: currentColor" d="M12 2 4 5v6c0 5.25 3.4 10.15 8 11.35 4.6-1.2 8-6.1 8-11.35V5l-8-3zm0 2.18 6 2.25V11c0 4.1-2.55 7.95-6 9.08-3.45-1.13-6-4.98-6-9.08V6.43l6-2.25z"/></svg>
+        <span>Nothing about your clients, loans or savings is ever sent.</span>
+      </div>
+
+      <p class="agreement" data-component-type="AnnotatedText" data-component-variant="body_medium" data-component-id="agreement_text">By using our service you accept our <a role="link" tabindex="0" data-component-type="Link" data-component-id="terms_link" data-action="open_terms" aria-label="Terms & Conditions - opens in the app">Terms &amp; Conditions</a> and <a role="link" tabindex="0" data-component-type="Link" data-component-id="privacy_policy_link" data-action="open_privacy_policy" aria-label="Privacy Policy - opens in the app">Privacy Policy</a>.</p>
+
+      <p class="later" data-component-type="Text" data-component-variant="body_small" data-component-id="settings_later_note">You can change this later in Settings.</p>
+
+      <button class="connect" type="button" data-component-type="Link" data-component-variant="text" data-component-id="connect_instance_link" data-nav-to="serverConfig" data-nav-type="push" data-action-id="open_server_config" aria-label="Connect to your Mifos instance - opens Server config">Connect to your Mifos instance</button>
+    </div>
+  </main>
+
+  <div class="bar-row" data-component-type="LayoutBox" data-component-id="bottom_bar_row">
+    <div class="bar-spacer" aria-hidden="true"></div>
+    <footer class="bar" data-component-type="LayoutBox" data-component-id="controls">
+      <div class="dots" role="img" aria-label="Page 4 of 4" data-component-type="PageIndicator" data-component-id="page_indicator">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot on"></span>
+      </div>
+      <p class="save-failed" role="status" aria-live="polite" hidden data-component-type="Text" data-component-variant="body_medium" data-component-id="save_failed_text">Couldn't save your choices. Try again.</p>
+      <button class="btn btn-primary" type="button" data-component-type="Button" data-component-variant="primary" data-component-id="allow_get_started" data-nav-to="signin" data-nav-type="replace" data-action-id="allow_all_and_finish" aria-label="Allow and get started - turns on usage analytics and crash reports, saves them and opens sign-in">Allow and get started</button>
+      <button class="btn btn-outlined" type="button" data-component-type="OutlinedButton" data-component-variant="outlined" data-component-id="continue_choices" data-nav-to="signin" data-nav-type="replace" data-action-id="continue_with_choices" aria-label="Continue - saves your privacy choices exactly as shown and opens sign-in">Continue without sharing</button>
+    </footer>
+  </div>
+</div>
+<script src="../../../preview/_shared/preview-runtime.js"></script>
+</body>
+</html>

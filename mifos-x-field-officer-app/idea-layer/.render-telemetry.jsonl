@@ -1,0 +1,5 @@
+{"ts":"2026-11-04T16:41:16Z","screen":"onboarding","state":"privacy","status":"rendered","model":"claude-opus-5-5","render_hash":"e2342de013ca"}
+{"ts":"2026-11-04T16:43:55Z","screen":"onboarding","state":"intro_clients","status":"rendered","model":"claude-opus-5-5","render_hash":"8eac7c9caeed","note":"re-Write after expanded-width crop critique"}
+{"ts":"2026-11-04T16:43:55Z","screen":"onboarding","state":"intro_collections","status":"rendered","model":"claude-opus-5-5","render_hash":"078847049b2f","note":"re-Write after expanded-width crop critique"}
+{"ts":"2026-11-04T16:43:55Z","screen":"onboarding","state":"intro_offline","status":"rendered","model":"claude-opus-5-5","render_hash":"ef92e9dcf6f2","note":"re-Write after expanded-width crop critique"}
+{"ts":"2026-11-04T16:51:00Z","screen":"onboarding","state":"*","status":"cached","note":"post A.9/A.11/A.13 ui.yaml pass: MOCKUP content_hash unchanged; verified no-op recorded"}

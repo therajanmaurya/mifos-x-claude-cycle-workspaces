@@ -1,0 +1,256 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Soft diffuse ambient shadows -->
+    <filter id="softElevation" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#4338CA" flood-opacity="0.08"/>
+    </filter>
+    <filter id="badgeFloat" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#4338CA" flood-opacity="0.12"/>
+    </filter>
+    <filter id="shieldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#059669" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <!-- 1. BASE CANVAS & BACKGROUND (#F8FAFC) -->
+  <rect width="800" height="600" fill="#F8FAFC"/>
+
+  <!-- 2. AMBIENT TRUST & ATMOSPHERE RINGS (#E0E7FF) -->
+  <!-- Soft radiating circular auras centered behind phone -->
+  <circle cx="340" cy="300" r="230" fill="#E0E7FF" opacity="0.35"/>
+  <circle cx="340" cy="300" r="170" fill="#E0E7FF" opacity="0.5"/>
+  <circle cx="340" cy="300" r="105" fill="#F8FAFC" opacity="0.7"/>
+
+  <!-- Gentle undulating landscape curves in the lower field for calm grounding -->
+  <path d="M 0 490 Q 240 440 500 475 Q 680 500 800 460 L 800 600 L 0 600 Z" fill="#E0E7FF" opacity="0.4"/>
+  <path d="M 0 525 Q 260 480 540 515 Q 690 535 800 505 L 800 600 L 0 600 Z" fill="#059669" opacity="0.08"/>
+
+  <!-- Ambient light motes & security starlets (strictly geometric, reassuring) -->
+  <g opacity="0.6">
+    <circle cx="130" cy="180" r="3.5" fill="#059669"/>
+    <circle cx="165" cy="130" r="2" fill="#D97706"/>
+    <circle cx="210" cy="220" r="2.5" fill="#4338CA"/>
+    <circle cx="560" cy="110" r="3" fill="#059669"/>
+    <circle cx="680" cy="160" r="2.5" fill="#D97706"/>
+    <circle cx="710" cy="230" r="4" fill="#E0E7FF"/>
+    <circle cx="650" cy="460" r="3" fill="#059669"/>
+    <circle cx="170" cy="450" r="2.5" fill="#4338CA"/>
+  </g>
+
+  <!-- Concentric protective ripple guides (subtle dashed privacy aura) -->
+  <circle cx="340" cy="300" r="275" fill="none" stroke="#E0E7FF" stroke-width="2" stroke-dasharray="6 8" opacity="0.8"/>
+  <circle cx="550" cy="310" r="150" fill="none" stroke="#E0E7FF" stroke-width="1.5" stroke-dasharray="5 7" opacity="0.7"/>
+
+  <!-- 3. FOREGROUND SHADOW CUSHIONS -->
+  <ellipse cx="340" cy="510" rx="145" ry="18" fill="#4338CA" opacity="0.09"/>
+  <ellipse cx="555" cy="495" rx="85" ry="14" fill="#4338CA" opacity="0.1"/>
+
+  <!-- 4. HERO PHONE CHASSIS & SCREEN -->
+  <!-- Positioned slightly left-of-center to balance with padlock and shield on the right -->
+  <g id="hero-phone" transform="translate(225, 95)" filter="url(#softElevation)">
+    <!-- Outer Phone Shell in Indigo (#4338CA) -->
+    <rect x="0" y="0" width="230" height="395" rx="42" fill="#4338CA"/>
+    
+    <!-- Phone Bezel / Screen Interior (#F8FAFC) -->
+    <rect x="7" y="7" width="216" height="381" rx="36" fill="#F8FAFC"/>
+
+    <!-- Subtle Screen Header Panel (#E0E7FF) -->
+    <path d="M 7 43 C 7 23 23 7 43 7 L 187 7 C 207 7 223 23 223 43 L 223 60 L 7 60 Z" fill="#E0E7FF" opacity="0.6"/>
+
+    <!-- Geometric Camera / Speaker Capsule Notch -->
+    <rect x="85" y="16" width="60" height="7" rx="3.5" fill="#4338CA"/>
+
+    <!-- Abstract Screen Privacy Icon / Emblem in Phone Header -->
+    <g transform="translate(100, 34)">
+      <circle cx="15" cy="12" r="10" fill="#4338CA"/>
+      <circle cx="15" cy="12" r="4" fill="#F8FAFC"/>
+    </g>
+
+    <!-- CARD CONTAINER 1: FIRST TOGGLE (OFF) -->
+    <g id="toggle-card-1" transform="translate(20, 85)" filter="url(#softElevation)">
+      <!-- Card background -->
+      <rect x="0" y="0" width="190" height="110" rx="18" fill="#F8FAFC" stroke="#E0E7FF" stroke-width="2"/>
+      
+      <!-- Icon pill on the left: Shield glyph in Indigo -->
+      <rect x="14" y="16" width="38" height="38" rx="12" fill="#E0E7FF"/>
+      <!-- Minimalist shield contour -->
+      <path d="M 33 25 L 43 29 C 43 37 38 41 33 44 C 28 41 23 37 23 29 Z" fill="#4338CA"/>
+      <circle cx="33" cy="33" r="2.5" fill="#F8FAFC"/>
+
+      <!-- Abstract label bars (no words/letters) -->
+      <rect x="62" y="24" width="75" height="8" rx="4" fill="#4338CA"/>
+      <rect x="62" y="38" width="50" height="6" rx="3" fill="#E0E7FF"/>
+
+      <!-- Divider line -->
+      <line x1="14" y1="64" x2="176" y2="64" stroke="#E0E7FF" stroke-width="1.5"/>
+
+      <!-- Secondary abstract caption bars -->
+      <rect x="14" y="77" width="85" height="5" rx="2.5" fill="#4338CA" opacity="0.4"/>
+      <rect x="14" y="87" width="55" height="4" rx="2" fill="#E0E7FF"/>
+
+      <!-- ================= THE SWITCH 1 (OFF STATE) ================= -->
+      <!-- Track: Calm pale Lavender/Grey #E0E7FF, Knob on LEFT side -->
+      <g transform="translate(122, 70)">
+        <!-- Track base -->
+        <rect x="0" y="0" width="54" height="28" rx="14" fill="#E0E7FF" stroke="#4338CA" stroke-width="1.5" stroke-opacity="0.25"/>
+        <!-- Off status glyph / hollow dot inside track right -->
+        <circle cx="39" cy="14" r="3.5" fill="#4338CA" opacity="0.25"/>
+        <!-- Switch Knob (Left position = OFF) in pristine White with Indigo contour & dot -->
+        <circle cx="14" cy="14" r="11" fill="#F8FAFC" filter="url(#softElevation)"/>
+        <circle cx="14" cy="14" r="10" fill="#F8FAFC" stroke="#4338CA" stroke-width="1.5" stroke-opacity="0.3"/>
+        <circle cx="14" cy="14" r="3" fill="#4338CA" opacity="0.5"/>
+      </g>
+    </g>
+
+    <!-- CARD CONTAINER 2: SECOND TOGGLE (OFF) -->
+    <g id="toggle-card-2" transform="translate(20, 215)" filter="url(#softElevation)">
+      <!-- Card background -->
+      <rect x="0" y="0" width="190" height="110" rx="18" fill="#F8FAFC" stroke="#E0E7FF" stroke-width="2"/>
+      
+      <!-- Icon pill on the left: Vault/Signal Lock in Emerald -->
+      <rect x="14" y="16" width="38" height="38" rx="12" fill="#E0E7FF"/>
+      <!-- Minimalist lock / keyhole contour in Emerald -->
+      <rect x="27" y="32" width="12" height="10" rx="2.5" fill="#059669"/>
+      <path d="M 29 32 L 29 28 C 29 25 37 25 37 28 L 37 32" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="33" cy="37" r="1.5" fill="#F8FAFC"/>
+
+      <!-- Abstract label bars (no words/letters) -->
+      <rect x="62" y="24" width="85" height="8" rx="4" fill="#4338CA"/>
+      <rect x="62" y="38" width="60" height="6" rx="3" fill="#E0E7FF"/>
+
+      <!-- Divider line -->
+      <line x1="14" y1="64" x2="176" y2="64" stroke="#E0E7FF" stroke-width="1.5"/>
+
+      <!-- Secondary abstract caption bars -->
+      <rect x="14" y="77" width="90" height="5" rx="2.5" fill="#4338CA" opacity="0.4"/>
+      <rect x="14" y="87" width="45" height="4" rx="2" fill="#E0E7FF"/>
+
+      <!-- ================= THE SWITCH 2 (OFF STATE) ================= -->
+      <!-- Track: Calm pale Lavender/Grey #E0E7FF, Knob on LEFT side -->
+      <g transform="translate(122, 70)">
+        <!-- Track base -->
+        <rect x="0" y="0" width="54" height="28" rx="14" fill="#E0E7FF" stroke="#4338CA" stroke-width="1.5" stroke-opacity="0.25"/>
+        <!-- Off status glyph / hollow dot inside track right -->
+        <circle cx="39" cy="14" r="3.5" fill="#4338CA" opacity="0.25"/>
+        <!-- Switch Knob (Left position = OFF) in pristine White with Indigo contour & dot -->
+        <circle cx="14" cy="14" r="11" fill="#F8FAFC" filter="url(#softElevation)"/>
+        <circle cx="14" cy="14" r="10" fill="#F8FAFC" stroke="#4338CA" stroke-width="1.5" stroke-opacity="0.3"/>
+        <circle cx="14" cy="14" r="3" fill="#4338CA" opacity="0.5"/>
+      </g>
+    </g>
+
+    <!-- Bottom Reassurance Badge inside Phone -->
+    <g transform="translate(35, 340)">
+      <rect x="0" y="0" width="160" height="26" rx="13" fill="#E0E7FF" opacity="0.7"/>
+      <!-- Verified tick in Emerald -->
+      <circle cx="16" cy="13" r="6" fill="#059669"/>
+      <path d="M 13.5 13 L 15.5 15 L 18.5 11" fill="none" stroke="#F8FAFC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="28" y="10" width="90" height="5" rx="2.5" fill="#4338CA"/>
+      <rect x="124" y="10" width="22" height="5" rx="2.5" fill="#059669"/>
+    </g>
+
+    <!-- Phone Home Indicator Bar -->
+    <rect x="80" y="376" width="70" height="4" rx="2" fill="#4338CA" opacity="0.4"/>
+  </g>
+
+  <!-- 5. COMPANION FOCAL ASSET 1: THE CLOSED PADLOCK (Right Midground) -->
+  <!-- Bold, secure, friendly, closed shackle in solid geometry -->
+  <g id="closed-padlock" transform="translate(485, 230)" filter="url(#badgeFloat)">
+    <!-- Aura disc behind lock -->
+    <circle cx="70" cy="80" r="72" fill="#F8FAFC" stroke="#E0E7FF" stroke-width="3"/>
+    <circle cx="70" cy="80" r="62" fill="#E0E7FF" opacity="0.4"/>
+
+    <!-- CLOSED SHACKLE (Sturdy arch looping securely down into body) -->
+    <!-- Heavy shackle arch in deep Indigo #4338CA -->
+    <path d="M 46 62 L 46 38 C 46 16 94 16 94 38 L 94 62" 
+          fill="none" stroke="#4338CA" stroke-width="15" stroke-linecap="round"/>
+    <!-- Shackle inner gap contour accent in Lavender #E0E7FF -->
+    <path d="M 54 40 C 54 26 86 26 86 40" 
+          fill="none" stroke="#E0E7FF" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- SOLID PADLOCK BODY (Rounded rectangle in Indigo #4338CA & warm Amber accent) -->
+    <rect x="26" y="55" width="88" height="74" rx="18" fill="#4338CA"/>
+    
+    <!-- Padlock front face inset plate -->
+    <rect x="33" y="62" width="74" height="60" rx="13" fill="#F8FAFC"/>
+
+    <!-- Warm Amber Shield Insignia / Security Core on Lock Face -->
+    <path d="M 70 72 L 86 78 C 86 92 78 100 70 106 C 62 100 54 92 54 78 Z" fill="#D97706"/>
+    
+    <!-- Central Keyhole in pure Indigo #4338CA -->
+    <circle cx="70" cy="84" r="5" fill="#4338CA"/>
+    <polygon points="68,84 72,84 74,96 66,96" fill="#4338CA"/>
+
+    <!-- Reassuring Emerald verification dot on padlock shoulder -->
+    <circle cx="98" cy="62" r="8" fill="#059669" stroke="#F8FAFC" stroke-width="2.5"/>
+    <path d="M 95 62 L 97 64 L 101 60" fill="none" stroke="#F8FAFC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- 6. COMPANION FOCAL ASSET 2: THE PROTECTIVE SHIELD (Right Lower Foreground) -->
+  <!-- Emerald and Indigo guardian shield angled reassuringly beside the phone -->
+  <g id="protective-shield" transform="translate(565, 335)" filter="url(#shieldGlow)">
+    <!-- Outer Shield Crest (#F8FAFC border) -->
+    <path d="M 60 10 
+             L 115 30 
+             C 115 78 92 116 60 134 
+             C 28 116 5 78 5 30 Z" 
+          fill="#F8FAFC"/>
+    
+    <!-- Primary Shield in Emerald (#059669) -->
+    <path d="M 60 16 
+             L 108 34 
+             C 108 74 88 108 60 125 
+             C 32 108 12 74 12 34 Z" 
+          fill="#059669"/>
+
+    <!-- Split-tone shield facet for clean geometric dimension -->
+    <path d="M 60 16 
+             L 108 34 
+             C 108 74 88 108 60 125 Z" 
+          fill="#F8FAFC" opacity="0.18"/>
+
+    <!-- Central Emblem: Keyhole + Checkmark Hybrid in #F8FAFC -->
+    <g transform="translate(42, 42)">
+      <circle cx="18" cy="18" r="16" fill="#F8FAFC"/>
+      <!-- Emerald Check glyph inside -->
+      <path d="M 12 18 L 16 22 L 24 14" fill="none" stroke="#059669" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- Warm Amber floating security accent node -->
+    <circle cx="95" cy="38" r="7" fill="#D97706" stroke="#F8FAFC" stroke-width="2"/>
+    <circle cx="95" cy="38" r="2.5" fill="#F8FAFC"/>
+  </g>
+
+  <!-- 7. LEFT-SIDE FLOATING TRUST BADGE (Balances the composition) -->
+  <!-- Discrete floating pill indicating verified offline state -->
+  <g id="left-floating-badge" transform="translate(130, 290)" filter="url(#badgeFloat)">
+    <rect x="0" y="0" width="76" height="76" rx="22" fill="#F8FAFC" stroke="#E0E7FF" stroke-width="2.5"/>
+    <circle cx="38" cy="38" r="26" fill="#E0E7FF"/>
+    
+    <!-- Closed mini-padlock glyph in Indigo -->
+    <rect x="30" y="36" width="16" height="13" rx="3" fill="#4338CA"/>
+    <path d="M 33 36 L 33 31 C 33 27 43 27 43 31 L 43 36" fill="none" stroke="#4338CA" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="38" cy="42" r="1.5" fill="#F8FAFC"/>
+
+    <!-- Tiny emerald check badge overlapping top right -->
+    <circle cx="62" cy="16" r="9" fill="#059669" stroke="#F8FAFC" stroke-width="2"/>
+    <path d="M 59 16 L 61 18 L 65 14" fill="none" stroke="#F8FAFC" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- 8. FOREGROUND BOTANICAL & GROUNDING ACCENTS (#059669 & #E0E7FF) -->
+  <!-- Left corner gentle leaves -->
+  <g id="bottom-foliage-left">
+    <path d="M 40 600 Q 60 540 90 535 Q 75 565 70 600" fill="#059669" opacity="0.8"/>
+    <path d="M 70 600 Q 95 550 120 546 Q 105 572 100 600" fill="#059669" opacity="0.6"/>
+    <circle cx="90" cy="535" r="3.5" fill="#D97706"/>
+    <path d="M 120 600 Q 135 565 155 562 Q 140 582 138 600" fill="#059669" opacity="0.75"/>
+  </g>
+
+  <!-- Right corner gentle leaves -->
+  <g id="bottom-foliage-right">
+    <path d="M 760 600 Q 740 540 710 535 Q 725 565 730 600" fill="#059669" opacity="0.8"/>
+    <path d="M 730 600 Q 705 550 680 546 Q 695 572 700 600" fill="#059669" opacity="0.6"/>
+    <circle cx="710" cy="535" r="3.5" fill="#D97706"/>
+    <path d="M 680 600 Q 665 565 645 562 Q 660 582 662 600" fill="#059669" opacity="0.75"/>
+  </g>
+</svg>

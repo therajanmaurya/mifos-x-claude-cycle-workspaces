@@ -1,0 +1,52 @@
+# onboarding — flow contract. AUTHORED via /idea-plan-add add-feature onboarding 2026-11-04.
+
+schema_version: "4.0"
+feature: onboarding
+
+entry_points:
+  - type: root_state
+    from: rootNav
+    when: "RootNavState.ShowOnboarding"
+    route: OnboardingRoute
+    description: >-
+      Fresh install (userData.firstTimeUser == true, RootNavViewModel.kt:56) → onboarding. Today RootNavScreen maps this
+      state to sign-in; the implementation re-points it here (docs.yaml#implementation_preconditions).
+
+navigates_to: [signin, serverConfig]
+
+flow_logic:
+  # 2026-11-05 operator decision A — the single get_started splits into Allow / Continue (both land on sign-in)
+  - { trigger: "allow_get_started saved", to: signin,     type: replace_root, impl: "OnboardingViewModel:allowAll() → RootNavViewModel (firstTimeUser=false)", note: "both consents ON, then setFirstTimeState(false) LAST → RootNavViewModel resolves to Auth; never shown again" }
+  - { trigger: "continue_choices saved",  to: signin,     type: replace_root, impl: "OnboardingViewModel:continueWithChoices() → RootNavViewModel (firstTimeUser=false)", note: "switches saved exactly as shown, then setFirstTimeState(false) LAST; never shown again" }
+  - { trigger: "connect_instance_link", to: serverConfig, type: push,         impl: "OnboardingViewModel:openServerConfig() → OnboardingEvent.OpenServerConfig", note: "back returns to the privacy page with its switch values kept" }
+  - { trigger: "system back on page 1", to: null,         type: exit_app,     impl: "OnboardingViewModel:back() → page 1 passes the press to the system", note: "nothing saved — both choices stay OFF and onboarding shows again next launch" }
+
+# 2026-11-05 operator design feedback: every page-to-page transition below animates ONLY the content region with
+# shared-axis X (forward when the target page is later, back otherwise — ui.yaml#motion.page_transition); the top
+# row and the fixed bottom action bar stay put, and the bar's buttons crossfade when entering/leaving privacy.
+transitions:
+  - { id: next_1,     from: intro_clients,     trigger: "Next / swipe left",  to: intro_collections }
+  - { id: next_2,      from: intro_collections, trigger: "Next / swipe left",  to: intro_offline }
+  - { id: next_3,      from: intro_offline,     trigger: "Next / swipe left",  to: privacy }
+  - { id: skip,        from: [intro_clients, intro_collections, intro_offline], trigger: "Skip", to: privacy, note: "consent is never skipped" }
+  - { id: back_2,      from: intro_collections, trigger: "back / swipe right", to: intro_clients }
+  - { id: back_3,      from: intro_offline,     trigger: "back / swipe right", to: intro_collections }
+  - { id: back_4,      from: privacy,           trigger: "back / swipe right", to: intro_offline, note: "switch values kept in memory, not saved" }
+  - { id: toggle,      from: privacy,           trigger: "analytics_switch / crash_reports_switch", to: privacy }
+  - { id: allow_get_started, from: privacy,     trigger: "Allow and get started", to_screen: signin, side_effects: ["setAnalyticsConsent(true)", "setCrashReportingConsent(true)", "setFirstTimeState(false)"], note: "both switches flip ON and are saved; setFirstTimeState LAST" }
+  - { id: continue_choices,  from: privacy,     trigger: "Continue without sharing / Continue with my choices", to_screen: signin, side_effects: ["setAnalyticsConsent(analytics)", "setCrashReportingConsent(crashReports)", "setFirstTimeState(false)"], note: "saved exactly as shown; label reads 'without sharing' when both off" }
+  - { id: save_failed, from: privacy,           trigger: "a local write throws", to: privacy, note: "both buttons re-enabled; save_failed_text (onboarding_save_failed) shows in the bottom bar above them; onboarding not marked done" }
+  # STEP E.4 2026-11-04 — every on_click target in ui.yaml has a transition (the two link targets were in flow_logic only)
+  - { id: open_server_config,  from: privacy, trigger: "connect_instance_link", to_screen: serverConfig, type: push, note: "back returns here with both switch values kept in memory" }
+  # 2026-11-05 operator decision B — both links live in agreement_text and open IN-APP (UrlLauncher.launchInApp)
+  - { id: open_terms,          from: privacy, trigger: "agreement_text › 'Terms & Conditions' span", to_external: 'AppOrgLinks["terms"]', open_mode: in_app, note: "https://mifos-products.pages.dev/mobile/field-officer/terms/ in-app; closing returns unchanged" }
+  - { id: open_privacy_policy, from: privacy, trigger: "agreement_text › 'Privacy Policy' span",     to_external: "AppPrivacyConfig.PRIVACY_POLICY_URL", open_mode: in_app, note: "opens in-app; closing it returns to the privacy page with both switches unchanged" }
+
+# The audit nav graph reads `outbound_routes` for inbound/outbound symmetry; signin's
+# entry_points `from: onboarding` and serverConfig's inbound side-trip need this echo.
+outbound_routes:
+  - { to: signin, when: "Allow and get started OR Continue saved (RootNav resolves to Auth)" }
+  - { to: serverConfig, when: "connect_instance_link on the privacy page" }
+
+flow_id: authentication
+journey_ids: [field-officer-first-run]

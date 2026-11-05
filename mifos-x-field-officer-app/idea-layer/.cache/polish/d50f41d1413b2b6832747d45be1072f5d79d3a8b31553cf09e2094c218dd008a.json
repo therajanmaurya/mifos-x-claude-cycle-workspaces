@@ -1,0 +1,10 @@
+{
+  "source": "agent",
+  "feature": "onboarding",
+  "state": "privacy",
+  "written_at": "2026-11-05T00:30:00Z",
+  "tokens_in": null,
+  "tokens_out": null,
+  "cost_estimate": null,
+  "body_ref": "screens/onboarding/prompts/privacy.md (between MOCKUP PROMPT markers)"
+}

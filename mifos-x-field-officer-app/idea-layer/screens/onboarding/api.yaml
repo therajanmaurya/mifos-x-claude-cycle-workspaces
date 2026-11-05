@@ -1,0 +1,32 @@
+# onboarding — API contract. AUTHORED via /idea-plan-add add-feature onboarding 2026-11-04.
+# Pre-auth and local-only: no Fineract call. The only I/O is three local preference writes.
+
+schema_version: "3.1"
+feature: onboarding
+
+endpoints: []        # navigation + local prefs only
+
+# ──────────────── LOCAL READS ────────────────
+reads:
+  - id: privacy_policy_url
+    source: "kpt.core.model.config.AppPrivacyConfig.PRIVACY_POLICY_URL (generated from app-profile/app.yaml#org.privacy_url)"
+    value: "https://mifos-products.pages.dev/mobile/field-officer/privacy/"
+  - id: consent_defaults
+    source: "AppPrivacyConfig.ANALYTICS_ENABLED_BY_DEFAULT / CRASH_REPORTING_ENABLED_BY_DEFAULT (app-profile/app.yaml#privacy)"
+    value: { analytics: false, crash_reporting: false }
+    note: "the switches start OFF regardless — onboarding never pre-ticks consent"
+
+# ──────────────── LOCAL WRITES (on Get started, in this order) ────────────────
+local_writes:
+  - id: analytics_consent
+    target: "kpt.core.data.user.UserDataRepository.setAnalyticsConsent(granted: Boolean)"
+    applied_by: "cmp.navigation.privacy.PrivacyConsentApplier (observeAnalyticsConsent → AnalyticsHelper.setCollectionEnabled + setConsent)"
+  - id: crash_reporting_consent
+    target: "kpt.core.data.user.UserDataRepository.setCrashReportingConsent(granted: Boolean)"
+    applied_by: "cmp.navigation.privacy.PrivacyConsentApplier (observeCrashReportingConsent → CrashReporter.setCollectionEnabled)"
+  - id: first_time_done
+    target: "kpt.core.data.user.UserDataRepository.setFirstTimeState(firstTimeState = false)"
+    read_by: "RootNavViewModel — userData.firstTimeUser false → RootNavState.Auth"
+    note: "written LAST so consent is stored before the root state moves on"
+persistence_notes:
+  - "clearUserData (sign-out) copies the loaded record and resets only session fields, so firstTimeUser and both consents survive sign-out"

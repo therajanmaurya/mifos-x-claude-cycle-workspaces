@@ -3,5 +3,9 @@
 
 active_slug: mifos-x-field-officer
 shared_project_id: "10780096558615730514"
+# 2026-11-05: the stitch-project-state preflight reads project_id + slug (preflight-stitch-project-state.ts:62-65);
+# without them it reported "active.yaml has no project_id" on every run. Same id as shared_project_id.
+project_id: "10780096558615730514"
+slug: mifos-x-field-officer
 set_at: "2026-10-02"
 set_by: claude

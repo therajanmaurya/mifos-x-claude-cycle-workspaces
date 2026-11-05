@@ -209,3 +209,303 @@ approvals:
       /kmp-implement profile from THIS docset: core/network (changePassword, staff) + core/data (ProfileRepository,
       reuse of DashboardRepository.userStream + AuthCommandRepository re-sign-in) + feature/profile/identity
       (ProfileViewModel, ProfileBody with app bar + change-password sheet, strings ×20) — sign-out reuses feature/settings.
+
+  - feature: onboarding
+    approved_at: "2026-11-04T18:19:00Z"
+    approved_by: human
+    approval_mode: explicit-human-gate
+    approval_context: 'operator instructed "continue all end to end" (2026-11-04) after design review: enriched docset, 4/4 fresh Stitch mockups, responsive gate green'
+    approve_hash: "e00397478a4ff855cca3207fb2b0a6bcf6649b79d6267fed452c0c8a7b895b9c"
+    hash_source: "core/scripts/staleness-resolve.sh onboarding --current-hash (sanctioned hasher), computed before the status flip"
+    docset_version: "1.0"
+    status_before: designed
+    status_after: approved
+    contract_version: "2.0.0"
+    predicate_version: "1.0.0"
+    bypass_flags: []
+    predicate_failures: []
+
+    predicate:
+      STEP_1_5_lifecycle_backfill: "pass-with-disclosure (see contract-version-absent)"
+      C1_schema_conformance: "pass — no capabilities[] declared, so no capability-gated sections to require; no forbidden sections (every capability_sections row is required_when_declared)"
+      C2_artifacts_present_and_fresh: "pass-with-disclosure (see c2-mtime) — exports/onboarding/{SPEC,API}.md generated 2026-11-04 by /idea-feature-export (were absent; export roundtrip PASS); tests (17), data-flow, flow, demo-data, 4 previews, 4 prompts, 4 stitch renders + MANIFEST, flows/authentication, journey field-officer-first-run present"
+      C3_review_package: "pass — no capabilities[] declared, so §8 dimensions are gate-skipped; evaluated anyway as evidence: §8.1 4/4 previews, privacy preview carries data-nav-to signin + serverConfig; §8.2 4/4 stitch code.html + screen.png (privacy screen.png is a 200x200 asset, advisory); §8.3 flow.yaml wired into flows/authentication.yaml, save_failed error-recovery branch present"
+      C4_no_blocking_verify_failures: "pass — /idea-verify --feature onboarding: parse 7/7 + journey, i18n 0 missing (23 keys), action contracts 8/8 (G-ACTION-CONTRACT 0 onboarding failures), sub-action completeness 0, flow transitions complete, 0 dead nav, export roundtrip PASS, stitch-verify 4/4 sv-pass; orphan fixed at source (journey entry_point)"
+      C5_capability_detail_tier: "pass — no capabilities declared → effective tier minimal"
+      C6_stale_cross_refs: "pass — navigates_to signin, serverConfig resolve to screens/; no DTO or shared $ref; journey screen_sequence (onboarding, signin) resolves"
+      C7_rule_versions: "n/a — no cached last_verify rule_versions on this docset"
+      evidence:
+        - "stitch: 4/4 fresh real Stitch screens (sv-pass), design system 9551377288795375599, project 10780096558615730514"
+        - "G-MOCKUP-RESPONSIVE: PASS (101 mockup/prompt files responsive)"
+        - "preflight: stitch-theme-drift PASS (local DESIGN.md hash == remote designMd, 75 screens), source-of-truth-sync / llm-preview-truth-gate / mockup-theme-consistency / dashboard-truth-audit PASS"
+        - "EXPORT_MATRIX: no-dup-inputs PASS, stale-coherent PASS (5 cells, 0 contradictions)"
+
+    disclosed_at_approval:
+      - id: first-run-seam-not-synced
+        detail: >
+          A fresh install only reaches onboarding once the first-run default arrives: the template seam
+          app-profile/app.yaml#security.first_run_onboarding → AppSecurityConfig.FIRST_RUN_ONBOARDING →
+          UserData.DEFAULT.firstTimeUser lives in kmp-project-template PR #316 (commit 3dd68cd9) and reaches this fork via
+          /kmp-project-template-sync --dev 3dd68cd9. Until then the fork's UserData.DEFAULT.firstTimeUser is false.
+      - id: rootnav-seam-queued-upstream
+        detail: >
+          The root-nav onboarding destination seam is queued upstream (TEMPLATE_UPSTREAM_QUEUE
+          rootnav-onboarding-destination-seam); the fork RootNavScreen is wired directly to OnboardingRoute in the meantime.
+      - id: settings-privacy-same-pass
+        detail: >
+          Settings → Privacy (FR-SET-PRIV-01) is ported in the same pass — the template PrivacySheet into the fork-owned
+          feature/settings — backing the privacy page's "You can change this later in Settings."
+      - id: c2-mtime
+        detail: >
+          The 4 previews (16:41–16:43Z) and tests.yaml (16:30Z) are mtime-older than ui.yaml (16:50Z). ui.yaml's last edit
+          was the enrich A.9/A.11/A.13 style/a11y/layout pass; the render was re-run and recorded as a verified no-op
+          (EXPORT_MATRIX preview cell), and tests.yaml already covers the expanded layout and accessibility scenarios.
+          A literal mtime comparison reports these as stale; content is current. Not cleared by re-touching files.
+      - id: contract-version-absent
+        detail: >
+          docs.yaml carries no contract_version field (same as home, offlineSync and profile when approved). The feature
+          is authored in the v4.0 sibling layout that the 2.0.0 MAJOR introduced, so it is stamped approve_contract_version
+          2.0.0; STEP 1.5 read literally (cv null → BLOCK_LEGACY) would route it through /idea-migrate-schema first.
+      - id: visual-assets-not-generated
+        detail: >
+          The 5 declared visual_assets (brand mark + 4 illustrations) are not generated yet (SVA-3); they are produced and
+          wired at /kmp-implement STEP 2.ASSETS. Stitch art is license_status conditional until a human confirms the ToS.
+      - id: open-advisories
+        detail: >
+          serverConfig/flow.yaml#inbound_routes lacks the onboarding row (owner serverConfig, /idea-sync); graph-audit a11y
+          heuristic wants accessibility_label on skip/next/get_started (ui.yaml has a11y.contentDescription); the privacy
+          Stitch prompt places the brand mark on page 4 while ui.yaml scopes it to the intro pages — code follows ui.yaml;
+          outline #94A3B8 on background is 2.46:1 for the inactive dots / OFF thumb (non-text, PROMPTS_FIGMA WCAG audit).
+
+    authorises: >
+      /kmp-implement onboarding from THIS docset: new feature/onboarding (OnboardingViewModel per docs.yaml#vm_actions,
+      OnboardingScreen pager with the four pages, strings ×23, the 5 visual assets) writing consent through
+      UserDataRepository, the fork RootNavScreen ShowOnboarding → OnboardingRoute, and the Settings → Privacy port.
+
+  - feature: onboarding
+    action: unapprove
+    timestamp: "2026-11-05T00:45:00Z"
+    actor: claude (/idea-approve --unapprove, operator-directed)
+    reason: "privacy page consent pattern + terms link changed 2026-11-05 by operator decision"
+    hash_before: "e00397478a4ff855cca3207fb2b0a6bcf6649b79d6267fed452c0c8a7b895b9c"
+    hash_after: null
+    status_before: approved
+    status_after: enriched
+    contract_version: "2.0.0"
+    predicate_version: "1.0.0"
+    bypass_flags: []
+    dependents_warned: []          # no feature imports onboarding DTOs or navigates into onboarding (ingress is rootNav)
+
+  - feature: onboarding
+    approved_at: "2026-11-05T01:00:00Z"
+    approved_by: human
+    approval_mode: explicit-human-gate
+    approval_context: 'operator decisions 2026-11-05 "Allow / Continue without" + "Create + publish Terms" (agreement copy "By using our service you accept our Terms & Conditions and Privacy Policy." set by the operator the same day)'
+    approve_hash: "070b181a7151373ca769cec99ebe56406ff9a9b599756e20488a75f7b3103cff"
+    hash_source: "core/scripts/staleness-resolve.sh onboarding --current-hash (sanctioned hasher), computed before the status flip"
+    hash_before: null
+    docset_version: "1.0"
+    status_before: enriched
+    status_after: approved
+    contract_version: "2.0.0"
+    predicate_version: "1.0.0"
+    bypass_flags: []
+    predicate_failures: []
+
+    predicate:
+      STEP_1_5_lifecycle_backfill: "pass-with-disclosure (see contract-version-absent, unchanged from 2026-11-04)"
+      C1_schema_conformance: "pass — no capabilities[] declared, so no capability-gated sections to require; no forbidden sections"
+      C2_artifacts_present_and_fresh: "pass-with-disclosure (see c2-mtime) — regenerated after the ui.yaml edit (00:30Z): exports/onboarding/{SPEC,API}.md (00:49-00:50Z), data-flow.yaml (00:45Z), demo-data.yaml (00:46Z), tests.yaml (00:31Z), flow.yaml (00:30:38Z), preview/privacy.html (00:48Z), stitch 04-onboarding-privacy (00:40Z), prompts/privacy.md (00:38Z); no DTOs (has_api false)"
+      C3_review_package: "pass — no capabilities[] declared, so §8 dimensions are gate-skipped; evaluated anyway: §8.1 4/4 previews (privacy carries data-nav-to signin on both buttons + serverConfig); §8.2 4/4 stitch code.html + screen.png; §8.3 flow.yaml wired into flows/authentication.yaml (finish-onboarding re-pointed to both buttons), save_failed recovery branch present"
+      C4_no_blocking_verify_failures: "pass — G-ACTION-CONTRACT 0 onboarding violations (13 project-wide, all in clientCharges/home/offlineSync/serverConfig/signin, pre-existing); YAML parse 7/7 siblings + journey; i18n 0 missing (27 keys, every {strings.screens.onboarding.*} resolves); PC11-PC17 green across 36 prompts; stitch-verify 28/28 sv-pass"
+      C5_capability_detail_tier: "pass — no capabilities declared → effective tier minimal"
+      C6_stale_cross_refs: "pass — navigates_to signin, serverConfig resolve; journey field-officer-first-run step 5 + save-failed re-pointed from onboarding_get_started to onboarding_continue_choices; signin/flow.yaml + flows/authentication.yaml re-pointed to the two buttons"
+      C7_rule_versions: "n/a — no cached last_verify rule_versions on this docset"
+      evidence:
+        - "stitch: privacy regenerated — screen cfcd36ef05fc41eab673f86a411bec33 (fresh, 1/1, 0 fallback), project 10780096558615730514, design system 9551377288795375599; both switches aria-checked=false; both buttons + agreement line with 2 inline links present; 0 em-dashes in code.html"
+        - "G-MOCKUP-RESPONSIVE: PASS (101 mockup/prompt files responsive)"
+        - "preflight: stitch-theme-drift none (local == remote DESIGN.md, 75 screens), G-STITCH-GEN-PREFLIGHT PRE-1..5 PASS, source-of-truth-sync PASS, mockup-theme-consistency PASS"
+
+    disclosed_at_approval:
+      - id: c2-mtime
+        detail: >
+          The three intro previews (2026-11-04 22:13Z) and the three intro stitch renders + prompts (23:09–23:26Z) are
+          mtime-older than ui.yaml (2026-11-05 00:30Z). The 2026-11-05 edit touched only the privacy state; the intro
+          states' components, copy and strings are unchanged, so they were deliberately NOT regenerated (operator scope:
+          privacy only). A literal mtime comparison reports them stale; content is current.
+      - id: stitch-project-state-probe
+        detail: >
+          preflight-stitch-project-state reports ERROR because it reads active.yaml#project_id while the file carries
+          shared_project_id (10780096558615730514); the live reconcile probe on that id passed. Same as 2026-11-04.
+      - id: stitch-lead-em-dash
+        detail: >
+          strings privacy_lead keeps its em-dash; the Stitch prompt/render show a comma in its place (stitch prompts ban
+          em-dashes, same precedent as the intro_clients title). Code renders the string verbatim.
+      - id: contract-version-absent
+        detail: docs.yaml carries no contract_version field; stamped approve_contract_version 2.0.0 as on 2026-11-04.
+      - id: source-not-yet-updated
+        detail: >
+          The in-progress source implementation (kmp-implement in-progress) still has the single GetStarted action; it
+          must be re-implemented from THIS docset (AllowAll / ContinueWithChoices / OpenTerms, agreement_text, the
+          two buttons, strings +5/−1). No source/** was edited in this approval pass.
+      - id: carried-forward
+        detail: >
+          first-run-seam-not-synced, rootnav-seam-queued-upstream, settings-privacy-same-pass, visual-assets-not-generated
+          (license_status conditional) — unchanged from the 2026-11-04 entry.
+
+    authorises: >
+      /kmp-implement onboarding from THIS docset: feature/onboarding OnboardingViewModel per docs.yaml#vm_actions
+      (AllowAll + ContinueWithChoices replacing GetStarted, OpenTerms + OpenPrivacyPolicy via UrlLauncher.launchInApp),
+      OnboardingScreen privacy page with agreement_text (one Text + LinkAnnotation spans, testTag onboarding_agreement)
+      and the two equally sized buttons (onboarding_allow_get_started, onboarding_continue_choices), strings per
+      _strings/strings.yaml, writing consent through UserDataRepository with setFirstTimeState(false) last.
+
+  - feature: onboarding
+    action: unapprove
+    timestamp: "2026-11-05T06:01:00Z"
+    actor: claude (/idea-approve --unapprove, operator-directed)
+    reason: "operator design feedback 2026-11-05: bottom-pinned actions, page transition, 32dp mark"
+    hash_before: "070b181a7151373ca769cec99ebe56406ff9a9b599756e20488a75f7b3103cff"
+    hash_after: null
+    status_before: approved
+    status_after: enriched
+    contract_version: "2.0.0"
+    predicate_version: "1.0.0"
+    bypass_flags: []
+    dependents_warned: []          # no feature imports onboarding DTOs or navigates into onboarding (ingress is rootNav)
+
+  - feature: signin
+    action: unapprove
+    timestamp: "2026-11-05T06:30:00Z"
+    actor: claude (/idea-approve --unapprove, operator-directed)
+    reason: "operator 2026-11-05: consent line links Terms & Conditions + Privacy Policy, accept-by-continuing wording"
+    hash_before: "00fddd1a9276309a7a89d0051684c0d4c752fcb7dc8403834826fd56b5d578f3"
+    hash_after: null
+    status_before: approved
+    status_after: enriched
+    contract_version: "2.0.0"
+    predicate_version: "1.0.0"
+    bypass_flags: []
+    dependents_warned: [onboarding]   # cross-feature-nav (onboarding → signin); re-approved in the same pass, so no dependency_warning stamp was left on onboarding/docs.yaml
+
+  - feature: onboarding
+    approved_at: "2026-11-05T06:55:00Z"
+    approved_by: human
+    approval_mode: explicit-human-gate
+    approval_context: 'operator direct design feedback 2026-11-05 (bottom-pinned actions on every page, shared-axis page transition, 32dp brand mark) — implemented in source and verified on a physical device by the operator before this docset was updated'
+    approve_hash: "617ba5f0c47c3a6031611f8e5f33a721e8ca026cf3b4b02545826466c4c76a39"
+    hash_source: "core/scripts/staleness-resolve.sh onboarding --current-hash (sanctioned hasher, run from the project root), computed before the status flip"
+    hash_before: null
+    docset_version: "1.0"
+    status_before: designed
+    status_after: approved
+    contract_version: "2.0.0"
+    predicate_version: "1.0.0"
+    bypass_flags: []
+    predicate_failures: []
+
+    predicate:
+      STEP_1_5_lifecycle_backfill: "pass-with-disclosure (see contract-version-absent, unchanged)"
+      C1_schema_conformance: "pass — no capabilities[] declared; ui.yaml gains layout.regions + motion; IDEA_CORE schema PASS"
+      C2_artifacts_present_and_fresh: "pass — regenerated after the 06:00Z ui.yaml edit: tests.yaml + docs.yaml (06:05Z), prompts ×4, stitch ×4 (privacy 06:17Z, intros 06:4xZ), preview ×4 (re-rendered + stamped), exports/onboarding/SPEC.md (06:40Z)"
+      C3_review_package: "pass — §8.1 4/4 previews (privacy: data-nav-to signin on both buttons + serverConfig); §8.2 4/4 stitch code.html + screen.png; §8.3 flow.yaml wired into flows/authentication.yaml"
+      C4_no_blocking_verify_failures: "pass — stitch-verify 28/28 sv-pass; PC11-PC17 green across 36 prompts; G-STITCH-GEN-PREFLIGHT PASS; onboarding renders 0 G-MOCKUP-RESPONSIVE findings"
+      C5_capability_detail_tier: "pass — no capabilities declared → effective tier minimal"
+      C6_stale_cross_refs: "pass — journey field-officer-first-run: save-failed branch onboarding_save_error → onboarding_save_failed (source tag), connect-instance branch scrolls"
+      C7_rule_versions: "n/a"
+      evidence:
+        - "stitch: intro_clients 99fd140a61c74a36833f11c39627074f · intro_collections e7427ee8ab0a4fa4b1f9efdb9a359508 · intro_offline 283d76c0b569458e9f4c5aac49423b29 · privacy 7dfe1dafb40d4f38bfb48a9c1bcacc0a (all fresh, 0 fallback), project 10780096558615730514, design system 9551377288795375599"
+        - "phone-width (390x844) Playwright captures of all 4 code.html: 32dp mark top start, dots centred + full-width Next pinned at the bottom (sticky bottom-0); privacy: both switches OFF (aria-checked=false), agreement line + Settings note + Connect link in the scroll area, dots + Allow (filled) + Continue without sharing (outlined) pinned"
+        - "preflight: stitch-theme-drift none (local == remote DESIGN.md), source-of-truth-sync PASS, mockup-theme-consistency PASS, G-STITCH-GEN-PREFLIGHT PRE-1..5 PASS"
+
+    disclosed_at_approval:
+      - id: stitch-project-state-probe
+        detail: >
+          active.yaml now carries project_id + slug (the probe's "no project_id" ERROR is fixed), but
+          preflight-stitch-project-state.ts calls stitch-reconcile.ts --probe-only, a flag that script no longer
+          accepts, so the probe degrades to WARN. Framework defect, not fixed here; the live reconcile probe passed.
+      - id: first-render-pass-rejected
+        detail: >
+          The first intro renders (675e8de2 / 06efaaf8 / 41dbc393) put the dots + Next mid-column; rejected on review,
+          prompts tightened (bottom bar anchored, dots centred) and regenerated. Those screen ids are orphaned in Stitch.
+      - id: illustration-panel-colour
+        detail: >
+          ui.yaml keeps tertiaryContainer / secondaryContainer panels for collections / offline; source PageIllustration
+          uses primaryContainer for all four. Not part of the 2026-11-05 feedback; left for a later reconcile.
+      - id: contract-version-absent
+        detail: docs.yaml carries no contract_version field; stamped approve_contract_version 2.0.0 as before.
+      - id: source-already-implemented
+        detail: >
+          Source (feature/onboarding OnboardingScreen.kt) already implements this docset (device-verified by the operator);
+          no source/** was edited in this pass.
+
+    authorises: >
+      The shipped feature/onboarding layout + motion as the design of record: fixed top row (32dp mark), scrolling
+      content, fixed bottom action bar (centred dots + Next / Allow + Continue), KptSharedAxis page transition with the
+      bar's buttons crossfading, save_failed_text (onboarding_save_failed) in the bar.
+
+  - feature: signin
+    approved_at: "2026-11-05T07:50:00Z"
+    approved_by: human
+    approval_mode: explicit-human-gate
+    approval_context: 'operator instruction 2026-11-05: consent line links Terms & Conditions + Privacy Policy, accept-by-continuing wording ("By signing in you accept our Terms & Conditions and Privacy Policy.") — implemented in source and verified on device by the operator before this docset was updated'
+    approve_hash: "5a59aac225c501807f1f587193acb32b3d0247c1cf6ac81ff2d1c5d7185a35b8"
+    hash_source: "core/scripts/staleness-resolve.sh signin --current-hash (sanctioned hasher, run from the project root), computed before the status flip"
+    hash_before: null
+    docset_version: "2.0"
+    status_before: designed
+    status_after: approved
+    contract_version: "2.0.0"
+    predicate_version: "1.0.0"
+    bypass_flags: []
+    predicate_failures: []
+
+    predicate:
+      C1_schema_conformance: "pass — consent_text links carry on_click + action_contract (screen-scoped navigate effects)"
+      C2_artifacts_present_and_fresh: "pass — after the final ui.yaml edit (07:2xZ): prompts ×8 rebuilt, stitch ×8 regenerated (07:3x-07:4xZ), docs/tests provenance refreshed"
+      C3_review_package: "pass-with-disclosure (see previews-stale) — §8.2 8/8 stitch code.html + screen.png"
+      C4_no_blocking_verify_failures: "pass — stitch-verify 28/28 sv-pass, 0 fallback; G-MOCKUP-RESPONSIVE PASS (101 files); PC11-PC17 green across 36 prompts; G-STITCH-GEN-PREFLIGHT PASS; theme drift none"
+      C6_stale_cross_refs: "pass — flow.yaml open_terms / open_privacy_policy transitions; _strings screens.signin.{consent,terms,privacy_policy} resolve"
+      evidence:
+        - "stitch: empty 74d22b27d3944a41aeea987b6d529da7 · biometric_ready 417cb455579b444b8149022343d68379 · submitting 423ffcfca364485f9e85da45d4ea4fa3 · validation_error ebc0db8c09fb4012874304ba6d196dab · transport_error a9dd543db0f145e9b2aae5f63d26b65d · offline 71622667528048c0aa05feb8ee81ce08 · locked_out 0e9f158ee3b54de0b4b43132e41d388d · success d90a2f2247e44365ac8a20e9c4efd18b"
+        - "every code.html: 1× 'By signing in you accept our', 0× 'Terms of Service' / 'agree to our', 2 anchor links (Terms & Conditions, Privacy Policy)"
+        - "Playwright 390px + 1280px captures of empty + submitting: consent line with both underlined links; submitting no longer phone-capped"
+
+    disclosed_at_approval:
+      - id: responsive-root-cause
+        detail: >
+          The builder emits only a generic responsive line and the lean send path drops the self-validation checklist,
+          so 1-2 signin states kept rendering phone-capped (max-w-md). Fixed at the source: a RESPONSIVE bullet in
+          ui.yaml#visual_treatment; renders sent with STITCH_LEAN_PROMPT=0. Earlier intermediate screens are orphaned.
+      - id: stitch-logo-fidelity
+        detail: >
+          The empty render draws a bank glyph in the logo tile where ui.yaml asks for the Mifos X mark ("never a bank
+          icon"), and submitting/expanded invents panel copy ("core banking gateway"). Stitch output, not hand-editable
+          (US9); codegen keeps the shipped mark. Not part of the consent change; reconcile in a later stitch pass.
+      - id: previews-stale
+        detail: >
+          screens/signin/preview/*.html still show the old "agree to our Terms of Service" copy (marked .stitch-stale by
+          the run). The Stitch tier outranks them; re-render with /idea-feature-render signin --force.
+      - id: idea-core-no-signin-node
+        detail: IDEA_CORE.yaml holds no signin nodes (only onboarding was door-authored); FR-001a not registered there.
+
+    authorises: >
+      The shipped feature/signin ConsentText as the design of record: "By signing in you accept our Terms & Conditions
+      and Privacy Policy." with two in-app LinkAnnotation spans (AppOrgLinks["terms"], AppPrivacyConfig.PRIVACY_POLICY_URL).
+
+  - feature: onboarding
+    action: restamp
+    timestamp: "2026-11-05T13:55:00Z"
+    actor: claude (approve-hash method migration, operator-directed root-cause fix)
+    reason: >-
+      Approval-hash method migration, NOT a new approval. The 06:55 approval was stamped with staleness-resolve.sh
+      --current-hash, which hashes docs.yaml itself (where the stamp lives) and all of mockups/onboarding/**, so it read
+      drifted seconds after being written — the approve → stale → re-approve loop. Re-stamped with
+      core/scripts/approve-hash.sh, which hashes only what the approval promises (authored spec + Stitch renders). The
+      approved content is unchanged: all four Stitch renders predate the 06:55 approval.
+    hash_before: "617ba5f0c47c3a6031611f8e5f33a721e8ca026cf3b4b02545826466c4c76a39"
+    hash_after: "sha256:b3304ec2d9eee2e1519d519cd05f9e4059811e0bfb77dd2176b852091a01222d"
+    hash_source: "core/scripts/approve-hash.sh onboarding --current-hash (approve_hash_method: approve-hash.sh/v1)"
+    status_before: approved
+    status_after: approved
+    bypass_flags: []

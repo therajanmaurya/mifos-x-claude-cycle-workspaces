@@ -1,5 +1,18 @@
 schema_version: "1.0.0"
 features:
+  onboarding:
+    trigger: enrich_complete
+    started_at: "2026-11-04T16:38:00Z"
+    completed_at: "2026-11-04T16:55:00Z"
+    cascade_state: complete
+    execution_shape: inline-serial    # this enrich ran as a dispatched subagent — a 3-branch fan-out would be a 2-level dispatch (PD-1)
+    steps:
+      - { step: 1, name: regenerate-feature-data, command: /idea-data, status: pass, attempts: 1, note: "spine ran (preflight source-of-truth-sync PASS); dtos: no API → no consumer DTO (UserData is a core model); data-flow + demo children not applicable — docs.yaml declares no data-layer capability (has_api false, no offline cache), precondition 1 fails → headless [S]kip; scaffold data-flow.yaml/demo-data.yaml kept; closing idea-verify run once as cascade step 6" }
+      - { step: 2, name: refresh-api-contract, command: /idea-api-extend, status: pass, attempts: 1, note: "not applicable — api.yaml endpoints: [] (local prefs only); no api_id to extend; --if-stale self-skip" }
+      - { step: 3, name: rerender-preview, command: /idea-feature-render, status: pass, attempts: 2, note: "4 states written + provenance-stamped (render-hash = prompt content_hash); attempt 2 = full re-Write after screenshot critique (expanded-width scene crop); post-A.9/A.11/A.13 ui pass recorded as verified no-op (MOCKUP content_hash unchanged); RV checks: 1 script (runtime), viewport, dark block, 0 undefined vars, 0 em-dash" }
+      - { step: 4, name: rebuild-stitch, command: /idea-feature-stitch, status: pass, attempts: 1, note: "--build-prompts: 4 prompts (intro_clients/collections/offline, privacy); no cloud generation in this cascade arg" }
+      - { step: 5, name: generate-flow-connections, command: /idea-flows, status: pass, attempts: 1, note: "flows/authentication.yaml already carries finish-onboarding + onboarding-configure-instance; screen flow.yaml +2 transitions, +outbound_routes; journeys/field-officer-first-run.yaml" }
+      - { step: 6, name: closing-verify, command: /idea-verify, status: pass, attempts: 1, note: "idea-graph-audit verdict=matrix-partial errors=0; signin↔onboarding asymmetry closed; onboarding↔serverConfig inbound echo now queued for /idea-sync (serverConfig is another feature's flow)" }
   profile:
     trigger: enrich_complete
     started_at: "2026-10-27T19:00:00Z"

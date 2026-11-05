@@ -1,30 +1,35 @@
 schema_version: '1.0'
-generated_at: '2026-10-26T17:44:10.710Z'
+generated_at: '2026-11-04T18:13:06.052Z'
 generated_by: idea-graph-audit.ts
 plan_screen_reconciliation:
   declared: 0
   resolved: 0
   unresolved: []
   multi_site: []
-generation_ms: 235
+generation_ms: 8264
 nav_graph:
-  nodes: 4
+  nodes: 7
   edges_by_source:
-    on_click_nav: 2
-    flow_inbound_outbound: 25
-    bottom_nav: 3
+    on_click_nav: 12
+    flow_inbound_outbound: 37
+    bottom_nav: 4
     data_flow_error_paths: 0
-    total_unique: 24
+    total_unique: 36
   entry_states:
+    - centers
     - clients
+    - groups
     - home
-    - profile
+    - onboarding
   reachable_set:
     - home
-  orphans:
-    - clientCharges
+    - onboarding
+    - profile
     - serverConfig
     - signin
+  orphans:
+    - clientCharges
+    - offlineSync
   dead_ends:
     - source: home
       source_file: screens/home/flow.yaml
@@ -68,10 +73,38 @@ nav_graph:
     - source: home
       source_file: screens/home/flow.yaml
       target: clientDetail | groupDetail | centerDetail | loanSummary
-  cross_ref_violations: []
+    - source: offlineSync
+      source_file: screens/offlineSync/flow.yaml
+      target: centerDetail
+    - source: offlineSync
+      source_file: screens/offlineSync/flow.yaml
+      target: groupsDetail
+    - source: offlineSync
+      source_file: screens/offlineSync/flow.yaml
+      target: clientProfile
+    - source: offlineSync
+      source_file: screens/offlineSync/flow.yaml
+      target: syncAndDrafts
+    - source: offlineSync
+      source_file: screens/offlineSync/flow.yaml
+      target: settings
+    - source: onboarding
+      source_file: screens/onboarding/flow.yaml
+      target: serverConfig
+      kind: asymmetric
+      missing_in: screens/serverConfig/flow.yaml#inbound_routes
+  cross_ref_violations:
+    - kind: component_type_unknown
+      source: profile
+      ref: inline_error
+      missing_in: idea-layer/components.yaml#components[].name
+    - kind: component_type_unknown
+      source: profile
+      ref: info_row
+      missing_in: idea-layer/components.yaml#components[].name
 dto_registry:
-  registered: 3
-  INDEX_md_present: false
+  registered: 7
+  INDEX_md_present: true
   drift_project_wide: 0
   drift_refused_project_wide: 0
   drift_refs: []
@@ -141,12 +174,12 @@ per_feature:
       demo_data_present: true
       tests_present: true
     enrichment:
-      needs_enrich: false
+      needs_enrich: true
       needs_generate_dtos: false
-      needs_generate_demo: false
-      needs_generate_dflow: false
-      needs_generate_tests: false
-      intrinsic_needs_enrich: false
+      needs_generate_demo: true
+      needs_generate_dflow: true
+      needs_generate_tests: true
+      intrinsic_needs_enrich: true
       needs_enrich_loop: false
     visualization:
       needs_render_screen: true
@@ -159,12 +192,194 @@ per_feature:
     export:
       needs_export_spec: true
       needs_export_mockup: true
-      needs_export_stitch: true
+      needs_export_stitch: false
     validation:
       passes_state_exhaustiveness: true
       passes_async_coverage: true
       passes_form_validation: true
       passes_a11y_label: true
+      passes_i18n_coverage: true
+      passes_permission_flow: true
+    implementation:
+      source_files_present: true
+      compose_dead_clicks: 0
+      impl_content_drifted: false
+    status: partial
+    closure:
+      closed: false
+      reason: intrinsic staleness outstanding (not the content_stale marker)
+    interaction:
+      preview_hash: ''
+      fresh: false
+      components: []
+      coverage:
+        total: 0
+        classified: 0
+        interactive: 0
+        wired: 0
+        gaps: 0
+  offlineSync:
+    foundation:
+      docs_present: true
+      ui_present: true
+      flow_present: true
+      api_present: true
+      data_flow_present: true
+      demo_data_present: true
+      tests_present: true
+    enrichment:
+      needs_enrich: false
+      needs_generate_dtos: false
+      needs_generate_demo: true
+      needs_generate_dflow: true
+      needs_generate_tests: true
+      intrinsic_needs_enrich: false
+      needs_enrich_loop: false
+    visualization:
+      needs_render_screen: true
+      needs_generate_mockup: true
+      needs_render_validate: true
+      intrinsic_needs_render_screen: true
+      intrinsic_needs_generate_mockup: true
+      needs_declare_visual_assets: false
+      pending_visual_assets: []
+    export:
+      needs_export_spec: false
+      needs_export_mockup: true
+      needs_export_stitch: false
+    validation:
+      passes_state_exhaustiveness: true
+      passes_async_coverage: true
+      passes_form_validation: false
+      passes_a11y_label: false
+      passes_i18n_coverage: true
+      passes_permission_flow: true
+    implementation:
+      source_files_present: false
+      compose_dead_clicks: 0
+      impl_content_drifted: false
+    status: partial
+    closure:
+      closed: false
+      reason: intrinsic staleness outstanding (not the content_stale marker)
+    interaction:
+      preview_hash: ''
+      fresh: false
+      components: []
+      coverage:
+        total: 0
+        classified: 0
+        interactive: 0
+        wired: 0
+        gaps: 0
+  onboarding:
+    foundation:
+      docs_present: true
+      ui_present: true
+      flow_present: true
+      api_present: true
+      data_flow_present: true
+      demo_data_present: true
+      tests_present: true
+    enrichment:
+      needs_enrich: false
+      needs_generate_dtos: false
+      needs_generate_demo: true
+      needs_generate_dflow: true
+      needs_generate_tests: true
+      intrinsic_needs_enrich: false
+      needs_enrich_loop: false
+    visualization:
+      needs_render_screen: false
+      needs_generate_mockup: false
+      needs_render_validate: false
+      intrinsic_needs_render_screen: false
+      intrinsic_needs_generate_mockup: false
+      needs_declare_visual_assets: false
+      pending_visual_assets:
+        - asset_id: onboarding_brand_mark
+          kind: logo
+          role: brand
+          produced_by: /idea-branding
+        - asset_id: onboarding_clients_illustration
+          kind: illustration
+          role: illustration
+          produced_by: /idea-feature-stitch-art
+        - asset_id: onboarding_collections_illustration
+          kind: illustration
+          role: illustration
+          produced_by: /idea-feature-stitch-art
+        - asset_id: onboarding_offline_illustration
+          kind: illustration
+          role: illustration
+          produced_by: /idea-feature-stitch-art
+        - asset_id: onboarding_privacy_illustration
+          kind: illustration
+          role: illustration
+          produced_by: /idea-feature-stitch-art
+    export:
+      needs_export_spec: false
+      needs_export_mockup: false
+      needs_export_stitch: false
+    validation:
+      passes_state_exhaustiveness: true
+      passes_async_coverage: true
+      passes_form_validation: true
+      passes_a11y_label: false
+      passes_i18n_coverage: true
+      passes_permission_flow: true
+    implementation:
+      source_files_present: false
+      compose_dead_clicks: 0
+      impl_content_drifted: false
+    status: partial
+    closure:
+      closed: true
+      reason: intrinsic staleness clear — chain closed
+    interaction:
+      preview_hash: ''
+      fresh: false
+      components: []
+      coverage:
+        total: 0
+        classified: 0
+        interactive: 0
+        wired: 0
+        gaps: 0
+  profile:
+    foundation:
+      docs_present: true
+      ui_present: true
+      flow_present: true
+      api_present: true
+      data_flow_present: true
+      demo_data_present: true
+      tests_present: true
+    enrichment:
+      needs_enrich: false
+      needs_generate_dtos: false
+      needs_generate_demo: true
+      needs_generate_dflow: true
+      needs_generate_tests: true
+      intrinsic_needs_enrich: false
+      needs_enrich_loop: false
+    visualization:
+      needs_render_screen: true
+      needs_generate_mockup: true
+      needs_render_validate: true
+      intrinsic_needs_render_screen: true
+      intrinsic_needs_generate_mockup: true
+      needs_declare_visual_assets: false
+      pending_visual_assets: []
+    export:
+      needs_export_spec: false
+      needs_export_mockup: true
+      needs_export_stitch: false
+    validation:
+      passes_state_exhaustiveness: true
+      passes_async_coverage: true
+      passes_form_validation: true
+      passes_a11y_label: false
       passes_i18n_coverage: true
       passes_permission_flow: true
     implementation:
@@ -251,9 +466,9 @@ per_feature:
     enrichment:
       needs_enrich: true
       needs_generate_dtos: false
-      needs_generate_demo: false
-      needs_generate_dflow: false
-      needs_generate_tests: false
+      needs_generate_demo: true
+      needs_generate_dflow: true
+      needs_generate_tests: true
       intrinsic_needs_enrich: true
       needs_enrich_loop: false
     visualization:
@@ -295,28 +510,28 @@ per_feature:
         gaps: 0
 phase_rollup:
   foundation:
-    complete: 2
+    complete: 5
     needs_work: 2
   enrichment:
-    complete: 1
-    needs_work: 3
+    complete: 0
+    needs_work: 7
   visualization:
-    complete: 0
-    needs_work: 4
+    complete: 1
+    needs_work: 6
   export:
-    complete: 0
-    needs_work: 4
+    complete: 1
+    needs_work: 6
   validation:
-    complete: 4
+    complete: 7
     needs_work: 0
   approval:
-    complete: 4
+    complete: 7
     needs_work: 0
   implementation:
     complete: 0
-    needs_work: 4
+    needs_work: 7
   release:
-    complete: 4
+    complete: 7
     needs_work: 0
 precondition_dispatch_queue:
   - kind: project-wide-artifacts-stale
@@ -351,11 +566,6 @@ dispatch_queue:
   - phase: foundation
     command: /idea-plan-add
     feature: notification
-    scaffold_from: idea-plan.yaml#features[]
-    priority: 5
-  - phase: foundation
-    command: /idea-plan-add
-    feature: profile
     scaffold_from: idea-plan.yaml#features[]
     priority: 5
   - phase: foundation
@@ -395,6 +605,11 @@ dispatch_queue:
     priority: 10
   - phase: foundation
     command: /idea-plan-add
+    feature: clientProfile
+    scaffold_from: offlineSync
+    priority: 10
+  - phase: foundation
+    command: /idea-plan-add
     feature: createCenter
     scaffold_from: home
     priority: 10
@@ -415,6 +630,11 @@ dispatch_queue:
     priority: 10
   - phase: foundation
     command: /idea-plan-add
+    feature: groupsDetail
+    scaffold_from: offlineSync
+    priority: 10
+  - phase: foundation
+    command: /idea-plan-add
     feature: loanAccountList
     scaffold_from: home
     priority: 10
@@ -423,6 +643,36 @@ dispatch_queue:
     feature: loanReschedules
     scaffold_from: home
     priority: 10
+  - phase: foundation
+    command: /idea-sync
+    feature: onboarding↔serverConfig
+    scaffold_from: screens/serverConfig/flow.yaml#inbound_routes
+    priority: 10
+  - phase: foundation
+    command: /idea-sync
+    feature: clientCharges
+    scaffold_from: asymmetric_closure_gap
+    priority: 11
+  - phase: foundation
+    command: /idea-plan-add
+    feature: home
+    scaffold_from: home
+    priority: 12
+  - phase: foundation
+    command: /idea-plan-add
+    feature: serverConfig
+    scaffold_from: serverConfig
+    priority: 12
+  - phase: foundation
+    command: /idea-plan-add
+    feature: signin
+    scaffold_from: signin
+    priority: 12
+  - phase: foundation
+    command: /idea-sync
+    feature: profile
+    scaffold_from: 'component_type_unknown (heal target: idea-layer/components.yaml#components[].name)'
+    priority: 13
   - phase: enrichment
     command: /idea-feature-enrich
     feature: clientCharges
@@ -457,6 +707,22 @@ dispatch_queue:
     feature: clientCharges
     reason: behavior-unverified
     priority: 71
+  - phase: enrichment
+    command: /idea-feature-enrich
+    feature: home
+    priority: 20
+  - phase: generation
+    command: /idea-data-flow
+    feature: home
+    priority: 22
+  - phase: generation
+    command: /idea-data-demo
+    feature: home
+    priority: 23
+  - phase: generation
+    command: /idea-test-generate
+    feature: home
+    priority: 24
   - phase: visualization
     command: /idea-feature-render
     feature: home
@@ -466,16 +732,99 @@ dispatch_queue:
     feature: home
     priority: 40
   - phase: export
-    command: /idea-feature-stitch
-    feature: home
-    priority: 42
-  - phase: export
     command: /idea-feature-mockup
     feature: home
     priority: 43
   - phase: implementation
     command: /device-test
     feature: home
+    reason: behavior-unverified
+    priority: 71
+  - phase: generation
+    command: /idea-data-flow
+    feature: offlineSync
+    priority: 22
+  - phase: generation
+    command: /idea-data-demo
+    feature: offlineSync
+    priority: 23
+  - phase: generation
+    command: /idea-test-generate
+    feature: offlineSync
+    priority: 24
+  - phase: visualization
+    command: /idea-feature-render
+    feature: offlineSync
+    priority: 30
+  - phase: export
+    command: /idea-feature-mockup
+    feature: offlineSync
+    priority: 43
+  - phase: implementation
+    command: /kmp-implement
+    feature: offlineSync
+    reason: source-module-absent
+    priority: 19
+  - phase: implementation
+    command: /device-test
+    feature: offlineSync
+    reason: behavior-unverified
+    priority: 71
+  - phase: generation
+    command: /idea-data-flow
+    feature: onboarding
+    priority: 22
+  - phase: generation
+    command: /idea-data-demo
+    feature: onboarding
+    priority: 23
+  - phase: generation
+    command: /idea-test-generate
+    feature: onboarding
+    priority: 24
+  - phase: visualization
+    command: /idea-feature-stitch-art
+    feature: onboarding
+    reason: visual-asset-ungenerated:onboarding_clients_illustration
+    priority: 32
+  - phase: visualization
+    command: /idea-branding
+    feature: onboarding
+    reason: visual-asset-ungenerated:onboarding_brand_mark
+    priority: 35
+  - phase: implementation
+    command: /kmp-implement
+    feature: onboarding
+    reason: source-module-absent
+    priority: 19
+  - phase: implementation
+    command: /device-test
+    feature: onboarding
+    reason: behavior-unverified
+    priority: 71
+  - phase: generation
+    command: /idea-data-flow
+    feature: profile
+    priority: 22
+  - phase: generation
+    command: /idea-data-demo
+    feature: profile
+    priority: 23
+  - phase: generation
+    command: /idea-test-generate
+    feature: profile
+    priority: 24
+  - phase: visualization
+    command: /idea-feature-render
+    feature: profile
+    priority: 30
+  - phase: export
+    command: /idea-feature-mockup
+    feature: profile
+    priority: 43
+  - phase: implementation
+    command: /device-test
+    feature: profile
     reason: behavior-unverified
     priority: 71
   - phase: enrichment
@@ -516,6 +865,18 @@ dispatch_queue:
     command: /idea-feature-enrich
     feature: signin
     priority: 20
+  - phase: generation
+    command: /idea-data-flow
+    feature: signin
+    priority: 22
+  - phase: generation
+    command: /idea-data-demo
+    feature: signin
+    priority: 23
+  - phase: generation
+    command: /idea-test-generate
+    feature: signin
+    priority: 24
   - phase: visualization
     command: /idea-feature-render
     feature: signin
@@ -554,6 +915,30 @@ advisory_findings:
     detail: async
     severity: advisory
     rule: RULE-IDEA-ASYNC-COVERAGE-001
+    closer: /idea-heal
+  - kind: validation-coverage
+    feature: offlineSync
+    detail: a11y
+    severity: advisory
+    rule: RULE-IDEA-A11Y-LABEL-001
+    closer: /idea-heal
+  - kind: validation-coverage
+    feature: offlineSync
+    detail: form
+    severity: advisory
+    rule: RULE-IDEA-FORM-VALIDATION-001
+    closer: /idea-heal
+  - kind: validation-coverage
+    feature: onboarding
+    detail: a11y
+    severity: advisory
+    rule: RULE-IDEA-A11Y-LABEL-001
+    closer: /idea-heal
+  - kind: validation-coverage
+    feature: profile
+    detail: a11y
+    severity: advisory
+    rule: RULE-IDEA-A11Y-LABEL-001
     closer: /idea-heal
   - kind: validation-coverage
     feature: serverConfig
@@ -595,6 +980,9 @@ verdict: matrix-partial
 remaining_features:
   - clientCharges
   - home
+  - offlineSync
+  - onboarding
+  - profile
   - serverConfig
   - signin
 flow_graph: {}
@@ -603,26 +991,32 @@ closure:
   incomplete_on_click: []
   unreachable:
     - clientCharges
-    - serverConfig
-    - signin
+    - offlineSync
   unresolved_targets:
+    - centerDetail
     - centerDetail
     - checkerInbox
     - clientDetail | groupDetail | centerDetail | loanSummary
     - clientList
+    - clientProfile
     - createCenter
     - createGroup
     - createNewClient
     - groupDetail
+    - groupsDetail
     - individualCollectionSheet
     - loanAccountList
     - loanReschedules
     - runReports
     - search
+    - settings
+    - syncAndDrafts
     - syncAndDrafts
   undesigned:
     - clientCharges
     - home
+    - offlineSync
+    - profile
     - serverConfig
     - signin
   structural_closed: false
@@ -638,5 +1032,8 @@ coverage_rollup:
 interaction_pending:
   - clientCharges
   - home
+  - offlineSync
+  - onboarding
+  - profile
   - serverConfig
   - signin

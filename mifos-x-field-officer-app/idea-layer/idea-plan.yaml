@@ -423,5 +423,47 @@ features:
       device is online. Live dashboard from durable job state; Manual or Automatic refresh (interval,
       Wi-Fi only, while charging). Redesign of 6b66e8a43:feature/offline (dashboard + 5 sync
       screens). Closes the stranded-repayment defect: nothing drains loanRepaymentQueue today.
+
+  - id: onboarding
+    name: Onboarding
+    status: scaffold
+    scaffolded_at: "2026-11-04T12:30:00Z"
+    priority: P1
+    category: authentication
+    module: feature/onboarding          # new module — none in the template or this fork
+    screens: [onboarding]
+    depends_on: [signin, serverConfig]
+    description: >
+      First-run onboarding, shown ONCE on a fresh install before sign-in (RootNavState.ShowOnboarding).
+      Three intro pages (clients/groups/centres in the field · repayments and collection sheets ·
+      offline and sync later) with Skip, Next, page indicator and back, then a privacy page with two
+      independent switches — Share usage analytics, Send crash reports — BOTH OFF by default, a plain
+      explanation and "change this later in Settings". It ends (2026-11-05, operator decision A "Allow /
+      Continue without") with two EQUALLY VISIBLE buttons: "Allow and get started" sets both consents ON and
+      saves them; "Continue without sharing" / "Continue with my choices" saves the switches exactly as
+      shown — each then setFirstTimeState(false) LAST and opens sign-in. Above them (decision B) an
+      agreement line "By using our service you accept our Terms & Conditions and Privacy Policy." links
+      both in-app (AppOrgLinks["terms"] · AppPrivacyConfig.PRIVACY_POLICY_URL). Optional "Connect to your
+      Mifos instance" → serverConfig.
+    acceptance_criteria:
+      - "A fresh install shows onboarding before sign-in; after Allow and get started or Continue it never shows again, including after sign-out"
+      - "Both privacy switches start OFF; Allow and get started stores both ON, Continue stores exactly what is shown"
+      - "The decline path (Continue without sharing) is a full button as visible as Allow and get started"
+      - "The agreement line links the Terms & Conditions and the Privacy Policy, both opening in-app"
+      - "Skip jumps to the privacy page; leaving without either privacy button stores nothing (both stay OFF)"
+      - "No analytics or crash collection is enabled unless the officer turned it on"
+      - "Full screen, no top app bar or bottom nav; strings localizable; switches and pages labelled for screen readers"
+    follow_ups:
+      - "FR-SET-PRIV-01 — Settings → Privacy sheet for the same two choices — IN PROGRESS, built in the same pass: the template's PrivacySheet.kt is being ported into this fork's fork-owned feature/settings (backs the privacy page's 'change this later in Settings' note)"
+    note: >
+      Added 2026-11-04 by /idea-plan-add (operator product decision; resolves
+      screens/signin/ui.yaml#feature_split.deferred_candidate); enriched 2026-11-04 by /idea-feature-enrich.
+      Enhanced 2026-11-05 by /idea-plan-add enhance onboarding (operator decisions A "Allow / Continue without"
+      + B "Create + publish Terms"; FR-ONB-03/04 revised, FR-ONB-07 added).
+      Implementation preconditions read from source: UserData.DEFAULT.firstTimeUser is false today (fresh install
+      never reaches ShowOnboarding) — being fixed through the template seam app-profile/app.yaml#security.first_run_onboarding
+      (this fork sets true) → AppSecurityConfig.FIRST_RUN_ONBOARDING → UserData.DEFAULT.firstTimeUser
+      (kmp-project-template 3dd68cd9, PR #316; arrives via /kmp-project-template-sync --dev 3dd68cd9; in progress);
+      and RootNavScreen maps ShowOnboarding → sign-in — see screens/onboarding/docs.yaml.
 kmp_arch_pattern: stream-first
 kmp_arch_version: latest

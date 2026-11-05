@@ -1,0 +1,11 @@
+# DOC_SET_STATE.yaml — idea-doc-generators cache (_shared/idea-doc-generators.md Step 5)
+# Created 2026-11-04 by /idea-feature-enrich onboarding STEP FINAL.DOCSET. Only docs the engine actually
+# wrote are recorded; full-mode docs were not regenerated (no prior engine output to compare against, so
+# write-protection treated them as hand-authored → [Ignore], headless default).
+schema_version: "1.0"
+docs:
+  layer_status:
+    file: LAYER_STATUS.md
+    mode: derived-scan
+    source_hash: null          # derived-scan has no idea-plan section source
+    generated_at: "2026-11-04T16:58:00Z"

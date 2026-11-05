@@ -71,3 +71,14 @@
 {"ts":"2026-11-04T10:38:24Z","command":"frontend-design:frontend-design","actor":"claude","dispatched_by":"standalone","verified_by_parent":false,"verdict":null}
 {"ts":"2026-11-04T10:39:53Z","command":"idea-feature-render","actor":"claude","dispatched_by":"standalone","verified_by_parent":false,"verdict":null}
 {"ts":"2026-11-04T10:40:27Z","command":"frontend-design:frontend-design","actor":"claude","dispatched_by":"standalone","verified_by_parent":false,"verdict":null}
+{"ts":"2026-11-04T15:55:14Z","command":"idea-plan-add","actor":"claude","dispatched_by":"standalone","verified_by_parent":false,"verdict":null}
+{"ts":"2026-11-04T16:20:42Z","command":"idea-feature-enrich","actor":"claude","dispatched_by":"standalone","verified_by_parent":false,"verdict":null}
+{"ts":"2026-11-04T16:36:31Z","command":"idea-data","actor":"claude","dispatched_by":"standalone","verified_by_parent":false,"verdict":null}
+{"ts":"2026-11-04T16:37:14Z","command":"idea-feature-render","actor":"claude","dispatched_by":"standalone","verified_by_parent":false,"verdict":null}
+{"ts":"2026-11-04T16:38:15Z","command":"frontend-design:frontend-design","actor":"claude","dispatched_by":"standalone","verified_by_parent":false,"verdict":null}
+{"ts":"2026-11-04T17:58:41Z","command":"idea-approve","actor":"claude","dispatched_by":"standalone","verified_by_parent":false,"verdict":null}
+{"ts":"2026-11-04T18:22:12Z","command":"kmp-implement","actor":"claude","dispatched_by":"standalone","verified_by_parent":false,"verdict":null}
+{"ts":"2026-11-04T18:25:15Z","command":"idea-feature-stitch-art","actor":"claude","dispatched_by":"standalone","verified_by_parent":false,"verdict":null}
+{"ts":"2026-11-04T19:19:00Z","command":"idea-feature-locale","actor":"claude","dispatched_by":"standalone","verified_by_parent":false,"verdict":null}
+{"ts":"2026-11-05T06:11:30Z","command":"frontend-design:frontend-design","actor":"claude","dispatched_by":"standalone","verified_by_parent":false,"verdict":null}
+{"ts":"2026-11-05T08:02:34Z","command":"frontend-design:frontend-design","actor":"claude","dispatched_by":"standalone","verified_by_parent":false,"verdict":null}

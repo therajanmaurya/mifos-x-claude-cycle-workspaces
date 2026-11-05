@@ -5,10 +5,6 @@ states:
     generated_at: 2026-10-03T08:05:07.420Z
     source_render_hash: unknown
     reason: "non-recoverable:unknown — unrecognized-non-typed-error: Error: MCP generate_screen_from_text: accepted but never delivered — polled 300s (sessionId=2844196606991331825), zero n"
-  - state: empty
-    generated_at: 2026-10-03T08:25:45.820Z
-    source_render_hash: unknown
-    reason: "non-recoverable:unknown — unrecognized-non-typed-error: Error: MCP generate_screen_from_text: accepted but never delivered — polled 300s (sessionId=13017848365923519005), zero"
   - state: biometric_ready
     generated_at: 2026-10-03T08:35:22.840Z
     source_render_hash: unknown
@@ -17,3 +13,11 @@ states:
     generated_at: 2026-10-03T08:44:59.050Z
     source_render_hash: unknown
     reason: "non-recoverable:unknown — unrecognized-non-typed-error: Error: MCP generate_screen_from_text: accepted but never delivered — polled 300s (sessionId=7501481161052500481), zero n"
+  - state: offline
+    generated_at: 2026-11-05T06:42:31.299Z
+    source_render_hash: b6d2fc485356
+    reason: "non-recoverable:unknown — generate-connection-drop (stitch-sdk#114 no-refire → marker-poll)"
+  - state: empty
+    generated_at: 2026-11-05T07:34:38.632Z
+    source_render_hash: 6050164aa87c
+    reason: "non-recoverable:unknown — generate-connection-drop (stitch-sdk#114 no-refire → marker-poll)"

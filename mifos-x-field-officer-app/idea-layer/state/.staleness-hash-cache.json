@@ -11,5 +11,15 @@
   "home:demo": "bf64bbad",
   "home:dflow": "bf64bbad",
   "home:tests": "f9fa24f3",
-  "home:render": "5d10913c"
+  "home:render": "5d10913c",
+  "home:export_stitch": "1ce6ff31",
+  "offlineSync:export_spec": "f5637d14",
+  "offlineSync:export_stitch": "f5637d14",
+  "onboarding:render": "e6fa0054",
+  "profile:export_spec": "ae2bb034",
+  "profile:export_stitch": "ae2bb034",
+  "onboarding:mockup": "e6fa0054",
+  "onboarding:export_spec": "4d1391b5",
+  "onboarding:export_mockup": "4d1391b5",
+  "onboarding:export_stitch": "4d1391b5"
 }

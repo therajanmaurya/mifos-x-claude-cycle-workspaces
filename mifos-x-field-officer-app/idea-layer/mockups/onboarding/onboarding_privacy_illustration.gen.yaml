@@ -1,0 +1,60 @@
+_schema_version: '1.0'
+asset_id: onboarding_privacy_illustration
+feature: onboarding
+kind: illustration
+intent_summary: >-
+  An officer's phone showing two simple switches, both off, beside a closed padlock and a small shield — calm, flat, brand-coloured, and with no client names or numbers anywhere in the scene.
+
+engine: google-stitch
+engine_status: conditional
+backend: stitch-mcp
+license: google-stitch-tos
+license_status: confirmed
+commercial_ok: true
+license_confirmed_by: operator
+license_confirmed_at: "2026-10-12"
+license_confirmed_for_account: a7
+license_note: >-
+  Hosted-service output governed by Google's Stitch Terms of Service. The operator who owns
+  this account has confirmed the ToS permits commercial use — see
+  STITCH_ACCOUNTS_REGISTRY.yaml#license_confirmation.
+
+produced_by: /idea-feature-stitch-art
+stitch_screen_id: 0975e359452d4a95bbd12efeefd53268
+stitch_project_id: 10780096558615730514
+authoring: stitch-prompt-generated
+
+declared_size: 800x600
+bytes: 249988
+source_sha256: 7bc4cb98d491d05fbb1a8def730ab8c686b2fe0919c03a50cecdb983b0a11ed6
+wired_to: workspaces/mifos-x/mifos-x-field-officer-app/source/mifos-x-field-officer-app/feature/onboarding/src/commonMain/composeResources/drawable/onboarding_privacy_illustration.png
+wired_by: "OnboardingScreen.kt PageIllustration() — painterResource(Res.drawable.onboarding_privacy_illustration), expanded two-pane privacy page only"
+generated_at: '2026-11-04T18:32:03Z'
+generated_by: /idea-feature-stitch-art
+
+device_fidelity: pending-device-verify
+human_signed_off: false
+
+prompt: >-
+  Produce a single onboarding illustration asset.
+  .
+  SUBJECT AND INTENT
+  An officer's phone showing two simple switches, both off, beside a closed padlock and a small shield — calm, flat, brand-coloured, and with no client names or numbers anywhere in the scene.
+  .
+  FRAMING (HARD CONSTRAINT)
+  A 4:3 landscape composition with generous margins. Large-scale, not an icon.
+  .
+  PALETTE (HARD CONSTRAINT)
+  Use ONLY: #4338CA, #059669, #D97706, #E0E7FF, #F8FAFC.
+  Do NOT use red, neon, photographic realism anywhere in the composition.
+  .
+  TONE (HARD CONSTRAINT)
+  The asset must read as: calm, reassuring, friendly.
+  .
+  HOUSE RULES
+  Composition must be self-contained and reusable -- no app chrome, no status bar, no nav bar.
+  No lettering of any kind: no words, labels, captions, watermarks or signature marks.
+  No stock-photo look, no photobashing, no visible brand marks of other products.
+  If the asset is SVG or HTML, NEVER place <defs>, <symbol> or any referenced geometry inside a hidden container (class="hidden", display:none, visibility:hidden, or width=0/height=0). Gradient and <use> references do not resolve out of a display:none subtree and the artwork renders blank. Put shared defs in the SAME visible <svg> that draws them, or position the defs host off-screen with `position:absolute;width:0;height:0;overflow:hidden` -- never display:none.
+vector_original: workspaces/mifos-x/mifos-x-field-officer-app/idea-layer/mockups/onboarding/onboarding_privacy_illustration.svg
+vector_size: 800x600

@@ -72,7 +72,10 @@ feature_split:
   deferred_candidate:
     id: onboarding
     why: "RootNavState.ShowOnboarding resolves to sign-in because no onboarding screen exists"
-    status: needs-product-decision
+    status: decided
+    decided_at: "2026-11-04"
+    decision: "build it — first-run intro pages + privacy consent, shown once before sign-in (operator)"
+    materialized_as: screens/onboarding      # /idea-plan-add add-feature onboarding; ShowOnboarding → onboarding → signin
 
 # ──────────────── SHELL OVERRIDE ────────────────
 # The MACHINE-READ opt-out from the project chrome (`UiYamlShellOverride`, merged by
@@ -274,9 +277,12 @@ visual_treatment:
   - "A calm, confident CREDENTIAL screen for a field worker: generous vertical rhythm, one clear primary action, nothing competing with it. This is the first screen of a banking tool — it should read as trustworthy and quiet, not playful."
   - "Vertical order: a small instance chip at the very top, then the brand mark, then a two-line title, then the two fields, then the primary submit, then the biometric accelerator when present. A short legal consent line sits pinned at the bottom."
   - "The INSTANCE CHIP is the signature element and must not look like a button: a compact, low-contrast pill with a small server glyph showing host and tenant, with a subtle chevron implying it can be changed. It is information first and an affordance second."
-  - "CLOSED SET — render EXACTLY the components listed in the Composition and NOTHING ELSE. Every element here maps to shipped code; an extra affordance is a claim this product does not support."
+  - "CLOSED SET — only the listed components and copy: no extra badges, chips, status lines or feature lists (lg: brand panel = mark, app name, one product line)."
   - "DO NOT add: 'remember me', 'forgot password', 'create account'/'sign up', social or SSO buttons, a QR scanner, an offline-cache banner, an officer/employee ID field, a language picker, or a version footer. None of these exist."
   - "NO TOP APP BAR and no chrome above the instance chip: no gear, no overflow, no back arrow. This is the unauthenticated gate — there is nowhere to go back to."
+  # 2026-11-05 (RULE-MOCKUP-RESPONSIVE-001): stated here because the prompt builder only emits a generic responsive
+  # line, and without a screen-specific one Stitch capped the root at phone width (max-w-md, no md:/lg:) on 1-2 of 8 states.
+  - "RESPONSIVE: compact is a full-width form; md: a centred card on a tinted ground; lg: two panes (brand panel + card) capped near 1200 wide. Never a phone-width max-w cap without an md:/lg: widening."
 
 # ──────────────── COMPONENTS ────────────────
 # ORDER IS LOAD-BEARING: the prompt builder emits its `## Composition (top → bottom)` block from
@@ -353,6 +359,8 @@ components:
     type: image
     asset: signin_brand_mark
     treatment: "contained in a soft rounded tile, approx 64dp"
+    # 2026-11-05: stated literally because a render drew a bank glyph here (the builder emits `label`).
+    label: "Mifos X mark: square split by a white X into 4 coloured triangles. Never a bank or building icon."
     v1: >
       v1 shipped `feature_auth_mifos_logo.jpg` — a 75KB JPEG of a raster logo with baked-in white
       background, which renders with visible edges on a tinted tile and cannot adapt to dark theme.
@@ -494,10 +502,53 @@ components:
   - id: consent_text
     type: legal_text
     slot: bottom_bar
+    testTag: "signin:consent"
     label_ref: feature_signin_consent
+    # 2026-11-05 /idea-plan-add enhance signin (operator instruction, device-verified source
+    # SignInScreen.kt ConsentText): accept-by-continuing wording, same rule as onboarding's agreement line —
+    # signing in IS the acceptance act. ONE Text with two inline LinkAnnotation spans (spans carry no testTag;
+    # tests find each link by its TEXT inside signin:consent). The LITERAL copy is stated so design-time
+    # renders print the real sentence, never a guessed "Terms of Service".
+    label: "By signing in you accept our Terms & Conditions and Privacy Policy."
+    text: "{strings.screens.signin.consent}"          # "By signing in you accept our %1$s and %2$s."
+    args: ["{strings.screens.signin.terms}", "{strings.screens.signin.privacy_policy}"]   # Terms & Conditions FIRST, then Privacy Policy
+    style: { titleColor: onSurfaceVariant, typography: body_small, textAlign: center }
     links:
-      - { token: terms,   action: open_url, target: "legal.terms_url" }
-      - { token: privacy, action: open_url, target: "legal.privacy_url" }
+      - id: terms_link
+        token: terms
+        span_text: "{strings.screens.signin.terms}"           # "Terms & Conditions"
+        arg_index: 1
+        target_url: 'AppOrgLinks["terms"]'                     # https://mifos-products.pages.dev/mobile/field-officer/terms/
+        open_mode: in_app                                       # LocalUrlLauncher.launchInApp (Custom Tabs / SFSafariViewController)
+        style: { titleColor: primary, underline: true }
+        a11y: { contentDescription: "Terms & Conditions - opens in the app", role: link }
+        on_click:
+          action: open_terms
+          action_contract:
+            effect: navigate
+            library_refs: []
+            scope: screen                                       # screen-level effect (onOpenTerms lambda), not a ViewModel action
+            description: "Opens the hosted Field Officer App terms and conditions inside the app so the officer can read what signing in accepts."
+            action_contract_author: "claude-via-idea-plan-add"
+            action_contract_authored_at: "2026-11-05T06:30:00Z"
+      - id: privacy_policy_link
+        token: privacy
+        span_text: "{strings.screens.signin.privacy_policy}"  # "Privacy Policy"
+        arg_index: 2
+        target_url: "AppPrivacyConfig.PRIVACY_POLICY_URL"       # https://mifos-products.pages.dev/mobile/field-officer/privacy/
+        open_mode: in_app
+        style: { titleColor: primary, underline: true }
+        a11y: { contentDescription: "Privacy Policy - opens in the app", role: link }
+        on_click:
+          action: open_privacy_policy
+          action_contract:
+            effect: navigate
+            library_refs: []
+            scope: screen                                       # screen-level effect (onOpenPrivacyPolicy lambda)
+            description: "Opens the hosted Mifos field officer privacy policy inside the app so the officer can read it before signing in."
+            action_contract_author: "claude-via-idea-plan-add"
+            action_contract_authored_at: "2026-11-05T06:30:00Z"
+    replaces: '2026-11-04 plain text "By signing in you agree to our Terms of Service and Privacy Policy." (links were placeholders legal.terms_url / legal.privacy_url)'
     v1: >
       ABSENT IN v1 — flagged 2026-10-03 as the clearest professional omission. An app that collects
       credentials and transmits banking data states its terms at the point of collection. This is
@@ -506,6 +557,7 @@ components:
   - id: progress_overlay
     type: progress_overlay
     source: "MifosProgressIndicatorOverlay — core/ui"
+    label: "loading animation, no text"   # AppProgressIndicatorOverlay (core/ui) is a Lottie with no copy; a render invented a gateway status line
     renders_states: [submitting]
     modal: true
     dismissible: false

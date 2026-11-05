@@ -216,3 +216,38 @@ screens.profile.cancel: "Cancel"
 screens.profile.save_password: "Save password"
 screens.profile.password_changed: "Password changed"
 screens.profile.sign_out: "Sign out"
+
+# onboarding — /idea-plan-add 2026-11-04 (first run, before sign-in)
+screens.onboarding.skip: "Skip"
+screens.onboarding.skip_a11y: "Skip to the privacy choices"
+screens.onboarding.next: "Next"
+screens.onboarding.brand_a11y: "Mifos X"
+screens.onboarding.page_of: "Page %1$d of %2$d"
+screens.onboarding.clients_title: "Your clients, groups and centres — in the field"
+screens.onboarding.clients_body: "Look up a client, open a group or a centre and see their loans and savings, wherever your visits take you."
+screens.onboarding.collections_title: "Collect repayments and run collection sheets"
+screens.onboarding.collections_body: "Record repayments at the meeting and work through a centre's collection sheet client by client."
+screens.onboarding.offline_title: "No signal? Keep working"
+screens.onboarding.offline_body: "Records you keep on the device open offline. What you capture is saved and syncs when you're back online."
+screens.onboarding.privacy_title: "Help improve the app"
+screens.onboarding.privacy_lead: "Both are off unless you turn them on. Allow both in one tap, or choose below — you can still use everything."
+screens.onboarding.analytics_label: "Share usage analytics"
+screens.onboarding.analytics_body: "Which screens and features are used, and how often. No client names, account numbers or amounts."
+screens.onboarding.crash_label: "Send crash reports"
+screens.onboarding.crash_body: "When the app crashes: the error, the app version and the device model, so we can fix it. No client data."
+screens.onboarding.no_client_data: "Nothing about your clients, loans or savings is ever sent."
+screens.onboarding.privacy_policy: "Privacy Policy"
+screens.onboarding.settings_later: "You can change this later in Settings."
+screens.onboarding.connect_instance: "Connect to your Mifos instance"
+# 2026-11-05 /idea-plan-add enhance onboarding — operator decisions A ("Allow / Continue without") + B (agreement line); get_started dropped
+screens.onboarding.allow_get_started: "Allow and get started"
+screens.onboarding.continue_without: "Continue without sharing"
+screens.onboarding.continue_choices: "Continue with my choices"
+screens.onboarding.agreement: "By using our service you accept our %1$s and %2$s."   # %1$s = terms, %2$s = privacy_policy
+screens.onboarding.terms: "Terms & Conditions"
+screens.onboarding.save_failed: "Couldn't save your choices. Try again."
+
+# signin — 2026-11-05 /idea-plan-add enhance signin (consent line: accept-by-continuing, both links in-app)
+screens.signin.consent: "By signing in you accept our %1$s and %2$s."   # %1$s = terms, %2$s = privacy_policy → feature_signin_consent
+screens.signin.terms: "Terms & Conditions"                              # → feature_signin_terms
+screens.signin.privacy_policy: "Privacy Policy"                         # → feature_signin_privacy_policy

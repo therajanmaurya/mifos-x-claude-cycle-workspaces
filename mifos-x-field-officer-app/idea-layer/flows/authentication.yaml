@@ -12,8 +12,8 @@ name: Authentication
 description: "Cold start → credential check → authenticated shell, plus the server-config side trip."
 
 # ──────────────── ENTRY ────────────────
-# THREE distinct root states all land on sign-in. That is not redundancy — the app ships no
-# onboarding screen and no unlock screen, so both fall through to the gate.
+# Auth and UserLocked land on sign-in (there is no unlock screen). ShowOnboarding (first run) lands on
+# onboarding — decided 2026-11-04 — which hands over to sign-in once the privacy choice is saved.
 entry_points:
   - from: rootNav
     when: "RootNavState.Auth"
@@ -21,9 +21,9 @@ entry_points:
     meaning: "not authenticated"
   - from: rootNav
     when: "RootNavState.ShowOnboarding"
-    to: signin
-    meaning: "first run — no onboarding screen exists in this fork"
-    gap: "ui.yaml#feature_split.deferred_candidate — onboarding is a real missing screen, recorded not invented"
+    to: onboarding
+    meaning: "first run (userData.firstTimeUser) — intro pages + privacy consent, shown once"
+    resolves: "screens/signin/ui.yaml#feature_split.deferred_candidate (decided 2026-11-04)"
   - from: rootNav
     when: "RootNavState.UserLocked"
     to: signin
@@ -34,6 +34,10 @@ entry_points:
 
 # ──────────────── SCREENS ────────────────
 screens:
+  - id: onboarding
+    role: first-run
+    shell: none
+    note: "shown once on a fresh install; asks for analytics + crash-report consent (both OFF by default)"
   - id: signin
     role: gate
     shell: none
@@ -44,6 +48,21 @@ screens:
 
 # ──────────────── EDGES ────────────────
 edges:
+  - id: finish-onboarding
+    from: onboarding
+    to: signin
+    trigger: "Allow and get started OR Continue without sharing / Continue with my choices on the privacy page (2026-11-05)"
+    network: false
+    side_effects:
+      - "Allow and get started: setAnalyticsConsent(true) + setCrashReportingConsent(true); Continue: setAnalyticsConsent(analytics) + setCrashReportingConsent(crashReports) — exactly as shown, both default OFF"
+      - "setFirstTimeState(false) — onboarding never shows again on this device"
+
+  - id: onboarding-configure-instance
+    from: onboarding
+    to: serverConfig
+    trigger: "Connect to your Mifos instance (privacy page)"
+    reversible: true
+
   - id: configure-instance
     from: signin
     to: serverConfig

@@ -1,0 +1,166 @@
+# EXPORT_MATRIX.yaml — mifos-x-field-officer-app idea-feature-export staleness ledger (v2.0.0)
+# Auto-managed by /idea export + /idea sync. Do not hand-edit.
+# Re-run `/idea export` or `/idea sync` to refresh.
+#
+# Bootstrapped 2026-11-04 by /idea-feature-render onboarding (export-matrix-write.md Step 1: missing file →
+# fresh v2 with cells: [] + this run's cell). Other features' cells are written by their next producer run.
+#
+# Schema: layers/idea/templates/EXPORT_MATRIX.schema.yaml
+# Catalogue: layers/idea/templates/EXPORT_OUTPUT_TYPES.yaml
+
+schema_version: "2.0.0"
+project: "mifos-x-field-officer-app"
+generated_at: "2026-11-05T00:50:00Z"
+command: idea-feature-export
+
+capability_snapshot:
+  ids_fingerprint: null
+  count: 0
+  built_at: null
+
+cells:
+  - feature: onboarding
+    output_type: preview
+    output_path: "idea-layer/screens/onboarding/preview"
+    states:
+      - state: intro_clients
+        output_path: "idea-layer/screens/onboarding/preview/intro_clients.html"
+        output_mtime: "2026-11-04T16:43:55Z"
+        output_hash: "b83affa2cffa"
+        stale: true
+      - state: intro_collections
+        output_path: "idea-layer/screens/onboarding/preview/intro_collections.html"
+        output_mtime: "2026-11-04T16:43:55Z"
+        output_hash: "a23609cb8495"
+        stale: true
+      - state: intro_offline
+        output_path: "idea-layer/screens/onboarding/preview/intro_offline.html"
+        output_mtime: "2026-11-04T16:43:55Z"
+        output_hash: "83cf3effc5c5"
+        stale: true
+      - state: privacy
+        output_path: "idea-layer/screens/onboarding/preview/privacy.html"
+        output_mtime: "2026-11-04T16:41:16Z"
+        output_hash: "fb3f0ced0749"
+        stale: true
+    derived_from:
+      - input_path: "idea-layer/screens/onboarding/ui.yaml"
+        input_mtime: "2026-11-04T16:50:01Z"
+        input_hash: "a97a3a4c23e9"
+      - input_path: "idea-layer/screens/onboarding/demo-data.yaml"
+        input_mtime: "2026-11-04T16:02:56Z"
+        input_hash: "a046539f54ee"
+      - input_path: "idea-layer/design-system/design-tokens.yaml"
+        input_mtime: "2026-10-02T15:00:50Z"
+        input_hash: "7895f93905e4"
+      - input_path: "idea-layer/components.yaml"
+        input_mtime: "2026-11-04T16:07:46Z"
+        input_hash: "dffa8fddf6e0"
+      - input_path: "idea-layer/preview/_shared/preview-runtime.js"
+        input_mtime: "2026-11-04T10:39:55Z"
+        input_hash: "2cc844260d89"
+    stale: true
+    stale_reason: "input-newer-than-output — ui.yaml gained style/a11y/layout blocks (enrich A.9/A.11/A.13) after the render; the MOCKUP prompt content_hash is unchanged and the render was recorded as a verified no-op (staleness-verify-artifacts --record-generator-noop onboarding:render), so the bytes are current; a --force re-render clears this mtime flag"
+    last_export_command: "/idea-feature-render --feature onboarding --auto"
+    last_export_at: "2026-11-04T16:43:55Z"
+
+  - feature: onboarding
+    output_type: spec
+    output_path: "idea-layer/exports/onboarding/SPEC.md"
+    output_mtime: "2026-11-05T00:50:00Z"
+    output_hash: null                          # recompute on next staleness-resolve run
+    derived_from:
+      - input_path: "idea-layer/screens/onboarding/ui.yaml"
+        input_mtime: "2026-11-05T00:00:00Z"   # updated: allow_get_started + continue_choices + agreement_text 2026-11-05
+        input_hash: null
+      - input_path: "idea-layer/screens/onboarding/docs.yaml"
+        input_mtime: "2026-11-05T00:45:00Z"   # updated: unapproved + two new decisions 2026-11-05
+        input_hash: null
+      - input_path: "idea-layer/screens/onboarding/flow.yaml"
+        input_mtime: "2026-11-05T00:00:00Z"   # updated: open_terms + open_privacy_policy in-app 2026-11-05
+        input_hash: null
+      - input_path: "idea-layer/screens/onboarding/api.yaml"
+        input_mtime: "2026-11-04T16:02:47Z"
+        input_hash: "266797a2aa53"
+      - input_path: "idea-layer/_strings/strings.yaml"
+        input_mtime: "2026-11-05T00:00:00Z"   # updated: allow_get_started + continue_without + continue_choices + agreement + terms keys
+        input_hash: null
+    stale: false
+    stale_reason: null
+    last_export_command: "/idea-feature-export onboarding"
+    last_export_at: "2026-11-05T00:50:00Z"
+    regen_reason: "2026-11-05 operator decisions A+B: allow_get_started + continue_choices + agreement_text"
+
+  - feature: onboarding
+    output_type: api_md
+    output_path: "idea-layer/exports/onboarding/API.md"
+    output_mtime: "2026-11-05T00:50:00Z"
+    output_hash: null                          # recompute on next staleness-resolve run
+    derived_from:
+      - input_path: "idea-layer/screens/onboarding/api.yaml"
+        input_mtime: "2026-11-04T16:02:47Z"
+        input_hash: "266797a2aa53"
+      - input_path: "idea-layer/screens/onboarding/docs.yaml"
+        input_mtime: "2026-11-05T00:45:00Z"   # added: open-url capability + writes contract
+        input_hash: null
+      - input_path: "idea-layer/screens/onboarding/data-flow.yaml"
+        input_mtime: "2026-11-05T00:00:00Z"
+        input_hash: null
+    stale: false
+    stale_reason: null
+    last_export_command: "/idea-feature-export onboarding"
+    last_export_at: "2026-11-05T00:50:00Z"
+    regen_reason: "2026-11-05 operator decisions A+B: AllowAll/ContinueWithChoices write paths; terms_url local read; open-url capability"
+
+  - feature: onboarding
+    output_type: mockup
+    output_path: "idea-layer/mockups/onboarding/MOCKUP.md"
+    output_mtime: "2026-11-04T18:08:13Z"
+    output_hash: "755eb16f5387"
+    derived_from:
+      - input_path: "idea-layer/screens/onboarding/ui.yaml"
+        input_mtime: "2026-11-04T16:50:01Z"
+        input_hash: "a97a3a4c23e9"
+      - input_path: "idea-layer/screens/onboarding/docs.yaml"
+        input_mtime: "2026-11-04T17:49:53Z"
+        input_hash: "45b6e852e73e"
+      - input_path: "idea-layer/screens/onboarding/demo-data.yaml"
+        input_mtime: "2026-11-04T16:02:56Z"
+        input_hash: "a046539f54ee"
+      - input_path: "idea-layer/design-system/DESIGN.md"
+        input_mtime: "2026-10-02T15:01:09Z"
+        input_hash: "9b3a428cc2a5"
+    stale: false
+    stale_reason: null
+    last_export_command: "/idea-feature-export onboarding"
+    last_export_at: "2026-11-04T18:11:00Z"
+
+  - feature: onboarding
+    output_type: prompts_figma
+    output_path: "idea-layer/mockups/onboarding/PROMPTS_FIGMA.md"
+    output_mtime: "2026-11-04T18:09:00Z"
+    output_hash: "eecc798779e0"
+    derived_from:
+      - input_path: "idea-layer/mockups/onboarding/MOCKUP.md"
+        input_mtime: "2026-11-04T18:08:13Z"
+        input_hash: "755eb16f5387"
+      - input_path: "idea-layer/screens/onboarding/ui.yaml"
+        input_mtime: "2026-11-04T16:50:01Z"
+        input_hash: "a97a3a4c23e9"
+    stale: false
+    stale_reason: null
+    last_export_command: "/idea-feature-export onboarding"
+    last_export_at: "2026-11-04T18:11:00Z"
+
+summary:
+  total_features: 1
+  total_cells: 5
+  cells_fresh: 4
+  cells_stale: 1
+  cells_pending: 0
+  by_output_type:
+    preview: { total: 1, fresh: 0, stale: 1, pending: 0 }   # stale: ui.yaml enrich mtime; recorded noop; --force re-render clears
+    spec: { total: 1, fresh: 1, stale: 0, pending: 0 }      # regenerated 2026-11-05T00:50:00Z
+    api_md: { total: 1, fresh: 1, stale: 0, pending: 0 }    # regenerated 2026-11-05T00:50:00Z
+    mockup: { total: 1, fresh: 1, stale: 0, pending: 0 }
+    prompts_figma: { total: 1, fresh: 1, stale: 0, pending: 0 }

@@ -1,0 +1,172 @@
+<!doctype html>
+<!-- render-hash: 078847049b2f -->
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onboarding, page 2 of 4: Mifos X Field Officer</title>
+<style>
+:root {
+  --color-background: #FAFAFB;
+  --color-on-background: #0F172A;
+  --color-on-surface-variant: #475569;
+  --color-primary: #4338CA;
+  --color-on-primary: #FFFFFF;
+  --color-primary-container: #E0E7FF;
+  --color-on-primary-container: #1F1D75;
+  --color-secondary: #059669;
+  --color-secondary-container: #D1FAE5;
+  --color-on-secondary-container: #064E3B;
+  --color-tertiary: #D97706;
+  --color-tertiary-container: #FEF3C7;
+  --color-on-tertiary-container: #78350F;
+  --color-surface-card: #FFFFFF;
+  --color-outline: #94A3B8;
+  --color-outline-variant: #CBD5E1;
+  --color-skin-a: #B9825A;
+  --color-skin-b: #8D5A3B;
+  --mark-lime: #92D050;
+  --mark-green: #00B050;
+  --mark-blue: #0070C0;
+  --mark-sky-a: #00B0F0;
+  --mark-sky-b: #7FD8F8;
+  --mark-x: #FFFFFF;
+  --el-0: none;
+  --el-1: 0 1px 2px rgba(15, 23, 42, 0.06), 0 2px 6px rgba(15, 23, 42, 0.05);
+  --el-2: 0 1px 2px rgba(15, 23, 42, 0.06), 0 12px 32px rgba(31, 29, 117, 0.10);
+  --font-family: "Outfit", ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fs-headline: 28px; --lh-headline: 36px;
+  --fs-headline-lg: 32px; --lh-headline-lg: 40px;
+  --fs-body: 16px; --lh-body: 24px;
+  --fs-body-lg: 18px; --lh-body-lg: 28px;
+  --fs-label: 15px;
+  --fw-medium: 500; --fw-semibold: 600;
+  --sp-xs: 4px; --sp-sm: 8px; --sp-md: 12px; --sp-lg: 16px; --sp-xl: 24px; --sp-xxl: 32px; --sp-xxxl: 48px;
+  --mark-size: 32px;
+  --touch-min: 48px;
+  --dot: 8px; --dot-active: 24px;
+  --r-sm: 8px; --r-xl: 24px; --r-full: 999px;
+  --content-medium: 560px;
+  --content-expanded: 1040px;
+}
+[data-theme="dark"] {
+  --color-background: #0F172A;
+  --color-on-background: #F1F5F9;
+  --color-on-surface-variant: #CBD5E1;
+  --color-primary: #A5B4FC;
+  --color-on-primary: #1F1D75;
+  --color-primary-container: #312E81;
+  --color-on-primary-container: #E0E7FF;
+  --color-secondary: #34D399;
+  --color-secondary-container: #064E3B;
+  --color-tertiary-container: #78350F;
+  --color-on-tertiary-container: #FEF3C7;
+  --color-surface-card: #1E293B;
+  --color-outline: #64748B;
+  --color-outline-variant: #334155;
+  --el-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --el-2: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body { width: 100%; min-height: 100vh; display: flex; flex-direction: column; background: var(--color-background); color: var(--color-on-background); font-family: var(--font-family); -webkit-font-smoothing: antialiased; }
+button { font: inherit; }
+.defs { position: absolute; }
+.root { flex: 1; width: 100%; height: 100vh; display: flex; flex-direction: column; margin: 0 auto; padding: var(--sp-md) var(--sp-xl) 0; }
+.top-row { flex: none; min-height: var(--touch-min); display: flex; align-items: center; justify-content: space-between; }
+.mark { width: var(--mark-size); height: var(--mark-size); border-radius: var(--r-sm); overflow: hidden; display: block; }
+.skip { min-height: var(--touch-min); min-width: var(--touch-min); padding: 0 var(--sp-md); border: 0; border-radius: var(--r-full); background: transparent; color: var(--color-primary); font-size: var(--fs-label); font-weight: var(--fw-medium); cursor: pointer; }
+.content { flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; justify-content: center; gap: var(--sp-xl); padding: var(--sp-lg) 0; }
+.hero { width: 100%; aspect-ratio: 4 / 3; border-radius: var(--r-xl); background: var(--color-tertiary-container); box-shadow: var(--el-1); overflow: hidden; }
+.hero svg { width: 100%; height: 100%; display: block; }
+.copy { display: flex; flex-direction: column; gap: var(--sp-md); }
+.copy h1 { margin: 0; font-size: var(--fs-headline); line-height: var(--lh-headline); font-weight: var(--fw-semibold); letter-spacing: -0.2px; max-width: 20ch; }
+.copy p { margin: 0; font-size: var(--fs-body); line-height: var(--lh-body); color: var(--color-on-surface-variant); max-width: 42ch; }
+.bar-row { flex: none; display: flex; }
+.bar-spacer { display: none; }
+.bar { flex: 1; display: flex; flex-direction: column; align-items: center; gap: var(--sp-lg); padding: var(--sp-lg) 0 calc(var(--sp-lg) + env(safe-area-inset-bottom)); background: var(--color-background); }
+.dots { display: flex; align-items: center; gap: var(--sp-sm); }
+.dot { width: var(--dot); height: var(--dot); border-radius: var(--r-full); background: var(--color-outline-variant); }
+.dot.on { width: var(--dot-active); background: var(--color-primary); }
+.btn { width: 100%; min-height: var(--touch-min); display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: var(--r-full); background: var(--color-primary); color: var(--color-on-primary); font-size: var(--fs-body); font-weight: var(--fw-semibold); letter-spacing: 0.2px; cursor: pointer; box-shadow: var(--el-1); }
+:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+@media (min-width: 600px) {
+  .root { max-width: var(--content-medium); padding-top: var(--sp-xl); }
+}
+@media (min-width: 840px) {
+  .root { max-width: var(--content-expanded); padding: var(--sp-xl) var(--sp-xxl) 0; }
+  .content { flex-direction: row; align-items: center; gap: var(--sp-xxl); }
+  .hero, .copy { flex: 1; }
+  .copy h1 { font-size: var(--fs-headline-lg); line-height: var(--lh-headline-lg); }
+  .copy p { font-size: var(--fs-body-lg); line-height: var(--lh-body-lg); }
+  .bar-row { gap: var(--sp-xxl); }
+  .bar-spacer { display: block; flex: 1; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" class="defs" aria-hidden="true">
+  <defs>
+    <linearGradient id="mark-sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" style="stop-color: var(--mark-sky-a)"/>
+      <stop offset="1" style="stop-color: var(--mark-sky-b)"/>
+    </linearGradient>
+    <symbol id="mifos-mark" viewBox="0 0 200 200">
+      <polygon points="0,0 200,0 100,100" style="fill: var(--mark-lime)"/>
+      <polygon points="0,200 200,200 100,100" style="fill: var(--mark-green)"/>
+      <polygon points="0,0 0,200 100,100" style="fill: var(--mark-blue)"/>
+      <polygon points="200,0 200,200 100,100" fill="url(#mark-sky)"/>
+      <path d="M0 0 L200 200 M200 0 L0 200" style="stroke: var(--mark-x)" stroke-width="22"/>
+    </symbol>
+  </defs>
+</svg>
+<div class="root" data-shell="root" data-screen-id="onboarding" data-state="intro_collections" data-component-type="Pager" data-component-id="pager" aria-label="Onboarding, page 2 of 4 - swipe or use Next to move between pages">
+
+  <header class="top-row" data-component-type="LayoutBox" data-component-id="top_row">
+    <svg class="mark" role="img" aria-label="Mifos X" data-component-type="Image" data-component-id="brand_mark"><use href="#mifos-mark"/></svg>
+    <button class="skip" type="button" data-component-type="TextButton" data-component-variant="text" data-component-id="skip" data-action="skip_to_privacy" aria-label="Skip the introduction and go to the privacy choices">Skip</button>
+  </header>
+
+  <main class="content" data-shell="content" data-state="intro_collections" data-component-type="LayoutBox" data-component-id="content">
+    <div class="hero" data-component-type="Image" data-component-variant="decorative" data-component-id="intro_illustration_collections">
+      <svg viewBox="0 0 800 600" role="img" aria-label="An officer records a repayment on a phone while a client hands over cash at a centre meeting">
+        <rect x="0" y="440" width="800" height="160" style="fill: var(--color-tertiary); opacity: 0.18"/>
+        <rect x="520" y="120" width="200" height="250" rx="16" style="fill: var(--color-surface-card)"/>
+        <rect x="548" y="160" width="20" height="20" rx="5" style="fill: var(--color-secondary)"/>
+        <rect x="582" y="164" width="110" height="12" rx="6" style="fill: var(--color-outline-variant)"/>
+        <rect x="548" y="210" width="20" height="20" rx="5" style="fill: var(--color-secondary)"/>
+        <rect x="582" y="214" width="90" height="12" rx="6" style="fill: var(--color-outline-variant)"/>
+        <rect x="548" y="260" width="20" height="20" rx="5" style="fill: var(--color-secondary)"/>
+        <rect x="582" y="264" width="120" height="12" rx="6" style="fill: var(--color-outline-variant)"/>
+        <rect x="548" y="310" width="20" height="20" rx="5" style="fill: none; stroke: var(--color-outline)" stroke-width="3"/>
+        <rect x="582" y="314" width="80" height="12" rx="6" style="fill: var(--color-outline-variant)"/>
+        <circle cx="210" cy="250" r="34" style="fill: var(--color-skin-a)"/>
+        <rect x="172" y="290" width="76" height="170" rx="28" style="fill: var(--color-primary)"/>
+        <rect x="244" y="300" width="34" height="56" rx="6" style="fill: var(--color-on-background)"/>
+        <rect x="249" y="306" width="24" height="42" rx="4" style="fill: var(--color-primary-container)"/>
+        <circle cx="390" cy="262" r="32" style="fill: var(--color-skin-b)"/>
+        <rect x="354" y="300" width="72" height="160" rx="28" style="fill: var(--color-tertiary)"/>
+        <rect x="292" y="330" width="62" height="34" rx="6" style="fill: var(--color-secondary)"/>
+        <rect x="300" y="338" width="46" height="18" rx="4" style="fill: var(--color-secondary-container)"/>
+      </svg>
+    </div>
+    <div class="copy" data-component-type="LayoutBox" data-component-id="copy">
+      <h1 data-component-type="Text" data-component-variant="headline_medium" data-component-id="intro_title">Collect repayments and run collection sheets</h1>
+      <p data-component-type="Text" data-component-variant="body_large" data-component-id="intro_body">Record repayments at the meeting and work through a centre's collection sheet client by client.</p>
+    </div>
+  </main>
+
+  <div class="bar-row" data-component-type="LayoutBox" data-component-id="bottom_bar_row">
+    <div class="bar-spacer" aria-hidden="true"></div>
+    <footer class="bar" data-component-type="LayoutBox" data-component-id="controls">
+      <div class="dots" role="img" aria-label="Page 2 of 4" data-component-type="PageIndicator" data-component-id="page_indicator">
+        <span class="dot"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span>
+      </div>
+      <button class="btn" type="button" data-component-type="Button" data-component-variant="primary" data-component-id="next" data-action="next_page" aria-label="Next - tap to go to the next onboarding page">Next</button>
+    </footer>
+  </div>
+</div>
+<script src="../../../preview/_shared/preview-runtime.js"></script>
+</body>
+</html>

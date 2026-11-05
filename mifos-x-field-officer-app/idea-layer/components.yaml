@@ -105,3 +105,22 @@ components:
     content_fields: [headline, subtitle]
     semantics:
       - "The headline is resolved from the fork's app-profile display name, never a hardcoded brand literal."
+
+  # ──────────────── ONBOARDING (added 2026-11-04 by /idea-plan-add onboarding) ────────────────
+  - type: pager
+    extends: carousel
+    description: "Full-screen horizontal pager of onboarding pages; one page visible at a time."
+    content_fields: [pages]
+    semantics:
+      - "Never auto-scrolls — the officer moves with Next, Skip, a swipe or back."
+      - "Swiping is equivalent to Next / back and never saves anything."
+      - "Back on the first page is passed to the system; nothing is stored."
+    a11y: ["When a page settles its title (a heading) and body are announced as one group."]
+
+  - type: page_indicator
+    extends: stepper
+    description: "Row of dots showing the current onboarding page; not interactive."
+    content_fields: [count, current]
+    semantics:
+      - "The current dot is filled with the primary colour; the others are outlined. Dots are not tap targets."
+    a11y: ["Announced as 'Page n of N' — the dots themselves are not focusable."]

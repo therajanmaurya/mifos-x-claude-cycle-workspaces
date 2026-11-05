@@ -5,6 +5,8 @@ description: >
   Authenticates a field officer against the configured Fineract instance and establishes the session every other screen
   depends on. Surfaces WHICH instance it will authenticate against before the user types, and is the only route to the
   server-configuration screen, because a first-run user has no server URL and therefore cannot sign in until one is set.
+  A pinned consent line — "By signing in you accept our Terms & Conditions and Privacy Policy." — links both documents
+  in-app; signing in is the act of acceptance.
 feature: signin
 feature_id: signin
 flow: entry
@@ -39,8 +41,13 @@ provenance:
       - feature/signin/src/commonMain/kotlin/kpt/feature/signin/SignInViewModel.kt
       - feature/signin/src/commonMain/kotlin/kpt/feature/signin/SignInRoute.kt
       - feature/signin/src/commonMain/kotlin/kpt/feature/signin/SignInTestTags.kt
+      - feature/signin/src/commonMain/kotlin/kpt/feature/signin/ui/SignInScreen.kt
       - core/platform/module-deps.gradle.kts
       - core/designsystem/src/commonMain/kotlin/kpt/core/designsystem/icon/MifosIcons.kt
+  enhanced: >-
+    operator instruction 2026-11-05 (/idea-plan-add enhance signin): the consent line reads "By signing in you accept
+    our Terms & Conditions and Privacy Policy." with both phrases as in-app links — implemented in source first
+    (SignInScreen.kt ConsentText, LinkAnnotation spans) and verified on a device, then materialized here.
 
 # v1 is the CONTEXT, not the ceiling. It fixes WHAT this screen does; v2 designs HOW it should do it
 # with the capabilities the template actually ships. Every v2 addition is capability-cited in ui.yaml.
@@ -49,7 +56,11 @@ version_lineage:
   v2: "2026-10-03 — professional redesign on the migrated substrate; shipped 2026-10-05"
 
 status: approved
-approve_hash: "00fddd1a9276309a7a89d0051684c0d4c752fcb7dc8403834826fd56b5d578f3"
+approve_hash: "5a59aac225c501807f1f587193acb32b3d0247c1cf6ac81ff2d1c5d7185a35b8"
+approved_at: '2026-11-05T07:50:00Z'
+approved_by: /idea-approve
+approve_predicate_version: "1.0.0"
+approve_contract_version: "2.0.0"
 quality_score: null
 status_history:
   - { from: null,     to: imported, at: '2026-10-02', by: /idea-feature-import }
@@ -69,6 +80,27 @@ status_history:
     note: >
       Post-implementation reconciliation. The docset was approved describing a v2 target that source
       had not yet reached; this pass folds back what the implementation and the device run MEASURED.
+  - from: approved
+    to: enriched
+    at: '2026-11-05T06:30:00Z'
+    by: /idea-approve --unapprove
+    reason: "operator 2026-11-05: consent line links Terms & Conditions + Privacy Policy, accept-by-continuing wording"
+    cleared: [approve_hash 00fddd1a9276309a7a89d0051684c0d4c752fcb7dc8403834826fd56b5d578f3]
+    dependents_warned: [onboarding]
+  - from: enriched
+    to: designed
+    at: '2026-11-05T06:45:36.201Z'
+    by: /idea-feature-stitch
+  - from: designed
+    to: approved
+    at: '2026-11-05T07:50:00Z'
+    by: /idea-approve
+    contract_version: "2.0.0"
+    bypass_flags: []
+    note: >-
+      operator 2026-11-05 consent-line change: ui/flow/docs/tests/_strings updated, all 8 Stitch screens regenerated
+      (consent copy + both links verified in every code.html), responsive brief added to visual_treatment, responsive
+      gate green; predicate + disclosures in APPROVE_LOG.yaml
 
 # ──────────────── IMPLEMENTATION DRIFT — CLOSED ────────────────
 # This block existed because the docset was redesigned to v2 while source still implemented v1.
@@ -117,6 +149,12 @@ verification:
         prod/debug artifact was two days old, so the check passed on a stale build. Caught by READING
         the capture rather than trusting the install, then rebuilt and re-armed.
       lesson: "md5 parity proves device == artifact. It does not prove artifact == source."
+  consent_line_2026_11_05:
+    at: '2026-11-05'
+    by: operator (device-verified before this docset update)
+    observed: >-
+      the pinned bottom-bar line reads "By signing in you accept our Terms & Conditions and Privacy Policy.";
+      both phrases are underlined primary-colour links that open in-app (Custom Tabs). testTag signin:consent unchanged.
 
 # ──────────────── ONE STATE NOT DEVICE-REACHABLE ────────────────
 # Not a fake-green and not a self-granted skip: an EXTERNAL GATE in the
@@ -190,11 +228,44 @@ capabilities:
     device_verified: '2026-10-05'
     note: "see port_deviations.lockout-not-wired-to-tracker for why the shipped tracker is NOT used"
   - id: state-terms-at-point-of-collection
-    description: "Present terms and privacy adjacent to the action that collects the credential."
-    backed_by: "static links; no runtime dependency"
+    description: >-
+      Present terms and privacy adjacent to the action that collects the credential. Since 2026-11-05: "By signing in
+      you accept our Terms & Conditions and Privacy Policy." — accept-by-continuing, the same rule as onboarding's
+      agreement line — with both phrases as in-app links.
+    backed_by: >-
+      AppOrgLinks["terms"] (app-profile/app.yaml#org.links.terms → https://mifos-products.pages.dev/mobile/field-officer/terms/)
+      + AppPrivacyConfig.PRIVACY_POLICY_URL, opened with LocalUrlLauncher.launchInApp (core-base/platform, cmp-open-url)
     v2: true
     status: shipped
-    device_verified: '2026-10-05'
+    device_verified: '2026-11-05'
+
+# ──────────────── SCREEN-LEVEL ACTIONS (not ViewModel) ────────────────
+# The two consent links are lambdas on SignInScreen (onOpenTerms / onOpenPrivacyPolicy) wired to
+# LocalUrlLauncher in the route; they change no ViewModel state.
+screen_actions:
+  - name: OpenTerms
+    handles: [open_terms]
+    effect: 'LocalUrlLauncher.launchInApp(AppOrgLinks["terms"])'
+    error_handling:
+      NoBrowserAvailable: launchInApp returning false leaves sign-in as it was, both fields unchanged
+      LinkMissing: AppOrgLinks["terms"] is null only if app-profile drops org.links.terms — the span renders as plain text, never a dead link
+  - name: OpenPrivacyPolicy
+    handles: [open_privacy_policy]
+    effect: "LocalUrlLauncher.launchInApp(AppPrivacyConfig.PRIVACY_POLICY_URL)"
+    error_handling:
+      NoBrowserAvailable: launchInApp returning false leaves sign-in as it was, both fields unchanged
+
+decisions:
+  - id: consent-accept-by-continuing
+    decided_at: '2026-11-05'
+    decision: >-
+      The pinned consent line reads "By signing in you accept our Terms & Conditions and Privacy Policy." (was "By
+      signing in you agree to our Terms of Service and Privacy Policy." as plain text). It is ONE Text with two
+      LinkAnnotation spans, Terms & Conditions first: Terms & Conditions → AppOrgLinks["terms"], Privacy Policy →
+      AppPrivacyConfig.PRIVACY_POLICY_URL, both in-app. Tests find each link by its text inside signin:consent.
+    why: >-
+      operator instruction 2026-11-05, verified on a device: signing in is the acceptance act, the same rule as the
+      onboarding agreement line, and the document must be named exactly as published ("Terms & Conditions").
 
 # ──────────────── PORT DEVIATIONS ────────────────
 port_deviations:
@@ -338,7 +409,9 @@ owned_strings:
   # v2 additions
   - feature_signin_cd_change_instance
   - feature_signin_set_instance
-  - feature_signin_consent
+  - feature_signin_consent           # 2026-11-05: "By signing in you accept our %1$s and %2$s."
+  - feature_signin_terms             # 2026-11-05: "Terms & Conditions"
+  - feature_signin_privacy_policy    # 2026-11-05: "Privacy Policy"
   - feature_signin_locked_out
   - feature_signin_attempts_remaining
   - feature_signin_biometric_unlock
@@ -354,12 +427,22 @@ platform_capabilities:
       reach core-base THROUGH core/, never directly (G-CORE-BASE-ENCAP), and that file is not
       template-owned, so no upstream PR is required.
 
+enrichment_history:
+  - at: '2026-11-05T06:30:00Z'
+    by: /idea-feature-enrich signin (STEP 5.5 + 5.6, after /idea-plan-add enhance signin)
+    changes:
+      - 'consent_text: accept-by-continuing copy + two in-app links (terms_link, privacy_policy_link) with action contracts'
+      - 'screen_actions +OpenTerms +OpenPrivacyPolicy (screen-level, not ViewModel); decisions +consent-accept-by-continuing'
+      - 'owned_strings +feature_signin_terms +feature_signin_privacy_policy; _strings screens.signin.{consent,terms,privacy_policy}'
+      - 'tests.yaml +2 scenarios (consent links open in-app)'
+      - 'ui.yaml visual_treatment +RESPONSIVE brief (compact / md: card / lg: two panes, no phone-width cap)'
+
 # ──────────────── PROVENANCE ────────────────
 last_generate:
-  generated_at: '2026-10-05'
+  generated_at: '2026-11-05T06:30:00Z'
   generated_by: "/idea-feature-enrich signin (inline-opus generator)"
   inputs: [ui.yaml, api.yaml, flow.yaml]
-  content_hash: "050e1ec0e25dd4712bd15d7a5147612d961997b58a78a175188fbbcf977626f3"
+  content_hash: "a436d152a887adaced2bc3911e20bde975376919df185458186bbfaf0a761cba"
   content_hash_note: >
     Hash of this artifact's DECLARED inputs, from `content-stale.sh --inputs ... --current-hash` —
     a sanctioned hashing caller (RULE-CI-001). Refresh with

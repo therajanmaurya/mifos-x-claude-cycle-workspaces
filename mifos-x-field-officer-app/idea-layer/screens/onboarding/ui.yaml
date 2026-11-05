@@ -1,0 +1,537 @@
+# onboarding — UI contract. AUTHORED via /idea-plan-add add-feature onboarding 2026-11-04 (operator product
+# decision; resolves screens/signin/ui.yaml#feature_split.deferred_candidate). docs.yaml#decisions carries the why.
+# ENHANCED via /idea-plan-add enhance onboarding 2026-11-05 (operator design feedback, device-verified source):
+# fixed bottom action bar, shared-axis-X page transition (motion:), 32dp brand mark on every page.
+
+schema_version: "3.1"
+screen_id: onboarding
+name: Onboarding
+status: enriched
+archetype: onboarding_step     # templates/prototype-render ARCHETYPES id — full-bleed swipeable step + progress (STEP 5.ARCHETYPE: valid, kept)
+ingress: rootNav               # projection of IDEA_CORE screen.onboarding ingress edge (RootNavState.ShowOnboarding)
+
+shell:                         # pre-auth first run — no chrome at all
+  bottom_navigation_visible: false
+  top_app_bar_visible: false
+  fab_visible: false
+  drawer_accessible: false
+
+business_logic:                # STEP 5.AUTHOR-LOGIC 2026-11-04
+  kind: composite
+  processing_kind: on_demand
+  library_refs: []
+  external_library_refs: [multiplatform-settings]
+  required_modules: [core/data, core/datastore, core/model]
+  required_modules_source: "IDEA_LAYER_SCHEMA_GUIDE.md#kind-required-modules-map"   # composite → key-value-preferences provider
+  required_modules_hash: "ce8e6c335ab06fcb2cc4e2a0232c798b02dbbdc84ed2cd33c80c14143e5d20b0"
+  required_modules_authored_at: "2026-11-04T18:00:00Z"
+  description: "Static first-run pager: three intro pages and a privacy page, all from strings, no network. The two consent switches are held in the ViewModel, both off; Allow and get started writes both on, Continue writes them exactly as shown, through UserDataRepository into core/datastore (multiplatform-settings), then clears firstTimeUser last, so RootNav moves to sign-in and PrivacyConsentApplier applies the choice."
+  description_hash: "0f7f3bc9f513e5ba7c06588dfe80254b60947fb2374d2f2d5d05cea5bb3acafd"
+  description_author: "claude-via-idea-plan-add"          # enhance onboarding 2026-11-05 (operator decision A)
+  description_authored_at: "2026-11-05T00:00:00Z"
+
+feature_profile:               # STEP 5.PROFILE 2026-11-04 — re-derived from scaffold-default (FPC-2: a persisting
+                               # Get started cannot be MEMORY_ONLY; content_input_submit also maps to MUTABLE, not MEMORY_ONLY)
+  combo_id: local_only_prefs       # read_shape none + [local] — the only I/O is three core/datastore preference writes
+  facets: [local]
+  archetype: screen-content
+  store_archetype: OFFLINE_LOCAL_ONLY   # FEATURE_FACETS.store_archetype_map[local_only_prefs]; no network, no Store5 fetcher
+  recipe_ref: CORE_STORE.md
+  heal: auto
+  profile_hash: "sha256:5a829416e3a4e494c5d0efa913ba22a1ff1fd14b60df8576d0b00ef2d9c0188c"
+
+# ──────────────── STATES ────────────────
+# One state per page. Every page is a CONTENT state — no network, nothing to load, nothing to fail
+# except the one local write on Get started (handled in-place on the privacy page).
+states: [intro_clients, intro_collections, intro_offline, privacy]
+initial_state: intro_clients   # ES4 — no api; the first page renders at once
+
+state_detail:
+  - id: intro_clients
+    kind: content
+    page: 1
+    components: [skip, brand_mark, intro_illustration_clients, intro_title, intro_body, page_indicator, next]
+    layout:                        # STEP A.11 — per-state layout (all four states)
+      # 2026-11-05 operator design feedback: fixed top row, scrolling content, FIXED bottom action bar.
+      type: column_with_bottom_bar
+      sections:
+        - { id: top_row, components: [brand_mark, skip], arrangement: space_between, fixed: true, min_height: 48dp }
+        - { id: art, components: [intro_illustration_clients], divider: false, scrolls: true }
+        - { id: copy, components: [intro_title, intro_body], scrolls: true }
+        - { id: controls, components: [page_indicator, next], pinned: bottom, fixed: true, scrolls: false, align: { page_indicator: center, next: fill_width } }
+    demo_data:
+      title: "Your clients, groups and centres — in the field"
+      body: "Look up a client, open a group or a centre and see their loans and savings, wherever your visits take you."
+  - id: intro_collections
+    kind: content
+    page: 2
+    components: [skip, brand_mark, intro_illustration_collections, intro_title, intro_body, page_indicator, next]
+    layout:
+      type: column_with_bottom_bar
+      sections:
+        - { id: top_row, components: [brand_mark, skip], arrangement: space_between, fixed: true, min_height: 48dp }
+        - { id: art, components: [intro_illustration_collections], divider: false, scrolls: true }
+        - { id: copy, components: [intro_title, intro_body], scrolls: true }
+        - { id: controls, components: [page_indicator, next], pinned: bottom, fixed: true, scrolls: false, align: { page_indicator: center, next: fill_width } }
+    demo_data:
+      title: "Collect repayments and run collection sheets"
+      body: "Record repayments at the meeting and work through a centre's collection sheet client by client."
+  - id: intro_offline
+    kind: content
+    page: 3
+    components: [skip, brand_mark, intro_illustration_offline, intro_title, intro_body, page_indicator, next]
+    layout:
+      type: column_with_bottom_bar
+      sections:
+        - { id: top_row, components: [brand_mark, skip], arrangement: space_between, fixed: true, min_height: 48dp }
+        - { id: art, components: [intro_illustration_offline], divider: false, scrolls: true }
+        - { id: copy, components: [intro_title, intro_body], scrolls: true }
+        - { id: controls, components: [page_indicator, next], pinned: bottom, fixed: true, scrolls: false, align: { page_indicator: center, next: fill_width } }
+    demo_data:
+      title: "No signal? Keep working"
+      body: "Records you keep on the device open offline. What you capture is saved and syncs when you're back online."
+  - id: privacy
+    kind: content
+    page: 4
+    components: [brand_mark, privacy_illustration, privacy_title, privacy_lead, analytics_switch, crash_reports_switch, no_client_data_note, agreement_text, settings_later_note, connect_instance_link, page_indicator, save_failed_text, allow_get_started, continue_choices]
+    layout:
+      # 2026-11-05 operator design feedback: the two finishing buttons are PINNED in a fixed bottom bar (no scrolling
+      # to reach them); only the content above scrolls. The agreement line moved up into the scrolling content.
+      type: column_with_bottom_bar
+      sections:
+        - { id: top_row, components: [brand_mark], arrangement: space_between, fixed: true, min_height: 48dp }   # Skip hidden; 48dp min keeps the mark from jumping
+        - { id: art, components: [privacy_illustration], visible_at: [expanded] }
+        - { id: heading, components: [privacy_title, privacy_lead], scrolls: true }
+        - { id: choices, components: [analytics_switch, crash_reports_switch], divider: true, scrolls: true }
+        - { id: reassurance, components: [no_client_data_note, agreement_text, settings_later_note, connect_instance_link], scrolls: true }   # connect_instance_link is the LAST scrolling item — may need a scroll on a phone
+        # 2026-11-05 decision A: two EQUALLY VISIBLE buttons (filled primary + outlined secondary), pinned
+        - { id: controls, components: [page_indicator, save_failed_text, allow_get_started, continue_choices], pinned: bottom, fixed: true, scrolls: false, align: { page_indicator: center, allow_get_started: fill_width, continue_choices: fill_width } }
+    demo_data:
+      analytics: false        # BOTH default OFF — no pre-ticked consent; Allow and get started is an explicit affirmative act
+      crashReports: false
+      continueLabel: "Continue without sharing"     # both off → continue_without; either on → continue_choices
+      privacyPolicyUrl: "https://mifos-products.pages.dev/mobile/field-officer/privacy/"   # AppPrivacyConfig.PRIVACY_POLICY_URL
+      termsUrl: "https://mifos-products.pages.dev/mobile/field-officer/terms/"             # AppOrgLinks["terms"]
+
+# In-place conditions of the privacy page — NOT extra states (decision consent-off-until-chosen: the one local
+# write is handled on the privacy page itself).
+state_compositions:
+  privacy:
+    saving: { disable: [allow_get_started, continue_choices, analytics_switch, crash_reports_switch, connect_instance_link] }
+    save_failed: { show: save_failed_text, enable: [allow_get_started, continue_choices] }
+
+visual_assets:                 # RULE-SCREEN-VISUAL-ASSETS-001 — one illustration per intro page + the brand mark
+  - id: onboarding_brand_mark
+    kind: logo
+    role: brand
+    intent: "The Mifos X mark, 32dp, at the top start of every onboarding page, reused from the shipped artwork, legible in light and dark theme — a quiet mark, not a header."
+    produced_by: /idea-branding          # derived from idea-layer/design-system/branding/mifos-x-mark.svg — never generated
+    source: idea-layer/design-system/branding/mifos-x-mark.svg
+    states: [intro_clients, intro_collections, intro_offline, privacy]
+    consistency: brand
+  - id: onboarding_clients_illustration
+    kind: illustration
+    role: illustration
+    intent: "A field officer with a phone beside a small group of clients under a village meeting tree, a centre building in the background — calm, flat, brand-coloured."
+    produced_by: /idea-feature-stitch-art
+    states: [intro_clients]
+    consistency: onboarding-set
+  - id: onboarding_collections_illustration
+    kind: illustration
+    role: illustration
+    intent: "A centre meeting where an officer records a repayment on a phone while a client hands over cash; a checklist of names suggests the collection sheet."
+    produced_by: /idea-feature-stitch-art
+    states: [intro_collections]
+    consistency: onboarding-set
+  - id: onboarding_offline_illustration
+    kind: illustration
+    role: illustration
+    intent: "A rural road with no signal bars on the phone, records still open on screen, and a small cloud with a sync arrow waiting for the connection back."
+    produced_by: /idea-feature-stitch-art
+    states: [intro_offline]
+    consistency: onboarding-set
+  - id: onboarding_privacy_illustration      # STEP 5.VISUAL-ASSETS 2026-11-04 — the expanded layout's start pane on the
+    kind: illustration                       # privacy page needs art; without this entry it would render a gray box
+    role: illustration
+    intent: "An officer's phone showing two simple switches, both off, beside a closed padlock and a small shield — calm, flat, brand-coloured, and with no client names or numbers anywhere in the scene."
+    produced_by: /idea-feature-stitch-art
+    states: [privacy]
+    consistency: onboarding-set
+
+# ──────────────── STRINGS ────────────────
+# Every visible label references `{strings.screens.onboarding.<key>}` (_strings/strings.yaml); implementation emits
+# them to feature/onboarding composeResources as feature_onboarding_<key>.
+
+# ──────────────── COMPONENTS ────────────────
+components:
+  - id: pager
+    type: pager
+    testTag: onboarding_pager
+    pages: [intro_clients, intro_collections, intro_offline, privacy]
+    swipe: "horizontal swipe moves one page; swiping is equivalent to Next / back and never saves"
+    accessibility: "each page's title + body announced as one heading-led group when the page settles"
+    style: { background: background, padding: xl }
+    a11y: { contentDescription: "Onboarding, page n of 4 — swipe or use Next to move between pages", role: pager }
+    on_back:
+      action: previous_page
+      action_contract:
+        effect: transform_state
+        library_refs: []
+        description: "Returns to the previous onboarding page; on the first page the system back leaves the app without saving, so both privacy choices stay off."
+        action_contract_hash: "b2977927fa7a8f47a00dc59dac95f10d727cf20f2f15d02b8f49012ca873dc4d"
+        action_contract_author: "claude-via-idea-plan-add"
+        action_contract_authored_at: "2026-11-04T12:30:00Z"
+
+  - id: skip
+    type: text_button
+    testTag: onboarding_skip
+    states: [intro_clients, intro_collections, intro_offline]
+    position: top_end
+    label: "{strings.screens.onboarding.skip}"
+    content_description: "{strings.screens.onboarding.skip_a11y}"
+    style: { titleColor: primary, cornerRadius: full, minTouchTarget: touchTargetMin }
+    a11y: { contentDescription: "{strings.screens.onboarding.skip_a11y}", role: button }
+    on_click:
+      action: skip_to_privacy
+      action_contract:
+        effect: transform_state
+        library_refs: []
+        description: "Jumps straight to the privacy page; the intro pages are optional but the privacy choice is never skipped, and nothing is saved by skipping."
+        action_contract_hash: "d3e6a3d34af704d45c95309928bfc5ddf15728e6ea9ec4e7113ba8029da01eaa"
+        action_contract_author: "claude-via-idea-plan-add"
+        action_contract_authored_at: "2026-11-04T12:30:00Z"
+
+  - id: brand_mark
+    type: image
+    testTag: onboarding_brand_mark
+    states: [intro_clients, intro_collections, intro_offline, privacy]
+    position: top_start
+    asset: onboarding_brand_mark
+    content_description: "{strings.screens.onboarding.brand_a11y}"
+    # 2026-11-05 operator design feedback: 32dp (spacing.xxl), NOT 48dp — 48dp competed with the page title on a
+    # phone. The top row keeps a 48dp minimum height (Skip's touch target) on EVERY page, privacy included where Skip
+    # is hidden, so the mark never jumps between pages.
+    style: { size: 32dp, cornerRadius: sm, row_min_height: 48dp }
+    # 2026-11-05 (operator "continue open"): renderers substituted their own marks (diamonds, plus signs,
+    # dark tiles). The exact geometry of design-system/branding/mifos-x-mark.svg, stated for every render:
+    render_spec: "a square split by two white diagonal strokes into four triangles: top lime, bottom green, left blue, right sky blue; no tile behind it, no letters, no other glyph"
+    a11y: { contentDescription: "{strings.screens.onboarding.brand_a11y}", role: image }
+
+  - id: intro_illustration_clients
+    type: image
+    testTag: onboarding_illustration_clients
+    states: [intro_clients]
+    asset: onboarding_clients_illustration
+    decorative: true             # the title + body carry the meaning; the image is not announced
+    style: { background: primaryContainer, cornerRadius: xl }
+
+  - id: intro_illustration_collections
+    type: image
+    testTag: onboarding_illustration_collections
+    states: [intro_collections]
+    asset: onboarding_collections_illustration
+    decorative: true
+    style: { background: tertiaryContainer, cornerRadius: xl }
+
+  - id: intro_illustration_offline
+    type: image
+    testTag: onboarding_illustration_offline
+    states: [intro_offline]
+    asset: onboarding_offline_illustration
+    decorative: true
+    style: { background: secondaryContainer, cornerRadius: xl }
+
+  - id: intro_title
+    type: text
+    variant: headline_medium
+    testTag: onboarding_title
+    states: [intro_clients, intro_collections, intro_offline]
+    text_by_state:
+      intro_clients: "{strings.screens.onboarding.clients_title}"
+      intro_collections: "{strings.screens.onboarding.collections_title}"
+      intro_offline: "{strings.screens.onboarding.offline_title}"
+    semantics: heading
+    style: { titleColor: onSurface, typography: headline_medium }
+
+  - id: intro_body
+    type: text
+    variant: body_large
+    testTag: onboarding_body
+    states: [intro_clients, intro_collections, intro_offline]
+    text_by_state:
+      intro_clients: "{strings.screens.onboarding.clients_body}"
+      intro_collections: "{strings.screens.onboarding.collections_body}"
+      intro_offline: "{strings.screens.onboarding.offline_body}"
+    style: { titleColor: onSurfaceVariant, typography: body_large }
+
+  - id: page_indicator
+    type: page_indicator
+    testTag: onboarding_page_indicator
+    count: 4
+    interactive: false
+    content_description: "{strings.screens.onboarding.page_of}"     # "Page %1$d of %2$d"
+    position: bottom_bar             # first row of the fixed bottom action bar, centred, on every page
+    style: { activeColor: primary, inactiveColor: outlineVariant, cornerRadius: full, active_width: 24dp, dot_size: 8dp, gap: 8dp, align: center }
+    a11y: { contentDescription: "{strings.screens.onboarding.page_of}", role: image }
+
+  - id: next
+    type: button
+    testTag: onboarding_next
+    states: [intro_clients, intro_collections, intro_offline]
+    label: "{strings.screens.onboarding.next}"
+    position: bottom_bar             # below the dots in the fixed bottom action bar; never scrolls
+    style: { background: primary, titleColor: onPrimary, cornerRadius: full, minTouchTarget: touchTargetMin, width: fill }
+    a11y: { contentDescription: "Next - tap to go to the next onboarding page", role: button }
+    on_click:
+      action: next_page
+      action_contract:
+        effect: transform_state
+        library_refs: []
+        description: "Moves to the next onboarding page in memory; nothing is saved and the privacy page is always the last page shown before sign-in."
+        action_contract_hash: "dd7efcc74dd5e0d4d2bca944acbf63765162ebf76198cd94e701a8dafed14620"
+        action_contract_author: "claude-via-idea-plan-add"
+        action_contract_authored_at: "2026-11-04T12:30:00Z"
+
+  # ── privacy page ──
+  - id: privacy_illustration
+    type: image
+    testTag: onboarding_illustration_privacy
+    states: [privacy]
+    asset: onboarding_privacy_illustration
+    decorative: true
+    visible_at: [expanded]       # start pane of the two-pane expanded layout; compact/medium keep the switches above the fold
+    style: { background: primaryContainer, cornerRadius: xl }
+
+  - id: privacy_title
+    type: text
+    variant: headline_medium
+    testTag: onboarding_privacy_title
+    states: [privacy]
+    text: "{strings.screens.onboarding.privacy_title}"
+    semantics: heading
+    style: { titleColor: onSurface, typography: headline_medium }
+
+  - id: privacy_lead
+    type: text
+    variant: body_large
+    testTag: onboarding_privacy_lead
+    states: [privacy]
+    text: "{strings.screens.onboarding.privacy_lead}"
+    style: { titleColor: onSurfaceVariant, typography: body_large }
+
+  - id: analytics_switch
+    type: switch
+    testTag: onboarding_analytics_switch
+    states: [privacy]
+    label: "{strings.screens.onboarding.analytics_label}"
+    supporting_text: "{strings.screens.onboarding.analytics_body}"
+    default: false               # never pre-ticked
+    accessibility: "row is one toggleable node: label + supporting text + On/Off state"
+    style: { checkedTrack: primary, uncheckedTrack: surfaceVariant, divider: outlineVariant, minTouchTarget: touchTargetMin }
+    a11y: { contentDescription: "{strings.screens.onboarding.analytics_label}, {strings.screens.onboarding.analytics_body}", role: switch }
+    on_click:
+      action: toggle_analytics
+      action_contract:
+        effect: transform_state
+        library_refs: []
+        description: "Turns the Share usage analytics choice on or off on this page only; it starts off and is saved only when the officer taps Allow and get started or Continue."
+        action_contract_hash: "50ec722be8da302ac3b71e9aea9c088ec200a504fe4e40263d32e6755894360c"
+        action_contract_author: "claude-via-idea-plan-add"
+        action_contract_authored_at: "2026-11-05T00:00:00Z"
+
+  - id: crash_reports_switch
+    type: switch
+    testTag: onboarding_crash_reports_switch
+    states: [privacy]
+    label: "{strings.screens.onboarding.crash_label}"
+    supporting_text: "{strings.screens.onboarding.crash_body}"
+    default: false
+    accessibility: "row is one toggleable node: label + supporting text + On/Off state"
+    style: { checkedTrack: primary, uncheckedTrack: surfaceVariant, divider: outlineVariant, minTouchTarget: touchTargetMin }
+    a11y: { contentDescription: "{strings.screens.onboarding.crash_label}, {strings.screens.onboarding.crash_body}", role: switch }
+    on_click:
+      action: toggle_crash_reports
+      action_contract:
+        effect: transform_state
+        library_refs: []
+        description: "Turns the Send crash reports choice on or off on this page only; it starts off and is saved only when the officer taps Allow and get started or Continue."
+        action_contract_hash: "2f97a9a370dfb57b08731e185eb3a3f56b7d960b360c9754a9dd59e27d74f310"
+        action_contract_author: "claude-via-idea-plan-add"
+        action_contract_authored_at: "2026-11-05T00:00:00Z"
+
+  - id: no_client_data_note
+    type: text
+    variant: body_medium
+    testTag: onboarding_no_client_data
+    states: [privacy]
+    text: "{strings.screens.onboarding.no_client_data}"
+    style: { background: secondaryContainer, titleColor: onSurface, cornerRadius: sm, leadingIcon: shield_check, iconColor: secondary }
+
+  - id: settings_later_note
+    type: text
+    variant: body_small
+    testTag: onboarding_settings_later
+    states: [privacy]
+    text: "{strings.screens.onboarding.settings_later}"
+    style: { titleColor: onSurfaceVariant, typography: body_small }
+    depends_on: "FR-SET-PRIV-01 — Settings → Privacy sheet (in-progress, built in the same pass: template PrivacySheet.kt ported into the fork-owned feature/settings — docs.yaml#follow_ups)"
+
+  - id: connect_instance_link
+    type: link
+    testTag: onboarding_connect_instance
+    states: [privacy]
+    label: "{strings.screens.onboarding.connect_instance}"
+    style: { titleColor: primary, underline: true, minTouchTarget: touchTargetMin }
+    a11y: { contentDescription: "Connect to your Mifos instance - opens Server config", role: link }
+    on_click:
+      action: open_server_config
+      target: serverConfig
+      action_contract:
+        effect: navigate
+        library_refs: []
+        description: "Opens Server config, the same screen sign-in links to, so the officer can point the app at their Mifos instance before signing in."
+        action_contract_hash: "c23aab059bfa99545bd1565a6bca217826a1c1b6affe4e7bb3f4c7780ddc17b9"
+        action_contract_author: "claude-via-idea-plan-add"
+        action_contract_authored_at: "2026-11-04T12:30:00Z"
+
+  # ── 2026-11-05 operator decision B: agreement line (privacy_policy_link folded in) ──
+  - id: agreement_text
+    type: annotated_text           # ONE Text with inline LinkAnnotation spans — spans cannot carry their own testTag,
+                                   # so the sentence is tagged and each link is found by its TEXT
+    variant: body_medium
+    testTag: onboarding_agreement
+    states: [privacy]
+    position: scrolling_content      # 2026-11-05 design feedback: below no_client_data_note, ABOVE settings_later_note — no longer in the bottom bar
+    text: "{strings.screens.onboarding.agreement}"     # "By using our service you accept our %1$s and %2$s."
+    args: ["{strings.screens.onboarding.terms}", "{strings.screens.onboarding.privacy_policy}"]   # Terms & Conditions FIRST, then Privacy Policy
+    style: { titleColor: onSurfaceVariant, typography: body_medium, textAlign: start }
+    links:
+      - id: terms_link
+        span_text: "{strings.screens.onboarding.terms}"        # "Terms & Conditions" — tap by text inside onboarding_agreement
+        arg_index: 1
+        target_url: 'AppOrgLinks["terms"]'                     # https://mifos-products.pages.dev/mobile/field-officer/terms/ (app-profile/app.yaml#org.links.terms)
+        open_mode: in_app                                       # UrlLauncher.launchInApp (core-base/platform, cmp-open-url openInApp)
+        style: { titleColor: primary, underline: true }
+        a11y: { contentDescription: "Terms & Conditions - opens in the app", role: link }
+        on_click:
+          action: open_terms
+          action_contract:
+            effect: navigate
+            library_refs: []
+            description: "Opens the hosted Field Officer App terms and conditions inside the app so the officer can read what continuing agrees to."
+            action_contract_hash: "d9e7bc01cd340f1fcbae77bcbc2890e70f02bf89c059584acc0a7d70063ff89d"
+            action_contract_author: "claude-via-idea-plan-add"
+            action_contract_authored_at: "2026-11-05T00:00:00Z"
+      - id: privacy_policy_link
+        span_text: "{strings.screens.onboarding.privacy_policy}"   # "Privacy Policy" — tap by text inside onboarding_agreement
+        arg_index: 2
+        target_url: "AppPrivacyConfig.PRIVACY_POLICY_URL"      # https://mifos-products.pages.dev/mobile/field-officer/privacy/
+        open_mode: in_app
+        style: { titleColor: primary, underline: true }
+        a11y: { contentDescription: "Privacy Policy - opens in the app", role: link }
+        on_click:
+          action: open_privacy_policy
+          action_contract:
+            effect: navigate
+            library_refs: []
+            description: "Opens the hosted Mifos field officer privacy policy inside the app so the officer can read what is collected before choosing."
+            action_contract_hash: "b158d1e1ed90e43b9f6034b6d49e3b4f84856a5ec969fd6725778d125b7efbf3"
+            action_contract_author: "claude-via-idea-plan-add"
+            action_contract_authored_at: "2026-11-05T00:00:00Z"
+
+  # ── 2026-11-05 operator decision A: "Allow / Continue without" (replaces the single get_started) ──
+  # Both switches still start OFF. The two buttons are EQUALLY VISIBLE (same width, same height, stacked in the
+  # controls section) — the decline path is never hidden or de-emphasised into a text link. 2026-11-05 design
+  # feedback: both sit in the FIXED bottom bar, always on screen without scrolling.
+  - id: allow_get_started
+    type: button
+    testTag: onboarding_allow_get_started
+    states: [privacy]
+    label: "{strings.screens.onboarding.allow_get_started}"
+    enabled_when: "not saving"
+    style: { background: primary, titleColor: onPrimary, cornerRadius: full, minTouchTarget: touchTargetMin, width: fill }
+    a11y: { contentDescription: "Allow and get started - turns on usage analytics and crash reports, saves them and opens sign-in", role: button }
+    on_click:
+      action: allow_all_and_finish
+      target: signin
+      action_contract:
+        effect: persist_file     # preference-shaped write — CAPABILITY_PROVIDERS key-value-preferences (multiplatform-settings) is the SoT provider for persist_file prefs, not a database
+        library_refs: []
+        external_library_refs: [multiplatform-settings]
+        writes_to: "UserDataRepository.setAnalyticsConsent(true) + setCrashReportingConsent(true) + setFirstTimeState(false)"
+        description: "Turns both privacy choices on, saves analytics and crash reports as allowed, marks onboarding as done last so it never shows again on this device, then opens sign-in."
+        action_contract_hash: "3bfa50b88046286a82615d7835d5d02af8f82bec0698cd9bc0cbfe4743e54d61"
+        action_contract_author: "claude-via-idea-plan-add"
+        action_contract_authored_at: "2026-11-05T00:00:00Z"
+
+  - id: continue_choices
+    type: outlined_button
+    testTag: onboarding_continue_choices
+    states: [privacy]
+    label_by_condition:
+      both_off: "{strings.screens.onboarding.continue_without}"       # "Continue without sharing"
+      any_on: "{strings.screens.onboarding.continue_choices}"         # "Continue with my choices"
+    enabled_when: "not saving"
+    style: { border: outline, titleColor: primary, cornerRadius: full, minTouchTarget: touchTargetMin, width: fill }
+    a11y: { contentDescription: "Continue - saves your privacy choices exactly as shown and opens sign-in", role: button }
+    on_click:
+      action: continue_with_choices
+      target: signin
+      action_contract:
+        effect: persist_file
+        library_refs: []
+        external_library_refs: [multiplatform-settings]
+        writes_to: "UserDataRepository.setAnalyticsConsent(analytics) + setCrashReportingConsent(crashReports) + setFirstTimeState(false)"
+        description: "Saves both privacy choices exactly as the switches show, marks onboarding as done last so it never shows again on this device, then opens sign-in; with both off nothing is collected."
+        action_contract_hash: "56a99c44f264b29b2f653a5a9bb337c5eaaec26ab54cffc0a2d107ebbdac7f73"
+        action_contract_author: "claude-via-idea-plan-add"
+        action_contract_authored_at: "2026-11-05T00:00:00Z"
+
+  # 2026-11-05 design feedback (source OnboardingScreen.kt PageActions): the save error is inline error text in the
+  # bottom bar, between the dots and the two buttons — replaces the save_error_snackbar overlay (tag onboarding_save_error).
+  - id: save_failed_text
+    type: text
+    variant: body_medium
+    testTag: onboarding_save_failed
+    states: [privacy]
+    position: bottom_bar
+    visible_when: "save_failed"
+    text: "{strings.screens.onboarding.save_failed}"
+    style: { titleColor: error, typography: body_medium }
+    a11y: { contentDescription: "{strings.screens.onboarding.save_failed}", role: status, liveRegion: polite }
+    note: "a local write threw — nothing is treated as consent, onboarding is not marked done, both buttons are enabled again"
+
+# ──────────────── LAYOUT (RULE-MOCKUP-RESPONSIVE-001) ────────────────
+layout:
+  container: full_screen
+  top_bar: none
+  # 2026-11-05 operator design feedback — three regions on every page: fixed top row · scrolling content · fixed
+  # bottom action bar. Source: feature/onboarding/.../ui/OnboardingScreen.kt (OnboardingTopBar · AnimatedContent ·
+  # PageActions), verified on a physical device.
+  regions:
+    top_row: { components: [brand_mark, skip], fixed: true, min_height: 48dp, note: "brand mark 32dp at top start; Skip at top end on the intro pages only; the 48dp minimum holds on the privacy page so the mark does not jump" }
+    content: { scrolls: true, note: "only this region scrolls and only this region slides between pages" }
+    bottom_bar: { fixed: true, scrolls: false, note: "pinned to the bottom of the screen on every page; intro: centred dots, then full-width Next; privacy: centred dots, then save_failed_text when shown, then full-width filled Allow and get started, then full-width outlined Continue" }
+  order_intro: [brand_mark, skip, illustration, intro_title, intro_body, page_indicator, next]
+  order_privacy: [brand_mark, privacy_illustration, privacy_title, privacy_lead, analytics_switch, crash_reports_switch, no_client_data_note, agreement_text, settings_later_note, connect_instance_link, page_indicator, save_failed_text, allow_get_started, continue_choices]   # privacy_illustration: expanded start pane only; page_indicator onwards = fixed bottom bar
+  overlays: []
+  scroll: "only the content region scrolls. Intro: illustration + title + body. Privacy: title, lead, the two switch rows, the no-client-data note, the agreement line, 'You can change this later in Settings.', then 'Connect to your Mifos instance' (the last item — it may need a scroll on a phone). The dots and the finishing buttons are always on screen, never behind a scroll."
+  responsive:
+    compact: "< 600dp — single column, illustration above the text on the intro pages (no illustration on privacy), bottom bar full content width"
+    medium: "600–839dp — content centred at 560dp max width, illustration and text stacked, bottom bar full content width"
+    expanded: "≥ 840dp — two panes (max content width 1040dp): illustration on the start half, title/body (or the privacy content) on the end half; the bottom bar sits under the END (text) pane, the start-pane column below it stays empty"
+  note: "device sizes are proportion references only; mockups must render at all three widths, never a phone column inside a tablet canvas"
+
+# ──────────────── MOTION (2026-11-05 operator design feedback) ────────────────
+motion:
+  page_transition:
+    pattern: shared_axis_x                   # Material 3 shared-axis X
+    implementation: "core-base/ui KptSharedAxis — enterForward + exitForward when the target page is after the current one (Next, swipe left, Skip), enterBack + exitBack otherwise (back, swipe right)"
+    applies_to: content                      # ONLY the content region moves; the outgoing page keeps rendering its own content while it slides away
+    excluded: [top_row, bottom_bar]          # the brand mark row and the bottom action bar never slide
+    duration: "MaterialTheme.motion.durationLong1 (450ms) — durations from MaterialTheme.motion, never a literal (core-base/ui MOTION.md)"
+  actions_swap:
+    trigger: "entering or leaving the privacy page (Next is replaced by the two finishing buttons, and back)"
+    pattern: crossfade                       # the bottom bar's buttons fade; the bar itself does not move
+    duration: "MaterialTheme.motion.durationMedium1 (250ms)"
+  page_indicator: { animated: false, note: "the active pill moves with the page state; no separate animation" }

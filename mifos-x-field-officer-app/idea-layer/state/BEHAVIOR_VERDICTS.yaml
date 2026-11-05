@@ -1,0 +1,8 @@
+- feature: onboarding
+  verdict: fixture-test
+  evidence: "gradle-test-red"
+  evaluated_at: "2026-11-04T19:42:31Z"
+- feature: onboarding
+  verdict: fixture-test
+  evidence: "gradle-test-red"
+  evaluated_at: "2026-11-04T19:44:53Z"

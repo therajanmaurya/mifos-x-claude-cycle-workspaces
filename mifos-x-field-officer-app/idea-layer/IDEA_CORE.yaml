@@ -1,0 +1,110 @@
+# IDEA_CORE.yaml — authored SoT entity-graph registry for mifos-x-field-officer-app.
+# Schema: core/registries/IDEA_CORE_SCHEMA.yaml. Validate:
+#   bash .claude-runtime/scripts/framework-verify-idea-core-schema.sh --file workspaces/mifos-x/mifos-x-field-officer-app/idea-layer/IDEA_CORE.yaml
+#
+# STARTED 2026-11-04 by /idea-plan-add add-feature onboarding (RULE-IDEA-CORE-REGISTRY-001 CR-2:
+# the node is authored before its children). This project had no registry before this run, so ONLY
+# the onboarding nodes are door-authored here. The screens that predate it (signin, serverConfig,
+# home, profile, clientCharges, offlineSync) have no nodes yet — reverse-deriving them is
+# /idea-core-scaffold's job (source: scaffold-migrated), not a feature add's, and is recorded as an
+# open gap rather than hand-invented here.
+schema_version: "1.0.0"
+
+nodes:
+
+  requirement:
+    FR-ONB-01: { id: FR-ONB-01, type: requirement, edges: [], status: draft, hash: "", children_present: false, source: door-authored }
+    FR-ONB-02: { id: FR-ONB-02, type: requirement, edges: [], status: draft, hash: "", children_present: false, source: door-authored }
+    FR-ONB-03: { id: FR-ONB-03, type: requirement, edges: [], status: draft, hash: "", children_present: false, source: door-authored }
+    FR-ONB-04: { id: FR-ONB-04, type: requirement, edges: [], status: draft, hash: "", children_present: false, source: door-authored }
+    FR-ONB-05: { id: FR-ONB-05, type: requirement, edges: [], status: draft, hash: "", children_present: false, source: door-authored }
+    FR-ONB-06: { id: FR-ONB-06, type: requirement, edges: [], status: draft, hash: "", children_present: false, source: door-authored }
+    FR-ONB-07: { id: FR-ONB-07, type: requirement, edges: [], status: draft, hash: "", children_present: false, source: door-authored }   # 2026-11-05 agreement line
+    FR-ONB-08: { id: FR-ONB-08, type: requirement, edges: [], status: draft, hash: "", children_present: false, source: door-authored }   # 2026-11-05 design feedback: fixed bottom action bar + shared-axis page transition + 32dp mark
+    NFR-ONB-01: { id: NFR-ONB-01, type: requirement, edges: [], status: draft, hash: "", children_present: false, source: door-authored }
+    # 2026-11-05 /idea-core-scaffold upsert (signin only, operator "continue open"): reverse-derived from
+    # REQUIREMENTS.md + screens/signin/{docs,ui}.yaml — the other predating screens are still an open gap.
+    FR-001: { id: FR-001, type: requirement, edges: [], status: approved, hash: "", children_present: false, source: scaffold-migrated }
+    FR-001a: { id: FR-001a, type: requirement, edges: [], status: approved, hash: "", children_present: false, source: scaffold-migrated }   # 2026-11-05 consent line (accept by signing in)
+
+  feature:
+    onboarding:
+      id: onboarding
+      type: feature
+      status: draft
+      hash: ""
+      children_present: true
+      source: door-authored
+      edges:
+        - { kind: requires, to: FR-ONB-01 }
+        - { kind: requires, to: FR-ONB-02 }
+        - { kind: requires, to: FR-ONB-03 }
+        - { kind: requires, to: FR-ONB-04 }
+        - { kind: requires, to: FR-ONB-05 }
+        - { kind: requires, to: FR-ONB-06 }
+        - { kind: requires, to: FR-ONB-07 }
+        - { kind: requires, to: FR-ONB-08 }
+        - { kind: requires, to: NFR-ONB-01 }
+        - { kind: has_screen, to: onboarding }
+        - { kind: needs_capability, to: preferences }
+    signin:
+      id: signin
+      type: feature
+      status: approved
+      hash: ""
+      children_present: true
+      source: scaffold-migrated
+      edges:
+        - { kind: requires, to: FR-001 }
+        - { kind: requires, to: FR-001a }
+        - { kind: has_screen, to: signin }
+
+  screen:
+    onboarding:
+      id: onboarding
+      type: screen
+      status: draft
+      hash: ""
+      children_present: true
+      source: door-authored
+      edges:
+        - { kind: ingress, to: rootNav }        # RootNavState.ShowOnboarding (firstTimeUser == true)
+        - { kind: uses_component, to: pager }
+        - { kind: uses_component, to: skip }
+        - { kind: uses_component, to: next }
+        - { kind: uses_component, to: page_indicator }
+        - { kind: uses_component, to: analytics_switch }
+        - { kind: uses_component, to: crash_reports_switch }
+        - { kind: uses_component, to: connect_instance_link }
+        # /idea-plan-add enhance onboarding 2026-11-05 (operator decisions A + B): get_started → allow_get_started +
+        # continue_choices; privacy_policy_link folds into agreement_text (Terms & Conditions + Privacy Policy link spans)
+        - { kind: uses_component, to: agreement_text }
+        - { kind: uses_component, to: allow_get_started }
+        - { kind: uses_component, to: continue_choices }
+        # /idea-plan-add enhance onboarding 2026-11-05 (operator design feedback): brand mark on every page (32dp);
+        # the save error is inline text in the fixed bottom bar (save_error_snackbar → save_failed_text)
+        - { kind: uses_component, to: brand_mark }
+        - { kind: uses_component, to: save_failed_text }
+    signin:
+      id: signin
+      type: screen
+      status: approved
+      hash: ""
+      children_present: true
+      source: scaffold-migrated
+      edges:
+        - { kind: ingress, to: rootNav }        # RootNavState.Auth | ShowOnboarding | UserLocked (docs.yaml#entry_points)
+        - { kind: uses_component, to: instance_chip }
+        - { kind: uses_component, to: logo }
+        - { kind: uses_component, to: title }
+        - { kind: uses_component, to: username_field }
+        - { kind: uses_component, to: password_field }
+        - { kind: uses_component, to: lockout_notice }
+        - { kind: uses_component, to: login_button }
+        - { kind: uses_component, to: biometric_action }
+        - { kind: uses_component, to: consent_text }   # 2026-11-05: Terms & Conditions + Privacy Policy links (FR-001a)
+        - { kind: uses_component, to: progress_overlay }
+        - { kind: uses_component, to: snackbar }
+
+  capability:
+    preferences: { id: preferences, type: capability, edges: [], status: draft, hash: "", children_present: false, source: door-authored }
