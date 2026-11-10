@@ -1,0 +1,58 @@
+# Copyright 2026 Mifos Initiative
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#
+# See https://github.com/openMF/kmp-project-template/blob/main/LICENSE
+#
+# ─────────────────────────────────────────────────────────────────────────────
+# first-run onboarding — intro pages → privacy page → "Allow and get started"
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# Requires a build with app-profile `security.first_run_onboarding: true` (the template ships
+# `false`). A fresh install has UserData.firstTimeUser = true, so RootNavViewModel
+# routes to OnboardingRoute before anything else. The three intro pages advance with "Next"; the
+# privacy page is always last. "Allow and get started" grants both consents, stores them, marks
+# first run done, and lands on the home dashboard. A relaunch must NOT show onboarding again.
+#
+# Precondition: a FRESH INSTALL (uninstall + install) — not `clearState`, which OnePlus / ColorOS
+# refuses from adb (CLEAR_APP_USER_DATA) unless "Disable permission monitoring" is on.
+appId: org.mifos.kmp.template
+name: onboarding — first run walks the intro pages and allows both consents
+tags:
+  - onboarding
+  - first-run
+  - consent
+---
+- launchApp
+- extendedWaitUntil:
+    visible: "Your money tools, in one place"
+    timeout: 20000
+- takeScreenshot: onboarding-1-overview
+- tapOn: "Next"
+- assertVisible: "Never miss a due date"
+- takeScreenshot: onboarding-2-track
+- tapOn: "Next"
+- assertVisible: "No signal? Keep going"
+- takeScreenshot: onboarding-3-offline
+- tapOn: "Next"
+# The privacy page: both choices visible and OFF until the user acts.
+- assertVisible: "Help improve the app"
+- assertVisible: "Share usage analytics"
+- assertVisible: "Send crash reports"
+- assertVisible: "Allow and get started"
+- takeScreenshot: onboarding-4-privacy
+- tapOn: "Allow and get started"
+- extendedWaitUntil:
+    visible: "Outstanding balance"
+    timeout: 20000
+- takeScreenshot: onboarding-5-home
+# First run is done: a relaunch (same install, state kept) goes straight home.
+- stopApp
+- launchApp
+- extendedWaitUntil:
+    visible: "Outstanding balance"
+    timeout: 20000
+- assertNotVisible: "Your money tools, in one place"
+- takeScreenshot: onboarding-6-relaunch-home

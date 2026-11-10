@@ -1,0 +1,83 @@
+17:22:44.890 [ INFO] maestro.cli.report.TestDebugReporter.logSystemInfo: Debug output path: /Users/therajanmaurya/project-development/claude-product-cycle/workspaces/mifos-x/kmp-project-template/idea-layer/testers/captures/20261105T115243Z/workspaces/mifos-x/kmp-project-template/idea-layer/testers/captures/20261105T115243Z/.maestro/tests/2026-11-05_172244
+17:22:44.891 [ INFO] MAESTRO.logSystemInfo: ---- System Info ----
+17:22:44.891 [ INFO] MAESTRO.logSystemInfo: Maestro Version: 2.6.1
+17:22:44.892 [ INFO] MAESTRO.logSystemInfo: CI: Undefined
+17:22:44.892 [ INFO] MAESTRO.logSystemInfo: OS Name: Mac OS X
+17:22:44.892 [ INFO] MAESTRO.logSystemInfo: OS Version: 26.5
+17:22:44.892 [ INFO] MAESTRO.logSystemInfo: Architecture: aarch64
+17:22:44.893 [ INFO] MAESTRO.logSystemInfo: Java Version: 17
+17:22:44.951 [ INFO] MAESTRO.logSystemInfo: Xcode Version: 26.5
+17:22:44.954 [ INFO] MAESTRO.logSystemInfo: Flutter Version: Undefined
+17:22:44.956 [ INFO] MAESTRO.logSystemInfo: Flutter Channel: Undefined
+17:22:44.957 [ INFO] MAESTRO.logSystemInfo: ---------------------
+17:22:45.335 [DEBUG] io.micrometer.common.util.internal.logging.InternalLoggerFactory.newDefaultFactory: Using SLF4J as the default logging framework
+17:22:46.005 [ INFO] maestro.cli.command.TestCommand.runShardSuite: [shard 1] Selected device Q4CIZHA6Y5GMJV89 using port 55095 with execution plan ExecutionPlan(flowsToRun=[/Users/therajanmaurya/project-development/claude-product-cycle/workspaces/mifos-x/kmp-project-template/idea-layer/testers/flows/onboarding/disabled-goes-home.yaml], sequence=FlowSequence(flows=[], continueOnFailure=true), workspaceConfig=WorkspaceConfig(flows=null, includeTags=null, excludeTags=null, executionOrder=null, baselineBranch=null, notifications=null, disableRetries=false, platform=PlatformConfiguration(android=AndroidConfiguration(disableAnimations=false), ios=IOSConfiguration(disableAnimations=false, snapshotKeyHonorModalViews=null)), testOutputDir=null))
+17:22:49.440 [ INFO] maestro.cli.runner.TestRunner.runSingle$lambda$0: Running flow disabled-goes-home.yaml...
+17:22:49.450 [ INFO] maestro.Maestro.cachedDeviceInfo_delegate$lambda$0: Getting device info
+17:22:49.555 [ INFO] maestro.Maestro.cachedDeviceInfo_delegate$lambda$0: Got device info: DeviceInfo(platform=ANDROID, widthPixels=1080, heightPixels=2412, widthGrid=1080, heightGrid=2412)
+17:22:49.600 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$0: Define variables RUNNING
+17:22:49.604 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$11: Define variables metadata CommandMetadata(numberOfRuns=null, evaluatedCommand=MaestroCommand(defineVariablesCommand=DefineVariablesCommand(env={MAESTRO_FILENAME=disabled-goes-home, MAESTRO_DEVICE_UDID=Q4CIZHA6Y5GMJV89, MAESTRO_SHARD_ID=1, MAESTRO_SHARD_INDEX=0}, label=null, optional=false)), logMessages=[], insight=Insight(message=, level=NONE), aiReasoning=null, labeledCommand=null)
+17:22:49.605 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$2: Define variables COMPLETED
+17:22:49.606 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$0: Apply configuration RUNNING
+17:22:49.608 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$11: Apply configuration metadata CommandMetadata(numberOfRuns=null, evaluatedCommand=MaestroCommand(applyConfigurationCommand=ApplyConfigurationCommand(config=MaestroConfig(appId=org.mifos.kmp.template, name=onboarding disabled — a fresh install goes straight to the home dashboard, tags=[onboarding, first-run, smoke], ext={}, onFlowStart=null, onFlowComplete=null, properties={}), label=null, optional=false)), logMessages=[], insight=Insight(message=, level=NONE), aiReasoning=null, labeledCommand=null)
+17:22:49.608 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$2: Apply configuration COMPLETED
+17:22:49.609 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$0: Launch app "org.mifos.kmp.template" with clear state RUNNING
+17:22:49.611 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$11: Launch app "org.mifos.kmp.template" with clear state metadata CommandMetadata(numberOfRuns=null, evaluatedCommand=MaestroCommand(launchAppCommand=LaunchAppCommand(appId=org.mifos.kmp.template, clearState=true, clearKeychain=null, stopApp=null, permissions=null, launchArguments=null, label=null, optional=false)), logMessages=[], insight=Insight(message=, level=NONE), aiReasoning=null, labeledCommand=null)
+17:22:49.611 [ INFO] maestro.Maestro.clearAppState$lambda$5: Clearing app state org.mifos.kmp.template
+17:22:49.731 [ERROR] maestro.orchestra.Orchestra.launchAppCommand: Failed to clear state
+java.io.IOException: pm clear org.mifos.kmp.template: 
+Exception occurred while executing 'clear':
+java.lang.SecurityException: PID 30349 does not have permission android.permission.CLEAR_APP_USER_DATA to clear data of package org.mifos.kmp.template
+	at com.android.server.am.ActivityManagerService.clearApplicationUserData(ActivityManagerService.java:4103)
+	at com.android.server.am.ActivityManagerService.clearApplicationUserData(ActivityManagerService.java:4048)
+	at com.android.server.am.ActivityManagerService.clearApplicationUserData(ActivityManagerService.java:4036)
+	at com.android.server.pm.PackageManagerShellCommand.runClear(PackageManagerShellCommand.java:2380)
+	at com.android.server.pm.PackageManagerShellCommand.onCommand(PackageManagerShellCommand.java:290)
+	at com.android.modules.utils.BasicShellCommandHandler.exec(BasicShellCommandHandler.java:97)
+	at android.os.ShellCommand.exec(ShellCommand.java:38)
+	at com.android.server.pm.PackageManagerService$IPackageManagerImpl.onShellCommand(PackageManagerService.java:7038)
+	at android.os.Binder.shellCommand(Binder.java:1243)
+	at android.os.Binder.onTransact(Binder.java:1056)
+	at android.content.pm.IPackageManager$Stub.onTransact(IPackageManager.java:4625)
+	at com.android.server.pm.PackageManagerService$IPackageManagerImpl.onTransact(PackageManagerService.java:7022)
+	at android.os.Binder.execTransactInternal(Binder.java:1523)
+	at android.os.Binder.execTransact(Binder.java:1457)
+
+	at maestro.drivers.AndroidDriver.shell(AndroidDriver.kt:1252)
+	at maestro.drivers.AndroidDriver.clearAppState$lambda$11(AndroidDriver.kt:257)
+	at maestro.utils.Metrics.measured(Metrics.kt:48)
+	at maestro.drivers.AndroidDriver.clearAppState(AndroidDriver.kt:252)
+	at maestro.Maestro.clearAppState$lambda$5(Maestro.kt:93)
+	at kotlinx.coroutines.InterruptibleKt.runInterruptibleInExpectedContext(Interruptible.kt:48)
+	at kotlinx.coroutines.InterruptibleKt.access$runInterruptibleInExpectedContext(Interruptible.kt:1)
+	at kotlinx.coroutines.InterruptibleKt$runInterruptible$2.invokeSuspend(Interruptible.kt:40)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:124)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:89)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:586)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:820)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:717)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:704)
+17:22:49.732 [ERROR] maestro.orchestra.Orchestra.executeCommands: [Command execution] CommandFailed: Unable to clear state for app org.mifos.kmp.template: pm clear org.mifos.kmp.template: 
+Exception occurred while executing 'clear':
+java.lang.SecurityException: PID 30349 does not have permission android.permission.CLEAR_APP_USER_DATA to clear data of package org.mifos.kmp.template
+	at com.android.server.am.ActivityManagerService.clearApplicationUserData(ActivityManagerService.java:4103)
+	at com.android.server.am.ActivityManagerService.clearApplicationUserData(ActivityManagerService.java:4048)
+	at com.android.server.am.ActivityManagerService.clearApplicationUserData(ActivityManagerService.java:4036)
+	at com.android.server.pm.PackageManagerShellCommand.runClear(PackageManagerShellCommand.java:2380)
+	at com.android.server.pm.PackageManagerShellCommand.onCommand(PackageManagerShellCommand.java:290)
+	at com.android.modules.utils.BasicShellCommandHandler.exec(BasicShellCommandHandler.java:97)
+	at android.os.ShellCommand.exec(ShellCommand.java:38)
+	at com.android.server.pm.PackageManagerService$IPackageManagerImpl.onShellCommand(PackageManagerService.java:7038)
+	at android.os.Binder.shellCommand(Binder.java:1243)
+	at android.os.Binder.onTransact(Binder.java:1056)
+	at android.content.pm.IPackageManager$Stub.onTransact(IPackageManager.java:4625)
+	at com.android.server.pm.PackageManagerService$IPackageManagerImpl.onTransact(PackageManagerService.java:7022)
+	at android.os.Binder.execTransactInternal(Binder.java:1523)
+	at android.os.Binder.execTransact(Binder.java:1457)
+
+17:22:49.734 [ INFO] maestro.Maestro.takeScreenshot: Taking screenshot
+17:22:49.736 [TRACE] maestro.utils.ScreenshotUtils.takeScreenshot: Taking screenshot to output sink
+17:22:50.422 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$4: Launch app "org.mifos.kmp.template" with clear state FAILED
+17:22:50.620 [ INFO] maestro.cli.report.TestDebugReporter.deleteOldFiles: Performing purge of logs older than 14 days from /Users/therajanmaurya/project-development/claude-product-cycle/workspaces/mifos-x/kmp-project-template/idea-layer/testers/captures/20261105T115243Z/workspaces/mifos-x/kmp-project-template/idea-layer/testers/captures/20261105T115243Z

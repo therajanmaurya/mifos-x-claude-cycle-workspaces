@@ -1,0 +1,11 @@
+# Behaviour contract for skip-to-privacy.yaml.
+flow: skip-to-privacy.yaml
+feature: onboarding
+requires:
+  app_profile: { security.first_run_onboarding: true }
+asserts:
+  - Skip on the first page lands on the privacy page, skipping the remaining intro pages
+  - Skip never finishes onboarding by itself
+  - with both switches off the button reads "Continue without sharing"; tapping it lands on the home dashboard with no consent granted
+source:
+  - source/kmp-project-template/feature/onboarding/src/commonMain/kotlin/kpt/feature/onboarding/ui/OnboardingViewModel.kt

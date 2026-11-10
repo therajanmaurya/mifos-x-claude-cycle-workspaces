@@ -1,0 +1,66 @@
+17:37:41.543 [ INFO] maestro.cli.report.TestDebugReporter.logSystemInfo: Debug output path: /Users/therajanmaurya/project-development/claude-product-cycle/workspaces/mifos-x/kmp-project-template/idea-layer/testers/captures/20261105T120740Z/.maestro/tests/2026-11-05_173741
+17:37:41.544 [ INFO] MAESTRO.logSystemInfo: ---- System Info ----
+17:37:41.545 [ INFO] MAESTRO.logSystemInfo: Maestro Version: 2.6.1
+17:37:41.545 [ INFO] MAESTRO.logSystemInfo: CI: Undefined
+17:37:41.546 [ INFO] MAESTRO.logSystemInfo: OS Name: Mac OS X
+17:37:41.546 [ INFO] MAESTRO.logSystemInfo: OS Version: 26.5
+17:37:41.546 [ INFO] MAESTRO.logSystemInfo: Architecture: aarch64
+17:37:41.546 [ INFO] MAESTRO.logSystemInfo: Java Version: 17
+17:37:41.605 [ INFO] MAESTRO.logSystemInfo: Xcode Version: 26.5
+17:37:41.609 [ INFO] MAESTRO.logSystemInfo: Flutter Version: Undefined
+17:37:41.614 [ INFO] MAESTRO.logSystemInfo: Flutter Channel: Undefined
+17:37:41.614 [ INFO] MAESTRO.logSystemInfo: ---------------------
+17:37:41.951 [DEBUG] io.micrometer.common.util.internal.logging.InternalLoggerFactory.newDefaultFactory: Using SLF4J as the default logging framework
+17:37:42.636 [ INFO] maestro.cli.command.TestCommand.runShardSuite: [shard 1] Selected device Q4CIZHA6Y5GMJV89 using port 56334 with execution plan ExecutionPlan(flowsToRun=[/Users/therajanmaurya/project-development/claude-product-cycle/workspaces/mifos-x/kmp-project-template/idea-layer/testers/flows/onboarding/disabled-goes-home.yaml], sequence=FlowSequence(flows=[], continueOnFailure=true), workspaceConfig=WorkspaceConfig(flows=null, includeTags=null, excludeTags=null, executionOrder=null, baselineBranch=null, notifications=null, disableRetries=false, platform=PlatformConfiguration(android=AndroidConfiguration(disableAnimations=false), ios=IOSConfiguration(disableAnimations=false, snapshotKeyHonorModalViews=null)), testOutputDir=null))
+17:37:45.761 [ INFO] maestro.cli.runner.TestRunner.runSingle$lambda$0: Running flow disabled-goes-home.yaml...
+17:37:45.769 [ INFO] maestro.Maestro.cachedDeviceInfo_delegate$lambda$0: Getting device info
+17:37:45.886 [ INFO] maestro.Maestro.cachedDeviceInfo_delegate$lambda$0: Got device info: DeviceInfo(platform=ANDROID, widthPixels=1080, heightPixels=2412, widthGrid=1080, heightGrid=2412)
+17:37:45.928 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$0: Define variables RUNNING
+17:37:45.931 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$11: Define variables metadata CommandMetadata(numberOfRuns=null, evaluatedCommand=MaestroCommand(defineVariablesCommand=DefineVariablesCommand(env={MAESTRO_FILENAME=disabled-goes-home, MAESTRO_DEVICE_UDID=Q4CIZHA6Y5GMJV89, MAESTRO_SHARD_ID=1, MAESTRO_SHARD_INDEX=0}, label=null, optional=false)), logMessages=[], insight=Insight(message=, level=NONE), aiReasoning=null, labeledCommand=null)
+17:37:45.932 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$2: Define variables COMPLETED
+17:37:45.932 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$0: Apply configuration RUNNING
+17:37:45.934 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$11: Apply configuration metadata CommandMetadata(numberOfRuns=null, evaluatedCommand=MaestroCommand(applyConfigurationCommand=ApplyConfigurationCommand(config=MaestroConfig(appId=org.mifos.kmp.template, name=onboarding disabled — a fresh install goes straight to the home dashboard, tags=[onboarding, first-run, smoke], ext={}, onFlowStart=null, onFlowComplete=null, properties={}), label=null, optional=false)), logMessages=[], insight=Insight(message=, level=NONE), aiReasoning=null, labeledCommand=null)
+17:37:45.934 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$2: Apply configuration COMPLETED
+17:37:45.934 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$0: Launch app "org.mifos.kmp.template" RUNNING
+17:37:45.936 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$11: Launch app "org.mifos.kmp.template" metadata CommandMetadata(numberOfRuns=null, evaluatedCommand=MaestroCommand(launchAppCommand=LaunchAppCommand(appId=org.mifos.kmp.template, clearState=null, clearKeychain=null, stopApp=null, permissions=null, launchArguments=null, label=null, optional=false)), logMessages=[], insight=Insight(message=, level=NONE), aiReasoning=null, labeledCommand=null)
+17:37:46.099 [DEBUG] maestro.Maestro.setPermissionInternal: Failed to set permission android.permission.REORDER_TASKS for app org.mifos.kmp.template: pm grant org.mifos.kmp.template android.permission.REORDER_TASKS: 
+Exception occurred while executing 'grant':
+java.lang.SecurityException: grantRuntimePermission: Neither user 2000 nor current process has android.permission.GRANT_RUNTIME_PERMISSIONS.
+	at android.app.ContextImpl.enforce(ContextImpl.java:2441)
+	at android.app.ContextImpl.enforceCallingOrSelfPermission(ContextImpl.java:2469)
+	at com.android.server.permission.access.permission.PermissionService.setRuntimePermissionGranted(PermissionService.kt:765)
+	at com.android.server.permission.access.permission.PermissionService.setRuntimePermissionGranted$default(PermissionService.kt:714)
+	at com.android.server.permission.access.permission.PermissionService.grantRuntimePermission(PermissionService.kt:676)
+	at com.android.server.pm.permission.PermissionManagerService.grantRuntimePermission(PermissionManagerService.java:613)
+	at android.permission.PermissionManager.grantRuntimePermissionInternal(PermissionManager.java:679)
+	at android.permission.PermissionManager.grantRuntimePermission(PermissionManager.java:642)
+	at com.android.server.pm.PackageManagerShellCommand.runGrantRevokePermission(PackageManagerShellCommand.java:2727)
+	at com.android.server.pm.PackageManagerShellCommand.onCommand(PackageManagerShellCommand.java:326)
+	at com.android.modules.utils.BasicShellCommandHandler.exec(BasicShellCommandHandler.java:97)
+	at android.os.ShellCommand.exec(ShellCommand.java:38)
+	at com.android.server.pm.PackageManagerService$IPackageManagerImpl.onShellCommand(PackageManagerService.java:7038)
+	at android.os.Binder.shellCommand(Binder.java:1243)
+	at android.os.Binder.onTransact(Binder.java:1056)
+	at android.content.pm.IPackageManager$Stub.onTransact(IPackageManager.java:4625)
+	at com.android.server.pm.PackageManagerService$IPackageManagerImpl.onTransact(PackageManagerService.java:7022)
+	at android.os.Binder.execTransactInternal(Binder.java:1523)
+	at android.os.Binder.execTransact(Binder.java:1457)
+
+17:37:46.100 [ INFO] maestro.Maestro.launchApp$lambda$2: Launching app org.mifos.kmp.template
+17:37:46.100 [ INFO] maestro.Maestro.launchApp$lambda$2: Stopping org.mifos.kmp.template app during launch
+17:37:46.283 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$2: Launch app "org.mifos.kmp.template" COMPLETED
+17:37:46.284 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$0: Assert that "Outstanding balance" is visible RUNNING
+17:37:46.288 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$11: Assert that "Outstanding balance" is visible metadata CommandMetadata(numberOfRuns=null, evaluatedCommand=MaestroCommand(assertConditionCommand=AssertConditionCommand(condition=Condition(platform=null, visible=ElementSelector(textRegex=Outstanding balance, idRegex=null, size=null, below=null, above=null, leftOf=null, rightOf=null, containsChild=null, containsDescendants=null, traits=null, index=null, enabled=null, optional=false, selected=null, checked=null, focused=null, childOf=null, css=null), notVisible=null, scriptCondition=null, label=null), timeout=20000, label=null, optional=false)), logMessages=[], insight=Insight(message=, level=NONE), aiReasoning=null, labeledCommand=null)
+17:37:49.924 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$2: Assert that "Outstanding balance" is visible COMPLETED
+17:37:49.924 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$0: Assert that "Your money tools, in one place" is not visible RUNNING
+17:37:49.925 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$11: Assert that "Your money tools, in one place" is not visible metadata CommandMetadata(numberOfRuns=null, evaluatedCommand=MaestroCommand(assertConditionCommand=AssertConditionCommand(condition=Condition(platform=null, visible=null, notVisible=ElementSelector(textRegex=Your money tools, in one place, idRegex=null, size=null, below=null, above=null, leftOf=null, rightOf=null, containsChild=null, containsDescendants=null, traits=null, index=null, enabled=null, optional=false, selected=null, checked=null, focused=null, childOf=null, css=null), scriptCondition=null, label=null), timeout=null, label=null, optional=false)), logMessages=[], insight=Insight(message=, level=NONE), aiReasoning=null, labeledCommand=null)
+17:37:51.261 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$2: Assert that "Your money tools, in one place" is not visible COMPLETED
+17:37:51.262 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$0: Assert that "Help improve the app" is not visible RUNNING
+17:37:51.262 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$11: Assert that "Help improve the app" is not visible metadata CommandMetadata(numberOfRuns=null, evaluatedCommand=MaestroCommand(assertConditionCommand=AssertConditionCommand(condition=Condition(platform=null, visible=null, notVisible=ElementSelector(textRegex=Help improve the app, idRegex=null, size=null, below=null, above=null, leftOf=null, rightOf=null, containsChild=null, containsDescendants=null, traits=null, index=null, enabled=null, optional=false, selected=null, checked=null, focused=null, childOf=null, css=null), scriptCondition=null, label=null), timeout=null, label=null, optional=false)), logMessages=[], insight=Insight(message=, level=NONE), aiReasoning=null, labeledCommand=null)
+17:37:52.610 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$2: Assert that "Help improve the app" is not visible COMPLETED
+17:37:52.611 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$0: Take screenshot disabled-1-home RUNNING
+17:37:52.611 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$11: Take screenshot disabled-1-home metadata CommandMetadata(numberOfRuns=null, evaluatedCommand=MaestroCommand(takeScreenshotCommand=TakeScreenshotCommand(path=disabled-1-home, cropOn=null, label=null, optional=false)), logMessages=[], insight=Insight(message=, level=NONE), aiReasoning=null, labeledCommand=null)
+17:37:52.613 [ INFO] maestro.Maestro.takeScreenshot: Taking screenshot
+17:37:52.617 [TRACE] maestro.utils.ScreenshotUtils.takeScreenshot: Taking screenshot to output sink
+17:37:53.215 [ INFO] maestro.cli.runner.MaestroCommandRunner.runCommands$lambda$2: Take screenshot disabled-1-home COMPLETED
+17:37:53.363 [ INFO] maestro.cli.report.TestDebugReporter.deleteOldFiles: Performing purge of logs older than 14 days from /Users/therajanmaurya/project-development/claude-product-cycle/workspaces/mifos-x/kmp-project-template/idea-layer/testers/captures/20261105T120740Z

@@ -1,0 +1,401 @@
+[ {
+  "command" : {
+    "applyConfigurationCommand" : {
+      "config" : {
+        "appId" : "org.mifos.kmp.template",
+        "name" : "onboarding disabled — a fresh install goes straight to the home dashboard",
+        "tags" : [ "onboarding", "first-run", "smoke" ]
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1793879569606,
+    "duration" : 2,
+    "sequenceNumber" : 1,
+    "evaluatedCommand" : {
+      "applyConfigurationCommand" : {
+        "config" : {
+          "appId" : "org.mifos.kmp.template",
+          "name" : "onboarding disabled — a fresh install goes straight to the home dashboard",
+          "tags" : [ "onboarding", "first-run", "smoke" ]
+        },
+        "optional" : false
+      }
+    }
+  }
+}, {
+  "command" : {
+    "defineVariablesCommand" : {
+      "env" : {
+        "MAESTRO_FILENAME" : "disabled-goes-home",
+        "MAESTRO_DEVICE_UDID" : "Q4CIZHA6Y5GMJV89",
+        "MAESTRO_SHARD_ID" : "1",
+        "MAESTRO_SHARD_INDEX" : "0"
+      },
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "COMPLETED",
+    "timestamp" : 1793879569600,
+    "duration" : 5,
+    "sequenceNumber" : 0,
+    "evaluatedCommand" : {
+      "defineVariablesCommand" : {
+        "env" : {
+          "MAESTRO_FILENAME" : "disabled-goes-home",
+          "MAESTRO_DEVICE_UDID" : "Q4CIZHA6Y5GMJV89",
+          "MAESTRO_SHARD_ID" : "1",
+          "MAESTRO_SHARD_INDEX" : "0"
+        },
+        "optional" : false
+      }
+    }
+  }
+}, {
+  "command" : {
+    "launchAppCommand" : {
+      "appId" : "org.mifos.kmp.template",
+      "clearState" : true,
+      "optional" : false
+    }
+  },
+  "metadata" : {
+    "status" : "FAILED",
+    "timestamp" : 1793879569609,
+    "duration" : 123,
+    "error" : {
+      "message" : "Unable to clear state for app org.mifos.kmp.template: pm clear org.mifos.kmp.template: \nException occurred while executing 'clear':\njava.lang.SecurityException: PID 30349 does not have permission android.permission.CLEAR_APP_USER_DATA to clear data of package org.mifos.kmp.template\n\tat com.android.server.am.ActivityManagerService.clearApplicationUserData(ActivityManagerService.java:4103)\n\tat com.android.server.am.ActivityManagerService.clearApplicationUserData(ActivityManagerService.java:4048)\n\tat com.android.server.am.ActivityManagerService.clearApplicationUserData(ActivityManagerService.java:4036)\n\tat com.android.server.pm.PackageManagerShellCommand.runClear(PackageManagerShellCommand.java:2380)\n\tat com.android.server.pm.PackageManagerShellCommand.onCommand(PackageManagerShellCommand.java:290)\n\tat com.android.modules.utils.BasicShellCommandHandler.exec(BasicShellCommandHandler.java:97)\n\tat android.os.ShellCommand.exec(ShellCommand.java:38)\n\tat com.android.server.pm.PackageManagerService$IPackageManagerImpl.onShellCommand(PackageManagerService.java:7038)\n\tat android.os.Binder.shellCommand(Binder.java:1243)\n\tat android.os.Binder.onTransact(Binder.java:1056)\n\tat android.content.pm.IPackageManager$Stub.onTransact(IPackageManager.java:4625)\n\tat com.android.server.pm.PackageManagerService$IPackageManagerImpl.onTransact(PackageManagerService.java:7022)\n\tat android.os.Binder.execTransactInternal(Binder.java:1523)\n\tat android.os.Binder.execTransact(Binder.java:1457)\n",
+      "cause" : {
+        "stackTrace" : [ {
+          "classLoaderName" : "app",
+          "methodName" : "shell",
+          "fileName" : "AndroidDriver.kt",
+          "lineNumber" : 1252,
+          "nativeMethod" : false,
+          "className" : "maestro.drivers.AndroidDriver"
+        }, {
+          "classLoaderName" : "app",
+          "methodName" : "clearAppState$lambda$11",
+          "fileName" : "AndroidDriver.kt",
+          "lineNumber" : 257,
+          "nativeMethod" : false,
+          "className" : "maestro.drivers.AndroidDriver"
+        }, {
+          "classLoaderName" : "app",
+          "methodName" : "measured",
+          "fileName" : "Metrics.kt",
+          "lineNumber" : 48,
+          "nativeMethod" : false,
+          "className" : "maestro.utils.Metrics"
+        }, {
+          "classLoaderName" : "app",
+          "methodName" : "clearAppState",
+          "fileName" : "AndroidDriver.kt",
+          "lineNumber" : 252,
+          "nativeMethod" : false,
+          "className" : "maestro.drivers.AndroidDriver"
+        }, {
+          "classLoaderName" : "app",
+          "methodName" : "clearAppState$lambda$5",
+          "fileName" : "Maestro.kt",
+          "lineNumber" : 93,
+          "nativeMethod" : false,
+          "className" : "maestro.Maestro"
+        }, {
+          "classLoaderName" : "app",
+          "methodName" : "runInterruptibleInExpectedContext",
+          "fileName" : "Interruptible.kt",
+          "lineNumber" : 48,
+          "nativeMethod" : false,
+          "className" : "kotlinx.coroutines.InterruptibleKt"
+        }, {
+          "classLoaderName" : "app",
+          "methodName" : "access$runInterruptibleInExpectedContext",
+          "fileName" : "Interruptible.kt",
+          "lineNumber" : 1,
+          "nativeMethod" : false,
+          "className" : "kotlinx.coroutines.InterruptibleKt"
+        }, {
+          "classLoaderName" : "app",
+          "methodName" : "invokeSuspend",
+          "fileName" : "Interruptible.kt",
+          "lineNumber" : 40,
+          "nativeMethod" : false,
+          "className" : "kotlinx.coroutines.InterruptibleKt$runInterruptible$2"
+        }, {
+          "classLoaderName" : "app",
+          "methodName" : "resumeWith",
+          "fileName" : "ContinuationImpl.kt",
+          "lineNumber" : 34,
+          "nativeMethod" : false,
+          "className" : "kotlin.coroutines.jvm.internal.BaseContinuationImpl"
+        }, {
+          "classLoaderName" : "app",
+          "methodName" : "run",
+          "fileName" : "DispatchedTask.kt",
+          "lineNumber" : 100,
+          "nativeMethod" : false,
+          "className" : "kotlinx.coroutines.DispatchedTask"
+        }, {
+          "classLoaderName" : "app",
+          "methodName" : "run",
+          "fileName" : "LimitedDispatcher.kt",
+          "lineNumber" : 124,
+          "nativeMethod" : false,
+          "className" : "kotlinx.coroutines.internal.LimitedDispatcher$Worker"
+        }, {
+          "classLoaderName" : "app",
+          "methodName" : "run",
+          "fileName" : "Tasks.kt",
+          "lineNumber" : 89,
+          "nativeMethod" : false,
+          "className" : "kotlinx.coroutines.scheduling.TaskImpl"
+        }, {
+          "classLoaderName" : "app",
+          "methodName" : "runSafely",
+          "fileName" : "CoroutineScheduler.kt",
+          "lineNumber" : 586,
+          "nativeMethod" : false,
+          "className" : "kotlinx.coroutines.scheduling.CoroutineScheduler"
+        }, {
+          "classLoaderName" : "app",
+          "methodName" : "executeTask",
+          "fileName" : "CoroutineScheduler.kt",
+          "lineNumber" : 820,
+          "nativeMethod" : false,
+          "className" : "kotlinx.coroutines.scheduling.CoroutineScheduler$Worker"
+        }, {
+          "classLoaderName" : "app",
+          "methodName" : "runWorker",
+          "fileName" : "CoroutineScheduler.kt",
+          "lineNumber" : 717,
+          "nativeMethod" : false,
+          "className" : "kotlinx.coroutines.scheduling.CoroutineScheduler$Worker"
+        }, {
+          "classLoaderName" : "app",
+          "methodName" : "run",
+          "fileName" : "CoroutineScheduler.kt",
+          "lineNumber" : 704,
+          "nativeMethod" : false,
+          "className" : "kotlinx.coroutines.scheduling.CoroutineScheduler$Worker"
+        } ],
+        "message" : "pm clear org.mifos.kmp.template: \nException occurred while executing 'clear':\njava.lang.SecurityException: PID 30349 does not have permission android.permission.CLEAR_APP_USER_DATA to clear data of package org.mifos.kmp.template\n\tat com.android.server.am.ActivityManagerService.clearApplicationUserData(ActivityManagerService.java:4103)\n\tat com.android.server.am.ActivityManagerService.clearApplicationUserData(ActivityManagerService.java:4048)\n\tat com.android.server.am.ActivityManagerService.clearApplicationUserData(ActivityManagerService.java:4036)\n\tat com.android.server.pm.PackageManagerShellCommand.runClear(PackageManagerShellCommand.java:2380)\n\tat com.android.server.pm.PackageManagerShellCommand.onCommand(PackageManagerShellCommand.java:290)\n\tat com.android.modules.utils.BasicShellCommandHandler.exec(BasicShellCommandHandler.java:97)\n\tat android.os.ShellCommand.exec(ShellCommand.java:38)\n\tat com.android.server.pm.PackageManagerService$IPackageManagerImpl.onShellCommand(PackageManagerService.java:7038)\n\tat android.os.Binder.shellCommand(Binder.java:1243)\n\tat android.os.Binder.onTransact(Binder.java:1056)\n\tat android.content.pm.IPackageManager$Stub.onTransact(IPackageManager.java:4625)\n\tat com.android.server.pm.PackageManagerService$IPackageManagerImpl.onTransact(PackageManagerService.java:7022)\n\tat android.os.Binder.execTransactInternal(Binder.java:1523)\n\tat android.os.Binder.execTransact(Binder.java:1457)\n",
+        "localizedMessage" : "pm clear org.mifos.kmp.template: \nException occurred while executing 'clear':\njava.lang.SecurityException: PID 30349 does not have permission android.permission.CLEAR_APP_USER_DATA to clear data of package org.mifos.kmp.template\n\tat com.android.server.am.ActivityManagerService.clearApplicationUserData(ActivityManagerService.java:4103)\n\tat com.android.server.am.ActivityManagerService.clearApplicationUserData(ActivityManagerService.java:4048)\n\tat com.android.server.am.ActivityManagerService.clearApplicationUserData(ActivityManagerService.java:4036)\n\tat com.android.server.pm.PackageManagerShellCommand.runClear(PackageManagerShellCommand.java:2380)\n\tat com.android.server.pm.PackageManagerShellCommand.onCommand(PackageManagerShellCommand.java:290)\n\tat com.android.modules.utils.BasicShellCommandHandler.exec(BasicShellCommandHandler.java:97)\n\tat android.os.ShellCommand.exec(ShellCommand.java:38)\n\tat com.android.server.pm.PackageManagerService$IPackageManagerImpl.onShellCommand(PackageManagerService.java:7038)\n\tat android.os.Binder.shellCommand(Binder.java:1243)\n\tat android.os.Binder.onTransact(Binder.java:1056)\n\tat android.content.pm.IPackageManager$Stub.onTransact(IPackageManager.java:4625)\n\tat com.android.server.pm.PackageManagerService$IPackageManagerImpl.onTransact(PackageManagerService.java:7022)\n\tat android.os.Binder.execTransactInternal(Binder.java:1523)\n\tat android.os.Binder.execTransact(Binder.java:1457)\n"
+      },
+      "stackTrace" : [ {
+        "classLoaderName" : "app",
+        "methodName" : "launchAppCommand",
+        "fileName" : "Orchestra.kt",
+        "lineNumber" : 1126,
+        "nativeMethod" : false,
+        "className" : "maestro.orchestra.Orchestra"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "access$launchAppCommand",
+        "fileName" : "Orchestra.kt",
+        "lineNumber" : 123,
+        "nativeMethod" : false,
+        "className" : "maestro.orchestra.Orchestra"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "invokeSuspend",
+        "fileName" : "Orchestra.kt",
+        "lineNumber" : -1,
+        "nativeMethod" : false,
+        "className" : "maestro.orchestra.Orchestra$launchAppCommand$1"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "resumeWith",
+        "fileName" : "ContinuationImpl.kt",
+        "lineNumber" : 34,
+        "nativeMethod" : false,
+        "className" : "kotlin.coroutines.jvm.internal.BaseContinuationImpl"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "run",
+        "fileName" : "DispatchedTask.kt",
+        "lineNumber" : 98,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.DispatchedTask"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "processNextEvent",
+        "fileName" : "EventLoop.common.kt",
+        "lineNumber" : 263,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.EventLoopImplBase"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "joinBlocking",
+        "fileName" : "Builders.kt",
+        "lineNumber" : 94,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.BlockingCoroutine"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runBlocking",
+        "fileName" : "Builders.kt",
+        "lineNumber" : 70,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.BuildersKt__BuildersKt"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runBlocking",
+        "lineNumber" : 1,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.BuildersKt"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runBlocking$default",
+        "fileName" : "Builders.kt",
+        "lineNumber" : 48,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.BuildersKt__BuildersKt"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runBlocking$default",
+        "lineNumber" : 1,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.BuildersKt"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runSingle$lambda$0",
+        "fileName" : "TestRunner.kt",
+        "lineNumber" : 74,
+        "nativeMethod" : false,
+        "className" : "maestro.cli.runner.TestRunner"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runCatching-ta8aW1Q",
+        "fileName" : "TestRunner.kt",
+        "lineNumber" : 203,
+        "nativeMethod" : false,
+        "className" : "maestro.cli.runner.TestRunner"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runSingle",
+        "fileName" : "TestRunner.kt",
+        "lineNumber" : 65,
+        "nativeMethod" : false,
+        "className" : "maestro.cli.runner.TestRunner"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runSingleFlow",
+        "fileName" : "TestCommand.kt",
+        "lineNumber" : 571,
+        "nativeMethod" : false,
+        "className" : "maestro.cli.command.TestCommand"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runShardSuite$lambda$10",
+        "fileName" : "TestCommand.kt",
+        "lineNumber" : 532,
+        "nativeMethod" : false,
+        "className" : "maestro.cli.command.TestCommand"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "newSession",
+        "fileName" : "MaestroSessionManager.kt",
+        "lineNumber" : 136,
+        "nativeMethod" : false,
+        "className" : "maestro.cli.session.MaestroSessionManager"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "newSession$default",
+        "fileName" : "MaestroSessionManager.kt",
+        "lineNumber" : 67,
+        "nativeMethod" : false,
+        "className" : "maestro.cli.session.MaestroSessionManager"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runShardSuite",
+        "fileName" : "TestCommand.kt",
+        "lineNumber" : 479,
+        "nativeMethod" : false,
+        "className" : "maestro.cli.command.TestCommand"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "access$runShardSuite",
+        "fileName" : "TestCommand.kt",
+        "lineNumber" : 81,
+        "nativeMethod" : false,
+        "className" : "maestro.cli.command.TestCommand"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "invokeSuspend",
+        "fileName" : "TestCommand.kt",
+        "lineNumber" : 438,
+        "nativeMethod" : false,
+        "className" : "maestro.cli.command.TestCommand$handleSessions$1$results$1$1"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "resumeWith",
+        "fileName" : "ContinuationImpl.kt",
+        "lineNumber" : 34,
+        "nativeMethod" : false,
+        "className" : "kotlin.coroutines.jvm.internal.BaseContinuationImpl"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "run",
+        "fileName" : "DispatchedTask.kt",
+        "lineNumber" : 100,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.DispatchedTask"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "run",
+        "fileName" : "LimitedDispatcher.kt",
+        "lineNumber" : 124,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.internal.LimitedDispatcher$Worker"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "run",
+        "fileName" : "Tasks.kt",
+        "lineNumber" : 89,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.scheduling.TaskImpl"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runSafely",
+        "fileName" : "CoroutineScheduler.kt",
+        "lineNumber" : 586,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.scheduling.CoroutineScheduler"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "executeTask",
+        "fileName" : "CoroutineScheduler.kt",
+        "lineNumber" : 820,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.scheduling.CoroutineScheduler$Worker"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "runWorker",
+        "fileName" : "CoroutineScheduler.kt",
+        "lineNumber" : 717,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.scheduling.CoroutineScheduler$Worker"
+      }, {
+        "classLoaderName" : "app",
+        "methodName" : "run",
+        "fileName" : "CoroutineScheduler.kt",
+        "lineNumber" : 704,
+        "nativeMethod" : false,
+        "className" : "kotlinx.coroutines.scheduling.CoroutineScheduler$Worker"
+      } ],
+      "localizedMessage" : "Unable to clear state for app org.mifos.kmp.template: pm clear org.mifos.kmp.template: \nException occurred while executing 'clear':\njava.lang.SecurityException: PID 30349 does not have permission android.permission.CLEAR_APP_USER_DATA to clear data of package org.mifos.kmp.template\n\tat com.android.server.am.ActivityManagerService.clearApplicationUserData(ActivityManagerService.java:4103)\n\tat com.android.server.am.ActivityManagerService.clearApplicationUserData(ActivityManagerService.java:4048)\n\tat com.android.server.am.ActivityManagerService.clearApplicationUserData(ActivityManagerService.java:4036)\n\tat com.android.server.pm.PackageManagerShellCommand.runClear(PackageManagerShellCommand.java:2380)\n\tat com.android.server.pm.PackageManagerShellCommand.onCommand(PackageManagerShellCommand.java:290)\n\tat com.android.modules.utils.BasicShellCommandHandler.exec(BasicShellCommandHandler.java:97)\n\tat android.os.ShellCommand.exec(ShellCommand.java:38)\n\tat com.android.server.pm.PackageManagerService$IPackageManagerImpl.onShellCommand(PackageManagerService.java:7038)\n\tat android.os.Binder.shellCommand(Binder.java:1243)\n\tat android.os.Binder.onTransact(Binder.java:1056)\n\tat android.content.pm.IPackageManager$Stub.onTransact(IPackageManager.java:4625)\n\tat com.android.server.pm.PackageManagerService$IPackageManagerImpl.onTransact(PackageManagerService.java:7022)\n\tat android.os.Binder.execTransactInternal(Binder.java:1523)\n\tat android.os.Binder.execTransact(Binder.java:1457)\n"
+    },
+    "sequenceNumber" : 2,
+    "evaluatedCommand" : {
+      "launchAppCommand" : {
+        "appId" : "org.mifos.kmp.template",
+        "clearState" : true,
+        "optional" : false
+      }
+    }
+  }
+} ]

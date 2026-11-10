@@ -1,0 +1,14 @@
+# Behaviour contract for first-run-allow.yaml.
+flow: first-run-allow.yaml
+feature: onboarding
+requires:
+  app_profile: { security.first_run_onboarding: true }
+asserts:
+  - fresh install shows the onboarding overview page first
+  - Next advances overview → track → offline → privacy; privacy is the last page
+  - the privacy page shows both consent choices and "Allow and get started"
+  - "Allow and get started" lands on the home dashboard
+  - a relaunch after finishing goes straight to home (first run is not repeated)
+source:
+  - source/kmp-project-template/feature/onboarding/src/commonMain/kotlin/kpt/feature/onboarding/ui/OnboardingViewModel.kt
+  - source/kmp-project-template/cmp-navigation/src/commonMain/kotlin/cmp/navigation/rootnav/RootNavScreen.kt

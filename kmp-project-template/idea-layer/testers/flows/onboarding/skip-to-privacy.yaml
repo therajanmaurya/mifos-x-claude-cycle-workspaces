@@ -1,0 +1,40 @@
+# Copyright 2026 Mifos Initiative
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#
+# See https://github.com/openMF/kmp-project-template/blob/main/LICENSE
+#
+# ─────────────────────────────────────────────────────────────────────────────
+# onboarding — "Skip" lands on the privacy page, never past it
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# Requires app-profile `security.first_run_onboarding: true`. The intro is optional, the consent
+# choice is not: Skip jumps from the first page straight to the privacy page and does not finish
+# onboarding. With both switches left OFF the secondary button reads "Continue without sharing"
+# (it becomes "Continue with my choices" once one is on); tapping it finishes with no consent.
+#
+# Precondition: a FRESH INSTALL (uninstall + install) — not `clearState`, which OnePlus / ColorOS
+# refuses from adb (CLEAR_APP_USER_DATA) unless "Disable permission monitoring" is on.
+appId: org.mifos.kmp.template
+name: onboarding — Skip goes to the privacy page; continuing with no consent finishes first run
+tags:
+  - onboarding
+  - first-run
+  - consent
+---
+- launchApp
+- extendedWaitUntil:
+    visible: "Your money tools, in one place"
+    timeout: 20000
+- tapOn: "Skip"
+- assertVisible: "Help improve the app"
+- assertNotVisible: "Never miss a due date"
+- takeScreenshot: skip-1-privacy
+- assertNotVisible: "Continue with my choices"
+- tapOn: "Continue without sharing"
+- extendedWaitUntil:
+    visible: "Outstanding balance"
+    timeout: 20000
+- takeScreenshot: skip-2-home

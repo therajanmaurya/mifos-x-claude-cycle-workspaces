@@ -1,0 +1,33 @@
+# Copyright 2026 Mifos Initiative
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#
+# See https://github.com/openMF/kmp-project-template/blob/main/LICENSE
+#
+# ─────────────────────────────────────────────────────────────────────────────
+# onboarding disabled — the shipped template default lands straight on home
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# For a build with app-profile `security.first_run_onboarding: false` (the template default). A
+# fresh install must never show the onboarding pager: UserData.firstTimeUser starts false, so
+# RootNavViewModel goes splash → home.
+#
+# Precondition: a FRESH INSTALL (uninstall + install). The flow does not use `clearState`: on
+# OnePlus / ColorOS `pm clear` from adb is refused (CLEAR_APP_USER_DATA) unless "Disable permission
+# monitoring" is on, and a reinstall is the stronger guarantee anyway.
+appId: org.mifos.kmp.template
+name: onboarding disabled — a fresh install goes straight to the home dashboard
+tags:
+  - onboarding
+  - first-run
+  - smoke
+---
+- launchApp
+- extendedWaitUntil:
+    visible: "Outstanding balance"
+    timeout: 20000
+- assertNotVisible: "Your money tools, in one place"
+- assertNotVisible: "Help improve the app"
+- takeScreenshot: disabled-1-home

@@ -1,0 +1,11 @@
+# Behaviour contract for disabled-goes-home.yaml.
+flow: disabled-goes-home.yaml
+feature: onboarding
+requires:
+  app_profile: { security.first_run_onboarding: false }
+asserts:
+  - a fresh install with onboarding disabled never shows the onboarding pager
+  - the first screen after splash is the home dashboard
+source:
+  - source/kmp-project-template/core/model/src/commonMain/kotlin/kpt/core/model/user/UserData.kt
+  - source/kmp-project-template/cmp-navigation/src/commonMain/kotlin/cmp/navigation/rootnav/RootNavScreen.kt
