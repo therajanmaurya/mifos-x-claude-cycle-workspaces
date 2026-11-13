@@ -1,0 +1,14 @@
+# mifos-x/mobile-wallet (mifos-pay) — project plan.
+#
+# This plan currently declares the languages the app ships and the template architecture stamp
+# (`kmp_arch_*`, written by the template sync — never by hand). `locales.languages[]` is the
+# authoritative list read by core/scripts/locale-resolve.sh; the language picker
+# (core/model/.../fork/user/LanguageConfig.kt) and the locale coverage checks are generated from it.
+#
+# The registry's tier-1 preset (20 languages) plus Bengali and Swahili, which the app has
+# translations for. Portuguese ships as values-pt and values-pt-rBR; it is offered as pt-rBR.
+locales:
+  languages: [en, es, zh-rCN, zh-rTW, hi, ar, pt-rBR, ru, ja, de, fr, ko, it, tr, id, vi, th, pl, nl, uk, bn, sw]
+  preset: tier1
+kmp_arch_pattern: stream-first
+kmp_arch_version: latest

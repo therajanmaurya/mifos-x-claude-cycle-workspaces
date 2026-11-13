@@ -1,219 +1,83 @@
 # Current Work
 
-**Last Updated**: 2026-09-06
-**Active Project**: mifos-x/kmp-project-template
-**Branches**: framework=`session-framework-20260902131157236` · workspace=`session-mifos-x-20260811121518547` · source=`session-kmp-project-template-20260904215046837`
-**Source HEAD**: `bc6e7358` + UNCOMMITTED legacy-Supabase removal (6 paths)
-**PR**: https://github.com/openMF/kmp-project-template/pull/300 (DRAFT, base `dev`)
+**Last Updated**: 2026-11-14
+**Active Project**: mifos-x/kmp-project-template (with mifos-x/mobile-wallet as the first sync target)
+**Branches**: framework=`session-framework-20261101164623912` · workspace=`session-mifos-x-20261031212222497` · template source=`session-kmp-project-template-20261110192515859` @ `08800762`
+**PRs**: template https://github.com/openMF/kmp-project-template/pull/317 (DRAFT, base `dev`) · mifos-pay https://github.com/openMF/mifos-pay/pull/2072 (open)
+**written_at**: 2026-11-13T20:42:10Z
 
 ---
 
 ## Session Resumption
 
-- **Current task**: Legacy Supabase single-project path REMOVED and verified — uncommitted. Awaiting the user's call on `/git-session-commit --source`.
-- **Next step**: Commit the removal, then ship PR #300 (`/git-session-merge --source`).
+- **Goal**: prove the template's GitHub Actions release deploys end to end BEFORE merging #317, fixing everything inside #317 (and the actionhub chain), then sync the template into mifos-pay (#2072).
+- **Blocked on (user)**: merge https://github.com/openMF/mifos-x-actionhub/pull/108 (pins publish-web `v2.0.18`).
+- **Next steps after #108 merges**:
+  1. Release actionhub `v1.0.76` on #108's merge commit (`gh release create … --generate-notes`, same as v1.0.73–75).
+  2. Bump the 8 workflow pins in the template `@v1.0.75` → `@v1.0.76`, commit via `git-session-commit-lite.sh --target mifos-x-kmp-project-template`.
+  3. New `openMF` branch `release-check/pr-317-<sha8>` at #317's head (`gh api repos/openMF/kmp-project-template/git/refs`; updating an existing branch is blocked by the org ruleset — always create a new one), dispatch `release-multi-platform.yml` web-only with `web_host=gh-pages`, then confirm https://openmf.github.io/kmp-project-template/ serves the **prod** build (title "Money Toolkit", not "(Demo)") with the Playwright check in the scratchpad (`web-verify.ts`).
+  4. Mark #317 ready (`gh pr ready 317`), all 13 checks were green at `f28f7e0a`.
+  5. Re-run `/kmp-project-template-sync --target mifos-x/mobile-wallet` against the merged template (prod mode), push to #2072.
 - **Resume command**: `/context-start mifos-x/kmp-project-template`
-- **written_at**: 2026-09-06T09:20:00Z
-
-### Nothing outstanding — the last residual is closed
-
-The earlier doubt (which version of `SyncForkConfigPlugin.kt` the 8-minute run compiled) was settled
-by re-running `./gradlew syncForkConfig` at `bc6e7358`: **BUILD SUCCESSFUL**, all codegen passes ran,
-and `git status` was **empty afterwards** — regeneration is idempotent against what is committed, so
-the generated files in the commit are exactly what today's generator produces.
 
 ---
 
-## What this session built
+## Release verification — where each platform stands
 
-**Goal (user's words):** *"automate the app.yaml:network using the codegen syncForkConfig, setup the
-network client fully, setup the client in DI, and we only focus on writing the api interface for REST
-and Supabase end to end."*
+| Platform | Status | Evidence |
+|---|---|---|
+| Android Firebase | ✅ uploads | run 43485762003, versionCode 301 |
+| Android Play internal | ✅ uploads | run 43485762003, versionCode 301 (production serves 213) |
+| Web — Cloudflare Pages | ✅ prod build served | https://preview.kmp-project-template.pages.dev (run 43491534901) |
+| Web — GitHub Pages | ⚠ deploys, but **demo** build | fixed in publish-web v2.0.18 → needs actionhub #108; live site currently shows the demo build from the preview run |
+| Linux prerelease | ✅ | run 43432643075 |
+| iOS / macOS TestFlight | ❌ account | Apple: "A required agreement is missing or has expired" — the account holder must accept it in App Store Connect → Business. Not code. |
 
-`app-profile/app.yaml#network.access_points` is now the sole declaration point for every endpoint.
-`./gradlew syncForkConfig` projects that one list onto four surfaces, so adding an endpoint is
-**declare it + write the API type** — there is no wiring step:
-
-| Generated surface | Contents |
-|---|---|
-| `AppAccessPoints.points` | the registry list (pre-existing) |
-| `AppUrlTypes` | one `UrlType` constant per endpoint — **newly generated** |
-| `AppSupabaseAnonKeys` | one row per Supabase point, value via `BuildKonfig` — **newly generated** |
-| `GeneratedApiBindings.kt` | the Koin binding per point declaring `api:` — **new file, fully generated** |
-
-New per-entry `app.yaml` fields: `api:` (FQN of the API type — presence generates the binding) and
-`anon_key_env:` (Supabase only — env/local.properties key, so no anon key is ever committed).
-
-Factory conventions, both mechanical from the FQN:
-- REST `a.b.XApi` → `restApi("id") { it.createXApi() }` (Ktorfit generates `create<Name>()`)
-- Supabase `a.b.XApi` → `supabaseApi("id") { XApi(it) }` (single-arg ctor taking `SupabaseConfigClient`)
-
-**Supabase is now genuinely end-to-end**, not just declared: added the `supabaseApi<T>("<id>")` DSL
-(twin of `restApi`), `SupabaseClientFactory.requireClientFor` (throws naming every declared point
-rather than injecting a null), and `AppConfigApi` — a reference Postgrest facade that stays safe on
-an unconfigured fork (`client` is `by lazy`; calls return empty).
+Android production promotion: production already serves 213 (= internal + beta), so promoting that bundle again fails ("does not add any app bundles"). Ship the new build (301 on Play internal) to production via the workflow (`android_rung: production`) or Play Console.
 
 ---
 
-## Three real defects found and fixed (all were silent)
+## What #317 now contains (all committed + pushed)
 
-1. **`AppUrlTypes` had drifted** — 3 constants against 8 declared endpoints. No compile error:
-   `AppMultiUrlConfigProvider.getBaseUrl` falls back to `UrlType.MAIN` for an unknown type, so a
-   lookup for an undeclared endpoint returned MAIN's base URL instead of failing. Now generated.
-2. **`AppSupabaseAnonKeys` cited a gate that did not exist** — its KDoc said "or NAP-7 will FAIL";
-   `NAP-7` appeared nowhere else in the repo. The gate is now real.
-3. **The two `fork.properties` writers stamped different headers** — `derive.rb` wrote
-   `DERIVED from app-profile`, `syncForkConfig` wrote `GENERATED from app-profile/app.yaml`, and
-   `white-label-derived.sh` greps for the former. So a `syncForkConfig`-written bridge read as
-   *hand-authored* and the health verdict depended on which writer ran last. Headers now aligned.
+- **Release workflow**: actionhub pins `v1.0.75` (valid runner fallbacks; Ruby 3.3.12 on Apple/Android lanes); listing preflight derives the store listing first (`syncForkConfig` in `pre_fastlane_script` for the `validate-store-listing` jobs); self-hosted `release-multi-platform-local.yml` removed (and `.actrc` self-hosted labels).
+- **Version code**: `play_aware_version_code!` in `deployment/_shared/config.rb`, used by Firebase + Play internal lanes: `max(commit count after unshallow, highest code on production/beta/alpha/internal + 1)`; a sample key without `private_key` = no Play access. Test `tests/deployment/version-code-test.sh` (8 cases incl. lane `json_key` definition check).
+- **App Store**: lookup failure reports Apple's message, not "app not found".
+- **Android manifest**: `cmp-clipboard` removed from `core-base/platform` (its `specialUse` foreground service + boot receiver forced a Play declaration). Fork adds `libs.cmp.clipboard` + `includes(clipboardModule())` itself.
+- **Sync engine**: never seeds fork-owned images; self-update stays on the caller's pinned branch; issue/PR forms fork-owned.
+- **Speed**: Crashlytics mapping id no longer re-merges resources on debug builds; `core-package-ownership` parses the contract once (46 s → 5 s); canaries run in parallel (124 s → 18 s).
+- **Docs**: `version-handling.md` Version Code + `versionFile` sections now describe the real build (the rest of that page is still inaccurate — follow-up).
 
-Also caught during review, before it could ship: the generator sanitised the id into the constant's
-**name** *and* its **key**, but `AccessPoint.type` is `UrlType(id.uppercase())` — unsanitised. A
-hyphenated id like `pay-gw` would have declared `UrlType("PAY_GW")` against an access point carrying
-`UrlType("PAY-GW")`, silently reintroducing defect #1. Only the identifier is sanitised now; NAP-3
-checks the **key**, and canary cell `nap3-sanitized-key` pins it.
+## Chain releases done this session
 
----
+| Repo | Version | What |
+|---|---|---|
+| openMF/mifos-x-actionhub | v1.0.74 (#106) | runner fallbacks valid JSON |
+| openMF/mifos-x-actionhub | v1.0.75 (#107) | publish-android v2.0.32 + publish-apple v2.0.27 |
+| therajanmaurya/…-publish-android-kmp | v2.0.32 (#26) | setup-ruby v1.338.0 |
+| therajanmaurya/…-publish-apple-kmp | v2.0.27 (#21) | setup-ruby v1.338.0 |
+| therajanmaurya/…-publish-web-kmp | v2.0.18 (#16) | gh-pages builds the requested flavor; test T42 |
+| openMF/mifos-x-actionhub | **#108 open** | pin publish-web v2.0.18 → then v1.0.76 |
 
-## New gate + canary
+## Secrets
 
-`scripts/product-health/checks/network-access-points.sh` — NAP-1…NAP-7. The generated files are
-**committed** (a fresh clone must build without Gradle), so nothing otherwise forces them to still
-match `app.yaml`; someone who edits app.yaml and forgets `syncForkConfig` gets a repo that compiles
-and is wrong.
+- `openMF/kmp-project-template` re-synced from the mifos-x vault (template-only sync, 41/42; `mifos-x-match-cert-bundle` is ~400 KB, over GitHub's 48 KB secret limit, and unused by the template — consider dropping the template from its `used_by`).
+- A full vault sync also ran (140 ok / 18 failed across 12 repos) before the scope was narrowed.
 
-| Rule | Fails on |
-|---|---|
-| NAP-1 | endpoint declared in app.yaml but absent from `AppAccessPoints` (or vice versa) |
-| NAP-2 | stale `kind` / `baseUrl` / `loggableHost` / `proxiedHost` for a declared id |
-| NAP-3 | missing `UrlType` constant, **or one whose key ≠ `id.uppercase()`** |
-| NAP-4 | `api:` declared with no generated binding, or a binding for an undeclared id |
-| NAP-5 | Supabase point with no anon-key row |
-| NAP-6 | an anon key committed as a string literal instead of a `BuildKonfig` read |
-| NAP-7 | a hand-written `restApi(`/`supabaseApi(` outside the generated file |
+## Uncommitted framework changes (commit with the next framework commit)
 
-Canary `scripts/product-health/tests/network-access-points-canary/` — 9 cells (1 GREEN + 8 RED),
-each RED tree carrying exactly one defect. NAP-3 and NAP-6 are the cells that matter most: both
-failure modes produce **no compile error at all**.
+- `core/scripts/secrets-sync-to-ci.sh` + `secrets-sync-to-ci-script-impl.sh`: `--repo <org/repo>` (script mode only), skips non-target secrets before decrypting.
+- `/idea-ci local-actions` + `act-ui-serve.sh` + `act-dispatch.sh` + RULE-CI-LOCAL-ACTIONS-001 + MULTI_PLATFORM_RELEASE_GUIDE: default workflow is now `release-multi-platform.yml`.
+- `.claude-runtime/state/TEMPLATE_UPSTREAM_QUEUE.yaml`: queued `mirror-deletes-authored-sections-of-fork-docs-pages`, `jacoco-convention-reads-undefined-catalog-version`.
 
----
+## mifos-pay (#2072) — synced in dev mode, not final
 
-## Verification (all green at `bc6e7358`)
+- Synced to template `33efbbae` (dev mode), pushed `239e66d64`; language picker = 22 locales from the new `workspaces/mifos-x/mobile-wallet/idea-layer/idea-plan.yaml` (uncommitted, workspace repo); 33 seeded template images dropped; build + health green.
+- Needs a prod-mode re-sync after #317 merges (brings v1.0.76 pins, versionCode helper, cmp-clipboard removal, local-workflow removal).
 
-```
-spotlessCheck + detekt + compile + :core:network:desktopTest   BUILD SUCCESSFUL (8m 8s)
-canaries                                                       10 / 10
-product-health (TEMPLATE_SELF_BUILD=1)                         16 passed · 1 warn · 0 failed
-fork.properties header    "# gradle/fork.properties — DERIVED from app-profile by syncForkConfig. DO NOT EDIT."
-```
+## Follow-ups
 
-The remaining 1 warn is pre-existing and unrelated: `deployment-whitelabel` B6, duplicate Android
-metadata root (`deployment/fastlane/metadata/android/en-US` should be removed).
-
-**Detekt was red before this session and is now green** — `source(files(rootDir))` means every
-module's detekt task lints the whole repo, so it was linting the `fork-props-manifest-parity-canary`
-fixtures added earlier this session. RED fixtures are deliberately malformed, so
-`scripts/product-health/tests/**` is now excluded in `org/convention/Detekt.kt`. This may be what
-was failing PR #300's checks.
-
----
-
-## Files changed this session
-
-| File | Why |
-|---|---|
-| `build-logic/.../SyncForkConfigPlugin.kt` | +3 codegen passes (`regenerateUrlTypes`, `regenerateSupabaseAnonKeys`, `regenerateApiBindings`) + `patchSentinel`/`accessPoints`/`isSupabase` helpers + header fix |
-| `build-logic/.../org/convention/Detekt.kt` | exclude canary fixtures |
-| `core-base/network/.../NetworkDsl.kt` | `supabaseApi<T>()` DSL |
-| `core-base/network/.../SupabaseClientFactory.kt` | `requireClientFor()` |
-| `core/network/.../config/AppUrlTypes.kt` | sentinel block, now generated |
-| `core/network/.../config/AppSupabaseAnonKeys.kt` | generated rows; phantom-gate KDoc corrected |
-| `core/network/.../demo/di/ProjectNetworkModule.kt` | hand-wired `restApi` lines → `includes(GeneratedApiBindings)` |
-| `core/network/.../demo/di/GeneratedApiBindings.kt` | **new, generated** |
-| `core/network/.../demo/appconfig/{api,dto}/` | **new** — `AppConfigApi` + `RemoteAppConfigDto` |
-| `core/network/src/commonTest/.../SupabaseAccessPointTest.kt` | **new** — 5 tests, incl. inert-safety |
-| `app-profile/app.yaml` | `api:` on 6 points, `anon_key_env:` documented, field docs |
-| `customization-surface.yaml` | `GeneratedApiBindings.kt` carved out of `**/demo/**` |
-| `CLAUDE.md` | Network section rewritten |
-| `scripts/product-health/checks/network-access-points.sh` | **new gate** |
-| `scripts/product-health/tests/network-access-points-canary/` | **new, 9 cells** |
-
----
-
-## Working agreements learned this session
-
-- **Never run `./gradlew` iteratively.** A PreToolUse hook redirects it to the `context-mode` MCP
-  plugin; each call takes minutes and often backgrounds. Author everything first, then **one**
-  build+verify at the end. User: *"this is running very frequently … it is wasting a lot of time."*
-  Pure-bash gates (`product-health.sh`, `self-test-canaries.sh`, `checks/*.sh`) do NOT trip the hook —
-  run those freely. Reason about likely compile/lint failures from neighbouring code instead of
-  trial-compiling (e.g. `javap` the dependency jar to confirm a member vs. an extension).
-- The plugin is disabled in `.claude/settings.local.json` but still enabled in `.claude/settings.json`,
-  and hooks persist until the CLI restarts — it cannot be turned off mid-session.
-- Canary fixtures carry **no `package` declaration** (existing repo convention) — a package makes
-  detekt's `InvalidPackageDeclaration` fire on the fixture path.
-- `:core-base:network` has **no** `spotlessApply` task; format via root `spotlessCheck`.
-
----
-
-## Legacy Supabase path REMOVED (2026-09-06) — verified, uncommitted
-
-Superseded by the registry-driven path. Nothing referenced the generated object, and the plugin could
-only ever express ONE Supabase project, which the access-point registry made obsolete.
-
-Removed (6 paths):
-- `build-logic/.../SupabaseConfigConventionPlugin.kt` — **deleted** (184 lines)
-- its `register("supabaseConfig")` block in `build-logic/convention/build.gradle.kts`
-- the `kmp-supabase-config` alias in `gradle/libs.versions.toml`
-- `alias(libs.plugins.kmp.supabase.config)` + the `supabaseConfig { }` block in `core/network/build.gradle.kts`
-- `NetworkModule`: the `single<SupabaseCredentials> { … }` and unnamed `single { SupabaseConfigClient(…) }`
-  bindings (both had zero consumers) + the now-unused import
-- `core-base/.../SupabaseConfigClient.kt`: KDoc that still told readers to use the deleted generator
-
-`NetworkModule` now exposes exactly one Supabase surface: `Map<String, SupabaseConfigClient>` keyed by
-access-point id. The `SupabaseCredentials` INTERFACE in core-base stays — `SupabaseClientFactory`
-implements it anonymously per point.
-
-### End-to-end proof of "declare + write the interface, nothing else"
-
-Ran live, then reverted. Added ONE endpoint to app.yaml and ONE Ktorfit interface (`ProbeApi`); a
-deliberately **hyphenated** id (`demo-probe`) so the UrlType key-vs-identifier fix was exercised too.
-`syncForkConfig` then wrote, with no further input:
-
-```
-+ AccessPoint(id = "demo-probe", kind = AccessPointKind.REST, baseUrl = …, loggableHost = …)
-+ val DEMO_PROBE: UrlType = UrlType("DEMO-PROBE")      <- identifier sanitized, KEY is not
-+ DEMO_PROBE,                                           (added to AppUrlTypes.all)
-+ import kpt.core.network.demo.probe.api.createProbeApi
-+ restApi("demo-probe") { it.createProbeApi() }
-```
-
-`:core:network:compileKotlinDesktop` BUILD SUCCESSFUL (KSP produced `createProbeApi`, so the generated
-binding resolves) · NAP gate green at 9 declared / 7 bound · revert left the tree clean.
-
-### Verification after removal
-
-```
-syncForkConfig                                          BUILD SUCCESSFUL (idempotent, clean tree)
-spotlessCheck + detekt + compile + desktopTest          BUILD SUCCESSFUL (4m 24s)
-canaries                                                10 / 10
-product-health                                          16 passed · 1 warn · 0 failed
-```
-
----
-
-## Blockers
-
-| # | Blocker | Impact | Resolution |
-|---|---------|--------|------------|
-| - | None | - | - |
-
----
-
-## Session History
-
-| Date | Focus | Outcome |
-|------|-------|---------|
-| 2026-09-06 | app.yaml `network:` → syncForkConfig codegen; REST + Supabase DI generated end-to-end | Shipped. 3 silent defects fixed, NAP-1…NAP-7 gate + 9-cell canary added. All green, committed `bc6e7358`, PR #300 synced. |
-| 2026-09-05 | `fork.properties` single SoT — one reader per language, two-writer manifest parity | Shipped: `ForkProperties.kt`, `scripts/_shared/fork-props.sh`, `fork-props-{single-reader,manifest-parity}.sh` + canaries |
-| 2026-09-04 | Store5 single read path; ViewModel tests; `@Preview`; locale coverage | 13 tests, 30 previews, 369 `strings.xml`, logout-purge privacy bug fixed |
+- Field officer still has `security.md` on `dev`.
+- Netlify / Vercel steps in publish-web pass inputs those actions don't declare (broken, unused).
+- GitHub Pages has no `/cors` relay → exchange rates 404 there (Cloudflare serves it).
+- FRED "Today's Rates" shows a generic error instead of the documented "key not configured" state.
+- Remaining publish-* repos still carry `vars.CI_RUNNER_* || 'label'` fallbacks.
