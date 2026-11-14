@@ -1,8 +1,7 @@
-# DERIVED — mirror of .claude-sessions/bindings/w0t5p0_D07A916F-31EA-487B-BD56-663930FE21BF.json (Step 7.4);
-# idea-agent cockpit adapter route (b) reads it. Do not hand-edit.
-workspace: "mifos-x"
-project: "kmp-project-template"
-session_key: "w0t5p0_D07A916F-31EA-487B-BD56-663930FE21BF"
-session_tail: "21BF"
+# DERIVED — read-only mirror of .claude-sessions/bindings/w0t4p0_C5D2EFEA-FEAC-46CE-BADB-B921E02CC7E3.json (written by /context-start Step 7.4)
+workspace: mifos-x
+project: kmp-project-template
+session_key: w0t4p0_C5D2EFEA-FEAC-46CE-BADB-B921E02CC7E3
+session_tail: C7E3
 mode: project
-bound_at: "2026-10-23T10:07:32Z"
+bound_at: 2026-11-14T04:27:08Z
