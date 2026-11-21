@@ -46,3 +46,5 @@
 {"ts":"2026-11-05T11:37:50Z","command":"idea-build-kmp","actor":"claude","dispatched_by":"standalone","verified_by_parent":false,"verdict":null}
 {"ts":"2026-11-05T14:13:50Z","command":"git-session-lib-upstream","actor":"claude","dispatched_by":"standalone","verified_by_parent":false,"verdict":null}
 {"ts":"2026-11-05T15:51:19Z","command":"kmp-project-template-retrain","actor":"claude","dispatched_by":"standalone","verified_by_parent":false,"verdict":null}
+{"ts":"2026-11-21T00:18:40Z","command":"kmp-project-template-retrain","actor":"claude","dispatched_by":"standalone","verified_by_parent":false,"verdict":null}
+{"ts":"2026-11-21T12:50:53Z","command":"idea-build-kmp","actor":"claude","dispatched_by":"standalone","verified_by_parent":false,"verdict":null}
